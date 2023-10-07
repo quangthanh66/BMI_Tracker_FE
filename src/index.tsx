@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from '@app/store/store';
 import { createRoot } from 'react-dom/client';
 import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 interface EventTarget {
   state?: 'activated';
@@ -14,11 +15,14 @@ interface EventTarget {
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
+const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </Provider>
   </React.StrictMode>,
 );
