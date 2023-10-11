@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from '@app/store/store';
 import { createRoot } from 'react-dom/client';
 import React from 'react';
+import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 interface EventTarget {

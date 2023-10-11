@@ -34,7 +34,6 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
       onClick={() => setCollapsed(true)}
       items={sidebarNavigation.map((nav) => {
         const isSubMenu = nav.children?.length;
-
         return {
           key: nav.key,
           title: t(nav.title),

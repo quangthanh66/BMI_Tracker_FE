@@ -26,8 +26,7 @@ export const Menu = styled(BaseMenu)`
   a,
   .ant-menu-item,
   .ant-menu-submenu {
-    color: var(--text-sider-secondary-color);
-    fill: var(--text-sider-secondary-color);
+    color: white;
   }
 
   .ant-menu-item:hover,
