@@ -26,9 +26,12 @@ axiosClient.interceptors.request.use((config) => {
 });
 axiosClient.interceptors.response.use(
   (response) => {
+    console.log(response);
+
     if (response && response.data) {
       return response.data;
     }
+
     return response;
   },
   (error) => {

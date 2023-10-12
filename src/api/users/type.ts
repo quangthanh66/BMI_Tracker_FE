@@ -4,6 +4,10 @@ export type UpdateUserStatusTypes = {
   status: number;
 };
 
+export type GetUsersTypes = {
+  token: string;
+};
+
 export type UpdateUserRoleTypes = {
   token: string;
   userId: string;

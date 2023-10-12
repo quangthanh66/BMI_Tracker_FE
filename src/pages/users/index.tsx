@@ -1,28 +1,35 @@
-import USERS_API from '@app/api/users';
 import { UserItemTypes } from '@app/api/users/type';
-import { setUser } from '@app/store/slices/userSlice';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import CreateNewUser from '@app/modules/admin/pages/users/CreateNewUser';
+import FilterUser from '@app/modules/admin/pages/users/Filter';
+import { Card, Col, Row, Typography } from 'antd';
+import { useRef, useState } from 'react';
 
 const UsersManagement = () => {
   const [users, setUsers] = useState<UserItemTypes[]>([]);
-  const { refetch, isLoading } = useQuery(['users-list'], USERS_API.GET_LIST, {
-    enabled: false,
-    onSuccess: (users: UserItemTypes[]) => {
-      setUser(users);
-    },
-    onError: () => {},
-  });
+  const createNewUserRef = useRef<any>();
 
-  // Initial page with get users list
-  useEffect(() => {
-    refetch();
-  }, []);
+  const openCreateNewUserModal = () => {
+    createNewUserRef.current.openModal();
+  };
 
   return (
-    <div>
-      <h1 className="text-blue-500">Users management</h1>
-    </div>
+    <Row gutter={[14, 14]}>
+      <Col span={24}>
+        <Card>
+          <Typography.Text className="text-xl font-bold">User management</Typography.Text>
+        </Card>
+      </Col>
+
+      <CreateNewUser ref={createNewUserRef} />
+
+      <Col span={24}>
+        <Card size="small">
+          <FilterUser onCreateNewUser={openCreateNewUserModal} />
+        </Card>
+      </Col>
+
+      <Col span={24}></Col>
+    </Row>
   );
 };
 

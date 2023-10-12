@@ -42,14 +42,14 @@ export default createGlobalStyle`
   .search-overlay {
     box-shadow: var(--box-shadow);
 
-    @media only screen and ${media.xs} and (max-width: ${BREAKPOINTS.md - 0.02}px)  {
+    /* @media only screen and ${media.xs} and (max-width: ${BREAKPOINTS.md - 0.02}px)  {
       width: calc(100vw - 16px);
     max-width: 600px;
     }
 
     @media only screen and ${media.md} {
       width: 323px;
-    }
+    } */
   }
 
   a {
@@ -192,6 +192,10 @@ export default createGlobalStyle`
   
   .ant-menu-inline, .ant-menu-vertical {
     border-right: 0;
+  }
+
+  .ant-form-item-label > label {
+    font-size: 16px !important;
   }
   // notifications end
 `;
