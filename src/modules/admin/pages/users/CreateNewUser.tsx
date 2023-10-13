@@ -54,7 +54,7 @@ const CreateNewUser = ({}, ref: any) => {
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<Typography className="text-lg">Create a new user</Typography>}
+      title={<Typography className="text-xl">Create a new user</Typography>}
       width={800}
     >
       {contextHolder}
