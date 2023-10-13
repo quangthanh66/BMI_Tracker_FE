@@ -3015,6 +3015,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/debounce@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@types/debounce@npm:1.2.2"
+  checksum: 990d856e5b8f721031e13f8a49865af0b3ffde986a469dea7dfc2bb89bbca00d2b8928b22f99ca78544d98266003804d6bd8b578464c792a6bd8f96456030f66
+  languageName: node
+  linkType: hard
+
 "@types/eslint-scope@npm:^3.7.3":
   version: 3.7.5
   resolution: "@types/eslint-scope@npm:3.7.5"
@@ -3272,7 +3279,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.11":
+"@types/react-dom@npm:latest":
   version: 18.2.13
   resolution: "@types/react-dom@npm:18.2.13"
   dependencies:
@@ -5995,6 +6002,13 @@ __metadata:
   version: 1.11.10
   resolution: "dayjs@npm:1.11.10"
   checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
+  languageName: node
+  linkType: hard
+
+"debounce@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "debounce@npm:1.2.1"
+  checksum: 682a89506d9e54fb109526f4da255c5546102fbb8e3ae75eef3b04effaf5d4853756aee97475cd4650641869794e44f410eeb20ace2b18ea592287ab2038519e
   languageName: node
   linkType: hard
 
@@ -10003,9 +10017,10 @@ __metadata:
     "@reduxjs/toolkit": ^1.9.5
     "@tanstack/react-query": ^4.35.3
     "@types/country-list": ^2.1.0
+    "@types/debounce": ^1.2.2
     "@types/leaflet": ^1.7.9
-    "@types/react": ^18.0.28
-    "@types/react-dom": ^18.0.11
+    "@types/react": latest
+    "@types/react-dom": latest
     "@types/react-helmet": ^6.1.5
     "@types/react-responsive": ^8.0.5
     "@types/react-router-dom": ^5.1.7
@@ -10025,6 +10040,7 @@ __metadata:
     craco-alias: ^3.0.1
     credit-card-type: ^9.1.0
     dayjs: ^1.11.0
+    debounce: ^1.2.1
     echarts: ^5.1.2
     echarts-for-react: ^3.0.1
     elt-react-credit-cards: ^0.0.1

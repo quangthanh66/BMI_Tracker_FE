@@ -1,81 +1,54 @@
-import { UserAddOutlined } from '@ant-design/icons';
-import USERS_API from '@app/api/users';
-import { CreateUserTypes } from '@app/api/users/type';
+import { SaveOutlined } from '@ant-design/icons';
+import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
+import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
+import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
+import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
 import { USER_ROLES_VALUES, USER_SEX_VALUES } from '@app/utils/constant';
 import { fieldValidate } from '@app/utils/helper';
-import { useMutation } from '@tanstack/react-query';
-import { Col, DatePicker, Form, Input, Modal, Row, Select, Typography, message } from 'antd';
+import { Col, DatePicker, Form, Row, Typography } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
-import dayjs from 'dayjs';
-import { ErrorResponseTypes } from '@app/api/collection';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 
-const CreateNewUser = ({}, ref: any) => {
+const UpdateUser = ({}, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = Form.useForm();
-  const [messageApi, contextHolder] = message.useMessage();
-  const { isLoading, mutate } = useMutation(USERS_API.CREATE_USER, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Create a new user is successfully',
-      });
-
-      form.resetFields();
-      onCloseModal();
-    },
-    onError: (errors: ErrorResponseTypes) => {
-      console.log(errors);
-      messageApi.open({
-        type: 'error',
-        content: errors.message,
-      });
-    },
-  });
-
   useImperativeHandle(ref, () => {
     return {
       openModal: () => setIsOpenModal(true),
     };
   });
 
-  const onResetForm = () => {
-    form.resetFields();
-  };
   const onCloseModal = () => setIsOpenModal(false);
-  const onFinish = (values: CreateUserTypes) => {
-    const convertDate = dayjs(values.birth_day).format();
-    mutate({ ...values, birth_day: convertDate });
+  const onFinish = () => {
+    console.log('Submit form');
   };
 
   return (
-    <Modal
+    <BaseModal
       centered
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<Typography className="text-xl">Create a new user</Typography>}
+      title={<Typography className="text-xl">Update user profile</Typography>}
       width={800}
     >
-      {contextHolder}
       <Form layout="vertical" requiredMark={false} onFinish={onFinish} form={form}>
         <Row gutter={[20, 20]}>
           <Col span={12}>
             <Form.Item name="email" label="Email" rules={[fieldValidate.required, fieldValidate.email]}>
-              <Input placeholder="Enter your email" required type="email" maxLength={50} />
+              <BaseInput placeholder="Enter your email" required type="email" maxLength={50} />
             </Form.Item>
           </Col>
 
           <Col span={12}>
             <Form.Item name="user_full_name" label="Full name" rules={[fieldValidate.required]}>
-              <Input placeholder="Enter your full name" required maxLength={50} />
+              <BaseInput placeholder="Enter your full name" required maxLength={50} />
             </Form.Item>
           </Col>
 
           <Col span={12}>
             <Form.Item name="phone_number" label="Phone number" rules={[fieldValidate.required]}>
-              <Input placeholder="Enter your phone number" required maxLength={20} />
+              <BaseInput placeholder="Enter your phone number" required maxLength={20} />
             </Form.Item>
           </Col>
 
@@ -87,34 +60,32 @@ const CreateNewUser = ({}, ref: any) => {
 
           <Col span={12}>
             <Form.Item name="role_name" label="Roles" rules={[fieldValidate.required]}>
-              <Select options={USER_ROLES_VALUES} placeholder="Choose your role" />
+              <BaseSelect options={USER_ROLES_VALUES} placeholder="Choose your role" />
             </Form.Item>
           </Col>
 
           <Col span={12}>
             <Form.Item name="sex" label="Sex" rules={[fieldValidate.required]}>
-              <Select options={USER_SEX_VALUES} placeholder="Choose your sex type" />
+              <BaseSelect options={USER_SEX_VALUES} placeholder="Choose your sex type" />
             </Form.Item>
           </Col>
 
           <Col span={24} className="flex items-center justify-end gap-2">
-            <BaseButton danger onClick={onResetForm}>
-              Clear
-            </BaseButton>
+            <BaseButton danger>Reset value</BaseButton>
             <BaseButton
-              icon={<UserAddOutlined />}
+              icon={<SaveOutlined />}
               className="flex items-center"
               htmlType="submit"
-              loading={isLoading}
+              loading={false}
               type="primary"
             >
-              Submit
+              Save
             </BaseButton>
           </Col>
         </Row>
       </Form>
-    </Modal>
+    </BaseModal>
   );
 };
 
-export default forwardRef(CreateNewUser);
+export default forwardRef(UpdateUser);
