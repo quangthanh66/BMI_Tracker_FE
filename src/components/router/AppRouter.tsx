@@ -19,6 +19,8 @@ import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage
 import { PAGE_ROUTES } from '@app/utils/router';
 import UsersManagement from '@app/pages/users';
 import InventoryManagement from '@app/pages/inventory';
+import FeedbackManagement from '@app/pages/feedback';
+import ServicesManagement from '@app/pages/services';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -134,6 +136,9 @@ export const AppRouter: React.FC = () => {
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route path={PAGE_ROUTES.USERS} element={<UsersManagement />} />
           <Route path={PAGE_ROUTES.INVENTORY} element={<InventoryManagement />} />
+          <Route path={PAGE_ROUTES.FEEDBACK} element={<FeedbackManagement />} />
+          <Route path={PAGE_ROUTES.SERVICES} element={<ServicesManagement />} />
+
           <Route index element={<NftDashboard />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path="apps">
