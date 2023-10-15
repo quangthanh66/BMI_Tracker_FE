@@ -68,9 +68,6 @@ export const UserColumns: any = ({ updateUserModal, viewDetail }: UserColumnsTyp
     dataIndex: 'actions',
     render: () => (
       <div className="flex items-center gap-x-4">
-        {/* <Tooltip title="View detail user">
-          <Button icon={<EyeOutlined />} type="text"></Button>
-        </Tooltip> */}
         <Tooltip title="Edit user profile">
           <Button icon={<EditOutlined />} type="text" onClick={updateUserModal}></Button>
         </Tooltip>

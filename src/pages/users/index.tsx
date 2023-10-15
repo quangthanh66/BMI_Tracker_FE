@@ -1,4 +1,5 @@
 import { USER_LIST_DATA, UserItemTypes } from '@app/api/users/type';
+import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import CreateNewUser from '@app/modules/admin/pages/users/CreateNewUser';
 import FilterUser from '@app/modules/admin/pages/users/Filter';
 import UpdateUser from '@app/modules/admin/pages/users/UpdateUser';
@@ -43,7 +44,7 @@ const UsersManagement = () => {
       </Col>
 
       <Col span={24}>
-        <Table
+        <BaseTable
           columns={UserColumns({ updateUserModal: openUpdateUserModal })}
           dataSource={users}
           scroll={{

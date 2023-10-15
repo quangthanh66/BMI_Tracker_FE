@@ -18,6 +18,7 @@ import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
 import { PAGE_ROUTES } from '@app/utils/router';
 import UsersManagement from '@app/pages/users';
+import InventoryManagement from '@app/pages/inventory';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -132,6 +133,7 @@ export const AppRouter: React.FC = () => {
       <Routes>
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route path={PAGE_ROUTES.USERS} element={<UsersManagement />} />
+          <Route path={PAGE_ROUTES.INVENTORY} element={<InventoryManagement />} />
           <Route index element={<NftDashboard />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path="apps">
