@@ -8,18 +8,7 @@ import { BaseButton as BaseButton } from '@app/components/common/BaseButton/Base
 export const GitHubButton: React.FC = (props) => {
   const theme = useAppSelector((state) => state.theme.theme);
 
-  return (
-    <Button
-      type="default"
-      href="https://github.com/altence/lightence-admin"
-      icon={<GithubIcon />}
-      target="_blank"
-      $isDark={theme === 'dark'}
-      {...props}
-    >
-      GitHub
-    </Button>
-  );
+  return <div></div>;
 };
 
 const Button = styled(BaseButton)<{ $isDark: boolean }>`
