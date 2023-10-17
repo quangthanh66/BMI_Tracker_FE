@@ -17,7 +17,7 @@ export const Menu = styled(BaseMenu)`
   }
 
   .ant-menu-item-icon {
-    width: 1.25rem;
+    width: 1rem;
   }
 
   .ant-menu-submenu-expand-icon,
@@ -26,7 +26,7 @@ export const Menu = styled(BaseMenu)`
   a,
   .ant-menu-item,
   .ant-menu-submenu {
-    color: white;
+    color: black;
   }
 
   .ant-menu-item:hover,

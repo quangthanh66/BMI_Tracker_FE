@@ -9,42 +9,35 @@ import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
 export const INGREDIENTS_DATA: IngredientTypes[] = [
   {
     Id: '001',
-    Name: 'Ingredient 1',
-    Category: 'Ingredient category',
+    Name: 'Beans',
+    Category: 'Vegetable',
     Photo:
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      'https://images.unsplash.com/photo-1564894809611-1742fc40ed80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80 870w',
   },
   {
-    Id: '001',
-    Name: 'Ingredient 1',
-    Category: 'Ingredient category',
+    Id: '002',
+    Name: 'Bananas',
+    Category: 'Vegetable',
     Photo:
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      'https://images.unsplash.com/photo-1526364163643-89e30b8fcb70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80 870w',
   },
 
   {
-    Id: '001',
-    Name: 'Ingredient 1',
-    Category: 'Ingredient category',
+    Id: '003',
+    Name: 'Hamburger',
+    Category: 'Fast food',
     Photo:
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      'https://images.unsplash.com/photo-1584178639036-613ba57e5e39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80 870w',
   },
 
   {
-    Id: '001',
-    Name: 'Ingredient 1',
-    Category: 'Ingredient category',
+    Id: '004',
+    Name: 'Fried',
+    Category: 'Fast food',
     Photo:
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80 870w',
   },
 
-  {
-    Id: '001',
-    Name: 'Ingredient 1',
-    Category: 'Ingredient category',
-    Photo:
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  },
 ];
 
 type IngredientColumnsTypes = {

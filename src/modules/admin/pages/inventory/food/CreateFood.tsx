@@ -1,4 +1,4 @@
-import { EditOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
@@ -10,7 +10,7 @@ import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect
 import { fieldValidate } from '@app/utils/helper';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
-const UpdateIngredient = ({}, ref: any) => {
+const CreateFood = ({}, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
 
@@ -29,13 +29,13 @@ const UpdateIngredient = ({}, ref: any) => {
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<BaseTypography className="text-xl">Update ingredient information</BaseTypography>}
+      title={<BaseTypography className="text-xl">Create a new food</BaseTypography>}
     >
       <BaseForm layout="vertical" requiredMark={false} form={form}>
         <BaseRow gutter={[20, 20]}>
           <BaseCol span="24">
             <BaseForm.Item name="menu" label="Name" rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Enter your ingredient name" required maxLength={50} />
+              <BaseInput placeholder="Enter your food name" required maxLength={50} />
             </BaseForm.Item>
           </BaseCol>
 
@@ -60,15 +60,15 @@ const UpdateIngredient = ({}, ref: any) => {
           </BaseCol>
 
           <BaseCol span={24} className="flex items-center justify-end gap-2">
-            <BaseButton danger>Reset form</BaseButton>
+            <BaseButton danger>Clear</BaseButton>
             <BaseButton
-              icon={<EditOutlined />}
+              icon={<PlusOutlined />}
               className="flex items-center"
               htmlType="submit"
               loading={false}
               type="primary"
             >
-              Save
+              Submit
             </BaseButton>
           </BaseCol>
         </BaseRow>
@@ -77,4 +77,4 @@ const UpdateIngredient = ({}, ref: any) => {
   );
 };
 
-export default forwardRef(UpdateIngredient);
+export default forwardRef(CreateFood);

@@ -10,7 +10,7 @@ import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect
 import { fieldValidate } from '@app/utils/helper';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
-const UpdateIngredient = ({}, ref: any) => {
+const UpdateFood = ({}, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
 
@@ -29,13 +29,13 @@ const UpdateIngredient = ({}, ref: any) => {
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<BaseTypography className="text-xl">Update ingredient information</BaseTypography>}
+      title={<BaseTypography className="text-xl">Update food information</BaseTypography>}
     >
       <BaseForm layout="vertical" requiredMark={false} form={form}>
         <BaseRow gutter={[20, 20]}>
           <BaseCol span="24">
             <BaseForm.Item name="menu" label="Name" rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Enter your ingredient name" required maxLength={50} />
+              <BaseInput placeholder="Enter your food name" required maxLength={50} />
             </BaseForm.Item>
           </BaseCol>
 
@@ -77,4 +77,4 @@ const UpdateIngredient = ({}, ref: any) => {
   );
 };
 
-export default forwardRef(UpdateIngredient);
+export default forwardRef(UpdateFood);

@@ -49,8 +49,12 @@ const UpdateMenuModal = ({}, ref: any) => {
               <BaseSelect
                 placeholder="Choose your menu type"
                 options={[
-                  { label: 'Fast food', value: 'FastFood' },
-                  { label: 'Vegererian', value: 'Vegererian' },
+              { value: 'Vegetarian', label: 'Vegetarian' },
+              { value: 'Salty ', label: 'Salty' },
+              { value: 'Weight gain', label: 'Weight gain' },
+              { value: 'Weight loss ', label: 'Weight loss' },
+              { value: 'Muscle gain', label: 'Muscle gain' },
+              { value: 'Muscle loss', label: 'Muscle loss' },
                 ]}
               />
             </BaseForm.Item>
