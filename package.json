@@ -1,5 +1,5 @@
 {
-  "name": "lightence-admin",
+  "name": "bmit-admin",
   "version": "1.0.0",
   "license": "MIT",
   "description": "Free and easy-to-use admin template based on React 17+",
@@ -8,7 +8,7 @@
     "url": "git+github.com:altence/lightence-admin.git"
   },
   "bugs": {
-    "url": "https://github.com/altence/lightence-admin/issues"
+    "url": "https://github.com/quangthanh66/BMI_Tracker_FE.git"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
@@ -138,7 +138,7 @@
   },
   "packageManager": "yarn@3.1.1",
   "keywords": [
-    "lightence",
+    "bmi-tracker",
     "admin",
     "admin-dashboard",
     "ant-design",

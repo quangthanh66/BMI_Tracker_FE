@@ -74,7 +74,7 @@ export const lightColorsTheme: ITheme = {
   textDark: '#404040',
   textNftLight: '#79819A',
   textSiderPrimary: '#eeef20',
-  textSiderSecondary: '#000000',
+  textSiderSecondary: '#bc4749',
   subText: 'rgba(0, 0, 0, 0.45)',
   shadow: 'rgba(0, 0, 0, 0.07)',
   boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',

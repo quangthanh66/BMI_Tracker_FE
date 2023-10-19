@@ -42,7 +42,7 @@ const SwitchesPage: React.FC = () => {
         <S.Card title={t('switches.icons')}>
           <BaseSpace direction="vertical" size={10}>
             <BaseSwitch checkedChildren={t('switches.yes')} unCheckedChildren={t('switches.no')} defaultChecked />
-            <BaseSwitch checkedChildren="1" unCheckedChildren="0" />
+            <BaseSwitch checkedChildren="0" unCheckedChildren="1" />
             <BaseSwitch checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked />
           </BaseSpace>
         </S.Card>

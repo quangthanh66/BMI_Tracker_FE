@@ -17,7 +17,7 @@ export const Menu = styled(BaseMenu)`
   }
 
   .ant-menu-item-icon {
-    width: 1rem;
+    width: 1.5rem;
   }
 
   .ant-menu-submenu-expand-icon,
