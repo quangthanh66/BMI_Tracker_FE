@@ -2,13 +2,15 @@ import { UserItemTypes } from '@app/api/users/type';
 import { Button, Tag, Tooltip } from 'antd';
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
+import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 
 type UserColumnsTypes = {
   updateUserModal: () => void;
   viewDetail: () => void;
+  changeUserRole: () => void;
 };
 
-export const UserColumns: any = ({ updateUserModal, viewDetail }: UserColumnsTypes) => [
+export const UserColumns: any = ({ updateUserModal, viewDetail, changeUserRole }: UserColumnsTypes) => [
   {
     title: 'Full Name',
     dataIndex: 'user_full_name',
@@ -64,13 +66,24 @@ export const UserColumns: any = ({ updateUserModal, viewDetail }: UserColumnsTyp
     ),
   },
   {
+    title: 'Change role',
+    dataIndex: 'change_role',
+    render: () => {
+      return (
+        <Tooltip title="Change user role">
+          <BaseButton onClick={changeUserRole}>Change role</BaseButton>
+        </Tooltip>
+      );
+    },
+  },
+  {
     title: 'Actions',
     dataIndex: 'actions',
     render: () => (
       <div className="flex items-center gap-x-4">
-        <Tooltip title="Edit user profile">
+        {/* <Tooltip title="Edit user profile">
           <Button icon={<EditOutlined />} type="text" onClick={updateUserModal}></Button>
-        </Tooltip>
+        </Tooltip> */}
 
         <Tooltip title="Delete user">
           <BasePopconfirm placement="rightTop" title="Delete the user" okText="Yes" cancelText="No">

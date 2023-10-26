@@ -73,7 +73,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, descriptionModal }: 
     dataIndex: 'Description',
     render: (desc: string) => (
       <BaseTooltip title="Read all description">
-        <MdOutlineDescription size={'32px'} className="cursor-pointer" onClick={descriptionModal} />
+        <BaseButton icon={<MdOutlineDescription className="text-[24px]" />} onClick={descriptionModal} type="text" />
       </BaseTooltip>
     ),
   },

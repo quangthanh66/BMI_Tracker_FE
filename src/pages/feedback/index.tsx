@@ -4,7 +4,7 @@ import CreateFeedbackModel from '@app/modules/admin/pages/feedback/CreateFeedbac
 import FeedbackFilter from '@app/modules/admin/pages/feedback/FeedbackFilter';
 import UpdateFeedbackModel from '@app/modules/admin/pages/feedback/UpdateFeedbackModal';
 import { FeedbackItemTypes } from '@app/modules/admin/pages/feedback/type';
-import { Card, Col, Row, Table, Typography } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
 import { useRef, useState } from 'react';
 
 const FeedbackManagement = () => {

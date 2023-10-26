@@ -34,10 +34,6 @@ const FilterUser = ({ onCreateNewUser, onSearchUser }: FilterUserTypes) => {
           ></BaseSelect>
         </Col>
       </Row>
-
-      <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateNewUser}>
-        Create a new user
-      </BaseButton>
     </div>
   );
 };

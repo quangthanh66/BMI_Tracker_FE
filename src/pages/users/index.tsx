@@ -1,5 +1,6 @@
 import { USER_LIST_DATA, UserItemTypes } from '@app/api/users/type';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
+import ChangeUserRole from '@app/modules/admin/pages/users/ChangeUserRole';
 import CreateNewUser from '@app/modules/admin/pages/users/CreateNewUser';
 import FilterUser from '@app/modules/admin/pages/users/Filter';
 import UpdateUser from '@app/modules/admin/pages/users/UpdateUser';
@@ -11,6 +12,7 @@ const UsersManagement = () => {
   const [users, setUsers] = useState<UserItemTypes[]>(USER_LIST_DATA);
   const createNewUserRef = useRef<any>();
   const updateUserRef = useRef<any>();
+  const changeUserRoleRef = useRef<any>();
 
   const openCreateNewUserModal = () => {
     createNewUserRef.current.openModal();
@@ -18,6 +20,10 @@ const UsersManagement = () => {
 
   const openUpdateUserModal = () => {
     updateUserRef.current.openModal();
+  };
+
+  const openChangeUserRoleModal = () => {
+    changeUserRoleRef.current.openModal();
   };
 
   const onSearchUser = async (keyValue: string) => {
@@ -37,6 +43,8 @@ const UsersManagement = () => {
       </Col>
       <CreateNewUser ref={createNewUserRef} />
       <UpdateUser ref={updateUserRef} />
+      <ChangeUserRole ref={changeUserRoleRef} />
+
       <Col span={24}>
         <Card size="small">
           <FilterUser onCreateNewUser={openCreateNewUserModal} onSearchUser={onSearchUser} />
@@ -45,10 +53,10 @@ const UsersManagement = () => {
 
       <Col span={24}>
         <BaseTable
-          columns={UserColumns({ updateUserModal: openUpdateUserModal })}
+          columns={UserColumns({ updateUserModal: openUpdateUserModal, changeUserRole: openChangeUserRoleModal })}
           dataSource={users}
           scroll={{
-            y: (1 - 565 / window.innerHeight) * window.innerHeight,
+            y: (1 - 465 / window.innerHeight) * window.innerHeight,
             x: 1200,
           }}
         />

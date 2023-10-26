@@ -22,6 +22,7 @@ const Feedback = () => {
   };
 
   const onOpenDescriptionModal = () => {
+    console.log('Inside open');
     descriptionRef.current.openModal();
   };
 
