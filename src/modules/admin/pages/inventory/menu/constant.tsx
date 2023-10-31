@@ -3,7 +3,7 @@ import { MenuItemTypes } from './type';
 import { MdOutlineDescription } from 'react-icons/md';
 import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
 
 export const MENU_TABLE_DATA: MenuItemTypes[] = [
@@ -54,9 +54,10 @@ export const MENU_TABLE_DATA: MenuItemTypes[] = [
 type MenuColumnsTypes = {
   updateMenuModal: () => void;
   descriptionModal: () => void;
+  viewDetailModal: () => void;
 };
 
-export const MenuColumns: any = ({ updateMenuModal, descriptionModal }: MenuColumnsTypes) => [
+export const MenuColumns: any = ({ updateMenuModal, descriptionModal, viewDetailModal }: MenuColumnsTypes) => [
   {
     title: 'Name',
     dataIndex: 'Name',
@@ -82,6 +83,10 @@ export const MenuColumns: any = ({ updateMenuModal, descriptionModal }: MenuColu
     dataIndex: 'Id',
     render: () => (
       <div className="flex items-center gap-x-4">
+        <BaseTooltip title="View detail">
+          <BaseButton onClick={viewDetailModal} icon={<EyeOutlined className="text-[24px]" />} type="text"></BaseButton>
+        </BaseTooltip>
+
         <BaseTooltip title="Edit menu information">
           <BaseButton
             onClick={updateMenuModal}

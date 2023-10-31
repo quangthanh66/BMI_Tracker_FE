@@ -1,6 +1,7 @@
 import { AiOutlineUser, AiOutlineHome, AiOutlineCustomerService } from 'react-icons/ai';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { VscFeedback } from 'react-icons/vsc';
+import { BsChatDots } from 'react-icons/bs';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -40,5 +41,11 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     key: 'services',
     url: '/services',
     icon: <AiOutlineCustomerService />,
+  },
+  {
+    title: 'Chatting',
+    key: 'chatting',
+    url: '/chatting',
+    icon: <BsChatDots />,
   },
 ];

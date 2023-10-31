@@ -4,4 +4,5 @@ export const PAGE_ROUTES = {
   INVENTORY: '/inventory',
   FEEDBACK: '/feedback',
   SERVICES: '/services',
+  CHATTING: '/chatting',
 };

@@ -21,6 +21,7 @@ import UsersManagement from '@app/pages/users';
 import InventoryManagement from '@app/pages/inventory';
 import FeedbackManagement from '@app/pages/feedback';
 import ServicesManagement from '@app/pages/services';
+import ChattingManagement from '@app/pages/chat';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -138,6 +139,7 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.INVENTORY} element={<InventoryManagement />} />
           <Route path={PAGE_ROUTES.FEEDBACK} element={<FeedbackManagement />} />
           <Route path={PAGE_ROUTES.SERVICES} element={<ServicesManagement />} />
+          <Route path={PAGE_ROUTES.CHATTING} element={<ChattingManagement />} />
 
           <Route index element={<NftDashboard />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
