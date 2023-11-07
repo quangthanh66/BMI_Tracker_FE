@@ -2,7 +2,7 @@ import { AiOutlineUser, AiOutlineHome, AiOutlineCustomerService } from 'react-ic
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { VscFeedback } from 'react-icons/vsc';
 import { BsChatDots } from 'react-icons/bs';
-import { AreaChartOutlined, CoffeeOutlined } from '@ant-design/icons';
+import { AreaChartOutlined, CoffeeOutlined, ReadOutlined } from '@ant-design/icons';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -50,10 +50,15 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     icon: <BsChatDots />,
   },
   {
+    title: 'Feed',
+    key: 'feed',
+    url: '/feed',
+    icon: <ReadOutlined />,
+  },
+  {
     title: 'Blog',
     key: 'blog',
     url: '/blog',
     icon: <CoffeeOutlined />,
   },
-  
 ];
