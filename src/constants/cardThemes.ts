@@ -7,12 +7,12 @@ export const cardThemes: CardTheme[] = [
   {
     id: 1,
     background:
-      'https://res.cloudinary.com/lapkinthegod/image/upload/v1633425628/horizontal-wide-red-pink-blue-blurred-background_136277-125_bk9drb.jpg',
+      'https://res.cloudinary.com/dnzzvunuu/image/upload/v1699267541/MoMo_Logo_h9lyqk.png',
   },
   {
     id: 2,
     background:
-      'https://res.cloudinary.com/lapkinthegod/image/upload/v1633007324/vivid-blurred-colorful-wallpaper-background_1_h1k9sc.png',
+      'https://res.cloudinary.com/dnzzvunuu/image/upload/v1699268969/zalopay-la-gi_hzowo9.jpg',
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const cardThemes: CardTheme[] = [
   {
     id: 4,
     background:
-      'https://res.cloudinary.com/lapkinthegod/image/upload/v1633007330/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1_x81z7y.png',
+      'https://res.cloudinary.com/dnzzvunuu/image/upload/v1699268900/1622682588188_zalopay_g50uiu.png',
   },
   {
     id: 5,

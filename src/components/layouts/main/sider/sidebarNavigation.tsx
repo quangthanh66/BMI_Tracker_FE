@@ -2,6 +2,7 @@ import { AiOutlineUser, AiOutlineHome, AiOutlineCustomerService } from 'react-ic
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { VscFeedback } from 'react-icons/vsc';
 import { BsChatDots } from 'react-icons/bs';
+import { AreaChartOutlined, CoffeeOutlined } from '@ant-design/icons';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -13,10 +14,10 @@ export interface SidebarNavigationItem {
 
 export const sidebarNavigation: SidebarNavigationItem[] = [
   {
-    title: 'Dashboard',
-    key: 'dashboard',
-    url: '/',
-    icon: <AiOutlineHome />,
+    title: 'Charts',
+    key: 'charts',
+    url: '/charts',
+    icon: <AreaChartOutlined />,
   },
   {
     title: 'Users',
@@ -48,4 +49,11 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     url: '/chatting',
     icon: <BsChatDots />,
   },
+  {
+    title: 'Blog',
+    key: 'blog',
+    url: '/blog',
+    icon: <CoffeeOutlined />,
+  },
+  
 ];

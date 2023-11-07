@@ -73,7 +73,7 @@ export const lightColorsTheme: ITheme = {
   textSecondary: BASE_COLORS.white,
   textDark: '#404040',
   textNftLight: '#79819A',
-  textSiderPrimary: '#eeef20',
+  textSiderPrimary: '#FFFFFF',
   textSiderSecondary: '#bc4749',
   subText: 'rgba(0, 0, 0, 0.45)',
   shadow: 'rgba(0, 0, 0, 0.07)',

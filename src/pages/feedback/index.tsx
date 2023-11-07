@@ -48,7 +48,7 @@ const FeedbackManagement = () => {
           columns={FeedbackColumns({ updateFeedbackModal: openCreateFeedbackModal })}
           dataSource={feedback}
           scroll={{
-            y: (1 - 565 / window.innerHeight) * window.innerHeight,
+            y: (1 - 450 / window.innerHeight) * window.innerHeight,
             x: 1200,
           }}
         />

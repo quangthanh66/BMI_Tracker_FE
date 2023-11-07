@@ -52,7 +52,7 @@ const Feedback = () => {
           columns={FeedbackColumns({ updateFeedbackModal: onUpdateFeedback, descriptionModal: onOpenDescriptionModal })}
           dataSource={FEEDBACK_TABLE_DATA}
           scroll={{
-            y: (1 - 565 / window.innerHeight) * window.innerHeight,
+            y: (1 - 485 / window.innerHeight) * window.innerHeight,
             x: 1200,
           }}
         />

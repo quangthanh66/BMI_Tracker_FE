@@ -8,7 +8,7 @@ export const Wrapper = styled.div<PaymentCardProps>`
   & > .rccs > .rccs__card--unknown > div {
     background: ${(props) => `url(${props.$background})`};
     background-size: cover;
-    transition: all 0.5s ease;
+    transition: all 0s ease;
   }
 
   & > .rccs > .rccs__card {
@@ -18,9 +18,9 @@ export const Wrapper = styled.div<PaymentCardProps>`
     }
 
     & > .rccs__card--front .rccs__issuer {
-      right: unset;
-      left: 10%;
-      background-position: left;
+      right: 0%;
+      left: 0%;
+      background-position: center;
     }
 
     & > div {
@@ -33,7 +33,7 @@ export const Wrapper = styled.div<PaymentCardProps>`
       & > div:first-of-type {
         background: ${(props) => `url(${props.$background})`};
         background-size: cover;
-        transition: all 0.5s ease;
+        transition: all 0s ease;
       }
     }
   }

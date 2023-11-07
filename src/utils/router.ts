@@ -5,4 +5,5 @@ export const PAGE_ROUTES = {
   FEEDBACK: '/feedback',
   SERVICES: '/services',
   CHATTING: '/chatting',
+  BLOG: '/blog',
 };
