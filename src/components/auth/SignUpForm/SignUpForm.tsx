@@ -10,6 +10,13 @@ import { ReactComponent as GoogleIcon } from '@app/assets/icons/google.svg';
 import { ReactComponent as FacebookIcon } from '@app/assets/icons/facebook.svg';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import * as S from './SignUpForm.styles';
+import { useMutation } from '@tanstack/react-query';
+import AUTH_API from '@app/api/auth';
+import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
+import { USER_SEX_VALUES } from '@app/utils/constant';
+import { SignUpAccountTypes } from '@app/api/auth/type';
+import { message } from 'antd';
+import { PAGE_ROUTES } from '@app/utils/router';
 
 interface SignUpFormData {
   firstName: string;
@@ -28,46 +35,51 @@ const initValues = {
 };
 
 export const SignUpForm: React.FC = () => {
+  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const [isLoading, setLoading] = useState(false);
+  const { isLoading, mutate } = useMutation(AUTH_API.SIGN_UP_ACCOUNT, {
+    onSuccess: () => {
+      messageApi.open({
+        type: 'success',
+        content: 'Create a new account is successful',
+      });
 
+      navigate(PAGE_ROUTES.HOME);
+    },
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Your information is invalid. Please try again',
+      });
+    },
+  });
   const { t } = useTranslation();
 
-  const handleSubmit = (values: SignUpFormData) => {
-    setLoading(true);
-    dispatch(doSignUp(values))
-      .unwrap()
-      .then(() => {
-        notificationController.success({
-          message: t('auth.signUpSuccessMessage'),
-          description: t('auth.signUpSuccessDescription'),
-        });
-        navigate('/auth/login');
-      })
-      .catch((err) => {
-        notificationController.error({ message: err.message });
-        setLoading(false);
-      });
+  const handleSubmit = (values: SignUpAccountTypes) => {
+    mutate(values);
   };
 
   return (
     <Auth.FormWrapper>
+      {contextHolder}
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
         <S.Title>{t('common.signUp')}</S.Title>
         <Auth.FormItem
-          name="firstName"
-          label={t('common.firstName')}
+          name="fullName"
+          label="Full name"
           rules={[{ required: true, message: t('common.requiredField') }]}
         >
-          <Auth.FormInput placeholder={t('common.firstName')} />
+          <Auth.FormInput placeholder="Please enter your full name" />
         </Auth.FormItem>
         <Auth.FormItem
-          name="lastName"
-          label={t('common.lastName')}
+          name="phoneNumber"
+          label="Phone number"
           rules={[{ required: true, message: t('common.requiredField') }]}
         >
-          <Auth.FormInput placeholder={t('common.lastName')} />
+          <Auth.FormInput placeholder={'Please enter your phone number'} />
+        </Auth.FormItem>
+        <Auth.FormItem name="sex" label="Sex" rules={[{ required: true, message: t('common.requiredField') }]}>
+          <BaseSelect options={USER_SEX_VALUES} placeholder={'Please choose your sex'} />
         </Auth.FormItem>
         <Auth.FormItem
           name="email"
@@ -127,22 +139,6 @@ export const SignUpForm: React.FC = () => {
           <Auth.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
             {t('common.signUp')}
           </Auth.SubmitButton>
-        </BaseForm.Item>
-        <BaseForm.Item noStyle>
-          <Auth.SocialButton type="default" htmlType="submit">
-            <Auth.SocialIconWrapper>
-              <GoogleIcon />
-            </Auth.SocialIconWrapper>
-            {t('signup.googleLink')}
-          </Auth.SocialButton>
-        </BaseForm.Item>
-        <BaseForm.Item noStyle>
-          <Auth.SocialButton type="default" htmlType="submit">
-            <Auth.SocialIconWrapper>
-              <FacebookIcon />
-            </Auth.SocialIconWrapper>
-            {t('signup.facebookLink')}
-          </Auth.SocialButton>
         </BaseForm.Item>
         <Auth.FooterWrapper>
           <Auth.Text>

@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { doLogin } from '@app/store/slices/authSlice';
-import { notificationController } from '@app/controllers/notificationController';
-import { ReactComponent as FacebookIcon } from '@app/assets/icons/facebook.svg';
-import { ReactComponent as GoogleIcon } from '@app/assets/icons/google.svg';
 import * as S from './LoginForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import { useMutation } from '@tanstack/react-query';
 import AUTH_API from '@app/api/auth';
+import { message } from 'antd';
+import { PAGE_ROUTES } from '@app/utils/router';
 
 interface LoginFormData {
   email: string;
@@ -24,25 +21,32 @@ export const initValues: LoginFormData = {
 
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  // const { isLoading } = useMutation(AUTH_API.LOGIN_ACCOUNT);
+  const [messageApi, contextHolder] = message.useMessage();
+  const { isLoading, mutate } = useMutation(AUTH_API.LOGIN_ACCOUNT, {
+    onSuccess: () => {
+      messageApi.open({
+        type: 'success',
+        content: 'Login account is successful',
+      });
 
-  const [isLoading, setLoading] = useState(false);
+      navigate(PAGE_ROUTES.HOME);
+    },
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Your account is invalid. Please try again',
+      });
+    },
+  });
 
   const handleSubmit = (values: LoginFormData) => {
-    setLoading(true);
-    dispatch(doLogin(values))
-      .unwrap()
-      .then(() => navigate('/'))
-      .catch((err) => {
-        notificationController.error({ message: err.message });
-        setLoading(false);
-      });
+    mutate(values);
   };
 
   return (
     <Auth.FormWrapper>
+      {contextHolder}
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
         <Auth.FormTitle>{t('common.login')}</Auth.FormTitle>
         <S.LoginDescription>{t('login.loginInfo')}</S.LoginDescription>
