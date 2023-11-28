@@ -24,117 +24,19 @@ export type CreateUserTypes = {
 };
 
 export type UserItemTypes = {
-  user_id: string;
+  userId: string;
   email: string;
-  user_full_name: string;
+  fullName: string;
+  password: string;
   sex: string;
-  birth_day: string;
-  phone_number: string;
-  role_id: string;
-  is_activate: boolean;
-  change_role: string;
+  phoneNumber: string;
+  certificateId: string;
+  certificateName: string;
+  status: string;
+  roleId: string;
+  roles: {
+    roleId: string;
+    roleName: string;
+    status: string;
+  };
 };
-
-//constant
-export const USER_LIST_DATA: UserItemTypes[] = [
-  {
-    email: 'BaoDang55200@gmail.com',
-    user_id: '1',
-    birth_day: '1/1/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Admin',
-    user_full_name: 'Dang Viet Quoc Bao',
-    sex: 'Male',
-    change_role: 'role',
-  },
-  {
-    email: 'QuangThanh662000@gmail.com',
-    user_id: '1',
-    birth_day: '06/06/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'User',
-    user_full_name: 'Tran Quang Thanh',
-    sex: 'Male',
-    change_role: 'role',
-  },
-  {
-    email: 'HiepDuc222000@gmail.com',
-    user_id: '1',
-    birth_day: '02/02/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Trainer',
-    user_full_name: 'Huynh Nguyen Hiep Duc',
-    sex: 'Male',
-    change_role: 'role',
-  },
-  {
-    email: 'XuanBach332000@gmail.com',
-    user_id: '1',
-    birth_day: '03/03/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Admin',
-    user_full_name: 'Luong Xuan Bach',
-    sex: 'Male',
-
-    change_role: 'role',
-  },
-  {
-    email: 'XuanBach332000@gmail.com',
-    user_id: '1',
-    birth_day: '03/03/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Admin',
-    user_full_name: 'Luong Xuan Bach',
-    sex: 'Male',
-    change_role: 'role',
-  },
-  {
-    email: 'XuanBach332000@gmail.com',
-    user_id: '1',
-    birth_day: '03/03/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Admin',
-    user_full_name: 'Luong Xuan Bach',
-    sex: 'Male',
-    change_role: 'role',
-  },
-  {
-    email: 'XuanBach332000@gmail.com',
-    user_id: '1',
-    birth_day: '03/03/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Admin',
-    user_full_name: 'Luong Xuan Bach',
-    sex: 'Male',
-    change_role: 'role',
-  },
-  {
-    email: 'XuanBach332000@gmail.com',
-    user_id: '1',
-    birth_day: '03/03/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Admin',
-    user_full_name: 'Luong Xuan Bach',
-    sex: 'Male',
-    change_role: 'role',
-  },
-  {
-    email: 'XuanBach332000@gmail.com',
-    user_id: '1',
-    birth_day: '03/03/2000',
-    is_activate: true,
-    phone_number: '0989787651',
-    role_id: 'Admin',
-    user_full_name: 'Luong Xuan Bach',
-    sex: 'Male',
-    change_role: 'role',
-  },
-];

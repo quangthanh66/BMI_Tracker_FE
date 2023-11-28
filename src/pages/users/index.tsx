@@ -1,18 +1,37 @@
-import { USER_LIST_DATA, UserItemTypes } from '@app/api/users/type';
+import USERS_API from '@app/api/users';
+import { UserItemTypes } from '@app/api/users/type';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import ChangeUserRole from '@app/modules/admin/pages/users/ChangeUserRole';
 import CreateNewUser from '@app/modules/admin/pages/users/CreateNewUser';
 import FilterUser from '@app/modules/admin/pages/users/Filter';
 import UpdateUser from '@app/modules/admin/pages/users/UpdateUser';
 import { UserColumns } from '@app/modules/admin/pages/users/type';
-import { Card, Col, Row, Table, Typography } from 'antd';
-import { useRef, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Card, Col, Row, Spin, Table, Typography, message } from 'antd';
+import { useRef, useState, useEffect } from 'react';
 
 const UsersManagement = () => {
-  const [users, setUsers] = useState<UserItemTypes[]>(USER_LIST_DATA);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [users, setUsers] = useState<UserItemTypes[]>([]);
   const createNewUserRef = useRef<any>();
   const updateUserRef = useRef<any>();
   const changeUserRoleRef = useRef<any>();
+  const { isLoading, refetch } = useQuery(['get-users-list'], USERS_API.GET_LIST, {
+    enabled: false,
+    onSuccess: (response: any) => {
+      setUsers(response);
+    },
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Get users is failed',
+      });
+    },
+  });
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const openCreateNewUserModal = () => {
     createNewUserRef.current.openModal();
@@ -27,12 +46,13 @@ const UsersManagement = () => {
   };
 
   const onSearchUser = async (keyValue: string) => {
-    const result = await USER_LIST_DATA.filter((user) =>
-      user.user_full_name.toLowerCase().includes(keyValue.toLowerCase()),
-    );
-
-    setUsers(result);
+    // const result = await USER_LIST_DATA.filter((user) =>
+    //   user.user_full_name.toLowerCase().includes(keyValue.toLowerCase()),
+    // );
+    // setUsers(result);
   };
+
+  console.log(users);
 
   return (
     <Row gutter={[14, 14]}>
@@ -51,16 +71,18 @@ const UsersManagement = () => {
         </Card>
       </Col>
 
-      <Col span={24}>
-        <BaseTable
-          columns={UserColumns({ updateUserModal: openUpdateUserModal, changeUserRole: openChangeUserRoleModal })}
-          dataSource={users}
-          scroll={{
-            y: (1 - 465 / window.innerHeight) * window.innerHeight,
-            x: 1200,
-          }}
-        />
-      </Col>
+      <Spin spinning={isLoading} tip="Loading data...">
+        <Col span={24}>
+          <Table
+            columns={UserColumns({ updateUserModal: openUpdateUserModal, changeUserRole: openChangeUserRoleModal })}
+            dataSource={users}
+            scroll={{
+              y: (1 - 465 / window.innerHeight) * window.innerHeight,
+              x: 600,
+            }}
+          />
+        </Col>
+      </Spin>
     </Row>
   );
 };

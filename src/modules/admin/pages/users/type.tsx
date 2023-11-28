@@ -13,7 +13,7 @@ type UserColumnsTypes = {
 export const UserColumns: any = ({ updateUserModal, viewDetail, changeUserRole }: UserColumnsTypes) => [
   {
     title: 'Full Name',
-    dataIndex: 'user_full_name',
+    dataIndex: 'fullName',
     filters: [
       {
         text: 'Joe',
@@ -38,7 +38,6 @@ export const UserColumns: any = ({ updateUserModal, viewDetail, changeUserRole }
         ],
       },
     ],
-    sorter: (a: UserItemTypes, b: UserItemTypes) => a.user_full_name.length - b.user_full_name.length,
     sortDirections: ['descend'],
   },
   {
@@ -51,12 +50,12 @@ export const UserColumns: any = ({ updateUserModal, viewDetail, changeUserRole }
   },
   {
     title: 'Phone number',
-    dataIndex: 'phone_number',
+    dataIndex: 'phoneNumber',
   },
   {
     title: 'Role',
-    dataIndex: 'role_id',
-    render: (role: string) => <Tag color="geekblue">{role}</Tag>,
+    dataIndex: 'roles',
+    render: (role: any) => <Tag color="geekblue">{role.roleName}</Tag>,
   },
   {
     title: 'Is Active',

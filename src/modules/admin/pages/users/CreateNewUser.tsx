@@ -25,7 +25,6 @@ const CreateNewUser = ({}, ref: any) => {
       onCloseModal();
     },
     onError: (errors: ErrorResponseTypes) => {
-      console.log(errors);
       messageApi.open({
         type: 'error',
         content: errors.message,
@@ -45,7 +44,6 @@ const CreateNewUser = ({}, ref: any) => {
   const onCloseModal = () => setIsOpenModal(false);
   const onFinish = (values: CreateUserTypes) => {
     const convertDate = dayjs(values.birth_day).format();
-    mutate({ ...values, birth_day: convertDate });
   };
 
   return (

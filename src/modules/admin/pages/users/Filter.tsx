@@ -33,6 +33,12 @@ const FilterUser = ({ onCreateNewUser, onSearchUser }: FilterUserTypes) => {
             ]}
           ></BaseSelect>
         </Col>
+
+        <Col span={12} className="flex justify-end w-full">
+          <div>
+            <BaseButton>Create a new user</BaseButton>
+          </div>
+        </Col>
       </Row>
     </div>
   );
