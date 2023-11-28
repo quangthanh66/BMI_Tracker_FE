@@ -1,27 +1,4 @@
-export type UpdateUserStatusTypes = {
-  token: string;
-  userId: string;
-  status: number;
-};
-
-export type GetUsersTypes = {
-  token: string;
-};
-
-export type UpdateUserRoleTypes = {
-  token: string;
-  userId: string;
-  role_name: string;
-};
-
-export type CreateUserTypes = {
-  email: string;
-  user_full_name: string;
-  sex: string;
-  birth_day: string;
-  phone_number: string;
-  role_name: string;
-};
+import { SignUpAccountTypes } from '../auth/type';
 
 export type UserItemTypes = {
   userId: string;
@@ -39,4 +16,8 @@ export type UserItemTypes = {
     roleName: string;
     status: string;
   };
+};
+
+export type UpdateUserTypesAPI = SignUpAccountTypes & {
+  userId: string;
 };

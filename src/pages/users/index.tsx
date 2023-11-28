@@ -12,11 +12,16 @@ import { useRef, useState, useEffect } from 'react';
 
 const UsersManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const [userUpdate, setUserUpdate] = useState<UserItemTypes>();
   const [users, setUsers] = useState<UserItemTypes[]>([]);
   const createNewUserRef = useRef<any>();
   const updateUserRef = useRef<any>();
   const changeUserRoleRef = useRef<any>();
-  const { isLoading, refetch } = useQuery(['get-users-list'], USERS_API.GET_LIST, {
+  const {
+    isLoading,
+    refetch,
+    data: usersListServer,
+  } = useQuery(['get-users-list'], USERS_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: any) => {
       setUsers(response);
@@ -37,8 +42,9 @@ const UsersManagement = () => {
     createNewUserRef.current.openModal();
   };
 
-  const openUpdateUserModal = () => {
+  const openUpdateUserModal = (userUpdate: UserItemTypes) => {
     updateUserRef.current.openModal();
+    setUserUpdate(userUpdate);
   };
 
   const openChangeUserRoleModal = () => {
@@ -46,23 +52,22 @@ const UsersManagement = () => {
   };
 
   const onSearchUser = async (keyValue: string) => {
-    // const result = await USER_LIST_DATA.filter((user) =>
-    //   user.user_full_name.toLowerCase().includes(keyValue.toLowerCase()),
-    // );
-    // setUsers(result);
+    const result = await usersListServer.filter((user: UserItemTypes) =>
+      user.fullName.toLowerCase().includes(keyValue.toLowerCase()),
+    );
+    setUsers(result);
   };
-
-  console.log(users);
 
   return (
     <Row gutter={[14, 14]}>
+      {contextHolder}
       <Col span={24}>
         <Card>
           <Typography.Text className="text-xl font-bold">User management</Typography.Text>
         </Card>
       </Col>
-      <CreateNewUser ref={createNewUserRef} />
-      <UpdateUser ref={updateUserRef} />
+      <CreateNewUser ref={createNewUserRef} onUpdateAfterCreateNew={() => refetch()} />
+      <UpdateUser ref={updateUserRef} userUpdate={userUpdate as UserItemTypes} onRefreshAfterUpdate={() => refetch()} />
       <ChangeUserRole ref={changeUserRoleRef} />
 
       <Col span={24}>
@@ -73,7 +78,7 @@ const UsersManagement = () => {
 
       <Spin spinning={isLoading} tip="Loading data...">
         <Col span={24}>
-          <Table
+          <BaseTable
             columns={UserColumns({ updateUserModal: openUpdateUserModal, changeUserRole: openChangeUserRoleModal })}
             dataSource={users}
             scroll={{

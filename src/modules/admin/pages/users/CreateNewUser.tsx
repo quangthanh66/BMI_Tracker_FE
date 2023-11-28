@@ -1,16 +1,19 @@
 import { UserAddOutlined } from '@ant-design/icons';
 import USERS_API from '@app/api/users';
-import { CreateUserTypes } from '@app/api/users/type';
-import { USER_ROLES_VALUES, USER_SEX_VALUES } from '@app/utils/constant';
+import { USER_SEX_VALUES } from '@app/utils/constant';
 import { fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
-import { Col, DatePicker, Form, Input, Modal, Row, Select, Typography, message } from 'antd';
+import { Col, Form, Input, Modal, Row, Select, Typography, message } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
-import dayjs from 'dayjs';
 import { ErrorResponseTypes } from '@app/api/collection';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
+import { SignUpAccountTypes } from '@app/api/auth/type';
 
-const CreateNewUser = ({}, ref: any) => {
+type CreateNewUserModalTypes = {
+  onUpdateAfterCreateNew: () => void;
+};
+
+const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
@@ -21,6 +24,7 @@ const CreateNewUser = ({}, ref: any) => {
         content: 'Create a new user is successfully',
       });
 
+      onUpdateAfterCreateNew();
       form.resetFields();
       onCloseModal();
     },
@@ -42,8 +46,8 @@ const CreateNewUser = ({}, ref: any) => {
     form.resetFields();
   };
   const onCloseModal = () => setIsOpenModal(false);
-  const onFinish = (values: CreateUserTypes) => {
-    const convertDate = dayjs(values.birth_day).format();
+  const onFinish = (values: SignUpAccountTypes) => {
+    mutate(values);
   };
 
   return (
@@ -66,30 +70,24 @@ const CreateNewUser = ({}, ref: any) => {
           </Col>
 
           <Col span={12}>
-            <Form.Item name="user_full_name" label="Full name" rules={[fieldValidate.required]}>
+            <Form.Item name="fullname" label="Full name" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your full name" required maxLength={50} />
             </Form.Item>
           </Col>
 
           <Col span={12}>
-            <Form.Item name="phone_number" label="Phone number" rules={[fieldValidate.required]}>
+            <Form.Item name="phoneNumber" label="Phone number" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your phone number" required maxLength={20} />
             </Form.Item>
           </Col>
 
           <Col span={12}>
-            <Form.Item name="birth_day" label="Birth day" rules={[fieldValidate.required]}>
-              <DatePicker className="w-full" />
+            <Form.Item name="password" label="Password" rules={[fieldValidate.required]}>
+              <Input.Password placeholder="Enter your password" required />
             </Form.Item>
           </Col>
 
-          <Col span={12}>
-            <Form.Item name="role_name" label="Roles" rules={[fieldValidate.required]}>
-              <Select options={USER_ROLES_VALUES} placeholder="Choose your role" />
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
+          <Col span={24}>
             <Form.Item name="sex" label="Sex" rules={[fieldValidate.required]}>
               <Select options={USER_SEX_VALUES} placeholder="Choose your sex type" />
             </Form.Item>

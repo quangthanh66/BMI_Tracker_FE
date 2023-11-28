@@ -5,7 +5,7 @@ import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopcon
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 
 type UserColumnsTypes = {
-  updateUserModal: () => void;
+  updateUserModal: (user: UserItemTypes) => void;
   viewDetail: () => void;
   changeUserRole: () => void;
 };
@@ -77,12 +77,12 @@ export const UserColumns: any = ({ updateUserModal, viewDetail, changeUserRole }
   },
   {
     title: 'Actions',
-    dataIndex: 'actions',
-    render: () => (
+    dataIndex: 'userId',
+    render: (id: string, user: UserItemTypes) => (
       <div className="flex items-center gap-x-4">
-        {/* <Tooltip title="Edit user profile">
-          <Button icon={<EditOutlined />} type="text" onClick={updateUserModal}></Button>
-        </Tooltip> */}
+        <Tooltip title="Edit user profile">
+          <Button icon={<EditOutlined />} type="text" onClick={() => updateUserModal(user)}></Button>
+        </Tooltip>
 
         <Tooltip title="Delete user">
           <BasePopconfirm placement="rightTop" title="Delete the user" okText="Yes" cancelText="No">
