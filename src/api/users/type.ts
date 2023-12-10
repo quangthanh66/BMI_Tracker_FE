@@ -21,3 +21,9 @@ export type UserItemTypes = {
 export type UpdateUserTypesAPI = SignUpAccountTypes & {
   userId: string;
 };
+
+export type ProveCertiTrainerTypes = {
+  userId: string;
+  certificateId: string;
+  certificateName: string;
+};

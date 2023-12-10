@@ -3,9 +3,9 @@ export enum AUTH_TOKEN {
 }
 
 export enum USER_ROLES_ENUM {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-  TRAINER = 'TRAINER',
+  USER = 'User',
+  ADMIN = 'Admin',
+  TRAINER = 'Trainer',
 }
 
 export enum USER_SEX_ENUM {
@@ -38,3 +38,10 @@ export const USER_SEX_VALUES = [
     value: 'Female',
   },
 ];
+
+export enum USER_STATUS {
+  available = 'available',
+  hidden = 'hidden',
+  waiting_trainer = 'watting-trainer',
+  available_trainer = 'available-trainer',
+}

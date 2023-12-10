@@ -45,7 +45,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
 
   const onCloseModal = () => setIsOpenModal(false);
   const onFinish = (values: UpdateUserTypesAPI) => {
-    // mutate({ ...values, userId: userUpdate.userId });
+    mutate({ ...values, userId: userUpdate.userId });
   };
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
         fullname: userUpdate.fullName,
         phoneNumber: userUpdate.phoneNumber,
         sex: userUpdate.sex,
-        password: userUpdate.password,
+        Password: userUpdate.password,
       });
     }
   }, [userUpdate]);
@@ -74,7 +74,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
       <Form layout="vertical" requiredMark={false} onFinish={onFinish} form={form}>
         <Row gutter={[20, 20]}>
           <Col span={12}>
-            <Form.Item name="Email" label="Email" rules={[fieldValidate.required, fieldValidate.email]}>
+            <Form.Item name="email" label="Email" rules={[fieldValidate.required, fieldValidate.email]}>
               <BaseInput placeholder="Enter your email" required type="email" maxLength={50} />
             </Form.Item>
           </Col>
@@ -94,12 +94,6 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
           <Col span={12}>
             <Form.Item name="Password" label="Password" rules={[fieldValidate.required]}>
               <Input.Password placeholder="Enter your password" required />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item name="sex" label="Sex" rules={[fieldValidate.required]}>
-              <Select options={USER_SEX_VALUES} placeholder="Choose your sex type" />
             </Form.Item>
           </Col>
           <Col span={24} className="flex items-center justify-end gap-2">

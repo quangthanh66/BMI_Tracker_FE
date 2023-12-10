@@ -87,12 +87,6 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
             </Form.Item>
           </Col>
 
-          <Col span={24}>
-            <Form.Item name="sex" label="Sex" rules={[fieldValidate.required]}>
-              <Select options={USER_SEX_VALUES} placeholder="Choose your sex type" />
-            </Form.Item>
-          </Col>
-
           <Col span={24} className="flex items-center justify-end gap-2">
             <BaseButton danger onClick={onResetForm}>
               Clear

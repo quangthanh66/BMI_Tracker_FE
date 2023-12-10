@@ -8,7 +8,6 @@ export type SignUpAccountTypes = {
   password: string;
   email: string;
   phoneNumber: string;
-  sex: string;
 };
 
 export type UserTypes = {

@@ -1,16 +1,17 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
-import { Col, Input, Row } from 'antd';
+import { Col, Input, Row, Select } from 'antd';
 import { debounce } from 'debounce';
 import { ChangeEvent } from 'react';
 
 type FilterUserTypes = {
   onCreateNewUser: () => void;
   onSearchUser: (keyValue: string) => void;
+  onChangeRole: (role: string) => void;
 };
 
-const FilterUser = ({ onCreateNewUser, onSearchUser }: FilterUserTypes) => {
+const FilterUser = ({ onCreateNewUser, onSearchUser, onChangeRole }: FilterUserTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
     onSearchUser(keySearch);
@@ -23,18 +24,22 @@ const FilterUser = ({ onCreateNewUser, onSearchUser }: FilterUserTypes) => {
         </Col>
 
         <Col span={6}>
-          <BaseSelect
+          <Select
+            className="w-full"
+            onChange={onChangeRole}
             placeholder="Choose your role"
-            width="100%"
             options={[
+              { value: 'All', label: 'All' },
               { value: 'Admin', label: 'Admin' },
               { value: 'User', label: 'User' },
               { value: 'Trainer', label: 'Trainer' },
             ]}
-          ></BaseSelect>
+          ></Select>
         </Col>
       </Row>
-      <BaseButton onClick={onCreateNewUser}>Create a new user</BaseButton>
+      <BaseButton icon={<PlusOutlined />} type="primary" onClick={onCreateNewUser}>
+        Create a new user
+      </BaseButton>
     </div>
   );
 };
