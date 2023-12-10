@@ -2,7 +2,6 @@ import { Card, Col, Row, Typography } from 'antd';
 import { useRef } from 'react';
 import MenuFilter from './MenuFilter';
 import CreateMenuModal from './CreateMenuModal';
-import UpdateMenuModal from './UpdateMenuModal';
 import { MENU_TABLE_DATA, MenuColumns } from './constant';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import DescriptionModal from './DescriptionModal';
@@ -37,7 +36,7 @@ const MenuInventory = () => {
   return (
     <Row gutter={[14, 14]}>
       <CreateMenuModal ref={createMenuRef} />
-      <UpdateMenuModal ref={updateMenuRef} />
+      {/* <UpdateMenuModal ref={updateMenuRef} /> */}
       <DescriptionModal ref={descriptionRef} content="This is a description of the menu" />
       <ViewDetailFood ref={viewDetailRef} />
 

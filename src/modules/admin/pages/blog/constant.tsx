@@ -10,12 +10,12 @@ import { BLOG_STATUS } from '@app/utils/constant';
 import { BlogItemTypes } from '@app/api/blogs/type';
 
 type BlogColumnsTypes = {
-  updateBlogModal: () => void;
-  descriptionModal: () => void;
-  viewDetailModal: () => void;
+  updateBlogModal: (blog: BlogItemTypes) => void;
+  viewDetailModal: (blogProps: BlogItemTypes) => void;
+  deleteBlog: (blogId: string) => void;
 };
 
-export const BlogColumns: any = ({ updateBlogModal, descriptionModal, viewDetailModal }: BlogColumnsTypes) => [
+export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog }: BlogColumnsTypes) => [
   {
     title: 'Name',
     dataIndex: 'blogName',
@@ -50,33 +50,34 @@ export const BlogColumns: any = ({ updateBlogModal, descriptionModal, viewDetail
     render: (tag: string) => <BaseTag color="green">{tag}</BaseTag>,
   },
   {
-    title: 'Content',
-    dataIndex: 'blogContent',
-    render: (desc: string) => (
-      <BaseTooltip title="Read all description">
-        <MdOutlineDescription size={'32px'} className="cursor-pointer" onClick={descriptionModal} />
-      </BaseTooltip>
-    ),
-  },
-  {
     title: 'Actions',
-    dataIndex: 'Id',
-    render: () => (
+    dataIndex: 'bolgId',
+    render: (blogId: string, blog: BlogItemTypes) => (
       <div className="flex items-center gap-x-4">
         <BaseTooltip title="View detail">
-          <BaseButton onClick={viewDetailModal} icon={<EyeOutlined className="text-[24px]" />} type="text"></BaseButton>
+          <BaseButton
+            onClick={() => viewDetailModal(blog)}
+            icon={<EyeOutlined className="text-[24px]" />}
+            type="text"
+          ></BaseButton>
         </BaseTooltip>
 
         <BaseTooltip title="Edit blog content">
           <BaseButton
-            onClick={updateBlogModal}
+            onClick={() => updateBlogModal(blog)}
             icon={<EditOutlined className="text-[24px]" />}
             type="text"
           ></BaseButton>
         </BaseTooltip>
 
         <BaseTooltip title="Delete blog">
-          <BasePopconfirm placement="rightTop" title="Delete the blog" okText="Yes" cancelText="No">
+          <BasePopconfirm
+            placement="rightTop"
+            title="Delete the blog"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => deleteBlog(blogId)}
+          >
             <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
           </BasePopconfirm>
         </BaseTooltip>

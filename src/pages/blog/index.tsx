@@ -1,18 +1,38 @@
 import { BlogColumns } from '@app/modules/admin/pages/blog/constant';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import BlogFilter from '@app/modules/admin/pages/blog/BlogFilter';
-import { Card, Col, Row, Spin, Typography } from 'antd';
+import { Card, Col, Row, Spin, Typography, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import ViewDetailBlog from '@app/modules/admin/pages/blog/ViewDetailBlog';
 import DescriptionModal from '@app/modules/admin/pages/blog/DescriptionModal';
 import CreateBlogModal from '@app/modules/admin/pages/blog/CreateBlogModal';
-import UpdateMenuModal from '@app/modules/admin/pages/inventory/menu/UpdateMenuModal';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import BLOG_API from '@app/api/blogs';
 import { BlogItemTypes } from '@app/api/blogs/type';
+import UpdateMenuModal from '@app/modules/admin/pages/blog/UpdateMenuModal';
 
 const BlogManagement = () => {
   const [blogs, setBlogs] = useState<BlogItemTypes[]>([]);
+  const [blogUpdate, setBlogUpdate] = useState<BlogItemTypes>();
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const { isLoading: isLoadingDeleteBlog, mutate: mutateDeleteBlog } = useMutation(BLOG_API.DELETE_BLOG, {
+    onSuccess: () => {
+      messageApi.open({
+        type: 'success',
+        content: 'Delete blog is successful',
+      });
+
+      refetchBlogsList();
+    },
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Delete blog is failed',
+      });
+    },
+  });
+
   const {
     isLoading: isLoadingBlogList,
     refetch: refetchBlogsList,
@@ -22,7 +42,12 @@ const BlogManagement = () => {
     onSuccess: (response: any) => {
       setBlogs(response);
     },
-    onError: () => {},
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Get blogs list is failed',
+      });
+    },
   });
 
   const createBlogRef = useRef<any>();
@@ -34,13 +59,15 @@ const BlogManagement = () => {
     createBlogRef.current.openModal();
   };
 
-  const openUpdateBlogModal = () => {
+  const openUpdateBlogModal = (blogProps: BlogItemTypes) => {
+    setBlogUpdate(blogProps);
     updateBlogRef.current.openModal();
   };
   const onOpenDescriptionModal = () => {
     descriptionRef.current.openModal();
   };
-  const onViewDetailBlog = () => {
+  const onViewDetailBlog = (blogProps: BlogItemTypes) => {
+    setBlogUpdate(blogProps);
     viewDetailRef.current.openModal();
   };
 
@@ -63,12 +90,17 @@ const BlogManagement = () => {
     }
   };
 
+  const onDeleteBlog = (blogId: string) => {
+    mutateDeleteBlog(blogId);
+  };
+
   useEffect(() => {
     refetchBlogsList();
   }, []);
 
   return (
-    <Spin spinning={isLoadingBlogList} tip="Loading blogs ....">
+    <Spin spinning={isLoadingBlogList || isLoadingDeleteBlog} tip="Loading blogs ....">
+      {contextHolder}
       <Row gutter={[14, 14]}>
         <Col span={24}>
           <Card>
@@ -76,9 +108,12 @@ const BlogManagement = () => {
           </Card>
         </Col>
         <CreateBlogModal ref={createBlogRef} onRefreshPage={() => refetchBlogsList()} />
-        <UpdateMenuModal ref={updateBlogRef} />
-        <DescriptionModal ref={descriptionRef} content={'...'} />
-        <ViewDetailBlog ref={viewDetailRef} />
+        <UpdateMenuModal
+          ref={updateBlogRef}
+          blogUpdateProps={blogUpdate as BlogItemTypes}
+          onRefreshPage={() => refetchBlogsList()}
+        />
+        <ViewDetailBlog ref={viewDetailRef} blogProps={blogUpdate as BlogItemTypes} />
 
         <Col span={24}>
           <Card size="small">
@@ -93,9 +128,10 @@ const BlogManagement = () => {
         <Col span={24}>
           <BaseTable
             columns={BlogColumns({
-              updateBlogModal: openCreateBlogModal,
+              updateBlogModal: openUpdateBlogModal,
               descriptionModal: onOpenDescriptionModal,
               viewDetailModal: onViewDetailBlog,
+              deleteBlog: onDeleteBlog,
             })}
             dataSource={blogs}
             scroll={{

@@ -62,7 +62,6 @@ const Blog = () => {
       <Row gutter={[14, 14]}>
         <UpdateBlogModal ref={updateBlogRef} />
         <DescriptionModal ref={descriptionRef} content="This is a content of the blog" />
-        <ViewDetailBlog ref={viewDetailRef} />
 
         <Col span={24}>
           <Card>
