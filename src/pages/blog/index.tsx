@@ -1,19 +1,30 @@
-import { BLOG_TABLE_DATA, BlogColumns } from '@app/modules/admin/pages/blog/constant';
+import { BlogColumns } from '@app/modules/admin/pages/blog/constant';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
-import CreateBlogModel from '@app/modules/admin/pages/blog/CreateBlogModal';
 import BlogFilter from '@app/modules/admin/pages/blog/BlogFilter';
-import UpdateBlogModel from '@app/modules/admin/pages/blog/UpdateBlogModal';
-import { BlogItemTypes } from '@app/modules/admin/pages/blog/type';
-import { Card, Col, Row, Typography } from 'antd';
-import { useRef, useState } from 'react';
+import { Card, Col, Row, Spin, Typography } from 'antd';
+import { useEffect, useRef, useState } from 'react';
 import ViewDetailBlog from '@app/modules/admin/pages/blog/ViewDetailBlog';
 import DescriptionModal from '@app/modules/admin/pages/blog/DescriptionModal';
 import CreateBlogModal from '@app/modules/admin/pages/blog/CreateBlogModal';
 import UpdateMenuModal from '@app/modules/admin/pages/inventory/menu/UpdateMenuModal';
-
+import { useQuery } from '@tanstack/react-query';
+import BLOG_API from '@app/api/blogs';
+import { BlogItemTypes } from '@app/api/blogs/type';
 
 const BlogManagement = () => {
-  const [blog, setBlog] = useState<BlogItemTypes[]>(BLOG_TABLE_DATA);
+  const [blogs, setBlogs] = useState<BlogItemTypes[]>([]);
+  const {
+    isLoading: isLoadingBlogList,
+    refetch: refetchBlogsList,
+    data: blogsListServer,
+  } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
+    enabled: false,
+    onSuccess: (response: any) => {
+      setBlogs(response);
+    },
+    onError: () => {},
+  });
+
   const createBlogRef = useRef<any>();
   const updateBlogRef = useRef<any>();
   const descriptionRef = useRef<any>();
@@ -33,48 +44,52 @@ const BlogManagement = () => {
     viewDetailRef.current.openModal();
   };
 
-
-  const onSearchBlog = async (keyValue: string) => {
-    const result = await BLOG_TABLE_DATA.filter((blog) =>
-      blog.Name.toLowerCase().includes(keyValue.toLowerCase()),
+  const onSearchBlog = (keyValue: string) => {
+    const result = blogsListServer.filter((blog: BlogItemTypes) =>
+      blog.blogName.toLowerCase().includes(keyValue.toLowerCase()),
     );
-
-    setBlog(result);
+    setBlogs(result);
   };
 
+  useEffect(() => {
+    refetchBlogsList();
+  }, []);
+
   return (
-    <Row gutter={[14, 14]}>
-      <Col span={24}>
-        <Card>
-          <Typography.Text className="text-xl font-bold">Blog management</Typography.Text>
-        </Card>
-      </Col>
-      <CreateBlogModal ref={createBlogRef} />
-      <UpdateMenuModal ref={updateBlogRef} />
-      <DescriptionModal ref={descriptionRef} content={'...'} />
-      <ViewDetailBlog ref={viewDetailRef} />
+    <Spin spinning={isLoadingBlogList} tip="Loading blogs ....">
+      <Row gutter={[14, 14]}>
+        <Col span={24}>
+          <Card>
+            <Typography.Text className="text-xl font-bold">Blog management</Typography.Text>
+          </Card>
+        </Col>
+        <CreateBlogModal ref={createBlogRef} />
+        <UpdateMenuModal ref={updateBlogRef} />
+        <DescriptionModal ref={descriptionRef} content={'...'} />
+        <ViewDetailBlog ref={viewDetailRef} />
 
-      <Col span={24}>
-        <Card size="small">
-          <BlogFilter onCreateNewBlog={openCreateBlogModal} onSearchBlog={onSearchBlog} />
-        </Card>
-      </Col>
+        <Col span={24}>
+          <Card size="small">
+            <BlogFilter onCreateNewBlog={openCreateBlogModal} onSearchBlog={onSearchBlog} />
+          </Card>
+        </Col>
 
-      <Col span={24}>
-        <BaseTable
-           columns={BlogColumns({
-            updateBlogModal: openCreateBlogModal,
-            descriptionModal: onOpenDescriptionModal,
-            viewDetailModal: onViewDetailBlog,
-          })}
-          dataSource={blog}
-          scroll={{
-            y: (1 - 425 / window.innerHeight) * window.innerHeight,
-            x: 1200,
-          }}
-        />
-      </Col>
-    </Row>
+        <Col span={24}>
+          <BaseTable
+            columns={BlogColumns({
+              updateBlogModal: openCreateBlogModal,
+              descriptionModal: onOpenDescriptionModal,
+              viewDetailModal: onViewDetailBlog,
+            })}
+            dataSource={blogs}
+            scroll={{
+              y: (1 - 425 / window.innerHeight) * window.innerHeight,
+              x: 1200,
+            }}
+          />
+        </Col>
+      </Row>
+    </Spin>
   );
 };
 

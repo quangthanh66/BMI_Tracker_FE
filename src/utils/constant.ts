@@ -45,3 +45,8 @@ export enum USER_STATUS {
   waiting_trainer = 'watting-trainer',
   available_trainer = 'available-trainer',
 }
+
+export enum BLOG_STATUS {
+  hidden = 'hidden',
+  available_blog = 'available-blog',
+}

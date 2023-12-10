@@ -1,55 +1,13 @@
 import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
-import { BlogItemTypes } from './type';
 import { MdOutlineDescription } from 'react-icons/md';
 import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-
-export const BLOG_TABLE_DATA: BlogItemTypes[] = [
-  {
-    Id: '001',
-    Name: 'Fast food menu',
-    Description: 'This is a description of the menu',
-    Type: 'Fast food',
-  },
-  {
-    Id: '001',
-    Name: 'Fast food menu',
-    Description: 'This is a description of the menu',
-    Type: 'Fast food',
-  },
-  {
-    Id: '001',
-    Name: 'Fast food menu',
-    Description: 'This is a description of the menu',
-    Type: 'Fast food',
-  },
-  {
-    Id: '001',
-    Name: 'Fast food menu',
-    Description: 'This is a description of the menu',
-    Type: 'Fast food',
-  },
-  {
-    Id: '001',
-    Name: 'Fast food menu',
-    Description: 'This is a description of the menu',
-    Type: 'Fast food',
-  },
-  {
-    Id: '001',
-    Name: 'Fast food menu',
-    Description: 'This is a description of the menu',
-    Type: 'Fast food',
-  },
-  {
-    Id: '001',
-    Name: 'Fast food menu',
-    Description: 'This is a description of the menu',
-    Type: 'Fast food',
-  },
-];
+import { Image } from 'antd';
+import errorImage from 'assets/error-image-alt.png';
+import { BLOG_STATUS } from '@app/utils/constant';
+import { BlogItemTypes } from '@app/api/blogs/type';
 
 type BlogColumnsTypes = {
   updateBlogModal: () => void;
@@ -60,18 +18,40 @@ type BlogColumnsTypes = {
 export const BlogColumns: any = ({ updateBlogModal, descriptionModal, viewDetailModal }: BlogColumnsTypes) => [
   {
     title: 'Name',
-    dataIndex: 'Name',
-    sorter: (a: BlogItemTypes, b: BlogItemTypes) => a.Name.length - b.Name.length,
+    dataIndex: 'blogName',
+    sorter: (a: BlogItemTypes, b: BlogItemTypes) => a.blogName.length - b.blogName.length,
     sortDirections: ['descend'],
   },
   {
-    title: 'Type',
-    dataIndex: 'Type',
-    render: (type: string) => <BaseTag color="geekblue">{type}</BaseTag>,
+    title: 'Photo',
+    dataIndex: 'blogPhoto',
+    render: (blogPhoto: string) => (
+      <Image
+        alt="blog-photo-alt"
+        src={blogPhoto}
+        className="h-[80px] w-full object-cover"
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src = errorImage;
+        }}
+      />
+    ),
   },
   {
-    title: 'Description',
-    dataIndex: 'Description',
+    title: 'Status',
+    dataIndex: 'status',
+    render: (status: string) => (
+      <BaseTag color={status === BLOG_STATUS.available_blog ? 'green' : 'volcano'}>{status}</BaseTag>
+    ),
+  },
+  {
+    title: 'Tag',
+    dataIndex: 'tag',
+    render: (tag: string) => <BaseTag color="green">{tag}</BaseTag>,
+  },
+  {
+    title: 'Content',
+    dataIndex: 'blogContent',
     render: (desc: string) => (
       <BaseTooltip title="Read all description">
         <MdOutlineDescription size={'32px'} className="cursor-pointer" onClick={descriptionModal} />

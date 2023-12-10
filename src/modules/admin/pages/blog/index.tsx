@@ -1,14 +1,24 @@
-import { Card, Col, Row, Typography } from 'antd';
-import { useRef } from 'react';
+import { Card, Col, Row, Spin, Typography } from 'antd';
+import { useEffect, useRef, useState } from 'react';
 import BlogFilter from './BlogFilter';
 import CreateBlogModal from './CreateBlogModal';
 import UpdateBlogModal from './UpdateBlogModal';
-import { BLOG_TABLE_DATA, BlogColumns } from './constant';
+import { BlogColumns } from './constant';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import DescriptionModal from './DescriptionModal';
 import ViewDetailBlog from './ViewDetailBlog';
+import { useQuery } from '@tanstack/react-query';
+import BLOG_API from '@app/api/blogs';
 
 const Blog = () => {
+  const { isLoading: isLoadingBlogList, refetch: refetchBlogsList } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
+    enabled: false,
+    onSuccess: (response) => {
+      console.log(response);
+    },
+    onError: () => {},
+  });
+
   const createBlogRef = useRef<any>();
   const updateBlogRef = useRef<any>();
   const descriptionRef = useRef<any>();
@@ -33,42 +43,32 @@ const Blog = () => {
   const onViewDetailBlog = () => {
     viewDetailRef.current.openModal();
   };
-  
+
+  useEffect(() => {
+    refetchBlogsList();
+  }, []);
 
   return (
-    <Row gutter={[14, 14]}>
-      <CreateBlogModal ref={createBlogRef} />
-      <UpdateBlogModal ref={updateBlogRef} />
-      <DescriptionModal ref={descriptionRef} content="This is a content of the blog" />
-      <ViewDetailBlog ref={viewDetailRef} />
+    <Spin spinning={isLoadingBlogList} tip="Loading blogs...">
+      <Row gutter={[14, 14]}>
+        <CreateBlogModal ref={createBlogRef} />
+        <UpdateBlogModal ref={updateBlogRef} />
+        <DescriptionModal ref={descriptionRef} content="This is a content of the blog" />
+        <ViewDetailBlog ref={viewDetailRef} />
 
-      <Col span={24}>
-        <Card>
-          <Typography.Text className="text-xl font-bold">Blog management</Typography.Text>
-        </Card>
-      </Col>
+        <Col span={24}>
+          <Card>
+            <Typography.Text className="text-xl font-bold">Blog management 2</Typography.Text>
+          </Card>
+        </Col>
 
-      <Col span={24}>
-        <Card size="small">
-          <BlogFilter onCreateNewBlog={onCreateNewBlog} onSearchBlog={onSearchBlogName} />
-        </Card>
-      </Col>
-
-      <Col span={24}>
-        <BaseTable
-          columns={BlogColumns({
-            updateBlogModal: onUpdateBlog,
-            descriptionModal: onOpenDescriptionModal,
-            viewDetailModal: onViewDetailBlog,
-          })}
-          dataSource={BLOG_TABLE_DATA}
-          scroll={{
-            y: (1 - 485 / window.innerHeight) * window.innerHeight,
-            x: 1200,
-          }}
-        />
-      </Col>
-    </Row>
+        <Col span={24}>
+          <Card size="small">
+            <BlogFilter onCreateNewBlog={onCreateNewBlog} onSearchBlog={onSearchBlogName} />
+          </Card>
+        </Col>
+      </Row>
+    </Spin>
   );
 };
 

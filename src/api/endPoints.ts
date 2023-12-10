@@ -7,4 +7,8 @@ export const END_POINTS = {
   USERS: {
     MAIN: '/api/user',
   },
+
+  BLOGS: {
+    MAIN: '/api/blog',
+  },
 };

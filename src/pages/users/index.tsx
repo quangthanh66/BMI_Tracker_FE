@@ -16,7 +16,6 @@ const UsersManagement = () => {
   const [users, setUsers] = useState<UserItemTypes[]>([]);
   const createNewUserRef = useRef<any>();
   const updateUserRef = useRef<any>();
-  const changeUserRoleRef = useRef<any>();
   const provideUserRef = useRef<any>();
 
   const {

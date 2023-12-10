@@ -1,4 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons';
+import { BlogItemTypes } from '@app/api/blogs/type';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
@@ -9,7 +10,6 @@ import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
 import { fieldValidate } from '@app/utils/helper';
 import { forwardRef, useImperativeHandle, useState } from 'react';
-import { BlogItemTypes } from './type';
 
 const CreateBlogModal = ({}, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
