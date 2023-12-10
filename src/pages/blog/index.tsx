@@ -51,6 +51,18 @@ const BlogManagement = () => {
     setBlogs(result);
   };
 
+  const onFilterBlog = (blogStatus: string) => {
+    if (blogStatus === 'All') {
+      setBlogs(blogsListServer);
+    } else {
+      const result = blogsListServer.filter((blog: BlogItemTypes) => {
+        return blog.status === blogStatus;
+      });
+
+      setBlogs(result);
+    }
+  };
+
   useEffect(() => {
     refetchBlogsList();
   }, []);
@@ -63,14 +75,18 @@ const BlogManagement = () => {
             <Typography.Text className="text-xl font-bold">Blog management</Typography.Text>
           </Card>
         </Col>
-        <CreateBlogModal ref={createBlogRef} />
+        <CreateBlogModal ref={createBlogRef} onRefreshPage={() => refetchBlogsList()} />
         <UpdateMenuModal ref={updateBlogRef} />
         <DescriptionModal ref={descriptionRef} content={'...'} />
         <ViewDetailBlog ref={viewDetailRef} />
 
         <Col span={24}>
           <Card size="small">
-            <BlogFilter onCreateNewBlog={openCreateBlogModal} onSearchBlog={onSearchBlog} />
+            <BlogFilter
+              onCreateNewBlog={openCreateBlogModal}
+              onSearchBlog={onSearchBlog}
+              onFilterBlogStatus={onFilterBlog}
+            />
           </Card>
         </Col>
 

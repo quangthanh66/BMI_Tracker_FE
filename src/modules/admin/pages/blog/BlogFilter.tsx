@@ -1,21 +1,23 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
-import { Col, Row } from 'antd';
+import { BLOG_STATUS } from '@app/utils/constant';
+import { Col, Row, Select } from 'antd';
 import { debounce } from 'debounce';
 import { ChangeEvent } from 'react';
 
 type FilterBlogTypes = {
   onCreateNewBlog: () => void;
   onSearchBlog: (keyValue: string) => void;
+  onFilterBlogStatus: (status: string) => void;
 };
 
-const BlogFilter = ({ onCreateNewBlog, onSearchBlog }: FilterBlogTypes) => {
+const BlogFilter = ({ onCreateNewBlog, onSearchBlog, onFilterBlogStatus }: FilterBlogTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
     onSearchBlog(keySearch);
   };
+
   return (
     <div className="flex justify-between items-center w-full py-2">
       <Row gutter={[20, 20]} className="w-[90%]">
@@ -24,18 +26,16 @@ const BlogFilter = ({ onCreateNewBlog, onSearchBlog }: FilterBlogTypes) => {
         </Col>
 
         <Col span={6}>
-          <BaseSelect
+          <Select
             placeholder="Choose your blog type"
-            width="100%"
+            onChange={onFilterBlogStatus}
             options={[
-              { value: 'Vegetarian', label: 'Vegetarian' },
-              { value: 'Salty ', label: 'Salty' },
-              { value: 'Weight gain', label: 'Weight gain' },
-              { value: 'Weight loss ', label: 'Weight loss' },
-              { value: 'Muscle gain', label: 'Muscle gain' },
-              { value: 'Muscle loss', label: 'Muscle loss' },
+              { value: 'All', label: 'All' },
+              { value: BLOG_STATUS.available_blog, label: 'Available' },
+              { value: BLOG_STATUS.hidden, label: 'Hidden' },
             ]}
-          ></BaseSelect>
+            className="w-full"
+          ></Select>
         </Col>
       </Row>
 

@@ -11,7 +11,11 @@ import { useQuery } from '@tanstack/react-query';
 import BLOG_API from '@app/api/blogs';
 
 const Blog = () => {
-  const { isLoading: isLoadingBlogList, refetch: refetchBlogsList } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
+  const {
+    isLoading: isLoadingBlogList,
+    refetch: refetchBlogsList,
+    data: blogsListServer,
+  } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
     enabled: false,
     onSuccess: (response) => {
       console.log(response);
@@ -40,6 +44,11 @@ const Blog = () => {
     console.log(value);
   };
 
+  const filterBlogStatus = (statusParams: string) => {
+    console.log(blogsListServer?.data);
+    console.log(statusParams);
+  };
+
   const onViewDetailBlog = () => {
     viewDetailRef.current.openModal();
   };
@@ -51,7 +60,6 @@ const Blog = () => {
   return (
     <Spin spinning={isLoadingBlogList} tip="Loading blogs...">
       <Row gutter={[14, 14]}>
-        <CreateBlogModal ref={createBlogRef} />
         <UpdateBlogModal ref={updateBlogRef} />
         <DescriptionModal ref={descriptionRef} content="This is a content of the blog" />
         <ViewDetailBlog ref={viewDetailRef} />
@@ -64,7 +72,11 @@ const Blog = () => {
 
         <Col span={24}>
           <Card size="small">
-            <BlogFilter onCreateNewBlog={onCreateNewBlog} onSearchBlog={onSearchBlogName} />
+            <BlogFilter
+              onCreateNewBlog={onCreateNewBlog}
+              onSearchBlog={onSearchBlogName}
+              onFilterBlogStatus={filterBlogStatus}
+            />
           </Card>
         </Col>
       </Row>

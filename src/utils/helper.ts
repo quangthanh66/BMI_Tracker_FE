@@ -8,3 +8,8 @@ export const fieldValidate = {
     message: 'The value is invalid email',
   } as any,
 };
+
+export type SelectTypes = {
+  label: string;
+  value: string;
+};
