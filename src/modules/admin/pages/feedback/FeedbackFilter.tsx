@@ -1,17 +1,18 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
-import { Col, Row } from 'antd';
+import { Col, Row, Select } from 'antd';
 import { debounce } from 'debounce';
 import { ChangeEvent } from 'react';
+import { FeedbackStatus } from './constant';
 
 type FilterFeedbackTypes = {
   onCreateFeedback: () => void;
   onSearchFeedback: (keyValue: string) => void;
+  onFilterFeedbackStatus: (status: string) => void;
 };
 
-const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback }: FilterFeedbackTypes) => {
+const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackStatus }: FilterFeedbackTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
     onSearchFeedback(keySearch);
@@ -24,14 +25,16 @@ const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback }: FilterFeedbackTy
         </Col>
 
         <Col span={6}>
-          <BaseSelect
+          <Select
+            className="w-full"
+            onChange={onFilterFeedbackStatus}
             placeholder="Choose your feedback type"
-            width="100%"
             options={[
-              { value: 'Accept', label: 'Accept' },
-              { value: 'Reject ', label: 'Reject' },
+              { value: 'all', label: 'All' },
+              { value: FeedbackStatus.available, label: 'Available' },
+              { value: FeedbackStatus.hidden, label: 'Hidden' },
             ]}
-          ></BaseSelect>
+          ></Select>
         </Col>
       </Row>
 

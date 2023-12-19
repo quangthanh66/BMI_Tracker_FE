@@ -1,19 +1,59 @@
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { Typography } from 'antd';
-import { forwardRef, useImperativeHandle, useState } from 'react';
+import { Select, Spin, Typography, message } from 'antd';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { FeedbackItemTypes } from './type';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { fieldValidate } from '@app/utils/helper';
+import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { SaveOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import USERS_API from '@app/api/users';
+import { UserItemTypes } from '@app/api/users/type';
+import FEEDBACK_API from '@app/api/feedbacks';
 
-const UpdateFeedbackModal = ({}, ref: any) => {
+type UpdateFeedbackTypes = {
+  feedbackUpdate: FeedbackItemTypes;
+  onRefreshPage: () => void;
+};
+
+const UpdateFeedbackModal = ({ feedbackUpdate, onRefreshPage }: UpdateFeedbackTypes, ref: any) => {
+  const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
+  const { isLoading: isLoadingUpdateFeedback, mutate: mutateUpdateFeedback } = useMutation(
+    FEEDBACK_API.UPDATE_FEEDBACK,
+    {
+      onSuccess: () => {
+        messageApi.open({
+          type: 'success',
+          content: 'Update feedback is successful',
+        });
+
+        onCloseModal();
+        onRefreshPage();
+      },
+      onError: () => {
+        messageApi.open({
+          type: 'error',
+          content: 'Update feedback is failed',
+        });
+      },
+    },
+  );
+
+  useEffect(() => {
+    if (feedbackUpdate) {
+      form.setFieldsValue({
+        title: feedbackUpdate.title,
+        description: feedbackUpdate.description,
+        type: feedbackUpdate.type,
+        userId: feedbackUpdate.users.userId,
+      });
+    }
+  }, [feedbackUpdate]);
 
   useImperativeHandle(ref, () => {
     return {
@@ -23,7 +63,11 @@ const UpdateFeedbackModal = ({}, ref: any) => {
 
   const onCloseModal = () => setIsOpenModal(false);
   const onSubmit = (values: FeedbackItemTypes) => {
-    console.log(values);
+    mutateUpdateFeedback({
+      desc: values.description,
+      feedId: feedbackUpdate.feedbackId,
+      title: values.title,
+    });
   };
 
   return (
@@ -34,48 +78,46 @@ const UpdateFeedbackModal = ({}, ref: any) => {
       onCancel={onCloseModal}
       closeIcon
       title={<Typography className="text-xl">Update feedback information</Typography>}
-      width={800}
     >
+      {contextHolder}
       <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
         <BaseRow gutter={[20, 20]}>
           <BaseCol span={24}>
-            <BaseForm.Item name="menu" label="Name" rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Enter your feedback name" required maxLength={50} />
-            </BaseForm.Item>
-          </BaseCol>
-
-          <BaseCol span={24}>
-            <BaseForm.Item name="type" label="Type" rules={[fieldValidate.required]}>
-              <BaseSelect
-                placeholder="Choose your feedback type"
-                options={[
-              { value: 'Vegetarian', label: 'Vegetarian' },
-              { value: 'Salty ', label: 'Salty' },
-              { value: 'Weight gain', label: 'Weight gain' },
-              { value: 'Weight loss ', label: 'Weight loss' },
-              { value: 'Muscle gain', label: 'Muscle gain' },
-              { value: 'Muscle loss', label: 'Muscle loss' },
-                ]}
-              />
+            <BaseForm.Item name="title" label="Title" rules={[fieldValidate.required]}>
+              <BaseInput placeholder="Enter your title" required maxLength={50} />
             </BaseForm.Item>
           </BaseCol>
 
           <BaseCol span={24}>
             <BaseForm.Item name="description" label="Description" rules={[fieldValidate.required]}>
-              <BaseInput.TextArea placeholder="Enter your description of the feedback" rows={5}></BaseInput.TextArea>
+              <BaseInput placeholder="Enter your description" required maxLength={50} />
             </BaseForm.Item>
           </BaseCol>
 
+          {/* <BaseCol span={24}>
+              <BaseForm.Item name="type" label="Type" rules={[fieldValidate.required]}>
+                <BaseInput placeholder="Enter your type" required maxLength={50} />
+              </BaseForm.Item>
+            </BaseCol>
+
+            <BaseCol span={24}>
+              <BaseForm.Item name="userId" label="User" rules={[fieldValidate.required]}>
+                <Select placeholder="Choose the user that make the feedback" options={userSelect} />
+              </BaseForm.Item>
+            </BaseCol> */}
+
           <BaseCol span={24} className="flex items-center justify-end gap-2">
-            <BaseButton danger>Reset form</BaseButton>
+            <BaseButton danger onClick={() => form.resetFields()}>
+              Clear
+            </BaseButton>
             <BaseButton
-              icon={<SaveOutlined />}
+              icon={<PlusOutlined />}
               className="flex items-center"
               htmlType="submit"
-              loading={false}
+              loading={isLoadingUpdateFeedback}
               type="primary"
             >
-              Save
+              Submit
             </BaseButton>
           </BaseCol>
         </BaseRow>

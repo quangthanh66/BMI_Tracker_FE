@@ -1,7 +1,10 @@
+import { UserItemTypes } from '@app/api/users/type';
+
 export type FeedbackItemTypes = {
-    Id: string;
-    Name: string;
-    Description: string;
-    Type: string;
-  };
-  
+  feedbackId: string;
+  title: string;
+  description: string;
+  status: string;
+  type: string;
+  users: UserItemTypes;
+};

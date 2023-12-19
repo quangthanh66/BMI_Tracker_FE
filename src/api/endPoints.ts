@@ -11,4 +11,6 @@ export const END_POINTS = {
   BLOGS: {
     MAIN: '/api/blog',
   },
+
+  FEEDBACKS: '/api/feedback',
 };

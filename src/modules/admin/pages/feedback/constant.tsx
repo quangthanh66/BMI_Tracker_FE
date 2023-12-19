@@ -1,97 +1,69 @@
 import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
 import { FeedbackItemTypes } from './type';
-import { MdOutlineDescription } from 'react-icons/md';
 import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-
-export const FEEDBACK_TABLE_DATA: FeedbackItemTypes[] = [
-  {
-    Id: '001',
-    Name: 'Thanh',
-    Description: 'This is a description of the menu',
-    Type: 'Accept',
-  },
-  {
-    Id: '001',
-    Name: 'Bao',
-    Description: 'This is a description of the menu',
-    Type: 'Accept',
-  },
-  {
-    Id: '001',
-    Name: 'Duc',
-    Description: 'This is a description of the menu',
-    Type: 'Reject',
-  },
-  {
-    Id: '001',
-    Name: 'Long',
-    Description: 'This is a description of the menu',
-    Type: 'Reject',
-  },
-  {
-    Id: '001',
-    Name: 'Kha',
-    Description: 'This is a description of the menu',
-    Type: 'Accept',
-  },
-  {
-    Id: '001',
-    Name: 'Tan',
-    Description: 'This is a description of the menu',
-    Type: 'Accept',
-  },
-  {
-    Id: '001',
-    Name: 'Tien',
-    Description: 'This is a description of the menu',
-    Type: 'Reject',
-  },
-];
+import { UserItemTypes } from '@app/api/users/type';
+import { Tag, Typography } from 'antd';
 
 type FeedbackColumnsTypes = {
-  updateFeedbackModal: () => void;
-  descriptionModal: () => void;
+  updateFeedbackModal: (feedback: FeedbackItemTypes) => void;
+  deleteFeedBack: (feedId: string) => void;
 };
 
-export const FeedbackColumns: any = ({ updateFeedbackModal, descriptionModal }: FeedbackColumnsTypes) => [
+export enum FeedbackStatus {
+  available = 'available-feedback',
+  hidden = 'hidden',
+}
+
+export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: FeedbackColumnsTypes) => [
   {
-    title: 'Name',
-    dataIndex: 'Name',
-    sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) => a.Name.length - b.Name.length,
+    title: 'Title',
+    dataIndex: 'title',
+    sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) => a.title.length - b.title.length,
     sortDirections: ['descend'],
   },
   {
     title: 'Type',
-    dataIndex: 'Type',
+    dataIndex: 'type',
     render: (type: string) => <BaseTag color="geekblue">{type}</BaseTag>,
   },
   {
     title: 'Description',
-    dataIndex: 'Description',
-    render: (desc: string) => (
-      <BaseTooltip title="Read all description">
-        <BaseButton icon={<MdOutlineDescription className="text-[24px]" />} onClick={descriptionModal} type="text" />
-      </BaseTooltip>
-    ),
+    dataIndex: 'description',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    render: (status: string) => <Tag color={status === 'hidden' ? 'volcano' : 'green'}>{status}</Tag>,
+  },
+  {
+    title: 'User',
+    dataIndex: 'users',
+    render: (user: UserItemTypes) => <Typography.Text>{user.fullName}</Typography.Text>,
   },
   {
     title: 'Actions',
-    dataIndex: 'Id',
-    render: () => (
+    dataIndex: 'feedbackId',
+    render: (feedbackId: string, feedback: FeedbackItemTypes) => (
       <div className="flex items-center gap-x-4">
         <BaseTooltip title="Edit feedback information">
           <BaseButton
-            onClick={updateFeedbackModal}
+            onClick={() => updateFeedbackModal(feedback)}
             icon={<EditOutlined className="text-[24px]" />}
             type="text"
           ></BaseButton>
         </BaseTooltip>
 
         <BaseTooltip title="Delete feedback">
-          <BasePopconfirm placement="rightTop" title="Delete the feedback" okText="Yes" cancelText="No">
+          <BasePopconfirm
+            placement="rightTop"
+            title="Delete the feedback"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => deleteFeedBack(feedbackId)}
+          >
             <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
           </BasePopconfirm>
         </BaseTooltip>
