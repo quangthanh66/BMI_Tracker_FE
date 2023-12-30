@@ -1,6 +1,7 @@
 export type IngredientTypes = {
-  Id: string;
-  Name: string;
-  Photo: string;
-  Category: string;
+  ingredientId: string;
+  ingredientName: string;
+  ingredientPhoto: string;
+  status: string;
+  categoryId: string;
 };

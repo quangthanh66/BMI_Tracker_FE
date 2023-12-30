@@ -3,7 +3,7 @@ import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { Card } from 'antd';
-import { INGREDIENTS_DATA, IngredientColumns } from './constant';
+import { IngredientColumns } from './constant';
 import FilterIngredient from './FilterIngredient';
 import { useRef } from 'react';
 import CreateIngredient from './CreateIngredient';
@@ -39,7 +39,7 @@ const IngredientInventory = () => {
         </Card>
       </BaseCol>
 
-      <BaseCol span={24}>
+      {/* <BaseCol span={24}>
         <BaseTable
           columns={IngredientColumns({ updateIngredientModal: onUpdateIngredient })}
           dataSource={INGREDIENTS_DATA}
@@ -48,7 +48,7 @@ const IngredientInventory = () => {
             x: 1200,
           }}
         />
-      </BaseCol>
+      </BaseCol> */}
     </BaseRow>
   );
 };

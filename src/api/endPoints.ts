@@ -13,4 +13,7 @@ export const END_POINTS = {
   },
 
   FEEDBACKS: '/api/feedback',
+  FOOD: '/api/food',
+  CATEGORY: '/api/category',
+  INGREDIENT: '/api/ingredient',
 };

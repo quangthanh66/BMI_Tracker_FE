@@ -23,6 +23,7 @@ import FeedbackManagement from '@app/pages/feedback';
 import ServicesManagement from '@app/pages/services';
 import ChattingManagement from '@app/pages/chat';
 import BlogManagement from '@app/pages/blog';
+import FoodManagement from '@app/pages/foods';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -142,10 +143,11 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.SERVICES} element={<ServicesManagement />} />
           <Route path={PAGE_ROUTES.CHATTING} element={<ChattingManagement />} />
           <Route path={PAGE_ROUTES.BLOG} element={<BlogManagement />} />
+          <Route path={PAGE_ROUTES.FOOD} element={<FoodManagement />} />
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />
           <Route index element={<NftDashboard />} />
-          <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />          
+          <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path="forms">
             <Route path="advanced-forms" element={<AdvancedForm />} />
           </Route>

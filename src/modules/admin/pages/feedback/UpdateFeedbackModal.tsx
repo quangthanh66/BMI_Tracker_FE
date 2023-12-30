@@ -1,17 +1,15 @@
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { Select, Spin, Typography, message } from 'antd';
+import { Typography, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { FeedbackItemTypes } from './type';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { SelectTypes, fieldValidate } from '@app/utils/helper';
+import { fieldValidate } from '@app/utils/helper';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { PlusOutlined } from '@ant-design/icons';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import USERS_API from '@app/api/users';
-import { UserItemTypes } from '@app/api/users/type';
+import { useMutation } from '@tanstack/react-query';
 import FEEDBACK_API from '@app/api/feedbacks';
 
 type UpdateFeedbackTypes = {

@@ -6,6 +6,7 @@ export const PAGE_ROUTES = {
   SERVICES: '/services',
   CHATTING: '/chatting',
   BLOG: '/blog',
+  FOOD: '/food',
   AUTH: {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/sign-up',

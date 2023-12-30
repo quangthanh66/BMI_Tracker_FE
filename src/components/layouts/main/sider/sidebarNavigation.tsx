@@ -3,6 +3,8 @@ import { IoFastFoodOutline } from 'react-icons/io5';
 import { VscFeedback } from 'react-icons/vsc';
 import { BsChatDots } from 'react-icons/bs';
 import { AreaChartOutlined, CoffeeOutlined, ReadOutlined } from '@ant-design/icons';
+import { PAGE_ROUTES } from '@app/utils/router';
+import { MdOutlineFastfood } from 'react-icons/md';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -24,6 +26,12 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     key: 'users-management',
     url: '/users',
     icon: <AiOutlineUser />,
+  },
+  {
+    title: 'Food',
+    key: 'food',
+    url: PAGE_ROUTES.FOOD,
+    icon: <MdOutlineFastfood />,
   },
   {
     title: 'Inventory',
