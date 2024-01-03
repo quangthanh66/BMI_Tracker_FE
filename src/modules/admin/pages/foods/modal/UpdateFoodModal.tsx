@@ -5,13 +5,13 @@ import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { Col, Form, Row, Select, Space, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { IngredientTypes } from '../../inventory/ingredients/type';
 import { TAddNewFood, TFoodItem } from '@app/api/foods';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { PlusOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
+import { IngredientTypes } from '../../ingredients/type';
 
 type TUpdateFood = {
   categories: TCategoryItem[];
@@ -63,7 +63,8 @@ const UpdateFoodModal = ({ categories, ingredients, refetchFoodPage, foodUpdate 
     }
 
     if (ingredients.length > 0) {
-      const convertIngredients = ingredients.map((item) => {
+      const availableIngredients = ingredients.filter((item) => item.status !== 'false');
+      const convertIngredients = availableIngredients.map((item) => {
         return {
           label: item.ingredientName,
           value: item.ingredientId,

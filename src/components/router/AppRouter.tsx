@@ -18,12 +18,12 @@ import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
 import { PAGE_ROUTES } from '@app/utils/router';
 import UsersManagement from '@app/pages/users';
-import InventoryManagement from '@app/pages/inventory';
 import FeedbackManagement from '@app/pages/feedback';
 import ServicesManagement from '@app/pages/services';
 import ChattingManagement from '@app/pages/chat';
 import BlogManagement from '@app/pages/blog';
 import FoodManagement from '@app/pages/foods';
+import IngredientManagement from '@app/pages/ingredients';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -138,12 +138,12 @@ export const AppRouter: React.FC = () => {
       <Routes>
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route path={PAGE_ROUTES.USERS} element={<UsersManagement />} />
-          <Route path={PAGE_ROUTES.INVENTORY} element={<InventoryManagement />} />
           <Route path={PAGE_ROUTES.FEEDBACK} element={<FeedbackManagement />} />
           <Route path={PAGE_ROUTES.SERVICES} element={<ServicesManagement />} />
           <Route path={PAGE_ROUTES.CHATTING} element={<ChattingManagement />} />
           <Route path={PAGE_ROUTES.BLOG} element={<BlogManagement />} />
           <Route path={PAGE_ROUTES.FOOD} element={<FoodManagement />} />
+          <Route path={PAGE_ROUTES.INGREDIENTS} element={<IngredientManagement />} />
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />
           <Route index element={<NftDashboard />} />

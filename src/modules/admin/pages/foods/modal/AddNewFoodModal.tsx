@@ -7,11 +7,11 @@ import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { Col, Form, Row, Select, Space, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { IngredientTypes } from '../../inventory/ingredients/type';
 import { TCategoryItem } from '@app/api/categories/type';
 import { TAddNewFood } from '@app/api/foods';
 import { useMutation } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
+import { IngredientTypes } from '../../ingredients/type';
 
 type TAddNewFoodModal = {
   categories: TCategoryItem[];
@@ -62,7 +62,8 @@ const AddNewFoodModal = ({ categories, ingredients, refetchFoodPage }: TAddNewFo
     }
 
     if (ingredients.length > 0) {
-      const convertIngredients = ingredients.map((item) => {
+      const availableIngredients = ingredients.filter((item) => item.status !== 'false');
+      const convertIngredients = availableIngredients.map((item) => {
         return {
           label: item.ingredientName,
           value: item.ingredientId,

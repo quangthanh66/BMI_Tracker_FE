@@ -1,10 +1,10 @@
-import { AiOutlineUser, AiOutlineHome, AiOutlineCustomerService } from 'react-icons/ai';
-import { IoFastFoodOutline } from 'react-icons/io5';
+import { AiOutlineUser, AiOutlineCustomerService } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
 import { BsChatDots } from 'react-icons/bs';
-import { AreaChartOutlined, CoffeeOutlined, ReadOutlined } from '@ant-design/icons';
+import { CoffeeOutlined } from '@ant-design/icons';
 import { PAGE_ROUTES } from '@app/utils/router';
 import { MdOutlineFastfood } from 'react-icons/md';
+import { GiFoodChain } from 'react-icons/gi';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -16,15 +16,9 @@ export interface SidebarNavigationItem {
 
 export const sidebarNavigation: SidebarNavigationItem[] = [
   {
-    title: 'Charts',
-    key: 'charts',
-    url: '/charts',
-    icon: <AreaChartOutlined />,
-  },
-  {
     title: 'Users',
     key: 'users-management',
-    url: '/users',
+    url: PAGE_ROUTES.USERS,
     icon: <AiOutlineUser />,
   },
   {
@@ -34,10 +28,10 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     icon: <MdOutlineFastfood />,
   },
   {
-    title: 'Inventory',
-    key: 'inventory',
-    url: '/inventory',
-    icon: <IoFastFoodOutline />,
+    title: 'Ingredients',
+    key: 'ingredients',
+    url: PAGE_ROUTES.INGREDIENTS,
+    icon: <GiFoodChain />,
   },
   {
     title: 'Feedback',
@@ -57,12 +51,7 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     url: '/chatting',
     icon: <BsChatDots />,
   },
-  {
-    title: 'Feed',
-    key: 'feed',
-    url: '/feed',
-    icon: <ReadOutlined />,
-  },
+
   {
     title: 'Blog',
     key: 'blog',

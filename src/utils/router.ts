@@ -1,6 +1,7 @@
 export const PAGE_ROUTES = {
   HOME: '/',
   USERS: '/users',
+  INGREDIENTS: '/ingredients',
   INVENTORY: '/inventory',
   FEEDBACK: '/feedback',
   SERVICES: '/services',
