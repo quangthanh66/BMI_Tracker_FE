@@ -24,6 +24,7 @@ import ChattingManagement from '@app/pages/chat';
 import BlogManagement from '@app/pages/blog';
 import FoodManagement from '@app/pages/foods';
 import IngredientManagement from '@app/pages/ingredients';
+import MenuManagement from '@app/pages/menu';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -144,6 +145,8 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.BLOG} element={<BlogManagement />} />
           <Route path={PAGE_ROUTES.FOOD} element={<FoodManagement />} />
           <Route path={PAGE_ROUTES.INGREDIENTS} element={<IngredientManagement />} />
+          <Route path={PAGE_ROUTES.MENU} element={<MenuManagement />} />
+
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />
           <Route index element={<NftDashboard />} />

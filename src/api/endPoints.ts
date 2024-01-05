@@ -16,4 +16,5 @@ export const END_POINTS = {
   FOOD: '/api/food',
   CATEGORY: '/api/category',
   INGREDIENT: '/api/ingredient',
+  MENU: '/api/menu',
 };

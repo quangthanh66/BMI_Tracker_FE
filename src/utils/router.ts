@@ -8,6 +8,7 @@ export const PAGE_ROUTES = {
   CHATTING: '/chatting',
   BLOG: '/blog',
   FOOD: '/food',
+  MENU: '/menu',
   AUTH: {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/sign-up',

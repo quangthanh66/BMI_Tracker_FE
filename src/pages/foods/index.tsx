@@ -18,7 +18,6 @@ import UpdateFoodModal from '@app/modules/admin/pages/foods/modal/UpdateFoodModa
 const FoodManagement = () => {
   const addNewFoodRef = useRef<any>();
   const updateFoodRef = useRef<any>();
-  const viewFoodDetailRef = useRef<any>();
 
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
@@ -173,58 +172,54 @@ const FoodManagement = () => {
         </Col>
 
         <Col span={24}>
-          <Row gutter={[14, 14]}>
+          <div className="grid grid-cols-4 gap-4 w-full">
             {foods.map((item) => {
               return (
-                <Col span={6} key={item.foodId}>
-                  <Card size="small">
-                    <div className="flex flex-col justify-between gap-4 w-full">
-                      <div className="w-full flex flex-col gap-2">
-                        <Image
-                          alt="food-alt"
-                          src={item.foodPhoto}
-                          className="w-full h-[200px] object-cover rounded-md"
-                          onError={({ currentTarget }) => {
-                            currentTarget.onerror = null;
-                            currentTarget.src = errorImage;
-                          }}
-                        />
-                        <Typography.Title level={5}>{item.foodName}</Typography.Title>
-                        <Typography.Paragraph>{item.foodDesciption.slice(0, 100)} ...</Typography.Paragraph>
-                        <div className="flex justify-between w-full">
-                          <Typography.Text>
-                            Time process: <span className="font-semibold">{item.foodtimeProcess} minutes</span>
-                          </Typography.Text>
-                          <Typography.Text>
-                            Calories: <span className="font-semibold">{item.foodCalorios}</span>
-                          </Typography.Text>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 w-full">
-                        <BaseButton
-                          danger
-                          icon={<DeleteOutlined />}
-                          className="flex-1"
-                          onClick={() => confirmModal(item.foodId)}
-                        >
-                          Delete food
-                        </BaseButton>
-                        <BaseButton
-                          icon={<FileAddOutlined />}
-                          className="flex-1"
-                          type="primary"
-                          onClick={() => updateFood(item.foodId)}
-                        >
-                          Update food
-                        </BaseButton>
-                      </div>
+                <div className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md">
+                  <div className="w-full flex flex-col gap-2 flex-grow">
+                    <Image
+                      alt="food-alt"
+                      src={item.foodPhoto}
+                      className="w-full h-[200px] object-cover rounded-md"
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = errorImage;
+                      }}
+                    />
+                    <Typography.Title level={5}>{item.foodName}</Typography.Title>
+                    <Typography.Paragraph>{item.foodDesciption.slice(0, 100)} ...</Typography.Paragraph>
+                    <div className="flex justify-between w-full">
+                      <Typography.Text>
+                        Time process: <span className="font-semibold">{item.foodtimeProcess} minutes</span>
+                      </Typography.Text>
+                      <Typography.Text>
+                        Calories: <span className="font-semibold">{item.foodCalorios}</span>
+                      </Typography.Text>
                     </div>
-                  </Card>
-                </Col>
+                  </div>
+
+                  <div className="flex items-center  gap-2 w-full">
+                    <BaseButton
+                      danger
+                      icon={<DeleteOutlined />}
+                      className="flex-1"
+                      onClick={() => confirmModal(item.foodId)}
+                    >
+                      Delete food
+                    </BaseButton>
+                    <BaseButton
+                      icon={<FileAddOutlined />}
+                      className="flex-1"
+                      type="primary"
+                      onClick={() => updateFood(item.foodId)}
+                    >
+                      Update food
+                    </BaseButton>
+                  </div>
+                </div>
               );
             })}
-          </Row>
+          </div>
         </Col>
 
         {foods.length === 0 && (

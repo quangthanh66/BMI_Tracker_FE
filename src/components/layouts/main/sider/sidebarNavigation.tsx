@@ -3,7 +3,7 @@ import { VscFeedback } from 'react-icons/vsc';
 import { BsChatDots } from 'react-icons/bs';
 import { CoffeeOutlined } from '@ant-design/icons';
 import { PAGE_ROUTES } from '@app/utils/router';
-import { MdOutlineFastfood } from 'react-icons/md';
+import { MdOutlineFastfood, MdOutlineRestaurantMenu } from 'react-icons/md';
 import { GiFoodChain } from 'react-icons/gi';
 
 export interface SidebarNavigationItem {
@@ -32,6 +32,12 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     key: 'ingredients',
     url: PAGE_ROUTES.INGREDIENTS,
     icon: <GiFoodChain />,
+  },
+  {
+    title: 'Menu',
+    key: 'menu',
+    url: PAGE_ROUTES.MENU,
+    icon: <MdOutlineRestaurantMenu />,
   },
   {
     title: 'Feedback',
