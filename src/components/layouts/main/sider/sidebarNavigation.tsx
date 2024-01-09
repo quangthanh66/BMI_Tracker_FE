@@ -1,10 +1,10 @@
 import { AiOutlineUser, AiOutlineCustomerService } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
-import { BsChatDots } from 'react-icons/bs';
 import { CoffeeOutlined } from '@ant-design/icons';
 import { PAGE_ROUTES } from '@app/utils/router';
 import { MdOutlineFastfood, MdOutlineRestaurantMenu } from 'react-icons/md';
 import { GiFoodChain } from 'react-icons/gi';
+import { FaChartSimple } from 'react-icons/fa6';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -15,6 +15,12 @@ export interface SidebarNavigationItem {
 }
 
 export const sidebarNavigation: SidebarNavigationItem[] = [
+  {
+    title: 'Dashboard',
+    key: 'dashboard',
+    url: PAGE_ROUTES.DASHBOARD,
+    icon: <FaChartSimple />,
+  },
   {
     title: 'Users',
     key: 'users-management',
@@ -50,12 +56,6 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     key: 'services',
     url: '/services',
     icon: <AiOutlineCustomerService />,
-  },
-  {
-    title: 'Chatting',
-    key: 'chatting',
-    url: '/chatting',
-    icon: <BsChatDots />,
   },
 
   {

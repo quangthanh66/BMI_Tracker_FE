@@ -1,4 +1,5 @@
 export const PAGE_ROUTES = {
+  DASHBOARD: '',
   HOME: '/',
   USERS: '/users',
   INGREDIENTS: '/ingredients',
