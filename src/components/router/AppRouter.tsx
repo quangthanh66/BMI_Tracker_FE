@@ -25,6 +25,9 @@ import BlogManagement from '@app/pages/blog';
 import FoodManagement from '@app/pages/foods';
 import IngredientManagement from '@app/pages/ingredients';
 import MenuManagement from '@app/pages/menu';
+import UserTrainer from '@app/modules/trainer/pages/users';
+import BlogTrainer from '@app/modules/trainer/pages/blogs';
+import MenuTrainer from '@app/modules/trainer/pages/menu';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -147,6 +150,10 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.INGREDIENTS} element={<IngredientManagement />} />
           <Route path={PAGE_ROUTES.MENU} element={<MenuManagement />} />
 
+          <Route path={PAGE_ROUTES.TRAINER.USERS} element={<UserTrainer />} />
+          <Route path={PAGE_ROUTES.TRAINER.BLOG} element={<BlogTrainer />} />
+          <Route path={PAGE_ROUTES.TRAINER.MENU} element={<MenuTrainer />} />
+
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />
           <Route index element={<NftDashboard />} />
@@ -216,6 +223,7 @@ export const AppRouter: React.FC = () => {
           <Route path="new-password" element={<NewPasswordPage />} />
         </Route>
         <Route path="/logout" element={<LogoutFallback />} />
+        <Route path="" />
       </Routes>
     </BrowserRouter>
   );

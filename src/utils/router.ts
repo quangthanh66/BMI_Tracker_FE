@@ -14,4 +14,9 @@ export const PAGE_ROUTES = {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/sign-up',
   },
+  TRAINER: {
+    USERS: '/trainer/users',
+    MENU: '/trainer/menus',
+    BLOG: '/trainer/blogs',
+  },
 };

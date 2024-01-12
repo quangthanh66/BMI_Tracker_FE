@@ -4,7 +4,7 @@ import { notificationController } from '@app/controllers/notificationController'
 /**
  * Log a warning and show a toast!
  */
-export const errorLoggingMiddleware: Middleware = () => (next) => (action) => {
+export const errorLoggingMiddleware: Middleware = () => (next) => (action: any) => {
   if (isRejectedWithValue(action)) {
     notificationController.error({ message: action.payload });
   }

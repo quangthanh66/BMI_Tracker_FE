@@ -7,12 +7,18 @@ import { HeaderFullscreen } from '../components/HeaderFullscreen/HeaderFullscree
 import * as S from '../Header.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import { IoIosLogOut } from 'react-icons/io';
+import { Typography } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { PAGE_ROUTES } from '@app/utils/router';
 
 interface DesktopHeaderProps {
   isTwoColumnsLayout: boolean;
 }
 
 export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout }) => {
+  const navigate = useNavigate();
+
   const leftSide = isTwoColumnsLayout ? (
     <S.SearchColumn xl={16} xxl={17}>
       <BaseRow justify="space-between">
@@ -53,6 +59,13 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
 
               <BaseCol>
                 <SettingsDropdown />
+              </BaseCol>
+
+              <BaseCol className="flex items-center">
+                <IoIosLogOut
+                  className="w-[26px] h-[26px] cursor-pointer"
+                  onClick={() => navigate(PAGE_ROUTES.AUTH.LOGIN)}
+                />
               </BaseCol>
             </BaseRow>
           </BaseCol>

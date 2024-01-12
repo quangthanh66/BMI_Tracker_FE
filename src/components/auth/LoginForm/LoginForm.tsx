@@ -8,6 +8,10 @@ import { useMutation } from '@tanstack/react-query';
 import AUTH_API from '@app/api/auth';
 import { message } from 'antd';
 import { PAGE_ROUTES } from '@app/utils/router';
+import { UserItemTypes } from '@app/api/users/type';
+import { USER_ROLES_ENUM } from '@app/utils/constant';
+import { useDispatch } from 'react-redux';
+import { setUserProfile } from '@app/store/slices/appSlice';
 
 interface LoginFormData {
   email: string;
@@ -21,15 +25,17 @@ export const initValues: LoginFormData = {
 
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const [messageApi, contextHolder] = message.useMessage();
   const { isLoading, mutate } = useMutation(AUTH_API.LOGIN_ACCOUNT, {
-    onSuccess: () => {
+    onSuccess: (response: any) => {
       messageApi.open({
         type: 'success',
         content: 'Login account is successful',
       });
 
+      dispatch(setUserProfile(response));
       navigate(PAGE_ROUTES.HOME);
     },
     onError: () => {

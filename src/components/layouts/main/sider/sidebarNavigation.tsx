@@ -65,3 +65,26 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     icon: <CoffeeOutlined />,
   },
 ];
+
+export const trainerSidebar: SidebarNavigationItem[] = [
+  {
+    title: 'Users',
+    key: 'users-management',
+    url: PAGE_ROUTES.TRAINER.USERS,
+    icon: <AiOutlineUser />,
+  },
+
+  {
+    title: 'Menu',
+    key: 'menu',
+    url: PAGE_ROUTES.TRAINER.MENU,
+    icon: <MdOutlineRestaurantMenu />,
+  },
+
+  {
+    title: 'Blog',
+    key: 'blog',
+    url: PAGE_ROUTES.TRAINER.BLOG,
+    icon: <CoffeeOutlined />,
+  },
+];
