@@ -15,6 +15,8 @@ import { TFoodItem } from '@app/api/foods';
 import CATEGORIES_API from '@app/api/categories';
 import { TCategoryItem } from '@app/api/categories/type';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
+import { UserItemTypes } from '@app/api/users/type';
+import USERS_API from '@app/api/users';
 
 const MenuTrainer = () => {
   const addNewMenuRef = useRef<any>();
@@ -26,6 +28,21 @@ const MenuTrainer = () => {
   const [menus, setMenu] = useState<TMenuItem[]>([]);
   const [categoriesSelect, setCategoriesSelect] = useState<SelectTypes[]>([]);
   const [foodSelect, setFoodSelect] = useState<SelectTypes[]>([]);
+  const [usersSelect, setUserSelect] = useState<SelectTypes[]>([]);
+
+  const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
+    enabled: false,
+    onSuccess: (response: UserItemTypes[]) => {
+      const convertUsers = response.map((user) => {
+        return {
+          label: user.fullName,
+          value: user.userId,
+        };
+      });
+
+      setUserSelect(convertUsers);
+    },
+  });
 
   const {
     isLoading,
@@ -108,6 +125,7 @@ const MenuTrainer = () => {
     refetch();
     refetchFoods();
     refetchCategory();
+    refetchUsersList();
   }, []);
 
   const addNewMenu = () => {
@@ -148,6 +166,7 @@ const MenuTrainer = () => {
         refetchPage={() => refetch()}
         menuUpdate={menuUpdate as TMenuItem}
         ref={updateMenuRef}
+        userSelect={usersSelect}
       />
 
       <AddNewMenuModal
@@ -155,6 +174,7 @@ const MenuTrainer = () => {
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         ref={addNewMenuRef}
+        usersOptions={usersSelect}
       />
 
       <Row gutter={[14, 14]}>

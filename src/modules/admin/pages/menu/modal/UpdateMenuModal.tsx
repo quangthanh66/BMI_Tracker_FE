@@ -16,9 +16,13 @@ type TUpdateMenu = {
   foodsOptions: SelectTypes[];
   refetchPage: () => void;
   menuUpdate: TMenuItem;
+  userSelect: SelectTypes[];
 };
 
-const UpdateMenuModal = ({ categoriesOptions, foodsOptions, menuUpdate, refetchPage }: TUpdateMenu, ref: any) => {
+const UpdateMenuModal = (
+  { categoriesOptions, foodsOptions, menuUpdate, refetchPage, userSelect }: TUpdateMenu,
+  ref: any,
+) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
@@ -58,6 +62,7 @@ const UpdateMenuModal = ({ categoriesOptions, foodsOptions, menuUpdate, refetchP
         menuType: menuUpdate.menuType,
         menuPhoto: menuUpdate.menuPhoto,
         categoryId: menuUpdate.categoryId,
+        userId: menuUpdate.userId,
         foods: convertFoods,
       });
     }
@@ -108,6 +113,12 @@ const UpdateMenuModal = ({ categoriesOptions, foodsOptions, menuUpdate, refetchP
           <Col span={12}>
             <Form.Item label="Foods" name="foods" rules={[fieldValidate.required]}>
               <Select options={foodsOptions} mode="multiple" allowClear />
+            </Form.Item>
+          </Col>
+
+          <Col span={24}>
+            <Form.Item label="User" name="userId" rules={[fieldValidate.required]}>
+              <Select options={userSelect} allowClear />
             </Form.Item>
           </Col>
 

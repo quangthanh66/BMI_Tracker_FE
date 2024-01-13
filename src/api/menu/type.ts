@@ -7,6 +7,7 @@ export type TMenuItem = {
   categoryId: string;
   status: string;
   schedules: [];
+  userId: string;
   meals: { menuId: string; foodId: string }[];
 };
 
@@ -16,6 +17,7 @@ export type TAddNewMenu = {
   menuType: string;
   menuPhoto: string;
   categoryId: string;
+  userId: string;
   foods: any;
 };
 

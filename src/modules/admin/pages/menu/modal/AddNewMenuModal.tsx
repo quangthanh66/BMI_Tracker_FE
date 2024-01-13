@@ -15,9 +15,13 @@ type TAddNewMenuModal = {
   categoriesOptions: SelectTypes[];
   foodsOptions: SelectTypes[];
   refetchPage: () => void;
+  usersOptions: SelectTypes[];
 };
 
-const AddNewMenuModal = ({ categoriesOptions, foodsOptions, refetchPage }: TAddNewMenuModal, ref: any) => {
+const AddNewMenuModal = (
+  { categoriesOptions, foodsOptions, refetchPage, usersOptions }: TAddNewMenuModal,
+  ref: any,
+) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
@@ -90,6 +94,12 @@ const AddNewMenuModal = ({ categoriesOptions, foodsOptions, refetchPage }: TAddN
           <Col span={12}>
             <Form.Item label="Foods" name="foods" rules={[fieldValidate.required]}>
               <Select options={foodsOptions} mode="multiple" allowClear />
+            </Form.Item>
+          </Col>
+
+          <Col span={24}>
+            <Form.Item label="Users" name="userId" rules={[fieldValidate.required]}>
+              <Select options={usersOptions} allowClear />
             </Form.Item>
           </Col>
 

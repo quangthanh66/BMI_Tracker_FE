@@ -15,17 +15,34 @@ import { TFoodItem } from '@app/api/foods';
 import CATEGORIES_API from '@app/api/categories';
 import { TCategoryItem } from '@app/api/categories/type';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
+import USERS_API from '@app/api/users';
+import { UserItemTypes } from '@app/api/users/type';
 
 const MenuManagement = () => {
   const addNewMenuRef = useRef<any>();
   const updateMenuRef = useRef<any>();
 
   const [modal, modalContextHolder] = useModal();
+  const [usersSelect, setUserSelect] = useState<SelectTypes[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const [menuUpdate, setMenuUpdate] = useState<TMenuItem>();
   const [menus, setMenu] = useState<TMenuItem[]>([]);
   const [categoriesSelect, setCategoriesSelect] = useState<SelectTypes[]>([]);
   const [foodSelect, setFoodSelect] = useState<SelectTypes[]>([]);
+
+  const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
+    enabled: false,
+    onSuccess: (response: UserItemTypes[]) => {
+      const convertUsers = response.map((user) => {
+        return {
+          label: user.fullName,
+          value: user.userId,
+        };
+      });
+
+      setUserSelect(convertUsers);
+    },
+  });
 
   const {
     isLoading,
@@ -108,6 +125,7 @@ const MenuManagement = () => {
     refetch();
     refetchFoods();
     refetchCategory();
+    refetchUsersList();
   }, []);
 
   const addNewMenu = () => {
@@ -138,7 +156,7 @@ const MenuManagement = () => {
   };
 
   return (
-    <Spin spinning={isLoading || isLoadingFoods || isLoadingCategory || isLoadingDeleteFood}>
+    <Spin spinning={isLoading || isLoadingFoods || isLoadingCategory || isLoadingDeleteFood || isLoadingUsers}>
       {contextHolder}
       {modalContextHolder}
 
@@ -148,6 +166,7 @@ const MenuManagement = () => {
         refetchPage={() => refetch()}
         menuUpdate={menuUpdate as TMenuItem}
         ref={updateMenuRef}
+        userSelect={usersSelect}
       />
 
       <AddNewMenuModal
@@ -155,6 +174,7 @@ const MenuManagement = () => {
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         ref={addNewMenuRef}
+        usersOptions={usersSelect}
       />
 
       <Row gutter={[14, 14]}>
