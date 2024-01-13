@@ -18,4 +18,5 @@ export const END_POINTS = {
   INGREDIENT: '/api/ingredient',
   MENU: '/api/menu',
   SERVICES: '/api/service',
+  NOTIFICATIONS: '/api/notification',
 };
