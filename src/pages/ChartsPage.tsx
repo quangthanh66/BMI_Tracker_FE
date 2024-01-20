@@ -22,9 +22,7 @@ const ChartsPage: React.FC = () => {
         <BaseCol id="gradient-stacked-area" xs={24}>
           <GradientStackedAreaChart />
         </BaseCol>
-        <BaseCol id="bar-animation-delay" xs={24}>
-          <BarAnimationDelayChart />
-        </BaseCol>
+       
         <BaseCol id="pie" xs={24} lg={12}>
           <VisitorsPieChart />
         </BaseCol>

@@ -291,7 +291,7 @@
     "news": "Nachrichten",
     "patientResults": {
       "patientAdmission": {
-        "description": "Die Aufnahme eines Patienten bedeutet, einem Patienten zu gestatten und zu erleichtern, in der Krankenhausabteilung oder Station zur Beobachtung, Untersuchung und Behandlung der Krankheit, an der er oder sie leidet, zu bleiben.",
+        "description": "Die Aufnahme eines Patienten bedeutet, einem Patienten zu gestatten und zu erleichtern, in der Krankenhausabteilung oder Station zur BeoXuan Bachtung, Untersuchung und Behandlung der Krankheit, an der er oder sie leidet, zu bleiben.",
         "title": "Patientenaufnahme"
       },
       "patientDischarge": {

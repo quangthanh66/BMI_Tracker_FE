@@ -28,7 +28,7 @@ interface SignUpFormData {
 const initValues = {
   firstName: 'Chris',
   lastName: 'Johnson',
-  email: '1@gmail.com',
+  email: 'admin@gmail.com',
   password: 'undefined',
   confirmPassword: 'undefined',
   termOfUse: true,

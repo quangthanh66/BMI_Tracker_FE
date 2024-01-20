@@ -49,7 +49,7 @@ export const LineRaceChart: React.FC = () => {
   const theme = useAppSelector((state) => state.theme.theme);
 
   const runAnimation = useCallback(() => {
-    const countries = ['Finland', 'Germany', 'Iceland', 'Norway', 'United Kingdom'];
+    const countries = ['Minh Tien', 'Xuan Bach', 'Quoc Bao', 'Thanh', 'Hiep Duc'];
     const datasetWithFilters: DataRow[] = [];
     const seriesList: SeriesRow[] = [];
 
@@ -62,7 +62,7 @@ export const LineRaceChart: React.FC = () => {
           type: 'filter',
           config: {
             and: [
-              { dimension: 'Year', gte: 1950 },
+              { dimension: 'Year', gte: 2000 },
               { dimension: 'Country', '=': country },
             ],
           },
@@ -104,7 +104,7 @@ export const LineRaceChart: React.FC = () => {
   }, [runAnimation]);
 
   const option = {
-    animationDuration: 10000,
+    animationDuration: 1000,
     dataset: [
       {
         id: 'dataset_raw',
