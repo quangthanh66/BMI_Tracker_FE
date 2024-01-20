@@ -33,7 +33,9 @@ const MenuManagement = () => {
   const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: UserItemTypes[]) => {
-      const convertUsers = response.map((user) => {
+      const trainers = response.filter((item) => item.roles.roleName === 'trainer');
+
+      const convertUsers = trainers.map((user) => {
         return {
           label: user.fullName,
           value: user.userId,
@@ -207,20 +209,10 @@ const MenuManagement = () => {
                   </div>
 
                   <div className="flex items-center  gap-2 w-full">
-                    <BaseButton
-                      danger
-                      icon={<DeleteOutlined />}
-                      className="flex-1"
-                      onClick={() => confirmModal(item.menuId)}
-                    >
+                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuId)}>
                       Delete menu
                     </BaseButton>
-                    <BaseButton
-                      icon={<FileAddOutlined />}
-                      className="flex-1"
-                      type="primary"
-                      onClick={() => updateMenu(item)}
-                    >
+                    <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>
                       Update menu
                     </BaseButton>
                   </div>

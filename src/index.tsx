@@ -4,11 +4,12 @@ import './i18n';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import 'config/config';
 import { Provider } from 'react-redux';
-import { store } from '@app/store/store';
+import { persistor, store } from '@app/store/store';
 import { createRoot } from 'react-dom/client';
 import React from 'react';
 import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PersistGate } from 'redux-persist/integration/react';
 
 interface EventTarget {
   state?: 'activated';
@@ -22,7 +23,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>,

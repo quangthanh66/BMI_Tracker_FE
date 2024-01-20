@@ -55,7 +55,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
         fullname: userUpdate.fullName,
         phoneNumber: userUpdate.phoneNumber,
         sex: userUpdate.sex,
-        Password: userUpdate.password,
+        password: userUpdate.password,
       });
     }
   }, [userUpdate]);
@@ -92,7 +92,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
           </Col>
 
           <Col span={12}>
-            <Form.Item name="Password" label="Password" rules={[fieldValidate.required]}>
+            <Form.Item name="password" label="Password" rules={[fieldValidate.required]}>
               <Input.Password placeholder="Enter your password" required />
             </Form.Item>
           </Col>

@@ -28,6 +28,7 @@ import MenuManagement from '@app/pages/menu';
 import UserTrainer from '@app/modules/trainer/pages/users';
 import BlogTrainer from '@app/modules/trainer/pages/blogs';
 import MenuTrainer from '@app/modules/trainer/pages/menu';
+import TrainerServices from '@app/modules/trainer/pages/services';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -152,6 +153,7 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.TRAINER.USERS} element={<UserTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.BLOG} element={<BlogTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.MENU} element={<MenuTrainer />} />
+          <Route path={PAGE_ROUTES.TRAINER.SERVICES} element={<TrainerServices />} />
 
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />

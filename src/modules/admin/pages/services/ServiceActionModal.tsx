@@ -1,5 +1,6 @@
 import SERVICE_API from '@app/api/services';
 import { TAddNewService, TServiceItemState } from '@app/api/services/type';
+import { UserItemTypes } from '@app/api/users/type';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
@@ -8,7 +9,9 @@ import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
 import { Col, Form, Row, Select, Space, message } from 'antd';
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 type TServiceActionState = {
   serviceUpdate: TServiceItemState;
@@ -20,6 +23,8 @@ const ServiceActionModal = ({ serviceUpdate, onActionAfterClose, usersSelect }: 
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
+  const location = useLocation();
+  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
 
   const { isLoading: isLoadingAddNew, mutate: mutateAddNew } = useMutation(SERVICE_API.ADD_NEW, {
     onSuccess: () => {
@@ -84,7 +89,14 @@ const ServiceActionModal = ({ serviceUpdate, onActionAfterClose, usersSelect }: 
         serviceId: serviceUpdate.serviceId,
       });
     } else {
-      mutateAddNew(values);
+      if (location.pathname.includes('/trainer')) {
+        mutateAddNew({
+          ...values,
+          userId: userProfileState.userId,
+        });
+      } else {
+        mutateAddNew(values);
+      }
     }
   };
 
@@ -116,11 +128,13 @@ const ServiceActionModal = ({ serviceUpdate, onActionAfterClose, usersSelect }: 
             </Form.Item>
           </Col>
 
-          <Col span={24}>
-            <Form.Item label="User" name="userId" rules={[fieldValidate.required]}>
-              <Select placeholder="Choose the user" options={usersSelect}></Select>
-            </Form.Item>
-          </Col>
+          {!location.pathname.includes('/trainer') && (
+            <Col span={24}>
+              <Form.Item label="User" name="userId" rules={[fieldValidate.required]}>
+                <Select placeholder="Choose the user" options={usersSelect}></Select>
+              </Form.Item>
+            </Col>
+          )}
 
           <Col span={24} className="flex justify-end">
             <Space>

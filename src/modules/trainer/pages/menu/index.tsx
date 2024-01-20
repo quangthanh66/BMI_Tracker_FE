@@ -206,21 +206,11 @@ const MenuTrainer = () => {
                     <Typography.Paragraph>{item.menuDescription.slice(0, 100)} ...</Typography.Paragraph>
                   </div>
 
-                  <div className="flex items-center  gap-2 w-full">
-                    <BaseButton
-                      danger
-                      icon={<DeleteOutlined />}
-                      className="flex-1"
-                      onClick={() => confirmModal(item.menuId)}
-                    >
+                  <div className="flex items-center  gap-2 w-full max-w-full">
+                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuId)}>
                       Delete menu
                     </BaseButton>
-                    <BaseButton
-                      icon={<FileAddOutlined />}
-                      className="flex-1"
-                      type="primary"
-                      onClick={() => updateMenu(item)}
-                    >
+                    <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>
                       Update menu
                     </BaseButton>
                   </div>

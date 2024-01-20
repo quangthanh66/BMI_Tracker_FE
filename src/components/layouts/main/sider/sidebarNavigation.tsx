@@ -73,7 +73,12 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     url: PAGE_ROUTES.TRAINER.USERS,
     icon: <AiOutlineUser />,
   },
-
+  {
+    title: 'Services',
+    key: 'service-management',
+    url: PAGE_ROUTES.TRAINER.SERVICES,
+    icon: <AiOutlineCustomerService />,
+  },
   {
     title: 'Menu',
     key: 'menu',

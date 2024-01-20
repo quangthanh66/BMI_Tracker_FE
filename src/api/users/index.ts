@@ -8,7 +8,7 @@ const USERS_API = {
   CREATE_USER: (params: SignUpAccountTypes) => axiosClient.post(END_POINTS.AUTH.SIGN_UP, params),
   UPDATE_USER: (params: UpdateUserTypesAPI) =>
     axiosClient.put(
-      `${END_POINTS.USERS.MAIN}?userId=${params.userId}&fullname=${params.fullname}&Password=${params.password}&phoneNumber=${params.phoneNumber}`,
+      `${END_POINTS.USERS.MAIN}?userId=${params.userId}&fullname=${params.fullname}&password=${params.password}&phoneNumber=${params.phoneNumber}`,
     ),
   DELETE_USER: (userId: string) => axiosClient.delete(`${END_POINTS.USERS.MAIN}?userId=${userId}`),
   PROVIDE_TRAINER_CERTIFICATE: (params: ProveCertiTrainerTypes) =>
