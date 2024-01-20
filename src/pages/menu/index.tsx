@@ -33,9 +33,9 @@ const MenuManagement = () => {
   const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: UserItemTypes[]) => {
-      const trainers = response.filter((item) => item.roles.roleName === 'trainer');
+      const users = response.filter((item) => item.roles.roleName !== 'admin');
 
-      const convertUsers = trainers.map((user) => {
+      const convertUsers = users.map((user) => {
         return {
           label: user.fullName,
           value: user.userId,

@@ -26,8 +26,6 @@ const UpdateMenuModal = (
   { categoriesOptions, foodsOptions, menuUpdate, refetchPage, userSelect }: TUpdateMenu,
   ref: any,
 ) => {
-  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
-  const location = useLocation();
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
@@ -84,20 +82,11 @@ const UpdateMenuModal = (
       };
     });
 
-    if (location.pathname.includes('/trainer')) {
-      mutate({
-        ...values,
-        foods: convertFoods,
-        menuId: menuUpdate.menuId,
-        userId: userProfileState.userId,
-      });
-    } else {
-      mutate({
-        ...values,
-        foods: convertFoods,
-        menuId: menuUpdate.menuId,
-      });
-    }
+    mutate({
+      ...values,
+      foods: convertFoods,
+      menuId: menuUpdate.menuId,
+    });
   };
 
   return (
@@ -130,13 +119,11 @@ const UpdateMenuModal = (
             </Form.Item>
           </Col>
 
-          {!location.pathname.includes('/trainer') && (
-            <Col span={24}>
-              <Form.Item label="User" name="userId" rules={[fieldValidate.required]}>
-                <Select options={userSelect} allowClear />
-              </Form.Item>
-            </Col>
-          )}
+          <Col span={24}>
+            <Form.Item label="User" name="userId" rules={[fieldValidate.required]}>
+              <Select options={userSelect} allowClear />
+            </Form.Item>
+          </Col>
 
           <Col span={24}>
             <Form.Item label="Type" name="menuType" rules={[fieldValidate.required]}>
