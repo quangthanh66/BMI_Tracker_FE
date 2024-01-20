@@ -7,8 +7,8 @@ const MENU_API = {
   ADD_NEW_MENU: (params: TAddNewMenu) => axiosClient.post(END_POINTS.MENU, params),
   DELETE_MENU: (menuId: string) => axiosClient.delete(`${END_POINTS.MENU}/menu?menuId=${menuId}`),
   UPDATE_MENU: (params: TUpdateMenu) => {
-    const { menuId, ...rest } = params;
-    return axiosClient.put(`${END_POINTS.MENU}?menuId=${menuId}`, rest);
+    const { menuId, userId, ...rest } = params;
+    return axiosClient.put(`${END_POINTS.MENU}?menuId=${menuId}&userId=${userId}`, rest);
   },
 };
 
