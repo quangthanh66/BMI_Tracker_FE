@@ -28,9 +28,9 @@ interface SignUpFormData {
 const initValues = {
   firstName: 'Chris',
   lastName: 'Johnson',
-  email: 'chris.johnson@altence.com',
-  password: 'test-pass',
-  confirmPassword: 'test-pass',
+  email: '1@gmail.com',
+  password: 'undefined',
+  confirmPassword: 'undefined',
   termOfUse: true,
 };
 
@@ -44,7 +44,7 @@ export const SignUpForm: React.FC = () => {
         content: 'Create a new account is successful',
       });
 
-      navigate(PAGE_ROUTES.HOME);
+      navigate(PAGE_ROUTES.DASHBOARD);
     },
     onError: () => {
       messageApi.open({

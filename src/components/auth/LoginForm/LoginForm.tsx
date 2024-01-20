@@ -19,8 +19,8 @@ interface LoginFormData {
 }
 
 export const initValues: LoginFormData = {
-  email: 'hello@altence.com',
-  password: 'some-test-pass',
+  email: '1@gmail.com',
+  password: 'undefined',
 };
 
 export const LoginForm: React.FC = () => {
@@ -36,7 +36,7 @@ export const LoginForm: React.FC = () => {
       });
 
       dispatch(setUserProfile(response));
-      navigate(PAGE_ROUTES.HOME);
+      navigate(PAGE_ROUTES.DASHBOARD);
     },
     onError: () => {
       messageApi.open({

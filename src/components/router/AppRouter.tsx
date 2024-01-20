@@ -149,7 +149,6 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.FOOD} element={<FoodManagement />} />
           <Route path={PAGE_ROUTES.INGREDIENTS} element={<IngredientManagement />} />
           <Route path={PAGE_ROUTES.MENU} element={<MenuManagement />} />
-
           <Route path={PAGE_ROUTES.TRAINER.USERS} element={<UserTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.BLOG} element={<BlogTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.MENU} element={<MenuTrainer />} />

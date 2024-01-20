@@ -1,6 +1,6 @@
 export const PAGE_ROUTES = {
-  DASHBOARD: '',
-  HOME: '/',
+  DASHBOARD: '/charts',
+  HOME: '/charts',
   USERS: '/users',
   INGREDIENTS: '/ingredients',
   INVENTORY: '/inventory',
