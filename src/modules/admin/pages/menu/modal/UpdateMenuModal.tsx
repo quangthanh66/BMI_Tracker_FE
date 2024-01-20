@@ -118,7 +118,7 @@ const UpdateMenuModal = (
 
           <Col span={24}>
             <Form.Item label="User" name="userId" rules={[fieldValidate.required]}>
-              <Select options={userSelect} allowClear />
+              <Select options={userSelect}  allowClear />
             </Form.Item>
           </Col>
 

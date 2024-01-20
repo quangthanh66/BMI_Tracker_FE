@@ -40,7 +40,7 @@ export const GradientStackedAreaChart: React.FC = () => {
       {
         type: 'category',
         boundaryGap: false,
-        data: ['Canada', 'China', 'Russia', 'Australia', 'Germany', 'France'],
+        data: ['Minh Huy', 'China', 'Russia', 'Australia', 'Xuan Bach', 'France'],
         axisLabel: {
           fontSize: FONT_SIZE.xxs,
           fontWeight: FONT_WEIGHT.light,
