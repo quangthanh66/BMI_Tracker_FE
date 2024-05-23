@@ -30,13 +30,8 @@ export const LoginForm: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { isLoading, mutate } = useMutation(AUTH_API.LOGIN_ACCOUNT, {
     onSuccess: (response: any) => {
-      messageApi.open({
-        type: 'success',
-        content: 'Login account is successful',
-      });
-
       dispatch(setUserProfile(response));
-      navigate(PAGE_ROUTES.DASHBOARD);
+      navigate(PAGE_ROUTES.HOME);
     },
     onError: () => {
       messageApi.open({

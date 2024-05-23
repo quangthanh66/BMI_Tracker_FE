@@ -4,9 +4,11 @@ const appSlice = createSlice({
   name: 'app-slice',
   initialState: {
     userProfile: {
-      roles: {
-        roleName: 'user',
-      },
+      accessToken: '',
+      accountID: 0,
+      email: '',
+      refreshToken: '',
+      role: '',
     },
   },
   reducers: {

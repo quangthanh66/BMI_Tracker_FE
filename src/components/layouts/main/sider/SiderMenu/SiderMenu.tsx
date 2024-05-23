@@ -32,9 +32,9 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
   const defaultOpenKeys = openedSubmenu ? [openedSubmenu.key] : [];
 
   useEffect(() => {
-    if (userProfileState && userProfileState.roles.roleName.toLowerCase() === USER_ROLES_ENUM.ROLE_ADVISOR.toLowerCase()) {
-      setRole(USER_ROLES_ENUM.ROLE_ADVISOR);
-    }
+    // if (userProfileState && userProfileState.roles.roleName.toLowerCase() === USER_ROLES_ENUM.ROLE_ADVISOR.toLowerCase()) {
+    //   setRole(USER_ROLES_ENUM.ROLE_ADVISOR);
+    // }
   }, [userProfileState]);
 
   return (
