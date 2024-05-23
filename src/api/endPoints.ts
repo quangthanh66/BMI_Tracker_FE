@@ -1,6 +1,6 @@
 export const END_POINTS = {
   AUTH: {
-    LOGIN: '/api/user/login',
+    LOGIN: '/api/auth/login',
     SIGN_UP: '/api/user/SignUp',
   },
 

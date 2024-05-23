@@ -1,8 +1,5 @@
 import { NotificationType } from '@app/components/common/BaseNotification/BaseNotification';
 import { Priority } from '@app//constants/enums/priorities';
-import visa from '@app/assets/images/card-issuers/visa.png';
-import mastercard from '@app/assets/images/card-issuers/mastercard.png';
-import maestro from '@app/assets/images/card-issuers/maestro.png';
 import { CurrencyTypeEnum, Severity } from '@app/interfaces/interfaces';
 import { BaseBadgeProps } from '@app/components/common/BaseBadge/BaseBadge';
 import { currencies } from '@app/constants/config/currencies';
@@ -161,12 +158,7 @@ export const hToMS = (h: number): number => h * 3600000;
 
 export const getPaymentCardTypeIcon = (type: string): string | null => {
   switch (type) {
-    case 'visa':
-      return visa;
-    case 'mastercard':
-      return mastercard;
-    case 'maestro':
-      return maestro;
+ 
     case 'amex':
       return 'amex';
     case 'discover':

@@ -3,9 +3,9 @@ export enum AUTH_TOKEN {
 }
 
 export enum USER_ROLES_ENUM {
-  USER = 'User',
-  ADMIN = 'Admin',
-  TRAINER = 'Trainer',
+  ROLE_MEMBER = 'User',
+  ROLE_ADMIN = 'Admin',
+  ROLE_ADVISOR = 'Trainer',
 }
 
 export enum USER_SEX_ENUM {
@@ -15,15 +15,15 @@ export enum USER_SEX_ENUM {
 
 export const USER_ROLES_VALUES = [
   {
-    label: USER_ROLES_ENUM.USER,
+    label: USER_ROLES_ENUM.ROLE_MEMBER,
     value: 'User',
   },
   {
-    label: USER_ROLES_ENUM.ADMIN,
+    label: USER_ROLES_ENUM.ROLE_ADMIN,
     value: 'Admin',
   },
   {
-    label: USER_ROLES_ENUM.TRAINER,
+    label: USER_ROLES_ENUM.ROLE_ADVISOR,
     value: 'Trainer',
   },
 ];

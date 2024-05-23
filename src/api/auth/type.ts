@@ -11,19 +11,9 @@ export type SignUpAccountTypes = {
 };
 
 export type UserTypes = {
-  userId: string;
+  accountID: string;
   email: string;
-  fullName: string;
-  password: string;
-  sex: string;
-  phoneNumber: string;
-  certificateId: string;
-  certificateName: string;
-  status: string;
-  roleId: string;
-  roles: {
-    roleId: string;
-    roleName: string;
-    status: string;
-  };
+  role: string;
+  refreshToken: string;
+  accessToken: string;
 };
