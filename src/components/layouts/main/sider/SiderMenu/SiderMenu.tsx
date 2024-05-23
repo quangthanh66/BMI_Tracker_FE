@@ -18,7 +18,7 @@ const sidebarNavFlat = sidebarNavigation.reduce(
 );
 
 const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
-  const [role, setRole] = useState(USER_ROLES_ENUM.USER);
+  const [role, setRole] = useState(USER_ROLES_ENUM.ROLE_MEMBER);
   const { t } = useTranslation();
   const location = useLocation();
   const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
@@ -32,8 +32,8 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
   const defaultOpenKeys = openedSubmenu ? [openedSubmenu.key] : [];
 
   useEffect(() => {
-    if (userProfileState && userProfileState.roles.roleName.toLowerCase() === USER_ROLES_ENUM.TRAINER.toLowerCase()) {
-      setRole(USER_ROLES_ENUM.TRAINER);
+    if (userProfileState && userProfileState.roles.roleName.toLowerCase() === USER_ROLES_ENUM.ROLE_ADVISOR.toLowerCase()) {
+      setRole(USER_ROLES_ENUM.ROLE_ADVISOR);
     }
   }, [userProfileState]);
 
@@ -43,7 +43,7 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
       defaultSelectedKeys={defaultSelectedKeys}
       defaultOpenKeys={defaultOpenKeys}
       onClick={() => setCollapsed(true)}
-      items={(role === USER_ROLES_ENUM.TRAINER ? trainerSidebar : sidebarNavigation).map((nav) => {
+      items={(role === USER_ROLES_ENUM.ROLE_ADVISOR ? trainerSidebar : sidebarNavigation).map((nav) => {
         const isSubMenu = nav.children?.length;
         return {
           key: nav.key,
