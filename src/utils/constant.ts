@@ -40,10 +40,8 @@ export const USER_SEX_VALUES = [
 ];
 
 export enum USER_STATUS {
-  available = 'available',
-  hidden = 'hidden',
-  waiting_trainer = 'watting-trainer',
-  available_trainer = 'available-trainer',
+  true = 'true',
+  false = 'false',
 }
 
 export enum BLOG_STATUS {

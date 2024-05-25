@@ -34,7 +34,7 @@ export const UserColumns: any = ({
   },
   {
     title: 'Role',
-    dataIndex: 'roles',
+    dataIndex: 'rolenName',
     render: (role: any) => <Tag color="geekblue">{role.roleName}</Tag>,
   },
   {
@@ -43,9 +43,9 @@ export const UserColumns: any = ({
     render: (status: string) => (
       <Tag
         color={
-          status === USER_STATUS.available || status === USER_STATUS.available_trainer
+          status === USER_STATUS.true || status === USER_STATUS.true
             ? 'green'
-            : status === USER_STATUS.waiting_trainer
+            : status === USER_STATUS.false
             ? 'geekblue'
             : 'volcano'
         }
@@ -67,7 +67,7 @@ export const UserColumns: any = ({
   // },
   {
     title: 'Actions',
-    dataIndex: 'userId',
+    dataIndex: 'accountID',
     render: (id: string, user: UserItemTypes) => (
       <div className="flex items-center gap-x-4">
         <Tooltip title="Edit user profile">
@@ -78,7 +78,7 @@ export const UserColumns: any = ({
           <Button icon={<FileTextOutlined />} type="text" onClick={() => provideCertificate(user)}></Button>
         </Tooltip>
 
-        {user.status === USER_STATUS.waiting_trainer && (
+        {user.isActive === USER_STATUS.true && (
           <Tooltip title="Approve trainer">
             <Button icon={<CheckCircleOutlined />} type="text" onClick={() => approveTrainer(id)}></Button>
           </Tooltip>

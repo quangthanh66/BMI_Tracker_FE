@@ -43,7 +43,7 @@ const BlogTrainer = () => {
   } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: BlogItemTypes[]) => {
-      const blogsTrainer = response.filter((blog) => blog.userId === userProfileState?.userId);
+      const blogsTrainer = response.filter((blog) => blog.userId === userProfileState?.accountID);
       setBlogs(blogsTrainer);
     },
     onError: () => {

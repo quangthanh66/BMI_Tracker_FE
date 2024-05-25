@@ -45,17 +45,15 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
 
   const onCloseModal = () => setIsOpenModal(false);
   const onFinish = (values: UpdateUserTypesAPI) => {
-    mutate({ ...values, userId: userUpdate.userId });
+    mutate({ ...values, userId: userUpdate.accountID });
   };
 
   useEffect(() => {
     if (userUpdate) {
       form.setFieldsValue({
         email: userUpdate.email,
-        fullname: userUpdate.fullName,
+        fullName: userUpdate.fullName,
         phoneNumber: userUpdate.phoneNumber,
-        sex: userUpdate.sex,
-        password: userUpdate.password,
       });
     }
   }, [userUpdate]);

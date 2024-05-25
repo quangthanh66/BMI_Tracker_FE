@@ -35,7 +35,7 @@ export const NotificationsOverlay: React.FC<NotificationsOverlayProps> = ({
   const { isLoading, refetch } = useQuery(['get-notifications'], NotificationAPI.getNotificationsList, {
     enabled: false,
     onSuccess: (response: TNotifyItemState[]) => {
-      const notificationsUser = response.filter((notify) => notify.userId === userProfileState?.userId);
+      const notificationsUser = response.filter((notify) => notify.userId === userProfileState?.accountID);
       setNotify(notificationsUser);
     },
     onError: () => {

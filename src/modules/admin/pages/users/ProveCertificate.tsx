@@ -46,7 +46,7 @@ const ProveCertificate = ({ userProps, onRefreshPage }: ProvideCertificateTypes,
   };
 
   const onSubmitForm = (values: ProveCertiTrainerTypes) => {
-    mutate({ ...values, userId: userProps.userId, certificateId: uuidv4() });
+    mutate({ ...values, userId: userProps.accountID, certificateId: uuidv4() });
   };
 
   return (

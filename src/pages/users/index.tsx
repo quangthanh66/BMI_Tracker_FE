@@ -94,7 +94,7 @@ const UsersManagement = () => {
       result = usersListServer;
     } else {
       result = usersListServer.filter(
-        (user: UserItemTypes) => user.roles.roleName.toLowerCase() === role.toLowerCase(),
+        (user: UserItemTypes) => user.roleName.toLowerCase() === role.toLowerCase(),
       );
     }
 

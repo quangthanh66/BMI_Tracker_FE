@@ -40,7 +40,7 @@ const ServicesManagement = () => {
       const usersOptions = response.map((user) => {
         return {
           label: user.fullName,
-          value: user.userId,
+          value: user.accountID,
         };
       });
 

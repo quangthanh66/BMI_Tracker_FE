@@ -33,12 +33,12 @@ const MenuManagement = () => {
   const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: UserItemTypes[]) => {
-      const users = response.filter((item) => item.roles.roleName !== 'admin');
+      const users = response.filter((item) => item.roleName !== 'admin');
 
       const convertUsers = users.map((user) => {
         return {
           label: user.fullName,
-          value: user.userId,
+          value: user.accountID,
         };
       });
 

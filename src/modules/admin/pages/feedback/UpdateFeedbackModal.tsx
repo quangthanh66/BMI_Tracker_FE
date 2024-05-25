@@ -48,7 +48,7 @@ const UpdateFeedbackModal = ({ feedbackUpdate, onRefreshPage }: UpdateFeedbackTy
         title: feedbackUpdate.title,
         description: feedbackUpdate.description,
         type: feedbackUpdate.type,
-        userId: feedbackUpdate.users.userId,
+        userId: feedbackUpdate.users.accountID,
       });
     }
   }, [feedbackUpdate]);

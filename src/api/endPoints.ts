@@ -5,7 +5,7 @@ export const END_POINTS = {
   },
 
   USERS: {
-    MAIN: '/api/user',
+    MAIN: '/api/accounts/getAll',
   },
 
   BLOGS: {

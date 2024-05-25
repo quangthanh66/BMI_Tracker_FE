@@ -92,7 +92,7 @@ const ServiceActionModal = ({ serviceUpdate, onActionAfterClose, usersSelect }: 
       if (location.pathname.includes('/trainer')) {
         mutateAddNew({
           ...values,
-          userId: userProfileState.userId,
+          userId: userProfileState.accountID,
         });
       } else {
         mutateAddNew(values);

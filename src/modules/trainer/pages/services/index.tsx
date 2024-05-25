@@ -28,7 +28,7 @@ const TrainerServices = () => {
   } = useQuery(['services-list'], SERVICE_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: TServiceItemState[]) => {
-      const servicesTrainer = response.filter((serviceItem) => serviceItem.userId === userProfileState.userId);
+      const servicesTrainer = response.filter((serviceItem) => serviceItem.userId === userProfileState.accountID);
       setServices(servicesTrainer);
     },
     onError: () => {
@@ -41,11 +41,11 @@ const TrainerServices = () => {
 
   const { isLoading: isLoadingGetUsers, refetch: refetchUsers } = useQuery(['get-users'], USERS_API.GET_LIST, {
     onSuccess: (response: UserItemTypes[]) => {
-      const usersRole = response.filter((user) => user.roles.roleName === 'user');
+      const usersRole = response.filter((user) => user.roleName === 'user');
       const usersOptions = usersRole.map((user) => {
         return {
           label: user.fullName,
-          value: user.userId,
+          value: user.accountID,
         };
       });
 
