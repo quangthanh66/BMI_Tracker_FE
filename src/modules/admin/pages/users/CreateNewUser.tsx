@@ -1,6 +1,6 @@
 import { UserAddOutlined } from '@ant-design/icons';
 import USERS_API from '@app/api/users';
-import { USER_SEX_VALUES } from '@app/utils/constant';
+import { USER_ROLES_ENUM, USER_SEX_VALUES } from '@app/utils/constant';
 import { fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
 import { Col, Form, Input, Modal, Row, Select, Typography, message } from 'antd';
@@ -47,7 +47,10 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
   };
   const onCloseModal = () => setIsOpenModal(false);
   const onFinish = (values: SignUpAccountTypes) => {
-    mutate(values);
+    mutate({
+      ...values,
+      birthday: '2000-01-01',
+    });
   };
 
   return (
@@ -58,7 +61,7 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
       onCancel={onCloseModal}
       closeIcon
       title={<Typography className="text-xl">Create a new user</Typography>}
-      width={800}
+      width={600}
     >
       {contextHolder}
       <Form layout="vertical" requiredMark={false} onFinish={onFinish} form={form}>
@@ -68,13 +71,11 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
               <Input placeholder="Enter your email" required type="email" maxLength={50} />
             </Form.Item>
           </Col>
-
           <Col span={12}>
-            <Form.Item name="fullname" label="Full name" rules={[fieldValidate.required]}>
+            <Form.Item name="fullName" label="Full name" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your full name" required maxLength={50} />
             </Form.Item>
           </Col>
-
           <Col span={12}>
             <Form.Item name="phoneNumber" label="Phone number" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your phone number" required maxLength={20} />
@@ -82,11 +83,37 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
           </Col>
 
           <Col span={12}>
-            <Form.Item name="password" label="Password" rules={[fieldValidate.required]}>
-              <Input.Password placeholder="Enter your password" required />
+            <Form.Item name="gender" label="Gender" rules={[fieldValidate.required]}>
+              <Select
+                options={[
+                  {
+                    label: 'Male',
+                    value: 'Male',
+                  },
+                  {
+                    label: 'Female',
+                    value: 'Female',
+                  },
+                ]}
+              ></Select>
             </Form.Item>
           </Col>
-
+          <Col span={24}>
+            <Form.Item name="role" label="Role" rules={[fieldValidate.required]}>
+              <Select
+                options={[
+                  {
+                    label: 'User',
+                    value: USER_ROLES_ENUM.ROLE_MEMBER,
+                  },
+                  {
+                    label: 'Trainer',
+                    value: USER_ROLES_ENUM.ROLE_ADVISOR,
+                  },
+                ]}
+              ></Select>
+            </Form.Item>
+          </Col>
           <Col span={24} className="flex items-center justify-end gap-2">
             <BaseButton danger onClick={onResetForm}>
               Clear

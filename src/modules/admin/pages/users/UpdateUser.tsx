@@ -3,11 +3,9 @@ import USERS_API from '@app/api/users';
 import { UpdateUserTypesAPI, UserItemTypes } from '@app/api/users/type';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
-import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { USER_SEX_VALUES } from '@app/utils/constant';
 import { fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
-import { Col, Form, Input, Row, Select, Typography, message } from 'antd';
+import { Col, DatePicker, Form, Input, Row, Select, Typography, message } from 'antd';
 import { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 
 type UpdateUserTypes = {
@@ -45,7 +43,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
 
   const onCloseModal = () => setIsOpenModal(false);
   const onFinish = (values: UpdateUserTypesAPI) => {
-    mutate({ ...values, userId: userUpdate.accountID });
+    mutate({ ...values, accountID: userUpdate.accountID });
   };
 
   useEffect(() => {
@@ -72,13 +70,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
       <Form layout="vertical" requiredMark={false} onFinish={onFinish} form={form}>
         <Row gutter={[20, 20]}>
           <Col span={12}>
-            <Form.Item name="email" label="Email" rules={[fieldValidate.required, fieldValidate.email]}>
-              <BaseInput placeholder="Enter your email" required type="email" maxLength={50} />
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item name="fullname" label="Full name" rules={[fieldValidate.required]}>
+            <Form.Item name="fullName" label="Full name" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your full name" required maxLength={50} />
             </Form.Item>
           </Col>
@@ -90,10 +82,28 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
           </Col>
 
           <Col span={12}>
-            <Form.Item name="password" label="Password" rules={[fieldValidate.required]}>
-              <Input.Password placeholder="Enter your password" required />
+            <Form.Item name="gender" label="Gender" rules={[fieldValidate.required]}>
+              <Select
+                options={[
+                  {
+                    label: 'Male',
+                    value: 'Male',
+                  },
+                  {
+                    label: 'Female',
+                    value: 'Female',
+                  },
+                ]}
+              ></Select>
             </Form.Item>
           </Col>
+
+          <Col span={12}>
+            <Form.Item name="birthday" label="Birthday" rules={[fieldValidate.required]}>
+              <DatePicker format={'YYYY/MM/DD'} style={{ width: '100%' }} />
+            </Form.Item>
+          </Col>
+
           <Col span={24} className="flex items-center justify-end gap-2">
             <BaseButton danger>Reset value</BaseButton>
             <BaseButton

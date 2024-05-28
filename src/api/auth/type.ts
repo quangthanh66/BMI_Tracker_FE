@@ -4,10 +4,12 @@ export type LoginAccountTypes = {
 };
 
 export type SignUpAccountTypes = {
-  fullname: string;
-  password: string;
+  fullName: string;
   email: string;
   phoneNumber: string;
+  gender: string;
+  birthday: string;
+  role: string;
 };
 
 export type UserTypes = {

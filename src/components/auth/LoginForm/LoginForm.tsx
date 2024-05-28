@@ -30,6 +30,7 @@ export const LoginForm: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { isLoading, mutate } = useMutation(AUTH_API.LOGIN_ACCOUNT, {
     onSuccess: (response: any) => {
+      localStorage.setItem('accessToken', response.accessToken);
       dispatch(setUserProfile(response));
       navigate(PAGE_ROUTES.HOME);
     },

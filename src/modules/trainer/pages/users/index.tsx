@@ -24,8 +24,6 @@ const UserTrainer = () => {
   } = useQuery(['get-users-list'], USERS_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: UserItemTypes[]) => {
-      console.log(response);
-
       setUsers(response);
     },
     onError: () => {
@@ -94,15 +92,15 @@ const UserTrainer = () => {
   const onChangeRole = (role: string) => {
     let result: UserItemTypes[] = [];
 
-    if (usersListServer) {
-      if (role === 'All') {
-        result = usersListServer;
-      } else {
-        result = usersListServer.filter(
-          (user: UserItemTypes) => user.roleName.toLowerCase() === role.toLowerCase(),
-        );
-      }
-    }
+    // if (usersListServer) {
+    //   if (role === 'All') {
+    //     result = usersListServer;
+    //   } else {
+    //     result = usersListServer.filter(
+    //       (user: UserItemTypes) => user.roleName.toLowerCase() === role.toLowerCase(),
+    //     );
+    //   }
+    // }
 
     setUsers(result);
   };

@@ -1,5 +1,3 @@
-import { SignUpAccountTypes } from '../auth/type';
-
 export type UserItemTypes = {
   accountID: string;
   email: string;
@@ -9,8 +7,12 @@ export type UserItemTypes = {
   isActive: string;
 };
 
-export type UpdateUserTypesAPI = SignUpAccountTypes & {
-  userId: string;
+export type UpdateUserTypesAPI = {
+  accountID: string;
+  fullName: string;
+  phoneNumber: string;
+  gender: string;
+  birthday: string;
 };
 
 export type ProveCertiTrainerTypes = {

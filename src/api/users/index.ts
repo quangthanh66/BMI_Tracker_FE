@@ -5,11 +5,8 @@ import { ProveCertiTrainerTypes, UpdateUserTypesAPI } from './type';
 
 const USERS_API = {
   GET_LIST: () => axiosClient.get(END_POINTS.USERS.MAIN),
-  CREATE_USER: (params: SignUpAccountTypes) => axiosClient.post(END_POINTS.AUTH.SIGN_UP, params),
-  UPDATE_USER: (params: UpdateUserTypesAPI) =>
-    axiosClient.put(
-      `${END_POINTS.USERS.MAIN}?userId=${params.userId}&fullname=${params.fullname}&password=${params.password}&phoneNumber=${params.phoneNumber}`,
-    ),
+  CREATE_USER: (params: SignUpAccountTypes) => axiosClient.post(END_POINTS.CREATE_USER, params),
+  UPDATE_USER: (params: UpdateUserTypesAPI) => axiosClient.put(END_POINTS.UPDATE_USER, params),
   DELETE_USER: (userId: string) => axiosClient.delete(`${END_POINTS.USERS.MAIN}?userId=${userId}`),
   PROVIDE_TRAINER_CERTIFICATE: (params: ProveCertiTrainerTypes) =>
     axiosClient.put(

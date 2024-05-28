@@ -19,4 +19,7 @@ export const END_POINTS = {
   MENU: '/api/menu',
   SERVICES: '/api/service',
   NOTIFICATIONS: '/api/notification',
+
+  CREATE_USER: '/api/accounts/createNew',
+  UPDATE_USER: '/api/accounts/update',
 };

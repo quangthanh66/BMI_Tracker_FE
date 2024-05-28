@@ -3,9 +3,9 @@ export enum AUTH_TOKEN {
 }
 
 export enum USER_ROLES_ENUM {
-  ROLE_MEMBER = 'User',
-  ROLE_ADMIN = 'Admin',
-  ROLE_ADVISOR = 'Trainer',
+  ROLE_MEMBER = 'ROLE_MEMBER',
+  ROLE_ADMIN = 'ROLE_ADMIN',
+  ROLE_ADVISOR = 'ROLE_ADVISOR',
 }
 
 export enum USER_SEX_ENUM {

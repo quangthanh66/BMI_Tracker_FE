@@ -34,7 +34,7 @@ export const UserColumns: any = ({
   },
   {
     title: 'Role',
-    dataIndex: 'rolenName',
+    dataIndex: 'roleName',
     render: (role: any) => <Tag color="geekblue">{role.roleName}</Tag>,
   },
   {
