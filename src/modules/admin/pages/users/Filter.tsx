@@ -30,9 +30,9 @@ const FilterUser = ({ onCreateNewUser, onSearchUser, onChangeRole }: FilterUserT
             placeholder="Choose your role"
             options={[
               { value: 'All', label: 'All' },
-              { value: 'Admin', label: 'Admin' },
-              { value: 'User', label: 'User' },
-              { value: 'Trainer', label: 'Trainer' },
+              { value: 'ROLE_ADMIN', label: 'Admin' },
+              { value: 'ROLE_MEMBER', label: 'Member' },
+              { value: 'ROLE_ADVISOR', label: 'Advisor' },
             ]}
           ></Select>
         </Col>

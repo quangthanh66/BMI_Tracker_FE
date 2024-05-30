@@ -103,11 +103,11 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
               <Select
                 options={[
                   {
-                    label: 'User',
+                    label: 'Member',
                     value: USER_ROLES_ENUM.ROLE_MEMBER,
                   },
                   {
-                    label: 'Trainer',
+                    label: 'Advisor',
                     value: USER_ROLES_ENUM.ROLE_ADVISOR,
                   },
                 ]}

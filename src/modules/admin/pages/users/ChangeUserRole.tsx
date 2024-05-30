@@ -37,9 +37,9 @@ const ChangeUserRole = ({}, ref: any) => {
               placeholder="Choose your role"
               width="100%"
               options={[
-                { value: 'Admin', label: 'Admin' },
-                { value: 'User', label: 'User' },
-                { value: 'Trainer', label: 'Trainer' },
+                { value: 'ROLE_ADMIN', label: 'Admin' },
+                { value: 'ROLE_MEMBER', label: 'Member' },
+                { value: 'ROLE_ADVISOR', label: 'Advisor' },
               ]}
             ></BaseSelect>
           </BaseCol>

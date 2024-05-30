@@ -10,6 +10,7 @@ export const PAGE_ROUTES = {
   BLOG: '/blog',
   FOOD: '/food',
   MENU: '/menu',
+  CERTIFICATE: '/certificate',
   AUTH: {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/sign-up',

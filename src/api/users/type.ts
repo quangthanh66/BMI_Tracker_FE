@@ -4,7 +4,8 @@ export type UserItemTypes = {
   fullName: string;
   phoneNumber: string;
   roleName: string;
-  isActive: string;
+  isActive: boolean;
+  birthday: string;
 };
 
 export type UpdateUserTypesAPI = {

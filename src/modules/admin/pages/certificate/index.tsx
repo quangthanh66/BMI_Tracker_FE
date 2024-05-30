@@ -4,12 +4,12 @@ import CreateNewUser from '@app/modules/admin/pages/users/CreateNewUser';
 import FilterUser from '@app/modules/admin/pages/users/Filter';
 import ProveCertificate from '@app/modules/admin/pages/users/ProveCertificate';
 import UpdateUser from '@app/modules/admin/pages/users/UpdateUser';
-import { UserColumns } from '@app/modules/admin/pages/users/type';
+import { UserColumns } from '@app/modules/admin/pages/certificate/type';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Card, Col, Row, Spin, Table, Typography, message } from 'antd';
 import { useRef, useState, useEffect } from 'react';
 
-const UsersManagement = () => {
+const UserTrainer = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [userUpdate, setUserUpdate] = useState<UserItemTypes>();
   const [users, setUsers] = useState<UserItemTypes[]>([]);
@@ -23,7 +23,7 @@ const UsersManagement = () => {
     data: usersListServer,
   } = useQuery(['get-users-list'], USERS_API.GET_LIST, {
     enabled: false,
-    onSuccess: (response: any) => {
+    onSuccess: (response: UserItemTypes[]) => {
       setUsers(response);
     },
     onError: () => {
@@ -81,21 +81,26 @@ const UsersManagement = () => {
   };
 
   const onSearchUser = (keyValue: string) => {
-    const result = usersListServer.filter((user: UserItemTypes) =>
-      user.fullName.toLowerCase().includes(keyValue.toLowerCase()),
-    );
-    setUsers(result);
+    if (usersListServer) {
+      const result = usersListServer.filter((user: UserItemTypes) =>
+        user.fullName.toLowerCase().includes(keyValue.toLowerCase()),
+      );
+      setUsers(result);
+    }
   };
 
   const onChangeRole = (role: string) => {
     let result: UserItemTypes[] = [];
-    if (role === 'All') {
-      result = usersListServer;
-    } else {
-      result = usersListServer.filter(
-        (user: UserItemTypes) => user.roleName.toLowerCase() === role.toLowerCase(),
-      );
-    }
+
+    // if (usersListServer) {
+    //   if (role === 'All') {
+    //     result = usersListServer;
+    //   } else {
+    //     result = usersListServer.filter(
+    //       (user: UserItemTypes) => user.roleName.toLowerCase() === role.toLowerCase(),
+    //     );
+    //   }
+    // }
 
     setUsers(result);
   };
@@ -105,9 +110,9 @@ const UsersManagement = () => {
     provideUserRef.current.openModal();
   };
 
-  // const onDeleteUser = (userId: string) => {
-  //   mutateDeleteUser(userId);
-  // };
+  const onDeleteUser = (userId: string) => {
+    mutateDeleteUser(userId);
+  };
 
   const onApproveTrainer = (userId: string) => {
     mutateApproveTrainer(userId);
@@ -141,7 +146,7 @@ const UsersManagement = () => {
             className="max-w-[82vw]"
             columns={UserColumns({
               updateUserModal: openUpdateUserModal,
-         //     deleteUser: onDeleteUser,
+              deleteUser: onDeleteUser,
               provideCertificate: onProvideCertificate,
               approveTrainer: onApproveTrainer,
             })}
@@ -157,4 +162,4 @@ const UsersManagement = () => {
   );
 };
 
-export default UsersManagement;
+export default UserTrainer;

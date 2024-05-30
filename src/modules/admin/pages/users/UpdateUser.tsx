@@ -46,12 +46,17 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
     mutate({ ...values, accountID: userUpdate.accountID });
   };
 
+  const handleReset = () => {
+    form.resetFields(); 
+  };
   useEffect(() => {
     if (userUpdate) {
       form.setFieldsValue({
         email: userUpdate.email,
         fullName: userUpdate.fullName,
         phoneNumber: userUpdate.phoneNumber,
+        isActive: userUpdate.isActive,
+        birthday: userUpdate.birthday,
       });
     }
   }, [userUpdate]);
@@ -81,7 +86,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
             </Form.Item>
           </Col>
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item name="gender" label="Gender" rules={[fieldValidate.required]}>
               <Select
                 options={[
@@ -96,16 +101,35 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
                 ]}
               ></Select>
             </Form.Item>
-          </Col>
+          </Col> */}
 
           <Col span={12}>
             <Form.Item name="birthday" label="Birthday" rules={[fieldValidate.required]}>
-              <DatePicker format={'YYYY/MM/DD'} style={{ width: '100%' }} />
+              <DatePicker format={'YYYY-MM-DD'} style={{ width: '100%' }} />
+            </Form.Item>
+          </Col>
+
+          <Col span={12}>
+            <Form.Item name="isActive" label="isActive" rules={[fieldValidate.required]}>
+              <Select
+                options={[
+                  {
+                    label: 'Active',
+                    value: 'true',
+                  },
+                  {
+                    label: 'Inactive',
+                    value: 'False',
+                  },
+                ]}
+              ></Select>
             </Form.Item>
           </Col>
 
           <Col span={24} className="flex items-center justify-end gap-2">
-            <BaseButton danger>Reset value</BaseButton>
+            {/* <BaseButton danger>Reset value</BaseButton>
+            <BaseButton */}
+            <BaseButton danger onClick={handleReset}>Reset value</BaseButton>  {/* Gọi hàm handleReset khi click */}
             <BaseButton
               icon={<SaveOutlined />}
               className="flex items-center"

@@ -64,6 +64,12 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     url: '/blog',
     icon: <CoffeeOutlined />,
   },
+  {
+    title: 'Certificate',
+    key: 'certificate',
+    url: '/certificate',
+    icon: <CoffeeOutlined />,
+  },
 ];
 
 export const trainerSidebar: SidebarNavigationItem[] = [

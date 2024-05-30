@@ -9,7 +9,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { Card, Col, Row, Spin, Table, Typography, message } from 'antd';
 import { useRef, useState, useEffect } from 'react';
 
-const UsersManagement = () => {
+const CertificateManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [userUpdate, setUserUpdate] = useState<UserItemTypes>();
   const [users, setUsers] = useState<UserItemTypes[]>([]);
@@ -157,4 +157,4 @@ const UsersManagement = () => {
   );
 };
 
-export default UsersManagement;
+export default CertificateManagement;

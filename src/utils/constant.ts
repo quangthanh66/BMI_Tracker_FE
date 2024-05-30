@@ -16,7 +16,7 @@ export enum USER_SEX_ENUM {
 export const USER_ROLES_VALUES = [
   {
     label: USER_ROLES_ENUM.ROLE_MEMBER,
-    value: 'User',
+    value: 'Member',
   },
   {
     label: USER_ROLES_ENUM.ROLE_ADMIN,
@@ -24,7 +24,7 @@ export const USER_ROLES_VALUES = [
   },
   {
     label: USER_ROLES_ENUM.ROLE_ADVISOR,
-    value: 'Trainer',
+    value: 'Advisor',
   },
 ];
 
@@ -39,10 +39,10 @@ export const USER_SEX_VALUES = [
   },
 ];
 
-export enum USER_STATUS {
-  true = 'true',
-  false = 'false',
-}
+// export enum USER_STATUS {
+//   true = 'true',
+//   false = 'false',
+// }
 
 export enum BLOG_STATUS {
   hidden = 'hidden',
