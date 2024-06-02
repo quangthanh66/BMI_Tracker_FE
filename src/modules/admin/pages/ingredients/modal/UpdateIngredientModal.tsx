@@ -59,10 +59,10 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
   };
 
   const submitForm = (values: TUpdateIngredient) => {
-    mutate({
-      ...values,
-      ingredientId: ingredientProps.ingredientId,
-    });
+    // mutate({
+    //   ...values,
+    //   ingredientId: ingredientProps.ingredientId,
+    // });
   };
 
   return (

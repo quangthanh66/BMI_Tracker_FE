@@ -97,7 +97,7 @@ const FoodManagement = () => {
   useEffect(() => {
     getFoods();
     // refetchCategories();
-    // refetchIngredient();
+    refetchIngredient();
   }, []);
 
   const searchFood = (event: ChangeEvent<HTMLInputElement>) => {
@@ -125,24 +125,19 @@ const FoodManagement = () => {
   };
 
   return (
-    <Spin spinning={isLoadingGetAllFoods} tip="Loading foods...">
+    <Spin spinning={isLoadingGetAllFoods || isLoadingIngredient} tip="Loading foods...">
       {contextHolder}
       {modalContextHolder}
 
-      <AddNewFoodModal
-        ref={addNewFoodRef}
-        categories={categories}
-        ingredients={ingredients}
-        refetchFoodPage={() => getFoods()}
-      />
+      <AddNewFoodModal ref={addNewFoodRef} ingredients={ingredients} refetchFoodPage={() => getFoods()} />
 
-      <UpdateFoodModal
+      {/* <UpdateFoodModal
         ref={updateFoodRef}
         categories={categories}
         ingredients={ingredients}
         refetchFoodPage={() => getFoods()}
         foodUpdate={foodUpdate as TFoodItem}
-      />
+      /> */}
 
       <Row gutter={[14, 14]}>
         <Col span={24}>

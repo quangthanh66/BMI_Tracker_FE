@@ -17,7 +17,7 @@ export const END_POINTS = {
   ADD_NEW_FOOD: '/api/foods/createNew',
 
   CATEGORY: '/api/category',
-  INGREDIENT: '/api/ingredient',
+  INGREDIENT: '/api/ingredients/getAll',
   MENU: '/api/menu',
   SERVICES: '/api/service',
   NOTIFICATIONS: '/api/notification',

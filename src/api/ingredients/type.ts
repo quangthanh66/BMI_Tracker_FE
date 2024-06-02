@@ -1,9 +1,12 @@
 export type TIngredientItem = {
-  ingredientId: string;
+  ingredientID: number;
   ingredientName: string;
   ingredientPhoto: string;
-  status: string;
-  categoryId: string;
+  quantity: number;
+  unitOfMeasurement: string;
+  ingredientCalories: number;
+  tagID: number;
+  isActive: boolean;
 };
 
 export type TAddNewIngredient = {

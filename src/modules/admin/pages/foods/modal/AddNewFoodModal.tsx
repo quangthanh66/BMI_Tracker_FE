@@ -6,25 +6,22 @@ import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { Col, Form, Row, Select, Space, Spin, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { TCategoryItem } from '@app/api/categories/type';
-import { TAddNewFood } from '@app/api/foods';
+import { RecipeRequest, TAddNewFood } from '@app/api/foods';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
-import { IngredientTypes } from '../../ingredients/type';
-import TagsAPI from '@app/api/tags';
 import { TagsRequest } from '@app/api/tags/type';
+import { TIngredientItem } from '@app/api/ingredients/type';
+import TagsAPI from '@app/api/tags';
 
 type TAddNewFoodModal = {
-  categories: TCategoryItem[];
-  ingredients: IngredientTypes[];
+  ingredients: TIngredientItem[];
   refetchFoodPage: () => void;
 };
 
-const AddNewFoodModal = ({ categories, ingredients, refetchFoodPage }: TAddNewFoodModal, ref: any) => {
+const AddNewFoodModal = ({ ingredients, refetchFoodPage }: TAddNewFoodModal, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
-  const [categoryOptions, setCategoryOptions] = useState<SelectTypes[]>([]);
   const [tagsOptions, setTagsOptions] = useState<SelectTypes[]>([]);
   const [ingredientOptions, setIngredientOptions] = useState<SelectTypes[]>([]);
 
@@ -68,29 +65,18 @@ const AddNewFoodModal = ({ categories, ingredients, refetchFoodPage }: TAddNewFo
   });
 
   useEffect(() => {
-    if (categories.length > 0) {
-      const convertCategories = categories.map((item) => {
-        return {
-          label: item.categoryName,
-          value: item.categoryId,
-        };
-      });
-
-      setCategoryOptions(convertCategories);
-    }
-
     if (ingredients.length > 0) {
-      const availableIngredients = ingredients.filter((item) => item.status !== 'false');
+      const availableIngredients = ingredients.filter((item) => item.isActive);
       const convertIngredients = availableIngredients.map((item) => {
         return {
           label: item.ingredientName,
-          value: item.ingredientId,
+          value: item.ingredientID,
         };
       });
 
       setIngredientOptions(convertIngredients);
     }
-  }, [categories, ingredients]);
+  }, [ingredients]);
 
   const onCloseModal = () => {
     setIsOpenModal(false);
@@ -98,15 +84,18 @@ const AddNewFoodModal = ({ categories, ingredients, refetchFoodPage }: TAddNewFo
   };
 
   const submitForm = (values: TAddNewFood) => {
-    // const convertIngredients: any = values.ingredients.map((item) => {
-    //   return {
-    //     ingredientId: item,
-    //   };
-    // });
-    // mutate({
-    //   ...values,
-    //   ingredients: convertIngredients,
-    // });
+    const convertRecipeRequests: RecipeRequest[] = values.recipeRequests.map((item: any) => {
+      return {
+        ingredientID: item,
+        quantity: 1,
+      };
+    });
+    handleFoodMutate({
+      ...values,
+      recipeRequests: convertRecipeRequests,
+      foodCalories: Number(values.foodCalories),
+      foodTimeProcess: Number(values.foodTimeProcess),
+    });
   };
 
   return (
@@ -153,7 +142,7 @@ const AddNewFoodModal = ({ categories, ingredients, refetchFoodPage }: TAddNewFo
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Time process" name="foodtimeProcess" rules={[fieldValidate.required]}>
+              <Form.Item label="Time process" name="foodTimeProcess" rules={[fieldValidate.required]}>
                 <BaseInput type="number" />
               </Form.Item>
             </Col>

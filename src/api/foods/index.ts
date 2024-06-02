@@ -18,7 +18,12 @@ export type TAddNewFood = {
   foodVideo: string;
   foodTimeProcess: number;
   tagIDs: number[];
-  recipeRequests: { ingredientID: number; quantity: number }[];
+  recipeRequests: RecipeRequest[];
+};
+
+export type RecipeRequest = {
+  ingredientID: number;
+  quantity: number;
 };
 
 export type TUpdateFood = TAddNewFood & {

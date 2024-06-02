@@ -101,6 +101,7 @@ const UpdateFoodModal = ({ categories, ingredients, refetchFoodPage, foodUpdate 
   };
 
   const submitForm = (values: TAddNewFood) => {
+    console.log(values);
     // const convertIngredients: any = values.ingredients.map((item) => {
     //   return {
     //     ingredientId: item,

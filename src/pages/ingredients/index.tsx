@@ -90,11 +90,11 @@ const IngredientManagement = () => {
       <Row gutter={[14, 14]}>
         <AddNewIngredientModal refetchPage={() => refetch()} ref={addNewIngredientRef} />
 
-        <UpdateIngredientModal
+        {/* <UpdateIngredientModal
           refetchFoodPage={() => refetch()}
           ingredientProps={ingredientUpdate as IngredientTypes}
           ref={updateIngredientRef}
-        />
+        /> */}
 
         <Col span={24}>
           <Card size="small">
