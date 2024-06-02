@@ -11,5 +11,5 @@ export const fieldValidate = {
 
 export type SelectTypes = {
   label: string;
-  value: string;
+  value: string | number;
 };

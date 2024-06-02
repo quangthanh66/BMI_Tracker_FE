@@ -1,31 +1,24 @@
 export type TFoodItem = {
   foodId: string;
   foodName: string;
-  foodTag: string;
-  foodNutrition: string;
-  foodNotes: string;
-  foodDesciption: string;
+  foodCalories: number;
+  description: string;
   foodPhoto: string;
-  foodtimeProcess: number;
-  foodCalorios: number;
-  foodProcessingVideo: string;
-  status: string;
-  categoryId: string;
-  recipes: { ingredientId: string; foodId: string }[];
+  foodVideo: string;
+  foodTimeProcess: number;
+  creationDate: string;
+  isActive: boolean;
 };
 
 export type TAddNewFood = {
   foodName: string;
-  foodTag: string;
-  foodNutrition: string;
-  foodNotes: string;
-  foodDesciption: string;
+  foodCalories: number;
+  description: string;
   foodPhoto: string;
-  foodtimeProcess: number;
-  foodCalorios: number;
-  foodProcessingVideo: string;
-  categoryId: string;
-  ingredients: { ingredientId: string }[];
+  foodVideo: string;
+  foodTimeProcess: number;
+  tagIDs: number[];
+  recipeRequests: { ingredientID: number; quantity: number }[];
 };
 
 export type TUpdateFood = TAddNewFood & {

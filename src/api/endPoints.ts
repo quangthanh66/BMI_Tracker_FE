@@ -13,7 +13,9 @@ export const END_POINTS = {
   },
 
   FEEDBACKS: '/api/feedback',
-  FOOD: '/api/food',
+  FOOD: '/api/foods/getAll',
+  ADD_NEW_FOOD: '/api/foods/createNew',
+
   CATEGORY: '/api/category',
   INGREDIENT: '/api/ingredient',
   MENU: '/api/menu',
@@ -22,4 +24,9 @@ export const END_POINTS = {
 
   CREATE_USER: '/api/accounts/createNew',
   UPDATE_USER: '/api/accounts/update',
+
+  TAGS: {
+    ADD_NEW: '/api/tags/createNew',
+    GET_ALL: '/api/tags/getAll',
+  },
 };

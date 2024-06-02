@@ -27,8 +27,8 @@ const FoodManagement = () => {
   const [ingredients, setIngredients] = useState<TIngredientItem[]>([]);
 
   const {
-    isLoading,
-    refetch,
+    isLoading: isLoadingGetAllFoods,
+    refetch: getFoods,
     data: foodsList,
   } = useQuery(['get-foods'], FOOD_API.GET_FOODS, {
     enabled: false,
@@ -84,7 +84,7 @@ const FoodManagement = () => {
         content: 'Delete food is successfully',
       });
 
-      refetch();
+      getFoods();
     },
     onError: () => {
       messageApi.open({
@@ -95,24 +95,15 @@ const FoodManagement = () => {
   });
 
   useEffect(() => {
-    refetch();
-    refetchCategories();
-    refetchIngredient();
+    getFoods();
+    // refetchCategories();
+    // refetchIngredient();
   }, []);
 
   const searchFood = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value.toLowerCase();
     const result = foodsList?.filter((food) => food.foodName.toLowerCase().includes(keySearch));
     setFoods(result as TFoodItem[]);
-  };
-
-  const filterFoodStatus = (status: string) => {
-    if (status === 'all') {
-      setFoods(foodsList as TFoodItem[]);
-    } else {
-      const newFoodsList = foodsList?.filter((food) => food.status.toLowerCase() === status.toLowerCase());
-      setFoods(newFoodsList as TFoodItem[]);
-    }
   };
 
   const confirmModal = (foodId: string) => {
@@ -134,10 +125,7 @@ const FoodManagement = () => {
   };
 
   return (
-    <Spin
-      spinning={isLoading || isLoadingCategories || isLoadingIngredient || isLoadingDeleteFood}
-      tip="Loading foods..."
-    >
+    <Spin spinning={isLoadingGetAllFoods} tip="Loading foods...">
       {contextHolder}
       {modalContextHolder}
 
@@ -145,14 +133,14 @@ const FoodManagement = () => {
         ref={addNewFoodRef}
         categories={categories}
         ingredients={ingredients}
-        refetchFoodPage={() => refetch()}
+        refetchFoodPage={() => getFoods()}
       />
 
       <UpdateFoodModal
         ref={updateFoodRef}
         categories={categories}
         ingredients={ingredients}
-        refetchFoodPage={() => refetch()}
+        refetchFoodPage={() => getFoods()}
         foodUpdate={foodUpdate as TFoodItem}
       />
 
@@ -164,18 +152,17 @@ const FoodManagement = () => {
         </Col>
 
         <Col span={24}>
-          <FilterFoods
-            addNewFood={() => addNewFoodRef.current.openModal()}
-            searchFood={searchFood}
-            filterFoodStatus={filterFoodStatus}
-          />
+          <FilterFoods addNewFood={() => addNewFoodRef.current.openModal()} searchFood={searchFood} />
         </Col>
 
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
             {foods.map((item) => {
               return (
-                <div className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md">
+                <div
+                  className="flex flex-col justify-between gap-2 w-full h-full p-4 bg-black-500 shadow-lg rounded-md"
+                  key={item.foodId}
+                >
                   <div className="w-full flex flex-col gap-2 flex-grow">
                     <Image
                       alt="food-alt"
@@ -187,33 +174,35 @@ const FoodManagement = () => {
                       }}
                     />
                     <Typography.Title level={5}>{item.foodName}</Typography.Title>
-                    <Typography.Paragraph>{item.foodDesciption.slice(0, 100)} ...</Typography.Paragraph>
+                    <Typography.Paragraph>{item.description.slice(0, 100)} ...</Typography.Paragraph>
                     <div className="flex justify-between w-full">
                       <Typography.Text>
-                        Time process: <span className="font-semibold">{item.foodtimeProcess} minutes</span>
+                        Time process: <span className="font-semibold">{item.foodTimeProcess} minutes</span>
                       </Typography.Text>
                       <Typography.Text>
-                        Calories: <span className="font-semibold">{item.foodCalorios}</span>
+                        Calories: <span className="font-semibold">{item.foodCalories}</span>
                       </Typography.Text>
                     </div>
                   </div>
 
-                  <div className="flex items-center  gap-2 w-full">
+                  <div className="flex items-center mt-4  gap-2 w-full">
                     <BaseButton
                       danger
                       icon={<DeleteOutlined />}
                       className="flex-1"
                       onClick={() => confirmModal(item.foodId)}
+                      size="small"
                     >
-                      Delete food
+                      Delete
                     </BaseButton>
                     <BaseButton
                       icon={<FileAddOutlined />}
                       className="flex-1"
                       type="primary"
                       onClick={() => updateFood(item.foodId)}
+                      size="small"
                     >
-                      Update food
+                      Update
                     </BaseButton>
                   </div>
                 </div>

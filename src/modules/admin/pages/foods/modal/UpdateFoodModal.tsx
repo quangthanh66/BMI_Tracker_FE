@@ -77,23 +77,22 @@ const UpdateFoodModal = ({ categories, ingredients, refetchFoodPage, foodUpdate 
 
   useEffect(() => {
     if (foodUpdate) {
-      const ingredientsResult = foodUpdate.recipes.map((item) => {
-        return item.ingredientId;
-      });
-
-      form.setFieldsValue({
-        foodName: foodUpdate.foodName,
-        foodNutrition: foodUpdate.foodNutrition,
-        foodTag: foodUpdate.foodTag,
-        categoryId: foodUpdate.categoryId,
-        foodNotes: foodUpdate.foodNotes,
-        foodDesciption: foodUpdate.foodDesciption,
-        foodPhoto: foodUpdate.foodPhoto,
-        foodtimeProcess: foodUpdate.foodtimeProcess,
-        foodCalorios: foodUpdate.foodCalorios,
-        foodProcessingVideo: foodUpdate.foodProcessingVideo,
-        ingredients: ingredientsResult,
-      });
+      // const ingredientsResult = foodUpdate.recipes.map((item) => {
+      //   return item.ingredientId;
+      // });
+      // form.setFieldsValue({
+      //   foodName: foodUpdate.foodName,
+      //   foodNutrition: foodUpdate.foodNutrition,
+      //   foodTag: foodUpdate.foodTag,
+      //   categoryId: foodUpdate.categoryId,
+      //   foodNotes: foodUpdate.foodNotes,
+      //   foodDesciption: foodUpdate.foodDesciption,
+      //   foodPhoto: foodUpdate.foodPhoto,
+      //   foodtimeProcess: foodUpdate.foodtimeProcess,
+      //   foodCalorios: foodUpdate.foodCalorios,
+      //   foodProcessingVideo: foodUpdate.foodProcessingVideo,
+      //   ingredients: ingredientsResult,
+      // });
     }
   }, [foodUpdate]);
 
@@ -102,16 +101,16 @@ const UpdateFoodModal = ({ categories, ingredients, refetchFoodPage, foodUpdate 
   };
 
   const submitForm = (values: TAddNewFood) => {
-    const convertIngredients: any = values.ingredients.map((item) => {
-      return {
-        ingredientId: item,
-      };
-    });
-    mutate({
-      ...values,
-      ingredients: convertIngredients,
-      foodId: foodUpdate.foodId,
-    });
+    // const convertIngredients: any = values.ingredients.map((item) => {
+    //   return {
+    //     ingredientId: item,
+    //   };
+    // });
+    // mutate({
+    //   ...values,
+    //   ingredients: convertIngredients,
+    //   foodId: foodUpdate.foodId,
+    // });
   };
 
   return (
