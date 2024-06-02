@@ -69,7 +69,7 @@ const MenuManagement = () => {
       const result = response.map((item) => {
         return {
           label: item.foodName,
-          value: item.foodId,
+          value: item.foodID,
         };
       });
 

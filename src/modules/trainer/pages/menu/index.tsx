@@ -67,7 +67,7 @@ const MenuTrainer = () => {
       const result = response.map((item) => {
         return {
           label: item.foodName,
-          value: item.foodId,
+          value: item.foodID,
         };
       });
 
@@ -189,7 +189,7 @@ const MenuTrainer = () => {
         </Col>
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
-            {menus.map((item) => {
+            {/* {menus.map((item) => {
               return (
                 <div className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md">
                   <div className="w-full flex flex-col gap-2 flex-grow">
@@ -216,7 +216,7 @@ const MenuTrainer = () => {
                   </div>
                 </div>
               );
-            })}
+            })} */}
           </div>
         </Col>
       </Row>

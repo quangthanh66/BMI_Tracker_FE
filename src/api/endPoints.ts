@@ -15,6 +15,8 @@ export const END_POINTS = {
   FEEDBACKS: '/api/feedback',
   FOOD: '/api/foods/getAll',
   ADD_NEW_FOOD: '/api/foods/createNew',
+  DELETE_FOOD: '/api/foods/deactive',
+  UPDATE_FOOD: '/api/foods/update',
 
   CATEGORY: '/api/category',
   INGREDIENT: '/api/ingredients/getAll',

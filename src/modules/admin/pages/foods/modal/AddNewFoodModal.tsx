@@ -6,19 +6,21 @@ import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { Col, Form, Row, Select, Space, Spin, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { RecipeRequest, TAddNewFood } from '@app/api/foods';
+import { RecipeRequest, TAddNewFood, TFoodItem, TUpdateFood } from '@app/api/foods';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
 import { TagsRequest } from '@app/api/tags/type';
 import { TIngredientItem } from '@app/api/ingredients/type';
 import TagsAPI from '@app/api/tags';
+import dayjs from 'dayjs';
 
 type TAddNewFoodModal = {
   ingredients: TIngredientItem[];
+  foodUpdateProps: TFoodItem;
   refetchFoodPage: () => void;
 };
 
-const AddNewFoodModal = ({ ingredients, refetchFoodPage }: TAddNewFoodModal, ref: any) => {
+const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAddNewFoodModal, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
@@ -39,6 +41,24 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage }: TAddNewFoodModal, ref
       messageApi.open({
         type: 'error',
         content: 'Cant add new food . Please try again !',
+      });
+    },
+  });
+
+  const { isLoading: isLoadingUpdateFood, mutate: updateFoodMutate } = useMutation(FOOD_API.UPDATE_FOOD, {
+    onSuccess: () => {
+      messageApi.open({
+        type: 'success',
+        content: 'Update food is successfully',
+      });
+
+      refetchFoodPage();
+      onCloseModal();
+    },
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Cant update food . Please try again !',
       });
     },
   });
@@ -78,6 +98,12 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage }: TAddNewFoodModal, ref
     }
   }, [ingredients]);
 
+  useEffect(() => {
+    if (foodUpdateProps) {
+      form.setFieldsValue(foodUpdateProps);
+    }
+  }, [foodUpdateProps]);
+
   const onCloseModal = () => {
     setIsOpenModal(false);
     form.resetFields();
@@ -90,12 +116,24 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage }: TAddNewFoodModal, ref
         quantity: 1,
       };
     });
-    handleFoodMutate({
-      ...values,
-      recipeRequests: convertRecipeRequests,
-      foodCalories: Number(values.foodCalories),
-      foodTimeProcess: Number(values.foodTimeProcess),
-    });
+
+    if (foodUpdateProps) {
+      updateFoodMutate({
+        ...values,
+        recipeRequests: convertRecipeRequests,
+        foodCalories: Number(values.foodCalories),
+        foodTimeProcess: Number(values.foodTimeProcess),
+        foodID: foodUpdateProps.foodID,
+        creationDate: dayjs().format('YYYY-MM-DD'),
+      });
+    } else {
+      handleFoodMutate({
+        ...values,
+        recipeRequests: convertRecipeRequests,
+        foodCalories: Number(values.foodCalories),
+        foodTimeProcess: Number(values.foodTimeProcess),
+      });
+    }
   };
 
   return (
@@ -165,8 +203,8 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage }: TAddNewFoodModal, ref
                 <BaseButton
                   className="flex items-center"
                   htmlType="submit"
-                  loading={isLoadingHandleFood}
-                  disabled={isLoadingHandleFood}
+                  loading={isLoadingHandleFood || isLoadingUpdateFood}
+                  disabled={isLoadingHandleFood || isLoadingUpdateFood}
                   type="primary"
                 >
                   Confirm

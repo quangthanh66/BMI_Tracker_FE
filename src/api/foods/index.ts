@@ -1,5 +1,5 @@
 export type TFoodItem = {
-  foodId: string;
+  foodID: string;
   foodName: string;
   foodCalories: number;
   description: string;
@@ -27,5 +27,6 @@ export type RecipeRequest = {
 };
 
 export type TUpdateFood = TAddNewFood & {
-  foodId: string;
+  foodID: string;
+  creationDate: string;
 };
