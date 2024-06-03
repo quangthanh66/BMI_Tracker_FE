@@ -20,6 +20,7 @@ export const END_POINTS = {
 
   CATEGORY: '/api/category',
   INGREDIENT: '/api/ingredients/getAll',
+  UPDATE_INGREDIENT: '/api/ingredients/update',
   MENU: '/api/menu',
   SERVICES: '/api/service',
   NOTIFICATIONS: '/api/notification',

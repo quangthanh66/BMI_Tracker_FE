@@ -44,6 +44,10 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
       form.setFieldsValue({
         ingredientName: ingredientProps.ingredientName,
         ingredientPhoto: ingredientProps.ingredientPhoto,
+        quantity: ingredientProps.quantity,
+        unitOfMeasurement: ingredientProps.unitOfMeasurement,
+        ingredientCalories: ingredientProps.ingredientCalories,
+        tagID: ingredientProps.tagID,
       });
     }
   }, [ingredientProps]);
@@ -59,10 +63,10 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
   };
 
   const submitForm = (values: TUpdateIngredient) => {
-    // mutate({
-    //   ...values,
-    //   ingredientId: ingredientProps.ingredientId,
-    // });
+    mutate({
+      ...values,
+      ingredientID: ingredientProps.ingredientID,
+    });
   };
 
   return (
@@ -77,7 +81,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Name" name="ingredientName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
@@ -87,7 +91,27 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
               <BaseInput />
             </Form.Item>
           </Col>
-
+          <Col span={12}>
+            <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Unit Of Measurement" name="unitOfMeasurement" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+        
           <Col span={24} className="flex justify-end">
             <Space>
               <BaseButton onClick={onCloseModal}>Close modal</BaseButton>

@@ -90,11 +90,11 @@ const IngredientManagement = () => {
       <Row gutter={[14, 14]}>
         <AddNewIngredientModal refetchPage={() => refetch()} ref={addNewIngredientRef} />
 
-        {/* <UpdateIngredientModal
+        <UpdateIngredientModal
           refetchFoodPage={() => refetch()}
           ingredientProps={ingredientUpdate as IngredientTypes}
           ref={updateIngredientRef}
-        /> */}
+        />
 
         <Col span={24}>
           <Card size="small">
@@ -113,7 +113,7 @@ const IngredientManagement = () => {
           <Row gutter={[14, 14]}>
             {ingredients.map((item) => {
               return (
-                <Col span={6} key={item.ingredientId}>
+                <Col span={6} key={item.ingredientID}>
                   <Card size="small">
                     <div className="flex flex-col justify-between gap-4 w-full">
                       <div className="w-full flex flex-col gap-4">
@@ -130,7 +130,7 @@ const IngredientManagement = () => {
                       </div>
 
                       <div className="grid grid-cols-2 gap-2 w-full">
-                        <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.ingredientId)}>
+                        <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.ingredientID)}>
                           Delete
                         </BaseButton>
                         <BaseButton icon={<FileAddOutlined />} type="primary" onClick={() => updateIngredient(item)}>

@@ -1,9 +1,9 @@
 export type TIngredientItem = {
-  ingredientID: number;
+  ingredientID: string;
   ingredientName: string;
   ingredientPhoto: string;
   quantity: number;
-  unitOfMeasurement: string;
+  unitOfMeasurement: number;
   ingredientCalories: number;
   tagID: number;
   isActive: boolean;
@@ -15,5 +15,14 @@ export type TAddNewIngredient = {
 };
 
 export type TUpdateIngredient = TAddNewIngredient & {
-  ingredientId: string;
+  ingredientID: string;
+  ingredientName: string;
+  ingredientPhoto: string;
+  quantity: number;
+  unitOfMeasurement: string;
+  ingredientCalories: number;
+  tagID: number;
+  isActive: boolean;
 };
+
+

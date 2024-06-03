@@ -1,7 +1,11 @@
 export type IngredientTypes = {
-  ingredientId: string;
+  ingredientID: string;
   ingredientName: string;
   ingredientPhoto: string;
   status: string;
-  categoryId: string;
+  quantity: number;
+  unitOfMeasurement: number
+  ingredientCalories: number,
+  tagID: number,
+  isActive: boolean,
 };
