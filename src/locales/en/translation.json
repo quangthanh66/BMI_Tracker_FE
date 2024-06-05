@@ -518,7 +518,8 @@
     "googleLink": "Continue with Google",
     "loginInfo": "Enter your email address and password to access admin panel",
     "noAccount": "Don’t have an account? Create one",
-    "rememberMe": "Remember me",
+    "loginAdmin": "Admin",
+    "loginAdvisor": "Advisor",
     "signupLink": "here"
   },
   "modals": {

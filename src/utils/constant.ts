@@ -44,6 +44,11 @@ export const USER_SEX_VALUES = [
 //   false = 'false',
 // }
 
+export enum CERTIFICATE_STATUS {
+  hidden = 'hidden',
+  available_certificate = 'available-certificate',
+}
+
 export enum BLOG_STATUS {
   hidden = 'hidden',
   available_blog = 'available-blog',

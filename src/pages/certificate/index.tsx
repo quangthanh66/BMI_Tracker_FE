@@ -1,159 +1,147 @@
-import USERS_API from '@app/api/users';
-import { UserItemTypes } from '@app/api/users/type';
-import CreateNewUser from '@app/modules/admin/pages/users/CreateNewUser';
-import FilterUser from '@app/modules/admin/pages/users/Filter';
-import ProveCertificate from '@app/modules/admin/pages/users/ProveCertificate';
-import UpdateUser from '@app/modules/admin/pages/users/UpdateUser';
-import { UserColumns } from '@app/modules/admin/pages/users/type';
+import { CertificateColumns } from '@app/modules/admin/pages/certificate/constant';
+import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
+import CertificateFilter from '@app/modules/admin/pages/certificate/CertificateFilter';
+import { Card, Col, Row, Spin, Typography, message } from 'antd';
+import { useEffect, useRef, useState } from 'react';
+import ViewDetailCertificate from '@app/modules/admin/pages/certificate/ViewDetailCertificate';
+import DescriptionModal from '@app/modules/admin/pages/certificate/DescriptionModal';
+import CreateCertificateModal from '@app/modules/admin/pages/certificate/CreateCertificateModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Card, Col, Row, Spin, Table, Typography, message } from 'antd';
-import { useRef, useState, useEffect } from 'react';
+import CERTIFICATE_API from '@app/api/certificate';
+import UpdateMenuModal from '@app/modules/admin/pages/certificate/UpdateMenuModal';
+import { CertificateItemTypes } from '@app/api/certificate/type';
 
 const CertificateManagement = () => {
+  const [certificates, setCertificates] = useState<CertificateItemTypes[]>([]);
+  const [certificateUpdate, setCertificateUpdate] = useState<CertificateItemTypes>();
   const [messageApi, contextHolder] = message.useMessage();
-  const [userUpdate, setUserUpdate] = useState<UserItemTypes>();
-  const [users, setUsers] = useState<UserItemTypes[]>([]);
-  const createNewUserRef = useRef<any>();
-  const updateUserRef = useRef<any>();
-  const provideUserRef = useRef<any>();
+
+  const { isLoading: isLoadingDeleteCertificate, mutate: mutateDeleteCertificate } = useMutation(CERTIFICATE_API.DELETE_CERTIFICATE, {
+    onSuccess: () => {
+      messageApi.open({
+        type: 'success',
+        content: 'Delete certificate is successful',
+      });
+
+      refetchCertificatesList();
+    },
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Delete certificate is failed',
+      });
+    },
+  });
 
   const {
-    isLoading,
-    refetch,
-    data: usersListServer,
-  } = useQuery(['get-users-list'], USERS_API.GET_LIST, {
+    isLoading: isLoadingCertificateList,
+    refetch: refetchCertificatesList,
+    data: certificatesListServer,
+  } = useQuery(['certificates-list'], CERTIFICATE_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: any) => {
-      setUsers(response);
+      setCertificates(response);
     },
     onError: () => {
       messageApi.open({
         type: 'error',
-        content: 'Get users is failed',
-      });
-    },
-  });
-  const { isLoading: isLoadingDeleteUser, mutate: mutateDeleteUser } = useMutation(USERS_API.DELETE_USER, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Delete user is successful',
-      });
-
-      refetch();
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Delete user is failed',
+        content: 'Get certificates list is failed',
       });
     },
   });
 
-  const { mutate: mutateApproveTrainer } = useMutation(USERS_API.APPROVE_TRAINER, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Approve trainer is success',
-      });
+  const createCertificateRef = useRef<any>();
+  const updateCertificateRef = useRef<any>();
+  const descriptionRef = useRef<any>();
+  const viewDetailRef = useRef<any>();
 
-      refetch();
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Approve trainer is failed',
-      });
-    },
-  });
-
-  useEffect(() => {
-    refetch();
-  }, []);
-
-  const openCreateNewUserModal = () => {
-    createNewUserRef.current.openModal();
+  const openCreateCertificateModal = () => {
+    createCertificateRef.current.openModal();
   };
 
-  const openUpdateUserModal = (userUpdate: UserItemTypes) => {
-    updateUserRef.current.openModal();
-    setUserUpdate(userUpdate);
+  const openUpdateCertificateModal = (certificateProps: CertificateItemTypes) => {
+    setCertificateUpdate(certificateProps);
+    updateCertificateRef.current.openModal();
+  };
+  const onOpenDescriptionModal = () => {
+    descriptionRef.current.openModal();
+  };
+  const onViewDetailCertificate = (certificateProps: CertificateItemTypes) => {
+    setCertificateUpdate(certificateProps);
+    viewDetailRef.current.openModal();
   };
 
-  const onSearchUser = (keyValue: string) => {
-    const result = usersListServer.filter((user: UserItemTypes) =>
-      user.fullName.toLowerCase().includes(keyValue.toLowerCase()),
+  const onSearchCertificate = (keyValue: string) => {
+    const result = certificatesListServer.filter((certificate: CertificateItemTypes) =>
+      certificate.certificateName.toLowerCase().includes(keyValue.toLowerCase()),
     );
-    setUsers(result);
+    setCertificates(result);
   };
 
-  const onChangeRole = (role: string) => {
-    let result: UserItemTypes[] = [];
-    if (role === 'All') {
-      result = usersListServer;
-    } else {
-      result = usersListServer.filter(
-        (user: UserItemTypes) => user.roleName.toLowerCase() === role.toLowerCase(),
-      );
-    }
+  // const onFilterCertificate = (certificateStatus: string) => {
+  //   if (certificateStatus === 'All') {
+  //     setCertificates(certificatesListServer);
+  //   } else {
+  //     const result = certificatesListServer.filter((certificate: CertificateItemTypes) => {
+  //       return certificate.status === certificateStatus;
+  //     });
 
-    setUsers(result);
-  };
-
-  const onProvideCertificate = (user: UserItemTypes) => {
-    setUserUpdate(user);
-    provideUserRef.current.openModal();
-  };
-
-  // const onDeleteUser = (userId: string) => {
-  //   mutateDeleteUser(userId);
+  //     setCertificates(result);
+  //   }
   // };
 
-  const onApproveTrainer = (userId: string) => {
-    mutateApproveTrainer(userId);
+  const onDeleteCertificate = (certificateId: string) => {
+    mutateDeleteCertificate(certificateId);
   };
 
+  useEffect(() => {
+    refetchCertificatesList();
+  }, []);
+
   return (
-    <Row gutter={[14, 14]}>
+    <Spin spinning={isLoadingCertificateList || isLoadingDeleteCertificate} tip="Loading certificates ....">
       {contextHolder}
-      <Col span={24}>
-        <Card>
-          <Typography.Text className="text-xl font-bold">User management</Typography.Text>
-        </Card>
-      </Col>
-      <CreateNewUser ref={createNewUserRef} onUpdateAfterCreateNew={() => refetch()} />
-      <UpdateUser ref={updateUserRef} userUpdate={userUpdate as UserItemTypes} onRefreshAfterUpdate={() => refetch()} />
-      <ProveCertificate ref={provideUserRef} userProps={userUpdate as UserItemTypes} onRefreshPage={() => refetch()} />
-
-      <Col span={24}>
-        <Card size="small">
-          <FilterUser
-            onCreateNewUser={openCreateNewUserModal}
-            onSearchUser={onSearchUser}
-            onChangeRole={onChangeRole}
-          />
-        </Card>
-      </Col>
-
-      <Spin spinning={isLoading || isLoadingDeleteUser} tip="Loading data...">
+      <Row gutter={[14, 14]}>
         <Col span={24}>
-          <Table
-            className="max-w-[82vw]"
-            columns={UserColumns({
-              updateUserModal: openUpdateUserModal,
-         //     deleteUser: onDeleteUser,
-              provideCertificate: onProvideCertificate,
-              approveTrainer: onApproveTrainer,
+          <Card>
+            <Typography.Text className="text-xl font-bold">Certificate management</Typography.Text>
+          </Card>
+        </Col>
+        <CreateCertificateModal ref={createCertificateRef} onRefreshPage={() => refetchCertificatesList()} />
+        <UpdateMenuModal
+          ref={updateCertificateRef}
+          certificateUpdateProps={certificateUpdate as CertificateItemTypes}
+          onRefreshPage={() => refetchCertificatesList()}
+        />
+        <ViewDetailCertificate ref={viewDetailRef} certificateProps={certificateUpdate as CertificateItemTypes} />
+
+        {/* <Col span={24}>
+          <Card size="small">
+            <CertificateFilter
+              onCreateNewCertificate={openCreateCertificateModal}
+              onSearchCertificate={onSearchCertificate}
+              onFilterCertificateStatus={onFilterCertificate}
+            />
+          </Card>
+        </Col> */}
+
+        <Col span={24}>
+          <BaseTable
+            columns={CertificateColumns({
+              updateCertificateModal: openUpdateCertificateModal,
+              descriptionModal: onOpenDescriptionModal,
+              viewDetailModal: onViewDetailCertificate,
+              deleteCertificate: onDeleteCertificate,
             })}
-            dataSource={users}
+            dataSource={certificates}
             scroll={{
-              y: (1 - 465 / window.innerHeight) * window.innerHeight,
-              x: 600,
+              y: (1 - 425 / window.innerHeight) * window.innerHeight,
+              x: 1200,
             }}
           />
         </Col>
-      </Spin>
-    </Row>
+      </Row>
+    </Spin>
   );
 };
 

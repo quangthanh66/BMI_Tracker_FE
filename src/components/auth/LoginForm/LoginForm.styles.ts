@@ -21,7 +21,7 @@ export const LoginDescription = styled.div`
   }
 `;
 
-export const RememberMeText = styled.span`
+export const LoginRoleText = styled.span`
   color: var(--primary-color);
   font-size: ${FONT_SIZE.xs};
 `;

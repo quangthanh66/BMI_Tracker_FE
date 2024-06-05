@@ -17,7 +17,9 @@ export const END_POINTS = {
   ADD_NEW_FOOD: '/api/foods/createNew',
   DELETE_FOOD: '/api/foods/deactive',
   UPDATE_FOOD: '/api/foods/update',
-
+  CERTIFICATE: '/api/certificates/getAll',
+  UPDATE_CERTIFICATE:'api/certificates/update',
+  DELETE_CERTIFICATE:'/api/certificates/delete',
   CATEGORY: '/api/category',
   INGREDIENT: '/api/ingredients/getAll',
   UPDATE_INGREDIENT: '/api/ingredients/update',

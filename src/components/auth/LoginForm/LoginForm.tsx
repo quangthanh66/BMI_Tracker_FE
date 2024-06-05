@@ -73,9 +73,14 @@ export const LoginForm: React.FC = () => {
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </Auth.FormItem>
         <Auth.ActionsWrapper>
-          <BaseForm.Item name="rememberMe" valuePropName="checked" noStyle>
+          <BaseForm.Item name="loginAdmin" valuePropName="checked" noStyle>
             <Auth.FormCheckbox>
-              <S.RememberMeText>{t('login.rememberMe')}</S.RememberMeText>
+              <S.LoginRoleText>{t('login.loginAdmin')}</S.LoginRoleText>
+            </Auth.FormCheckbox>
+          </BaseForm.Item>
+          <BaseForm.Item name="loginAdvisor" valuePropName="checked" noStyle>
+            <Auth.FormCheckbox>
+              <S.LoginRoleText>{t('login.loginAdvisor')}</S.LoginRoleText>
             </Auth.FormCheckbox>
           </BaseForm.Item>
           <Link to="/auth/forgot-password">
