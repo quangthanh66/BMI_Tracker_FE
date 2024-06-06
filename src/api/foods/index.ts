@@ -1,14 +1,24 @@
 export type TFoodItem = {
   foodID: string;
   foodName: string;
-  foodCalories: number;
+  foodCalories: string;
   description: string;
   foodPhoto: string;
   foodVideo: string;
+  foodNutrition: string;
   foodTimeProcess: number;
   creationDate: string;
+  foodTags: FoodTags[];
+  active: boolean;
+};
+export type FoodTags = {
+  tagID: number;
+  tagName: string;
+  tagDescription: string;
+  tagTypeID: number;
   isActive: boolean;
 };
+
 
 export type TAddNewFood = {
   foodName: string;
@@ -17,7 +27,7 @@ export type TAddNewFood = {
   foodPhoto: string;
   foodVideo: string;
   foodTimeProcess: number;
-  tagIDs: number[];
+  foodTags: FoodTags[];
   recipeRequests: RecipeRequest[];
 };
 

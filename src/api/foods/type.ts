@@ -8,7 +8,7 @@ const FOOD_API = {
   UPDATE_FOOD: (params: TUpdateFood) => {
     return axiosClient.put(END_POINTS.UPDATE_FOOD, params);
   },
-  DELETE_FOOD: (foodId: string) => axiosClient.delete(`${END_POINTS.DELETE_FOOD}/${foodId}`),
+  DELETE_FOOD: (foodID: string) => axiosClient.delete(`${END_POINTS.DELETE_FOOD}/${foodID}`),
 };
 
 export default FOOD_API;

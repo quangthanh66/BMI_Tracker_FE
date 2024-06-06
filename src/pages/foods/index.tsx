@@ -84,20 +84,20 @@ const FoodManagement = () => {
     setFoods(result as TFoodItem[]);
   };
 
-  const confirmModal = (foodId: string) => {
+  const confirmModal = (foodID: string) => {
     modal.confirm({
       title: 'Are you sure to delete food ?',
       okText: 'Confirm to delete',
       cancelText: 'Close modal',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
-        deleteFoodMutate(foodId);
+        deleteFoodMutate(foodID);
       },
     });
   };
 
-  const updateFood = (foodId: string) => {
-    const foodIsFound = foodsList?.find((food) => food.foodID === foodId);
+  const updateFood = (foodID: string) => {
+    const foodIsFound = foodsList?.find((food) => food.foodID === foodID);
     setFoodUpdate(foodIsFound as TFoodItem);
     addNewFoodRef.current.openModal();
   };
@@ -128,7 +128,7 @@ const FoodManagement = () => {
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
             {foods
-              .filter((foodItem) => foodItem.isActive)
+              .filter((foodItem) => foodItem.active)
               .map((item) => {
                 return (
                   <div
@@ -154,7 +154,19 @@ const FoodManagement = () => {
                         <Typography.Text>
                           Calories: <span className="font-semibold">{item.foodCalories}</span>
                         </Typography.Text>
+                        <Typography.Text>
+                          Date: <span className="font-semibold">{item.creationDate}</span>
+                        </Typography.Text>
+                        <Typography.Text>
+                          Date: <span className="font-semibold">{item.creationDate}</span>
+                        </Typography.Text>
+  
+                        <Typography.Text>
+                          Status: <span className="font-semibold">{item.active}</span>
+                        </Typography.Text>
+
                       </div>
+ 
                     </div>
 
                     <div className="flex items-center mt-4  gap-2 w-full">

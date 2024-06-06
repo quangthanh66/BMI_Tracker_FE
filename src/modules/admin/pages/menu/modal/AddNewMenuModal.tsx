@@ -57,7 +57,7 @@ const AddNewMenuModal = (
   const submitForm = (values: TAddNewMenu) => {
     const convertFoods = values.foods.map((foodItem: string) => {
       return {
-        foodId: foodItem,
+        foodID: foodItem,
       };
     });
 

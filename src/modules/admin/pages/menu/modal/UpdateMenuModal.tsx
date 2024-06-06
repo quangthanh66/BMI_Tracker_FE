@@ -56,7 +56,7 @@ const UpdateMenuModal = (
   useEffect(() => {
     if (menuUpdate) {
       const convertFoods = menuUpdate.meals.map((item) => {
-        return item.foodId;
+        return item.foodID;
       });
 
       form.setFieldsValue({
@@ -78,7 +78,7 @@ const UpdateMenuModal = (
   const submitForm = (values: TAddNewMenu) => {
     const convertFoods = values.foods.map((foodItem: string) => {
       return {
-        foodId: foodItem,
+        foodID: foodItem,
       };
     });
 
