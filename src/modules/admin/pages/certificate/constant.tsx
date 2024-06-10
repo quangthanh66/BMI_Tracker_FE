@@ -1,5 +1,4 @@
 import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
-import { MdOutlineDescription } from 'react-icons/md';
 import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
@@ -15,39 +14,38 @@ type CertificateColumnsTypes = {
   deleteCertificate: (certificateID: string) => void;
 };
 
-export const CertificateColumns: any = ({ updateCertificateModal, viewDetailModal, deleteCertificate }: CertificateColumnsTypes) => [
+export const CertificateColumns: any = ({
+  updateCertificateModal,
+  viewDetailModal,
+  deleteCertificate,
+}: CertificateColumnsTypes) => [
   {
     title: 'Name',
     dataIndex: 'certificateName',
     sorter: (a: CertificateItemTypes, b: CertificateItemTypes) => a.certificateName.length - b.certificateName.length,
     sortDirections: ['descend'],
   },
-  // {
-  //   title: 'Photo',
-  //   dataIndex: 'certificatePhoto',
-  //   render: (certificatePhoto: string) => (
-  //     <Image
-  //       alt="certificate-photo-alt"
-  //       src={certificatePhoto}
-  //       className="h-[80px] w-full object-cover"
-  //       onError={({ currentTarget }) => {
-  //         currentTarget.onerror = null; // prevents looping
-  //         currentTarget.src = errorImage;
-  //       }}
-  //     />
-  //   ),
-  // },
+  {
+    title: 'Photo',
+    dataIndex: 'certificateLink',
+    render: (certificatePhoto: string) => (
+      <Image
+        alt="certificate-photo-alt"
+        src={certificatePhoto}
+        className="h-[80px] w-full object-cover"
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src = errorImage;
+        }}
+      />
+    ),
+  },
   {
     title: 'Status',
     dataIndex: 'status',
     render: (status: string) => (
       <BaseTag color={status === CERTIFICATE_STATUS.available_certificate ? 'green' : 'volcano'}>{status}</BaseTag>
     ),
-  },
-  {
-    title: 'Link',
-    dataIndex: 'certificateLink',
-    render: (tag: string) => <BaseTag color="green">{tag}</BaseTag>,
   },
   {
     title: 'Actions',

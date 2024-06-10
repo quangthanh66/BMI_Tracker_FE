@@ -1,4 +1,8 @@
 export const END_POINTS = {
+  ADVISOR: {
+    GET_ALL: '/api/advisors/getAll',
+  },
+
   AUTH: {
     LOGIN: '/api/auth/login',
     SIGN_UP: '/api/user/SignUp',
@@ -18,8 +22,8 @@ export const END_POINTS = {
   DELETE_FOOD: '/api/foods/deactive',
   UPDATE_FOOD: '/api/foods/update',
   CERTIFICATE: '/api/certificates/getAll',
-  UPDATE_CERTIFICATE:'api/certificates/update',
-  DELETE_CERTIFICATE:'/api/certificates/delete',
+  UPDATE_CERTIFICATE: 'api/certificates/update',
+  DELETE_CERTIFICATE: '/api/certificates/delete',
   CATEGORY: '/api/category',
   INGREDIENT: '/api/ingredients/getAll',
   UPDATE_INGREDIENT: '/api/ingredients/update',

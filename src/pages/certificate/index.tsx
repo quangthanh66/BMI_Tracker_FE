@@ -1,45 +1,38 @@
-import { CertificateColumns } from '@app/modules/admin/pages/certificate/constant';
-import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
-import CertificateFilter from '@app/modules/admin/pages/certificate/CertificateFilter';
 import { Card, Col, Row, Spin, Typography, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import ViewDetailCertificate from '@app/modules/admin/pages/certificate/ViewDetailCertificate';
-import DescriptionModal from '@app/modules/admin/pages/certificate/DescriptionModal';
 import CreateCertificateModal from '@app/modules/admin/pages/certificate/CreateCertificateModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import CERTIFICATE_API from '@app/api/certificate';
 import UpdateMenuModal from '@app/modules/admin/pages/certificate/UpdateMenuModal';
 import { CertificateItemTypes } from '@app/api/certificate/type';
+import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
+import { CertificateColumns } from '@app/modules/admin/pages/certificate/constant';
+import CertificateFilter from '@app/modules/admin/pages/certificate/CertificateFilter';
 
 const CertificateManagement = () => {
   const [certificates, setCertificates] = useState<CertificateItemTypes[]>([]);
   const [certificateUpdate, setCertificateUpdate] = useState<CertificateItemTypes>();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const { isLoading: isLoadingDeleteCertificate, mutate: mutateDeleteCertificate } = useMutation(CERTIFICATE_API.DELETE_CERTIFICATE, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Delete certificate is successful',
-      });
-
-      refetchCertificatesList();
+  const { isLoading: isLoadingDeleteCertificate, mutate: mutateDeleteCertificate } = useMutation(
+    CERTIFICATE_API.DELETE_CERTIFICATE,
+    {
+      onError: () => {
+        messageApi.open({
+          type: 'error',
+          content: 'Delete certificate is failed',
+        });
+      },
     },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Delete certificate is failed',
-      });
-    },
-  });
+  );
 
   const {
     isLoading: isLoadingCertificateList,
     refetch: refetchCertificatesList,
     data: certificatesListServer,
   } = useQuery(['certificates-list'], CERTIFICATE_API.GET_LIST, {
-    enabled: false,
-    onSuccess: (response: any) => {
+    onSuccess: (response: CertificateItemTypes[]) => {
       setCertificates(response);
     },
     onError: () => {
@@ -72,26 +65,25 @@ const CertificateManagement = () => {
   };
 
   const onSearchCertificate = (keyValue: string) => {
-    const result = certificatesListServer.filter((certificate: CertificateItemTypes) =>
-      certificate.certificateName.toLowerCase().includes(keyValue.toLowerCase()),
-    );
-    setCertificates(result);
+    if (certificatesListServer) {
+      const result = certificatesListServer.filter((certificate: CertificateItemTypes) =>
+        certificate.certificateName.toLowerCase().includes(keyValue.toLowerCase()),
+      );
+      setCertificates(result);
+    }
   };
 
-  // const onFilterCertificate = (certificateStatus: string) => {
-  //   if (certificateStatus === 'All') {
-  //     setCertificates(certificatesListServer);
-  //   } else {
-  //     const result = certificatesListServer.filter((certificate: CertificateItemTypes) => {
-  //       return certificate.status === certificateStatus;
-  //     });
-
-  //     setCertificates(result);
-  //   }
-  // };
-
   const onDeleteCertificate = (certificateId: string) => {
-    mutateDeleteCertificate(certificateId);
+    mutateDeleteCertificate(certificateId, {
+      onSuccess: () => {
+        messageApi.open({
+          type: 'success',
+          content: 'Delete certificate is successful',
+        });
+
+        refetchCertificatesList();
+      },
+    });
   };
 
   useEffect(() => {
@@ -115,30 +107,31 @@ const CertificateManagement = () => {
         />
         <ViewDetailCertificate ref={viewDetailRef} certificateProps={certificateUpdate as CertificateItemTypes} />
 
-        {/* <Col span={24}>
+        <Col span={24}>
           <Card size="small">
             <CertificateFilter
               onCreateNewCertificate={openCreateCertificateModal}
               onSearchCertificate={onSearchCertificate}
-              onFilterCertificateStatus={onFilterCertificate}
             />
           </Card>
-        </Col> */}
+        </Col>
 
         <Col span={24}>
-          <BaseTable
-            columns={CertificateColumns({
-              updateCertificateModal: openUpdateCertificateModal,
-              descriptionModal: onOpenDescriptionModal,
-              viewDetailModal: onViewDetailCertificate,
-              deleteCertificate: onDeleteCertificate,
-            })}
-            dataSource={certificates}
-            scroll={{
-              y: (1 - 425 / window.innerHeight) * window.innerHeight,
-              x: 1200,
-            }}
-          />
+          {certificates && certificates.length > 0 && (
+            <BaseTable
+              columns={CertificateColumns({
+                updateCertificateModal: openUpdateCertificateModal,
+                descriptionModal: onOpenDescriptionModal,
+                viewDetailModal: onViewDetailCertificate,
+                deleteCertificate: onDeleteCertificate,
+              })}
+              dataSource={certificates}
+              scroll={{
+                y: (1 - 425 / window.innerHeight) * window.innerHeight,
+                x: 1200,
+              }}
+            />
+          )}
         </Col>
       </Row>
     </Spin>

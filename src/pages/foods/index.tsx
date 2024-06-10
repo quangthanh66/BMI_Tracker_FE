@@ -147,7 +147,7 @@ const FoodManagement = () => {
                       />
                       <Typography.Title level={5}>{item.foodName}</Typography.Title>
                       <Typography.Paragraph>{item.description.slice(0, 100)} ...</Typography.Paragraph>
-                      <div className="flex justify-between w-full">
+                      <div className="flex flex-col justify-between w-full">
                         <Typography.Text>
                           Time process: <span className="font-semibold">{item.foodTimeProcess} minutes</span>
                         </Typography.Text>
@@ -157,16 +157,11 @@ const FoodManagement = () => {
                         <Typography.Text>
                           Date: <span className="font-semibold">{item.creationDate}</span>
                         </Typography.Text>
-                        <Typography.Text>
-                          Date: <span className="font-semibold">{item.creationDate}</span>
-                        </Typography.Text>
-  
+
                         <Typography.Text>
                           Status: <span className="font-semibold">{item.active}</span>
                         </Typography.Text>
-
                       </div>
- 
                     </div>
 
                     <div className="flex items-center mt-4  gap-2 w-full">

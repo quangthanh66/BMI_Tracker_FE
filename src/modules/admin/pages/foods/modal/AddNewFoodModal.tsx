@@ -104,6 +104,8 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     }
   }, [foodUpdateProps]);
 
+  console.log(foodUpdateProps);
+
   const onCloseModal = () => {
     setIsOpenModal(false);
     form.resetFields();
@@ -142,7 +144,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl">Add new food</BaseTypography>}
+      title={<BaseTypography className="text-xl">{foodUpdateProps ? 'Update Food' : 'Add new food'}</BaseTypography>}
       width={800}
     >
       {contextHolder}
@@ -193,7 +195,12 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
             <Col span={24}>
               <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
-                <Select options={tagsOptions} mode="multiple" allowClear />
+                <Select
+                  options={tagsOptions}
+                  mode="multiple"
+                  allowClear
+                  value={foodUpdateProps && foodUpdateProps.foodTags.map((tag) => tag.tagID)}
+                />
               </Form.Item>
             </Col>
 
