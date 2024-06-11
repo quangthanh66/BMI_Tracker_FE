@@ -70,6 +70,26 @@ const AddNewIngredientModal = ({ refetchPage }: TAddNewIngredientModal, ref: any
             </Form.Item>
           </Col>
           <Col span={24}>
+            <Form.Item label="Unit Of Measurement" name="unitOfMeasurement" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
             <Form.Item label="Photo" name="ingredientPhoto" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>

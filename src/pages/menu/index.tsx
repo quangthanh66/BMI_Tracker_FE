@@ -33,7 +33,7 @@ const MenuManagement = () => {
   const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: UserItemTypes[]) => {
-      const users = response.filter((item) => item.roleName !== 'admin');
+      const users = response.filter((item) => item.roleName !== 'ROLE_ADMIN');
 
       const convertUsers = users.map((user) => {
         return {
@@ -83,28 +83,28 @@ const MenuManagement = () => {
     },
   });
 
-  const { isLoading: isLoadingCategory, refetch: refetchCategory } = useQuery(
-    ['get-categories'],
-    CATEGORIES_API.GET_CATEGORIES,
-    {
-      enabled: false,
-      onSuccess: (response: TCategoryItem[]) => {
-        const result = response.map((item) => {
-          return {
-            label: item.categoryName,
-            value: item.categoryId,
-          };
-        });
-        setCategoriesSelect(result);
-      },
-      onError: () => {
-        messageApi.open({
-          type: 'error',
-          content: 'Cant get categories list. Please try again !',
-        });
-      },
-    },
-  );
+  // const { isLoading: isLoadingCategory, refetch: refetchCategory } = useQuery(
+  //   ['get-categories'],
+  //   CATEGORIES_API.GET_CATEGORIES,
+  //   {
+  //     enabled: false,
+  //     onSuccess: (response: TCategoryItem[]) => {
+  //       const result = response.map((item) => {
+  //         return {
+  //           label: item.categoryName,
+  //           value: item.categoryId,
+  //         };
+  //       });
+  //       setCategoriesSelect(result);
+  //     },
+  //     onError: () => {
+  //       messageApi.open({
+  //         type: 'error',
+  //         content: 'Cant get categories list. Please try again !',
+  //       });
+  //     },
+  //   },
+  // );
 
   const { isLoading: isLoadingDeleteFood, mutate } = useMutation(MENU_API.DELETE_MENU, {
     onSuccess: () => {
@@ -126,7 +126,7 @@ const MenuManagement = () => {
   useEffect(() => {
     refetch();
     refetchFoods();
-    refetchCategory();
+    //refetchCategory();
     refetchUsersList();
   }, []);
 
@@ -140,14 +140,14 @@ const MenuManagement = () => {
     setMenu(result as TMenuItem[]);
   };
 
-  const confirmModal = (menuId: string) => {
+  const confirmModal = (menuID: string) => {
     modal.confirm({
       title: 'Are you sure to delete menu ?',
-      okText: 'Confirm to delete',
-      cancelText: 'Close modal',
+      okText: 'Delete',
+      cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
-        mutate(menuId);
+        mutate(menuID);
       },
     });
   };
@@ -158,7 +158,7 @@ const MenuManagement = () => {
   };
 
   return (
-    <Spin spinning={isLoading || isLoadingFoods || isLoadingCategory || isLoadingDeleteFood || isLoadingUsers}>
+    <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood || isLoadingUsers}>
       {contextHolder}
       {modalContextHolder}
 
@@ -197,7 +197,7 @@ const MenuManagement = () => {
                   <div className="w-full flex flex-col gap-2 flex-grow">
                     <Image
                       alt="food-alt"
-                      src={item.menuPhoto}
+                      src={item.menuName}
                       className="w-full h-[200px] object-cover rounded-md"
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
@@ -209,7 +209,7 @@ const MenuManagement = () => {
                   </div>
 
                   <div className="flex items-center  gap-2 w-full">
-                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuId)}>
+                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuName)}>
                       Delete menu
                     </BaseButton>
                     <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>

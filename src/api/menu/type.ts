@@ -1,14 +1,10 @@
 export type TMenuItem = {
-  menuId: string;
+  menuID: number;
   menuName: string;
   menuDescription: string;
-  menuType: string;
-  menuPhoto: string;
-  categoryId: string;
-  status: string;
-  schedules: [];
-  userId: string;
-  meals: { menuId: string; foodID: string }[];
+  totalCalories: number;
+  isActive: boolean;
+  advisorID: number;
 };
 
 export type TAddNewMenu = {

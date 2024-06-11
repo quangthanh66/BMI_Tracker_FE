@@ -81,18 +81,8 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
-          <Col span={12}>
+        <Col span={12}>
             <Form.Item label="Name" name="ingredientName" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item label="Photo" name="ingredientPhoto" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
@@ -102,12 +92,22 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
+            <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Photo" name="ingredientPhoto" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
