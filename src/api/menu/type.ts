@@ -10,13 +10,14 @@ export type TMenuItem = {
 export type TAddNewMenu = {
   menuName: string;
   menuDescription: string;
-  menuType: string;
-  menuPhoto: string;
-  categoryId: string;
-  userId: string;
-  foods: any;
+  totalCalories: number;
+  menuFoods: { foodID: number; mealType: string }[];
 };
 
 export type TUpdateMenu = TAddNewMenu & {
-  menuId: string;
+  menuID: number;
+  menuName: string;
+  menuDescription: string;
+  totalCalories: number;
+  menuFoods: { foodID: number; mealType: string }[];
 };

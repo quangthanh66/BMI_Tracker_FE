@@ -26,7 +26,7 @@ const MenuTrainer = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [menuUpdate, setMenuUpdate] = useState<TMenuItem>();
   const [menus, setMenu] = useState<TMenuItem[]>([]);
-  const [categoriesSelect, setCategoriesSelect] = useState<SelectTypes[]>([]);
+  //const [categoriesSelect, setCategoriesSelect] = useState<SelectTypes[]>([]);
   const [foodSelect, setFoodSelect] = useState<SelectTypes[]>([]);
   const [usersSelect, setUserSelect] = useState<SelectTypes[]>([]);
 
@@ -81,28 +81,28 @@ const MenuTrainer = () => {
     },
   });
 
-  const { isLoading: isLoadingCategory, refetch: refetchCategory } = useQuery(
-    ['get-categories'],
-    CATEGORIES_API.GET_CATEGORIES,
-    {
-      enabled: false,
-      onSuccess: (response: TCategoryItem[]) => {
-        const result = response.map((item) => {
-          return {
-            label: item.categoryName,
-            value: item.categoryId,
-          };
-        });
-        setCategoriesSelect(result);
-      },
-      onError: () => {
-        messageApi.open({
-          type: 'error',
-          content: 'Cant get categories list. Please try again !',
-        });
-      },
-    },
-  );
+  // const { isLoading: isLoadingCategory, refetch: refetchCategory } = useQuery(
+  //   ['get-categories'],
+  //   CATEGORIES_API.GET_CATEGORIES,
+  //   {
+  //     enabled: false,
+  //     onSuccess: (response: TCategoryItem[]) => {
+  //       const result = response.map((item) => {
+  //         return {
+  //           label: item.categoryName,
+  //           value: item.categoryId,
+  //         };
+  //       });
+  //       setCategoriesSelect(result);
+  //     },
+  //     onError: () => {
+  //       messageApi.open({
+  //         type: 'error',
+  //         content: 'Cant get categories list. Please try again !',
+  //       });
+  //     },
+  //   },
+  // );
 
   const { isLoading: isLoadingDeleteFood, mutate } = useMutation(MENU_API.DELETE_MENU, {
     onSuccess: () => {
@@ -124,7 +124,7 @@ const MenuTrainer = () => {
   useEffect(() => {
     refetch();
     refetchFoods();
-    refetchCategory();
+   // refetchCategory();
     refetchUsersList();
   }, []);
 
@@ -138,14 +138,14 @@ const MenuTrainer = () => {
     setMenu(result as TMenuItem[]);
   };
 
-  const confirmModal = (menuId: string) => {
+  const confirmModal = (menuID: string) => {
     modal.confirm({
       title: 'Are you sure to delete menu ?',
       okText: 'Confirm to delete',
       cancelText: 'Close modal',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
-        mutate(menuId);
+        mutate(menuID);
       },
     });
   };
@@ -156,12 +156,12 @@ const MenuTrainer = () => {
   };
 
   return (
-    <Spin spinning={isLoading || isLoadingFoods || isLoadingCategory || isLoadingDeleteFood}>
+    <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood}>
       {contextHolder}
       {modalContextHolder}
 
       <UpdateMenuModal
-        categoriesOptions={categoriesSelect}
+       // categoriesOptions={categoriesSelect}
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         menuUpdate={menuUpdate as TMenuItem}
@@ -170,7 +170,7 @@ const MenuTrainer = () => {
       />
 
       <AddNewMenuModal
-        categoriesOptions={categoriesSelect}
+       // categoriesOptions={categoriesSelect}
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         ref={addNewMenuRef}

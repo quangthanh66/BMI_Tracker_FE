@@ -12,8 +12,6 @@ import AddNewMenuModal from '@app/modules/admin/pages/menu/modal/AddNewMenuModal
 import { SelectTypes } from '@app/utils/helper';
 import FOOD_API from '@app/api/foods/type';
 import { TFoodItem } from '@app/api/foods';
-import CATEGORIES_API from '@app/api/categories';
-import { TCategoryItem } from '@app/api/categories/type';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
 import USERS_API from '@app/api/users';
 import { UserItemTypes } from '@app/api/users/type';
@@ -27,7 +25,7 @@ const MenuManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [menuUpdate, setMenuUpdate] = useState<TMenuItem>();
   const [menus, setMenu] = useState<TMenuItem[]>([]);
-  const [categoriesSelect, setCategoriesSelect] = useState<SelectTypes[]>([]);
+  
   const [foodSelect, setFoodSelect] = useState<SelectTypes[]>([]);
 
   const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
@@ -140,7 +138,7 @@ const MenuManagement = () => {
     setMenu(result as TMenuItem[]);
   };
 
-  const confirmModal = (menuID: string) => {
+  const confirmModal = (menuID: number) => {
     modal.confirm({
       title: 'Are you sure to delete menu ?',
       okText: 'Delete',
@@ -163,7 +161,7 @@ const MenuManagement = () => {
       {modalContextHolder}
 
       <UpdateMenuModal
-        categoriesOptions={categoriesSelect}
+       
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         menuUpdate={menuUpdate as TMenuItem}
@@ -172,7 +170,7 @@ const MenuManagement = () => {
       />
 
       <AddNewMenuModal
-        categoriesOptions={categoriesSelect}
+       
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         ref={addNewMenuRef}
@@ -209,7 +207,7 @@ const MenuManagement = () => {
                   </div>
 
                   <div className="flex items-center  gap-2 w-full">
-                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuName)}>
+                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuID)}>
                       Delete menu
                     </BaseButton>
                     <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>

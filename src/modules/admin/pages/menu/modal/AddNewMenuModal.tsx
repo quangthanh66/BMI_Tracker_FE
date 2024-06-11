@@ -12,14 +12,14 @@ import { Col, Form, Row, Select, Space, message } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 type TAddNewMenuModal = {
-  categoriesOptions: SelectTypes[];
+  
   foodsOptions: SelectTypes[];
   refetchPage: () => void;
   usersOptions: SelectTypes[];
 };
 
 const AddNewMenuModal = (
-  { categoriesOptions, foodsOptions, refetchPage, usersOptions }: TAddNewMenuModal,
+  {  foodsOptions, refetchPage, usersOptions }: TAddNewMenuModal,
   ref: any,
 ) => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -55,7 +55,7 @@ const AddNewMenuModal = (
   };
 
   const submitForm = (values: TAddNewMenu) => {
-    const convertFoods = values.foods.map((foodItem: string) => {
+    const convertFoods = values.menuFoods.map((foodItem: number) => {
       return {
         foodID: foodItem,
       };
@@ -63,7 +63,7 @@ const AddNewMenuModal = (
 
     mutate({
       ...values,
-      foods: convertFoods,
+      menuFoods: convertFoods,
     });
   };
 
@@ -86,11 +86,11 @@ const AddNewMenuModal = (
             </Form.Item>
           </Col>
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item label="Categories" name="categoryId" rules={[fieldValidate.required]}>
               <Select options={categoriesOptions} allowClear />
             </Form.Item>
-          </Col>
+          </Col> */}
           <Col span={12}>
             <Form.Item label="Foods" name="foods" rules={[fieldValidate.required]}>
               <Select options={foodsOptions} mode="multiple" allowClear />

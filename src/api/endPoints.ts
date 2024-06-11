@@ -28,7 +28,10 @@ export const END_POINTS = {
   INGREDIENT: '/api/ingredients/getAll',
   UPDATE_INGREDIENT: '/api/ingredients/update',
   MENU: '/api/menus/getAllMenu',
+  ADD_NEW_MENU: '/api/menus/createNew',
+  UPDATE_MENU: '/api/menus/update',
   SERVICES: '/api/service',
+  DELETE_MENU: '/api/menus/deactivate',
   NOTIFICATIONS: '/api/notification',
 
   CREATE_USER: '/api/accounts/createNew',

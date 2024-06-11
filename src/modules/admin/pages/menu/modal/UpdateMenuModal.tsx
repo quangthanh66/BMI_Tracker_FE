@@ -15,15 +15,15 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 type TUpdateMenu = {
-  categoriesOptions: SelectTypes[];
+ // categoriesOptions: SelectTypes[];
   foodsOptions: SelectTypes[];
   refetchPage: () => void;
-  menuUpdate: TMenuItem;
+  menuUpdate: TUpdateMenu;
   userSelect: SelectTypes[];
 };
 
 const UpdateMenuModal = (
-  { categoriesOptions, foodsOptions, menuUpdate, refetchPage, userSelect }: TUpdateMenu,
+  {  foodsOptions, menuUpdate, refetchPage, userSelect }: TUpdateMenu,
   ref: any,
 ) => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -55,17 +55,13 @@ const UpdateMenuModal = (
 
   useEffect(() => {
     if (menuUpdate) {
-      const convertFoods = menuUpdate.meals.map((item) => {
+      const convertFoods = menuUpdate.menuFoods.map((item) => {
         return item.foodID;
       });
 
       form.setFieldsValue({
         menuName: menuUpdate.menuName,
         menuDescription: menuUpdate.menuDescription,
-        menuType: menuUpdate.menuType,
-        menuPhoto: menuUpdate.menuPhoto,
-        categoryId: menuUpdate.categoryId,
-        userId: menuUpdate.userId,
         foods: convertFoods,
       });
     }
@@ -76,7 +72,7 @@ const UpdateMenuModal = (
   };
 
   const submitForm = (values: TAddNewMenu) => {
-    const convertFoods = values.foods.map((foodItem: string) => {
+    const convertFoods = values.menuFoods.map((foodItem: number) => {
       return {
         foodID: foodItem,
       };
@@ -84,8 +80,8 @@ const UpdateMenuModal = (
 
     mutate({
       ...values,
-      foods: convertFoods,
-      menuId: menuUpdate.menuId,
+      menuFoods: convertFoods,
+      menuID: menuUpdate.menuID,
     });
   };
 
@@ -108,11 +104,11 @@ const UpdateMenuModal = (
             </Form.Item>
           </Col>
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item label="Categories" name="categoryId" rules={[fieldValidate.required]}>
               <Select options={categoriesOptions} allowClear />
             </Form.Item>
-          </Col>
+          </Col> */}
           <Col span={12}>
             <Form.Item label="Foods" name="foods" rules={[fieldValidate.required]}>
               <Select options={foodsOptions} mode="multiple" allowClear />
