@@ -1,24 +1,11 @@
 export type BlogItemTypes = {
-  bolgId: string;
+  blogID: number;
   blogName: string;
   blogContent: string;
   blogPhoto: string;
   link: string;
-  tag: string;
-  dateTime: string;
-  status: string;
-  userId: string;
-  users: {
-    userId: string;
-    email: string;
-    fullName: string;
-    password: string;
-    phoneNumber: string;
-    certificateId: string;
-    certificateName: string;
-    status: string;
-    roleId: string;
-  };
+  advisorID: string;
+  active: string;
 };
 
 export type CreateNewBlogTypes = {

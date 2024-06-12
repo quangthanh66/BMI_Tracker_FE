@@ -12,7 +12,7 @@ import { BlogItemTypes } from '@app/api/blogs/type';
 type BlogColumnsTypes = {
   updateBlogModal: (blog: BlogItemTypes) => void;
   viewDetailModal: (blogProps: BlogItemTypes) => void;
-  deleteBlog: (blogId: string) => void;
+  deleteBlog: (blogID: string) => void;
 };
 
 export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog }: BlogColumnsTypes) => [
@@ -21,6 +21,11 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
     dataIndex: 'blogName',
     sorter: (a: BlogItemTypes, b: BlogItemTypes) => a.blogName.length - b.blogName.length,
     sortDirections: ['descend'],
+  },
+  {
+    title: 'Content',
+    dataIndex: 'blogContent',
+    render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
   },
   {
     title: 'Photo',
@@ -37,22 +42,16 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
       />
     ),
   },
+
   {
-    title: 'Status',
-    dataIndex: 'status',
-    render: (status: string) => (
-      <BaseTag color={status === BLOG_STATUS.available_blog ? 'green' : 'volcano'}>{status}</BaseTag>
-    ),
-  },
-  {
-    title: 'Tag',
-    dataIndex: 'tag',
-    render: (tag: string) => <BaseTag color="green">{tag}</BaseTag>,
+    title: 'Link',
+    dataIndex: 'link',
+    render: (link: string) => <BaseTag color="green">{link}</BaseTag>,
   },
   {
     title: 'Actions',
-    dataIndex: 'bolgId',
-    render: (blogId: string, blog: BlogItemTypes) => (
+    dataIndex: 'blogID',
+    render: (blogID: string, blog: BlogItemTypes) => (
       <div className="flex items-center gap-x-4">
         <BaseTooltip title="View detail">
           <BaseButton
@@ -61,7 +60,6 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
             type="text"
           ></BaseButton>
         </BaseTooltip>
-
         <BaseTooltip title="Edit blog content">
           <BaseButton
             onClick={() => updateBlogModal(blog)}
@@ -76,7 +74,7 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
             title="Delete the blog"
             okText="Yes"
             cancelText="No"
-            onConfirm={() => deleteBlog(blogId)}
+            onConfirm={() => deleteBlog(blogID)}
           >
             <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
           </BasePopconfirm>

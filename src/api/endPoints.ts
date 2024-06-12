@@ -13,7 +13,8 @@ export const END_POINTS = {
   },
 
   BLOGS: {
-    MAIN: '/api/blog',
+    MAIN: '/api/test/blogs/getAll',
+    DELETE_BLOGS: '/api/test/blogs/delete'
   },
 
   FEEDBACKS: '/api/feedback',

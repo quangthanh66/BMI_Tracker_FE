@@ -78,20 +78,20 @@ const BlogManagement = () => {
     setBlogs(result);
   };
 
-  const onFilterBlog = (blogStatus: string) => {
-    if (blogStatus === 'All') {
+  const onFilterBlog = (active: string) => {
+    if (active === 'All') {
       setBlogs(blogsListServer);
     } else {
       const result = blogsListServer.filter((blog: BlogItemTypes) => {
-        return blog.status === blogStatus;
+        return blog.active === active;
       });
 
       setBlogs(result);
     }
   };
 
-  const onDeleteBlog = (blogId: string) => {
-    mutateDeleteBlog(blogId);
+  const onDeleteBlog = (blogID: string) => {
+    mutateDeleteBlog(blogID);
   };
 
   useEffect(() => {
