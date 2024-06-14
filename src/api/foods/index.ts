@@ -16,16 +16,16 @@ export type FoodTags = {
   tagName: string;
 };
 
-
 export type TAddNewFood = {
   foodName: string;
-  foodCalories: string;
+  foodCalories: number;
   description: string;
   foodPhoto: string;
   foodVideo: string;
-  foodTimeProcess: string;
+  foodTimeProcess: number;
   tagIDs: string;
   ingredientIDs: string;
+  foodNutrition: string;
 };
 
 export type RecipeRequest = {
@@ -35,13 +35,4 @@ export type RecipeRequest = {
 
 export type TUpdateFood = TAddNewFood & {
   foodID: string;
-  foodName: string;
-  foodCalories: string;
-  description: string;
-  foodPhoto: string;
-  foodVideo: string;
-  foodNutrition: string;
-  foodTimeProcess: string;
-  creationDate: string;
-  isActive: boolean;
 };

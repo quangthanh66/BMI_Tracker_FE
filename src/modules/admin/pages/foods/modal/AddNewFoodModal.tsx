@@ -6,13 +6,12 @@ import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { Col, Form, Row, Select, Space, Spin, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { RecipeRequest, TAddNewFood, TFoodItem, TUpdateFood } from '@app/api/foods';
+import { TAddNewFood, TFoodItem } from '@app/api/foods';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
 import { TagsRequest } from '@app/api/tags/type';
 import { TIngredientItem } from '@app/api/ingredients/type';
 import TagsAPI from '@app/api/tags';
-import dayjs from 'dayjs';
 
 type TAddNewFoodModal = {
   ingredients: TIngredientItem[];
@@ -104,34 +103,22 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     }
   }, [foodUpdateProps]);
 
-  console.log(foodUpdateProps);
-
   const onCloseModal = () => {
     setIsOpenModal(false);
     form.resetFields();
   };
 
   const submitForm = (values: TAddNewFood) => {
-    const convertRecipeRequests: RecipeRequest[] = values.recipeRequests.map((item: any) => {
-      return {
-        ingredientID: item,
-        quantity: 1,
-      };
-    });
-
     if (foodUpdateProps) {
       updateFoodMutate({
         ...values,
-        recipeRequests: convertRecipeRequests,
         foodCalories: Number(values.foodCalories),
         foodTimeProcess: Number(values.foodTimeProcess),
         foodID: foodUpdateProps.foodID,
-        creationDate: dayjs().format('YYYY-MM-DD'),
       });
     } else {
       handleFoodMutate({
         ...values,
-        recipeRequests: convertRecipeRequests,
         foodCalories: Number(values.foodCalories),
         foodTimeProcess: Number(values.foodTimeProcess),
       });
@@ -164,6 +151,12 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
             </Col>
 
             <Col span={24}>
+              <Form.Item label="Nutrition" name="foodNutrition" rules={[fieldValidate.required]}>
+                <BaseInput />
+              </Form.Item>
+            </Col>
+
+            <Col span={24}>
               <Form.Item label="Description" name="description" rules={[fieldValidate.required]}>
                 <BaseInput.TextArea rows={3} />
               </Form.Item>
@@ -188,7 +181,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Ingredients" name="recipeRequests" rules={[fieldValidate.required]}>
+              <Form.Item label="Ingredients" name="ingredientIDs" rules={[fieldValidate.required]}>
                 <Select options={ingredientOptions} mode="multiple" allowClear />
               </Form.Item>
             </Col>
