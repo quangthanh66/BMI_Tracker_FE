@@ -15,34 +15,18 @@ import { TFoodItem } from '@app/api/foods';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
 import USERS_API from '@app/api/users';
 import { UserItemTypes } from '@app/api/users/type';
+import { TagsRequest } from '@app/api/tags/type';
+import TagsAPI from '@app/api/tags';
 
 const MenuManagement = () => {
   const addNewMenuRef = useRef<any>();
   const updateMenuRef = useRef<any>();
 
   const [modal, modalContextHolder] = useModal();
-  const [usersSelect, setUserSelect] = useState<SelectTypes[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const [menuUpdate, setMenuUpdate] = useState<TMenuItem>();
   const [menus, setMenu] = useState<TMenuItem[]>([]);
-  
   const [foodSelect, setFoodSelect] = useState<SelectTypes[]>([]);
-
-  const { isLoading: isLoadingUsers, refetch: refetchUsersList } = useQuery(['get-users'], USERS_API.GET_LIST, {
-    enabled: false,
-    onSuccess: (response: UserItemTypes[]) => {
-      const users = response.filter((item) => item.roleName !== 'ROLE_ADMIN');
-
-      const convertUsers = users.map((user) => {
-        return {
-          label: user.fullName,
-          value: user.accountID,
-        };
-      });
-
-      setUserSelect(convertUsers);
-    },
-  });
 
   const {
     isLoading,
@@ -81,30 +65,7 @@ const MenuManagement = () => {
     },
   });
 
-  // const { isLoading: isLoadingCategory, refetch: refetchCategory } = useQuery(
-  //   ['get-categories'],
-  //   CATEGORIES_API.GET_CATEGORIES,
-  //   {
-  //     enabled: false,
-  //     onSuccess: (response: TCategoryItem[]) => {
-  //       const result = response.map((item) => {
-  //         return {
-  //           label: item.categoryName,
-  //           value: item.categoryId,
-  //         };
-  //       });
-  //       setCategoriesSelect(result);
-  //     },
-  //     onError: () => {
-  //       messageApi.open({
-  //         type: 'error',
-  //         content: 'Cant get categories list. Please try again !',
-  //       });
-  //     },
-  //   },
-  // );
-
-  const { isLoading: isLoadingDeleteFood, mutate } = useMutation(MENU_API.DELETE_MENU, {
+  const { isLoading: isLoadingDeleteFood, mutate: mutateDeleteMenu } = useMutation(MENU_API.DELETE_MENU, {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
@@ -124,8 +85,6 @@ const MenuManagement = () => {
   useEffect(() => {
     refetch();
     refetchFoods();
-    //refetchCategory();
-    refetchUsersList();
   }, []);
 
   const addNewMenu = () => {
@@ -145,7 +104,7 @@ const MenuManagement = () => {
       cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
-        mutate(menuID);
+        mutateDeleteMenu(menuID);
       },
     });
   };
@@ -156,31 +115,23 @@ const MenuManagement = () => {
   };
 
   return (
-    <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood || isLoadingUsers}>
+    <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood}>
       {contextHolder}
       {modalContextHolder}
 
       <UpdateMenuModal
-       
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         menuUpdate={menuUpdate as TMenuItem}
         ref={updateMenuRef}
-        userSelect={usersSelect}
       />
 
-      <AddNewMenuModal
-       
-        foodsOptions={foodSelect}
-        refetchPage={() => refetch()}
-        ref={addNewMenuRef}
-        usersOptions={usersSelect}
-      />
+      <AddNewMenuModal foodsOptions={foodSelect} refetchPage={() => refetch()} ref={addNewMenuRef} />
 
       <Row gutter={[14, 14]}>
         <Col span={24}>
           <Card size="small">
-            <Typography.Text className="text-xl font-bold">Menu management</Typography.Text>
+            <Typography.Text className="text-xl font-bold !text-white">Menu management</Typography.Text>
           </Card>
         </Col>
 
@@ -189,9 +140,12 @@ const MenuManagement = () => {
         </Col>
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
-            {menus.map((item) => {
+            {menus.map((item, index) => {
               return (
-                <div className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md">
+                <div
+                  className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md"
+                  key={index}
+                >
                   <div className="w-full flex flex-col gap-2 flex-grow">
                     <Image
                       alt="food-alt"
@@ -202,8 +156,12 @@ const MenuManagement = () => {
                         currentTarget.src = errorImage;
                       }}
                     />
-                    <Typography.Title level={5}>{item.menuName}</Typography.Title>
-                    <Typography.Paragraph>{item.menuDescription.slice(0, 100)} ...</Typography.Paragraph>
+                    <Typography.Title className="!text-black" level={5}>
+                      {item.menuName}
+                    </Typography.Title>
+                    <Typography.Paragraph className="!text-black">
+                      {item.menuDescription.slice(0, 100)} ...
+                    </Typography.Paragraph>
                   </div>
 
                   <div className="flex items-center  gap-2 w-full">

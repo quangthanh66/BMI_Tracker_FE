@@ -124,7 +124,7 @@ const MenuTrainer = () => {
   useEffect(() => {
     refetch();
     refetchFoods();
-   // refetchCategory();
+    // refetchCategory();
     refetchUsersList();
   }, []);
 
@@ -145,7 +145,7 @@ const MenuTrainer = () => {
       cancelText: 'Close modal',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
-        mutate(menuID);
+        mutate(Number(menuID));
       },
     });
   };
@@ -161,21 +161,13 @@ const MenuTrainer = () => {
       {modalContextHolder}
 
       <UpdateMenuModal
-       // categoriesOptions={categoriesSelect}
         foodsOptions={foodSelect}
         refetchPage={() => refetch()}
         menuUpdate={menuUpdate as TMenuItem}
         ref={updateMenuRef}
-        userSelect={usersSelect}
       />
 
-      <AddNewMenuModal
-       // categoriesOptions={categoriesSelect}
-        foodsOptions={foodSelect}
-        refetchPage={() => refetch()}
-        ref={addNewMenuRef}
-        usersOptions={usersSelect}
-      />
+      <AddNewMenuModal foodsOptions={foodSelect} refetchPage={() => refetch()} ref={addNewMenuRef} />
 
       <Row gutter={[14, 14]}>
         <Col span={24}>

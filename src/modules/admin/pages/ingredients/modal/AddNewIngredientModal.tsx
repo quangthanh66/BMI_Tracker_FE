@@ -6,16 +6,17 @@ import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { fieldValidate } from '@app/utils/helper';
+import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
-import { Col, Form, Row, Space, message } from 'antd';
+import { Col, Form, Row, Select, Space, message } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 type TAddNewIngredientModal = {
   refetchPage: () => void;
+  tagsSelect: SelectTypes[];
 };
 
-const AddNewIngredientModal = ({ refetchPage }: TAddNewIngredientModal, ref: any) => {
+const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientModal, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
@@ -49,7 +50,11 @@ const AddNewIngredientModal = ({ refetchPage }: TAddNewIngredientModal, ref: any
   };
 
   const submitForm = (values: TAddNewIngredient) => {
-    mutate(values);
+    mutate({
+      ...values,
+      quantity: Number(values.quantity),
+      ingredientCalories: Number(values.ingredientCalories),
+    });
   };
 
   return (
@@ -58,7 +63,7 @@ const AddNewIngredientModal = ({ refetchPage }: TAddNewIngredientModal, ref: any
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl">Add new ingredient</BaseTypography>}
+      title={<BaseTypography className="text-xl !text-white">Add new ingredient</BaseTypography>}
       width={800}
     >
       {contextHolder}
@@ -76,21 +81,21 @@ const AddNewIngredientModal = ({ refetchPage }: TAddNewIngredientModal, ref: any
           </Col>
           <Col span={24}>
             <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
-              <BaseInput />
+              <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
-              <BaseInput />
+              <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
-              <BaseInput />
+              <Select options={tagsSelect} />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Photo" name="ingredientPhoto" rules={[fieldValidate.required]}>
+            <Form.Item label="Photo" name="ingredientPhotoUrl" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>

@@ -10,6 +10,9 @@ import FilterIngredients from '@app/modules/admin/pages/ingredients/FilterIngred
 import AddNewIngredientModal from '@app/modules/admin/pages/ingredients/modal/AddNewIngredientModal';
 import UpdateIngredientModal from '@app/modules/admin/pages/ingredients/modal/UpdateIngredientModal';
 import useModal from 'antd/lib/modal/useModal';
+import TagsAPI from '@app/api/tags';
+import { TagsRequest } from '@app/api/tags/type';
+import { SelectTypes } from '@app/utils/helper';
 
 const IngredientManagement = () => {
   const [ingredientUpdate, setIngredientUpdate] = useState<IngredientTypes>();
@@ -18,6 +21,7 @@ const IngredientManagement = () => {
   const [modal, modalContextHolder] = useModal();
   const addNewIngredientRef = useRef<any>();
   const updateIngredientRef = useRef<any>();
+  const [tagsOptions, setTagsOptions] = useState<SelectTypes[]>([]);
 
   const {
     isLoading: isLoadingIngredient,
@@ -54,6 +58,21 @@ const IngredientManagement = () => {
     },
   });
 
+  const { isLoading: isLoadingTags } = useQuery({
+    queryKey: ['tags-key'],
+    queryFn: TagsAPI.getAllTag,
+    onError: () => message.error('Load tags is failed'),
+    onSuccess: (response: TagsRequest[]) => {
+      const result: SelectTypes[] = response.map((item) => {
+        return {
+          label: item.tagName,
+          value: item.tagID,
+        };
+      });
+      setTagsOptions(result);
+    },
+  });
+
   useEffect(() => {
     refetch();
   }, []);
@@ -84,11 +103,11 @@ const IngredientManagement = () => {
   };
 
   return (
-    <Spin tip="Loading ingredients ..." spinning={isLoadingIngredient || isLoadingDelete}>
+    <Spin tip="Loading ingredients ..." spinning={isLoadingIngredient || isLoadingDelete || isLoadingTags}>
       {contextHolder}
       {modalContextHolder}
       <Row gutter={[14, 14]}>
-        <AddNewIngredientModal refetchPage={() => refetch()} ref={addNewIngredientRef} />
+        <AddNewIngredientModal refetchPage={() => refetch()} ref={addNewIngredientRef} tagsSelect={tagsOptions} />
 
         <UpdateIngredientModal
           refetchFoodPage={() => refetch()}
@@ -98,7 +117,7 @@ const IngredientManagement = () => {
 
         <Col span={24}>
           <Card size="small">
-            <Typography.Text className="text-xl font-bold">Ingredients management</Typography.Text>
+            <Typography.Text className="text-xl font-bold !text-white ">Ingredients management</Typography.Text>
           </Card>
         </Col>
 

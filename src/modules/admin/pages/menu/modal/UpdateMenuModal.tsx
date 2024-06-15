@@ -10,26 +10,18 @@ import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { PlusOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';
 import MENU_API from '@app/api/menu';
-import { UserItemTypes } from '@app/api/users/type';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 
-type TUpdateMenu = {
- // categoriesOptions: SelectTypes[];
+type TUpdateMenuProps = {
   foodsOptions: SelectTypes[];
   refetchPage: () => void;
-  menuUpdate: TUpdateMenu;
-  userSelect: SelectTypes[];
+  menuUpdate: TMenuItem;
 };
 
-const UpdateMenuModal = (
-  {  foodsOptions, menuUpdate, refetchPage, userSelect }: TUpdateMenu,
-  ref: any,
-) => {
+const UpdateMenuModal = ({ foodsOptions, menuUpdate, refetchPage }: TUpdateMenuProps, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
-  const { isLoading, mutate } = useMutation(MENU_API.UPDATE_MENU, {
+  const { isLoading, mutate: updateMenuMutate } = useMutation(MENU_API.UPDATE_MENU, {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
@@ -55,14 +47,11 @@ const UpdateMenuModal = (
 
   useEffect(() => {
     if (menuUpdate) {
-      const convertFoods = menuUpdate.menuFoods.map((item) => {
-        return item.foodID;
-      });
-
       form.setFieldsValue({
         menuName: menuUpdate.menuName,
         menuDescription: menuUpdate.menuDescription,
-        foods: convertFoods,
+        totalCalories: menuUpdate.totalCalories,
+        menuFoods: [],
       });
     }
   }, [menuUpdate]);
@@ -72,16 +61,17 @@ const UpdateMenuModal = (
   };
 
   const submitForm = (values: TAddNewMenu) => {
-    const convertFoods = values.menuFoods.map((foodItem: number) => {
+    const convertMenusFood = values.menuFoods.map((item: any) => {
       return {
-        foodID: foodItem,
+        foodID: item,
+        mealType: 'Breakfast',
       };
     });
 
-    mutate({
+    updateMenuMutate({
       ...values,
-      menuFoods: convertFoods,
       menuID: menuUpdate.menuID,
+      menuFoods: convertMenusFood,
     });
   };
 
@@ -104,38 +94,21 @@ const UpdateMenuModal = (
             </Form.Item>
           </Col>
 
-          {/* <Col span={12}>
-            <Form.Item label="Categories" name="categoryId" rules={[fieldValidate.required]}>
-              <Select options={categoriesOptions} allowClear />
+          <Col span={24}>
+            <Form.Item label="Description" name="menuDescription" rules={[fieldValidate.required]}>
+              <BaseInput.TextArea rows={3} />
             </Form.Item>
-          </Col> */}
+          </Col>
+
           <Col span={12}>
-            <Form.Item label="Foods" name="foods" rules={[fieldValidate.required]}>
+            <Form.Item label="Foods" name="menuFoods" rules={[fieldValidate.required]}>
               <Select options={foodsOptions} mode="multiple" allowClear />
             </Form.Item>
           </Col>
 
-          <Col span={24}>
-            <Form.Item label="User" name="userId" rules={[fieldValidate.required]}>
-              <Select options={userSelect} allowClear />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item label="Type" name="menuType" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item label="Photo" name="menuPhoto" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item label="Description" name="menuDescription" rules={[fieldValidate.required]}>
-              <BaseInput.TextArea rows={3} />
+          <Col span={12}>
+            <Form.Item label="Total Calories" name="totalCalories" rules={[fieldValidate.required]}>
+              <BaseInput min={0} type="number" />
             </Form.Item>
           </Col>
 

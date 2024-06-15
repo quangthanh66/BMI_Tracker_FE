@@ -12,20 +12,15 @@ import { Col, Form, Row, Select, Space, message } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 type TAddNewMenuModal = {
-  
   foodsOptions: SelectTypes[];
   refetchPage: () => void;
-  usersOptions: SelectTypes[];
 };
 
-const AddNewMenuModal = (
-  {  foodsOptions, refetchPage, usersOptions }: TAddNewMenuModal,
-  ref: any,
-) => {
+const AddNewMenuModal = ({ foodsOptions, refetchPage }: TAddNewMenuModal, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
-  const { isLoading, mutate } = useMutation(MENU_API.ADD_NEW_MENU, {
+  const { isLoading, mutate: mutateAddNewMenu } = useMutation(MENU_API.ADD_NEW_MENU, {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
@@ -55,15 +50,16 @@ const AddNewMenuModal = (
   };
 
   const submitForm = (values: TAddNewMenu) => {
-    const convertFoods = values.menuFoods.map((foodItem: number) => {
+    const convertMenusFood = values.menuFoods.map((item: any) => {
       return {
-        foodID: foodItem,
+        foodID: item,
+        mealType: 'Breakfast',
       };
     });
-
-    mutate({
+    mutateAddNewMenu({
       ...values,
-      menuFoods: convertFoods,
+      menuFoods: convertMenusFood,
+      totalCalories: Number(values.totalCalories),
     });
   };
 
@@ -73,7 +69,7 @@ const AddNewMenuModal = (
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl">Add new menu</BaseTypography>}
+      title={<BaseTypography className="text-xl !text-white">Add new menu</BaseTypography>}
       closeIcon
       width={700}
     >
@@ -86,38 +82,21 @@ const AddNewMenuModal = (
             </Form.Item>
           </Col>
 
-          {/* <Col span={12}>
-            <Form.Item label="Categories" name="categoryId" rules={[fieldValidate.required]}>
-              <Select options={categoriesOptions} allowClear />
+          <Col span={24}>
+            <Form.Item label="Description" name="menuDescription" rules={[fieldValidate.required]}>
+              <BaseInput.TextArea rows={3} />
             </Form.Item>
-          </Col> */}
+          </Col>
+
           <Col span={12}>
-            <Form.Item label="Foods" name="foods" rules={[fieldValidate.required]}>
+            <Form.Item label="Foods" name="menuFoods" rules={[fieldValidate.required]}>
               <Select options={foodsOptions} mode="multiple" allowClear />
             </Form.Item>
           </Col>
 
-          <Col span={24}>
-            <Form.Item label="Users" name="userId" rules={[fieldValidate.required]}>
-              <Select options={usersOptions} allowClear />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item label="Type" name="menuType" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item label="Photo" name="menuPhoto" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item label="Description" name="menuDescription" rules={[fieldValidate.required]}>
-              <BaseInput.TextArea rows={3} />
+          <Col span={12}>
+            <Form.Item label="Total Calories" name="totalCalories" rules={[fieldValidate.required]}>
+              <BaseInput min={0} type="number" />
             </Form.Item>
           </Col>
 

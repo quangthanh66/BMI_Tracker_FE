@@ -14,7 +14,7 @@ export const END_POINTS = {
 
   BLOGS: {
     MAIN: '/api/test/blogs/getAll',
-    DELETE_BLOGS: '/api/test/blogs/delete'
+    DELETE_BLOGS: '/api/test/blogs/delete',
   },
 
   FEEDBACKS: '/api/feedback',
@@ -27,6 +27,7 @@ export const END_POINTS = {
   DELETE_CERTIFICATE: '/api/certificates/delete',
   CATEGORY: '/api/category',
   INGREDIENT: '/api/ingredients/getAll',
+  DELETE_INGREDIENTS: '/api/ingredients/delete',
   UPDATE_INGREDIENT: '/api/ingredients/update',
   MENU: '/api/menus/getAllMenu',
   ADD_NEW_MENU: '/api/menus/createNew',
@@ -34,6 +35,7 @@ export const END_POINTS = {
   SERVICES: '/api/service',
   DELETE_MENU: '/api/menus/deactivate',
   NOTIFICATIONS: '/api/notification',
+  ADD_NEW_INGREDIENTS: '/api/ingredients/createNew',
 
   CREATE_USER: '/api/accounts/createNew',
   UPDATE_USER: '/api/accounts/update',

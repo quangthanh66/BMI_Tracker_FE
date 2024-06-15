@@ -48,6 +48,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
         unitOfMeasurement: ingredientProps.unitOfMeasurement,
         ingredientCalories: ingredientProps.ingredientCalories,
         tagID: ingredientProps.tagID,
+        isActive: ingredientProps.isActive,
       });
     }
   }, [ingredientProps]);
@@ -66,6 +67,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
     mutate({
       ...values,
       ingredientID: ingredientProps.ingredientID,
+      isActive: true,
     });
   };
 
@@ -81,7 +83,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
-        <Col span={12}>
+          <Col span={12}>
             <Form.Item label="Name" name="ingredientName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
@@ -111,7 +113,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
               <BaseInput />
             </Form.Item>
           </Col>
-        
+
           <Col span={24} className="flex justify-end">
             <Space>
               <BaseButton onClick={onCloseModal}>Close modal</BaseButton>

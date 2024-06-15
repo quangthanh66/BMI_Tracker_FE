@@ -43,8 +43,8 @@ const BlogTrainer = () => {
   } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: BlogItemTypes[]) => {
-      const blogsTrainer = response.filter((blog) => blog.userId === userProfileState?.accountID);
-      setBlogs(blogsTrainer);
+      // const blogsTrainer = response.filter((blog) => blog.userId === userProfileState?.accountID);
+      // setBlogs(blogsTrainer);
     },
     onError: () => {
       messageApi.open({
@@ -90,7 +90,7 @@ const BlogTrainer = () => {
         setBlogs(blogsListServer);
       } else {
         const result = blogsListServer.filter((blog: BlogItemTypes) => {
-          return blog.status === blogStatus;
+          return blog.active === blogStatus;
         });
 
         setBlogs(result);

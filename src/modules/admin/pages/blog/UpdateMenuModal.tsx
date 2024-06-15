@@ -47,7 +47,7 @@ const UpdateMenuModal = ({ blogUpdateProps, onRefreshPage }: UpdateBlogTypesPara
         blogName: blogUpdateProps.blogName,
         blogContent: blogUpdateProps.blogContent,
         blogPhoto: blogUpdateProps.blogPhoto,
-        tag: blogUpdateProps.tag,
+        tag: blogUpdateProps.active,
         link: blogUpdateProps.blogPhoto,
       });
     }
@@ -61,7 +61,7 @@ const UpdateMenuModal = ({ blogUpdateProps, onRefreshPage }: UpdateBlogTypesPara
 
   const onCloseModal = () => setIsOpenModal(false);
   const onSubmit = (values: UpdateBlogTypes) => {
-    mutate({ ...values, blogId: blogUpdateProps.bolgId });
+    // mutate({ ...values, blogId: blogUpdateProps.bolgId });
   };
 
   return (

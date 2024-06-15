@@ -74,7 +74,7 @@ const CreateBlogModal = ({ onRefreshPage }: CreateBlogTypes, ref: any) => {
   };
 
   const onSubmit = (values: BlogItemTypes) => {
-    mutate({ ...values, link: values.blogPhoto });
+    // mutate({ ...values, link: values.blogPhoto });
   };
 
   return (

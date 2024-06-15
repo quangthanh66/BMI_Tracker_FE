@@ -16,8 +16,4 @@ export type TAddNewMenu = {
 
 export type TUpdateMenu = TAddNewMenu & {
   menuID: number;
-  menuName: string;
-  menuDescription: string;
-  totalCalories: number;
-  menuFoods: { foodID: number; mealType: string }[];
 };
