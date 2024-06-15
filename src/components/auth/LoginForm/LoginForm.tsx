@@ -12,15 +12,18 @@ import { UserItemTypes } from '@app/api/users/type';
 import { USER_ROLES_ENUM } from '@app/utils/constant';
 import { useDispatch } from 'react-redux';
 import { setUserProfile } from '@app/store/slices/appSlice';
+import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
 
 interface LoginFormData {
   email: string;
   password: string;
+  role: string;
 }
 
 export const initValues: LoginFormData = {
   email: 'admin@gmail.com',
   password: '1',
+  role: USER_ROLES_ENUM.ROLE_ADMIN,
 };
 
 export const LoginForm: React.FC = () => {
@@ -72,7 +75,7 @@ export const LoginForm: React.FC = () => {
         >
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </Auth.FormItem>
-        <Auth.ActionsWrapper>
+        {/* <Auth.ActionsWrapper>
           <BaseForm.Item name="loginAdmin" valuePropName="checked" noStyle>
             <Auth.FormCheckbox>
               <S.LoginRoleText>{t('login.loginAdmin')}</S.LoginRoleText>
@@ -86,7 +89,17 @@ export const LoginForm: React.FC = () => {
           <Link to="/auth/forgot-password">
             <S.ForgotPasswordText>{t('common.forgotPass')}</S.ForgotPasswordText>
           </Link>
-        </Auth.ActionsWrapper>
+        </Auth.ActionsWrapper> */}
+
+        <Auth.FormItem name="role" label="Role" rules={[{ required: true, message: t('common.requiredField') }]}>
+          <BaseSelect
+            defaultValue={USER_ROLES_ENUM.ROLE_ADMIN}
+            options={[
+              { label: 'Admin Role', value: USER_ROLES_ENUM.ROLE_ADMIN },
+              { label: 'Advisor Role', value: USER_ROLES_ENUM.ROLE_ADVISOR },
+            ]}
+          />
+        </Auth.FormItem>
         <BaseForm.Item noStyle>
           <Auth.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
             {t('common.login')}

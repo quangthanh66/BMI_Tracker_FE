@@ -9,11 +9,15 @@ import { CertificateItemTypes } from '@app/api/certificate/type';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import { CertificateColumns } from '@app/modules/admin/pages/certificate/constant';
 import CertificateFilter from '@app/modules/admin/pages/certificate/CertificateFilter';
+import { useSelector } from 'react-redux';
+import { UserItemTypes } from '@app/api/users/type';
 
 const CertificateManagement = () => {
   const [certificates, setCertificates] = useState<CertificateItemTypes[]>([]);
   const [certificateUpdate, setCertificateUpdate] = useState<CertificateItemTypes>();
   const [messageApi, contextHolder] = message.useMessage();
+  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
+
 
   const { isLoading: isLoadingDeleteCertificate, mutate: mutateDeleteCertificate } = useMutation(
     CERTIFICATE_API.DELETE_CERTIFICATE,

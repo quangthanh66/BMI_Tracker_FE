@@ -1,4 +1,9 @@
 export const END_POINTS = {
+  MENU_MANAGEMENT: {
+    DEACTIVE: '/api/menus/delete',
+    VIEW_DETAIL: '/api/menus/getMenuByID',
+  },
+
   ADVISOR: {
     GET_ALL: '/api/advisors/getAll',
   },

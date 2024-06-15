@@ -7,20 +7,18 @@ import useModal from 'antd/lib/modal/useModal';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { DeleteOutlined, ExclamationCircleOutlined, FileAddOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddNewMenuModal from '@app/modules/admin/pages/menu/modal/AddNewMenuModal';
 import { SelectTypes } from '@app/utils/helper';
 import FOOD_API from '@app/api/foods/type';
 import { TFoodItem } from '@app/api/foods';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
-import USERS_API from '@app/api/users';
-import { UserItemTypes } from '@app/api/users/type';
-import { TagsRequest } from '@app/api/tags/type';
-import TagsAPI from '@app/api/tags';
+import DetailMenuDialog from './DetailMenuDialog';
 
 const MenuManagement = () => {
   const addNewMenuRef = useRef<any>();
   const updateMenuRef = useRef<any>();
+  const detailMenuRef = useRef<any>();
 
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
@@ -91,6 +89,8 @@ const MenuManagement = () => {
     addNewMenuRef.current.openModal();
   };
 
+  const onOpenDetailMenuDialog = (menuId: number) => detailMenuRef.current.openDialog(menuId);
+
   const searchMenu = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value.toLowerCase();
     const result = menuList?.filter((menu) => menu.menuName.toLowerCase().includes(keySearch));
@@ -118,6 +118,8 @@ const MenuManagement = () => {
     <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood}>
       {contextHolder}
       {modalContextHolder}
+
+      <DetailMenuDialog ref={detailMenuRef} />
 
       <UpdateMenuModal
         foodsOptions={foodSelect}
@@ -164,12 +166,18 @@ const MenuManagement = () => {
                     </Typography.Paragraph>
                   </div>
 
-                  <div className="flex items-center  gap-2 w-full">
-                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuID)}>
-                      Delete menu
-                    </BaseButton>
-                    <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>
-                      Update menu
+                  <div className="flex flex-col gap-y-2">
+                    <div className="flex items-center gap-2 w-full">
+                      <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuID)}>
+                        Delete menu
+                      </BaseButton>
+                      <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>
+                        Update menu
+                      </BaseButton>
+                    </div>
+
+                    <BaseButton type="primary" onClick={() => onOpenDetailMenuDialog(item.menuID)}>
+                      View Detail
                     </BaseButton>
                   </div>
                 </div>

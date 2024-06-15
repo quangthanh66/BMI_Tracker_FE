@@ -9,6 +9,10 @@ const MENU_API = {
   UPDATE_MENU: (params: TUpdateMenu) => {
     return axiosClient.put(`${END_POINTS.UPDATE_MENU}`, params);
   },
+
+  getDetailMenu: (menuID: number) => axiosClient.get(END_POINTS.MENU_MANAGEMENT.VIEW_DETAIL, { params: { menuID } }),
+  deActiveFoodMenu: (params: { menuID: number; foodID: number }) =>
+    axiosClient.delete(`${END_POINTS.MENU_MANAGEMENT.DEACTIVE}/${params.menuID}/${params.foodID}`),
 };
 
 export default MENU_API;
