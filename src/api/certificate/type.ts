@@ -2,7 +2,7 @@ export type CertificateItemTypes = {
   certificateID: string;
   certificateName: string;
   certificateLink: string;
-  status: string;
+  isActive: boolean;
   advisor: {
     advisorID: string;
     accountID: string;
@@ -25,14 +25,14 @@ export type CreateNewCertificateTypes = {
 };
 
 export type UpdateCertificateTypes = {
-  certificateID: string;
+  certificateID: number;
   certificateName: string;
   certificateLink: string;
-  status: string;
-  advisor: {
-    advisorID: string;
-    accountID: string;
-    height: string;
-    weight: string;
-  };
+  isActive: boolean;
+};
+
+export type CreateCertificateRequest = {
+  certificateName: string;
+  certificateLink: string;
+  advisorID: number;
 };

@@ -1,5 +1,4 @@
 import { CertificateItemTypes } from '@app/api/certificate/type';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';

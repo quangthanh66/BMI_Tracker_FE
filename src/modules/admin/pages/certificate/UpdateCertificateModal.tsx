@@ -6,7 +6,6 @@ import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { fieldValidate } from '@app/utils/helper';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { SaveOutlined } from '@ant-design/icons';
 import { CertificateItemTypes } from '@app/api/certificate/type';
@@ -50,7 +49,6 @@ const UpdateCertificateModal = ({}, ref: any) => {
             </BaseForm.Item>
           </BaseCol>
 
-         
           <BaseCol span={24} className="flex items-center justify-end gap-2">
             <BaseButton danger>Reset form</BaseButton>
             <BaseButton

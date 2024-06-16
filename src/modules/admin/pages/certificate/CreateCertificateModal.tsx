@@ -1,6 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import CERTIFICATE_API from '@app/api/certificate';
-import { CertificateItemTypes } from '@app/api/certificate/type';
+import { CertificateItemTypes, CreateCertificateRequest } from '@app/api/certificate/type';
+import { UserItemTypes } from '@app/api/users/type';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
@@ -12,6 +13,7 @@ import { fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
 import { message } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 type CreateCertificateTypes = {
   onRefreshPage: () => void;
@@ -21,6 +23,7 @@ const CreateCertificateModal = ({ onRefreshPage }: CreateCertificateTypes, ref: 
   const [form] = BaseForm.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
 
   const { isLoading: isLoadingCreateCertificate, mutate } = useMutation(CERTIFICATE_API.CREATE_NEW_CERTIFICATE, {
     onSuccess: () => {
@@ -51,8 +54,8 @@ const CreateCertificateModal = ({ onRefreshPage }: CreateCertificateTypes, ref: 
     form.resetFields();
   };
 
-  const onSubmit = (values: CertificateItemTypes) => {
-    mutate({ ...values, certificateLink: values.certificateName });
+  const onSubmit = (values: CreateCertificateRequest) => {
+    mutate({ ...values, advisorID: Number(userProfileState.accountID) });
   };
 
   return (
@@ -62,7 +65,7 @@ const CreateCertificateModal = ({ onRefreshPage }: CreateCertificateTypes, ref: 
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<BaseTypography className="text-xl">Create a new certificate </BaseTypography>}
+      title={<BaseTypography className="text-xl">Create a new certificate</BaseTypography>}
     >
       {contextHolder}
       <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>

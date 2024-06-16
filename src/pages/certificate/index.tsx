@@ -11,13 +11,19 @@ import { CertificateColumns } from '@app/modules/admin/pages/certificate/constan
 import CertificateFilter from '@app/modules/admin/pages/certificate/CertificateFilter';
 import { useSelector } from 'react-redux';
 import { UserItemTypes } from '@app/api/users/type';
+import { USER_ROLES_ENUM } from '@app/utils/constant';
+import UpdateCertificateAdmin from './UpdateCertificateAdmin';
 
 const CertificateManagement = () => {
   const [certificates, setCertificates] = useState<CertificateItemTypes[]>([]);
   const [certificateUpdate, setCertificateUpdate] = useState<CertificateItemTypes>();
   const [messageApi, contextHolder] = message.useMessage();
   const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
-
+  const createCertificateRef = useRef<any>();
+  const updateCertificateRef = useRef<any>();
+  const descriptionRef = useRef<any>();
+  const viewDetailRef = useRef<any>();
+  const updateCertificateAdminRef = useRef<any>();
 
   const { isLoading: isLoadingDeleteCertificate, mutate: mutateDeleteCertificate } = useMutation(
     CERTIFICATE_API.DELETE_CERTIFICATE,
@@ -28,6 +34,7 @@ const CertificateManagement = () => {
           content: 'Delete certificate is failed',
         });
       },
+      onSuccess: () => onRefetchList(),
     },
   );
 
@@ -36,6 +43,7 @@ const CertificateManagement = () => {
     refetch: refetchCertificatesList,
     data: certificatesListServer,
   } = useQuery(['certificates-list'], CERTIFICATE_API.GET_LIST, {
+    enabled: false,
     onSuccess: (response: CertificateItemTypes[]) => {
       setCertificates(response);
     },
@@ -47,10 +55,18 @@ const CertificateManagement = () => {
     },
   });
 
-  const createCertificateRef = useRef<any>();
-  const updateCertificateRef = useRef<any>();
-  const descriptionRef = useRef<any>();
-  const viewDetailRef = useRef<any>();
+  const { isLoading: isLoadingCertificateAdvisor, mutate: getCertificateAdvisorByID } = useMutation({
+    mutationFn: CERTIFICATE_API.GET_CERTIFICATE_BY_ADVISOR,
+    onError: () => {
+      messageApi.open({
+        type: 'error',
+        content: 'Get certificates list is failed',
+      });
+    },
+    onSuccess: (response: any) => {
+      setCertificates(response);
+    },
+  });
 
   const openCreateCertificateModal = () => {
     createCertificateRef.current.openModal();
@@ -58,7 +74,10 @@ const CertificateManagement = () => {
 
   const openUpdateCertificateModal = (certificateProps: CertificateItemTypes) => {
     setCertificateUpdate(certificateProps);
-    updateCertificateRef.current.openModal();
+
+    userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR
+      ? updateCertificateRef.current.openModal()
+      : updateCertificateAdminRef.current.openModal(certificateProps.certificateID);
   };
   const onOpenDescriptionModal = () => {
     descriptionRef.current.openModal();
@@ -91,11 +110,18 @@ const CertificateManagement = () => {
   };
 
   useEffect(() => {
-    refetchCertificatesList();
+    userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR
+      ? getCertificateAdvisorByID(Number(userProfileState.accountID))
+      : refetchCertificatesList();
   }, []);
 
+  const onRefetchList = () =>
+    userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR
+      ? getCertificateAdvisorByID(Number(userProfileState.accountID))
+      : refetchCertificatesList();
+
   return (
-    <Spin spinning={isLoadingCertificateList || isLoadingDeleteCertificate} tip="Loading certificates ....">
+    <Spin spinning={isLoadingDeleteCertificate || isLoadingCertificateAdvisor} tip="Loading certificates ....">
       {contextHolder}
       <Row gutter={[14, 14]}>
         <Col span={24}>
@@ -103,13 +129,14 @@ const CertificateManagement = () => {
             <Typography.Text className="text-xl font-bold">Certificate management</Typography.Text>
           </Card>
         </Col>
-        <CreateCertificateModal ref={createCertificateRef} onRefreshPage={() => refetchCertificatesList()} />
+        <CreateCertificateModal ref={createCertificateRef} onRefreshPage={onRefetchList} />
         <UpdateMenuModal
           ref={updateCertificateRef}
           certificateUpdateProps={certificateUpdate as CertificateItemTypes}
-          onRefreshPage={() => refetchCertificatesList()}
+          onRefreshPage={onRefetchList}
         />
         <ViewDetailCertificate ref={viewDetailRef} certificateProps={certificateUpdate as CertificateItemTypes} />
+        <UpdateCertificateAdmin ref={updateCertificateAdminRef} />
 
         <Col span={24}>
           <Card size="small">

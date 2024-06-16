@@ -1,4 +1,9 @@
 export const END_POINTS = {
+  CERTIFICATE_MANAGEMENT: {
+    CREATE_NEW: '/api/certificates/createNew',
+    DETAIL: '/api/certificates/getByID',
+  },
+
   MENU_MANAGEMENT: {
     DEACTIVE: '/api/menus/delete',
     VIEW_DETAIL: '/api/menus/getMenuByID',
@@ -44,6 +49,7 @@ export const END_POINTS = {
 
   CREATE_USER: '/api/accounts/createNew',
   UPDATE_USER: '/api/accounts/update',
+  GET_CERTIFICATE_BY_ADVISOR: '/api/certificates/getAllByID',
 
   TAGS: {
     ADD_NEW: '/api/tags/createNew',

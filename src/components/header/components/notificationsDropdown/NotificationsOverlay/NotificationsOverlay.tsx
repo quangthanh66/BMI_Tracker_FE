@@ -1,11 +1,7 @@
-import React, { useMemo, ReactNode, useState, useEffect } from 'react';
-import { Trans } from 'react-i18next';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { BaseNotification } from '@app/components/common/BaseNotification/BaseNotification';
-import { capitalize } from '@app/utils/utils';
-import { Mention, Notification as NotificationType } from 'api/notifications.api';
-import { notificationsSeverities } from 'constants/notificationsSeverities';
+import { Notification as NotificationType } from 'api/notifications.api';
 import * as S from './NotificationsOverlay.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
@@ -16,7 +12,6 @@ import NotificationAPI from '@app/api/notifications';
 import { Spin, message } from 'antd';
 import { UserItemTypes } from '@app/api/users/type';
 import { useSelector } from 'react-redux';
-import { NotificationsTypes } from '@app/components/profile/profileCard/profileFormNav/nav/notifications/NotificationsTypes/NotificationsTypes';
 
 interface NotificationsOverlayProps {
   notifications: NotificationType[];

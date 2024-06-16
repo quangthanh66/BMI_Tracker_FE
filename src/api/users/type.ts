@@ -3,7 +3,7 @@ export type UserItemTypes = {
   email: string;
   fullName: string;
   phoneNumber: string;
-  roleName: string;
+  role: string;
   isActive: boolean;
   birthday: string;
 };
@@ -20,4 +20,18 @@ export type ProveCertiTrainerTypes = {
   userId: string;
   certificateId: string;
   certificateName: string;
+};
+
+export type CertificateDetailResponse = {
+  certificateID: number;
+  certificateName: string;
+  certificateLink: string;
+  isActive: boolean;
+  advisor: {
+    advisorID: number;
+    accountID: number;
+    height: number;
+    weight: number;
+    isActive: boolean;
+  };
 };

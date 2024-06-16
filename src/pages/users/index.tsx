@@ -92,9 +92,7 @@ const UsersManagement = () => {
     if (role === 'All') {
       result = usersListServer;
     } else {
-      result = usersListServer.filter(
-        (user: UserItemTypes) => user.roleName.toLowerCase() === role.toLowerCase(),
-      );
+      result = usersListServer.filter((user: UserItemTypes) => user.role.toLowerCase() === role.toLowerCase());
     }
 
     setUsers(result);
@@ -141,7 +139,7 @@ const UsersManagement = () => {
             className="max-w-[82vw]"
             columns={UserColumns({
               updateUserModal: openUpdateUserModal,
-         //     deleteUser: onDeleteUser,
+              //     deleteUser: onDeleteUser,
               provideCertificate: onProvideCertificate,
               approveTrainer: onApproveTrainer,
             })}

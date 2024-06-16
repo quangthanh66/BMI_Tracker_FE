@@ -20,7 +20,6 @@ const TrainerServices = () => {
   const [users, setUsers] = useState<SelectTypes[]>([]);
   const serviceActionRef = useRef<any>();
 
-
   const {
     isLoading: isLoadingServices,
     refetch,
@@ -41,7 +40,7 @@ const TrainerServices = () => {
 
   const { isLoading: isLoadingGetUsers, refetch: refetchUsers } = useQuery(['get-users'], USERS_API.GET_LIST, {
     onSuccess: (response: UserItemTypes[]) => {
-      const usersRole = response.filter((user) => user.roleName === 'user');
+      const usersRole = response.filter((user) => user.role === 'user');
       const usersOptions = usersRole.map((user) => {
         return {
           label: user.fullName,
