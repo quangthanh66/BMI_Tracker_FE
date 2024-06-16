@@ -83,18 +83,18 @@ const UpdateCertificateAdmin = ({}, ref: any) => {
         {certficiateDetailResult ? (
           <Descriptions title="Advisor Info" bordered layout="vertical">
             <Descriptions.Item label="Certificate Name" className="!text-black">
-              <Typography.Text className="!text-white">{certficiateDetailResult.certificateName}</Typography.Text>
+              <Typography.Text className="!text-black">{certficiateDetailResult.certificateName}</Typography.Text>
             </Descriptions.Item>
             <Descriptions.Item label="Certificate Link" className="!text-black">
-              <Typography.Text className="!text-white">{certficiateDetailResult.certificateLink}</Typography.Text>
+              <Typography.Text className="!text-black">{certficiateDetailResult.certificateLink}</Typography.Text>
             </Descriptions.Item>
 
             <Descriptions.Item label="Height" className="!text-black">
-              <Typography.Text className="!text-white">{certficiateDetailResult.advisor.height}</Typography.Text>
+              <Typography.Text className="!text-black">{certficiateDetailResult.advisor.height}</Typography.Text>
             </Descriptions.Item>
 
             <Descriptions.Item label="Weight" className="!text-black">
-              <Typography.Text className="!text-white">{certficiateDetailResult.advisor.weight}</Typography.Text>
+              <Typography.Text className="!text-black">{certficiateDetailResult.advisor.weight}</Typography.Text>
             </Descriptions.Item>
 
             <Descriptions.Item label="Status" className="!text-black">

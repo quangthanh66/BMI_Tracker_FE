@@ -151,7 +151,7 @@ const MenuManagement = () => {
                   <div className="w-full flex flex-col gap-2 flex-grow">
                     <Image
                       alt="food-alt"
-                      src={item.menuName}
+                      src={item.menuPhoto}
                       className="w-full h-[200px] object-cover rounded-md"
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null;

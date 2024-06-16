@@ -87,6 +87,11 @@ const AddNewMenuModal = ({ foodsOptions, refetchPage }: TAddNewMenuModal, ref: a
               <BaseInput.TextArea rows={3} />
             </Form.Item>
           </Col>
+          <Col span={24}>
+            <Form.Item label="Photo" name="menuPhoto" rules={[fieldValidate.required]}>
+              <BaseInput.TextArea rows={3} />
+            </Form.Item>
+          </Col>
 
           <Col span={12}>
             <Form.Item label="Foods" name="menuFoods" rules={[fieldValidate.required]}>

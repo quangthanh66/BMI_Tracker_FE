@@ -65,7 +65,6 @@ export const UserColumns: any = ({
        {isActive ? 'Active' : 'Inactive'}
       </Tag>
     ),
-   // sorter: (a, b) => a.isActive.length - b.isActive.length,
     sortDirections: ["descend"],
   },
   // {

@@ -1,6 +1,7 @@
 export type TMenuItem = {
   menuID: number;
   menuName: string;
+  menuPhoto: string;
   menuDescription: string;
   totalCalories: number;
   isActive: boolean;

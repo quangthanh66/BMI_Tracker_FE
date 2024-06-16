@@ -3,7 +3,7 @@ import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-import { Image } from 'antd';
+import { Image, Tag } from 'antd';
 import errorImage from 'assets/error-image-alt.png';
 import { CERTIFICATE_STATUS } from '@app/utils/constant';
 import { CertificateItemTypes } from '@app/api/certificate/type';
@@ -42,10 +42,21 @@ export const CertificateColumns: any = ({
   },
   {
     title: 'Status',
-    dataIndex: 'status',
-    render: (status: string) => (
-      <BaseTag color={status === CERTIFICATE_STATUS.available_certificate ? 'green' : 'volcano'}>{status}</BaseTag>
+    dataIndex: 'isActive',
+    render: (isActive: boolean) => (
+      <Tag
+        color={
+          isActive === true
+            ? 'green'
+            : isActive === false
+            ? 'geekblue'
+            : 'volcano'
+        }
+      >
+       {isActive ? 'Active' : 'Inactive'}
+      </Tag>
     ),
+    sortDirections: ["descend"],
   },
   {
     title: 'Actions',
