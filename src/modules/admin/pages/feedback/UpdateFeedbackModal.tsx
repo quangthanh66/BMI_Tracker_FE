@@ -48,7 +48,7 @@ const UpdateFeedbackModal = ({ feedbackUpdate, onRefreshPage }: UpdateFeedbackTy
         title: feedbackUpdate.title,
         description: feedbackUpdate.description,
         type: feedbackUpdate.type,
-        userId: feedbackUpdate.users.accountID,
+     //   userId: feedbackUpdate.users.accountID,
       });
     }
   }, [feedbackUpdate]);
@@ -61,12 +61,9 @@ const UpdateFeedbackModal = ({ feedbackUpdate, onRefreshPage }: UpdateFeedbackTy
 
   const onCloseModal = () => setIsOpenModal(false);
   const onSubmit = (values: FeedbackItemTypes) => {
-    mutateUpdateFeedback({
-      desc: values.description,
-      feedId: feedbackUpdate.feedbackId,
-      title: values.title,
-    });
+    console.log(values);
   };
+
 
   return (
     <BaseModal

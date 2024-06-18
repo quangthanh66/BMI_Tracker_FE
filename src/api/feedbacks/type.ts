@@ -1,24 +1,20 @@
-import { UserItemTypes } from '../users/type';
-
 export type FeedbackItemTypes = {
-  feedbackId: string;
+  feedbackID: string;
   title: string;
-  description: string;
-  status: string;
   type: string;
-  userId: string;
-  users: UserItemTypes;
+  description: string;
+  status: boolean;
+  memberID: number;
+  memberName: string;
 };
 
-export type CreateNewFeedbackTypes = {
-  title: string;
-  description: string;
-  type: string;
-  userId: string;
-};
 
 export type UpdateFeedbackTypes = {
-  feedId: string;
+  feedbackID: number;
   title: string;
-  desc: string;
+  type: string;
+  description: string;
+  status: boolean;
+  memberID: number;
+  memberName: string;
 };

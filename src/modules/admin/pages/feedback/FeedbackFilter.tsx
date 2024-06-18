@@ -9,7 +9,7 @@ import { FeedbackStatus } from './constant';
 type FilterFeedbackTypes = {
   onCreateFeedback: () => void;
   onSearchFeedback: (keyValue: string) => void;
-  onFilterFeedbackStatus: (status: string) => void;
+  onFilterFeedbackStatus: (status: boolean) => void;
 };
 
 const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackStatus }: FilterFeedbackTypes) => {
@@ -31,8 +31,8 @@ const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackSt
             placeholder="Choose your feedback type"
             options={[
               { value: 'all', label: 'All' },
-              { value: FeedbackStatus.available, label: 'Available' },
-              { value: FeedbackStatus.hidden, label: 'Hidden' },
+              { value: FeedbackStatus.active, label: 'Active' },
+              { value: FeedbackStatus.deactive, label: 'DeActive' },
             ]}
           ></Select>
         </Col>

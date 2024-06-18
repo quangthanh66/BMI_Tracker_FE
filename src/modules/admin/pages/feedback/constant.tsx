@@ -13,8 +13,8 @@ type FeedbackColumnsTypes = {
 };
 
 export enum FeedbackStatus {
-  available = 'available-feedback',
-  hidden = 'hidden',
+  active = 'true',
+  deactive = 'false',
 }
 
 export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: FeedbackColumnsTypes) => [
@@ -36,17 +36,30 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
   {
     title: 'Status',
     dataIndex: 'status',
-    render: (status: string) => <Tag color={status === 'hidden' ? 'volcano' : 'green'}>{status}</Tag>,
+    render: (status: boolean) => (
+      <Tag
+        color={
+          status === true
+            ? 'green'
+            : status === false
+            ? 'geekblue'
+            : 'volcano'
+        }
+      >
+       {status ? 'Active' : 'DeActive'}
+      </Tag>
+    ),
+    sortDirections: ["descend"],
   },
-  {
-    title: 'User',
-    dataIndex: 'users',
-    render: (user: UserItemTypes) => <Typography.Text>{user.fullName}</Typography.Text>,
-  },
+  // {
+  //   title: 'User',
+  //   dataIndex: 'memberName',
+  //   render: (user: UserItemTypes) => <Typography.Text>{user.fullName}</Typography.Text>,
+  // },
   {
     title: 'Actions',
-    dataIndex: 'feedbackId',
-    render: (feedbackId: string, feedback: FeedbackItemTypes) => (
+    dataIndex: 'feedbackID',
+    render: (feedbackID: string, feedback: FeedbackItemTypes) => (
       <div className="flex items-center gap-x-4">
         <BaseTooltip title="Edit feedback information">
           <BaseButton
@@ -62,7 +75,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
             title="Delete the feedback"
             okText="Yes"
             cancelText="No"
-            onConfirm={() => deleteFeedBack(feedbackId)}
+            onConfirm={() => deleteFeedBack(feedbackID)}
           >
             <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
           </BasePopconfirm>

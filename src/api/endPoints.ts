@@ -27,7 +27,11 @@ export const END_POINTS = {
     DELETE_BLOGS: '/api/test/blogs/delete',
   },
 
-  FEEDBACKS: '/api/feedback',
+  FEEDBACKS: {
+    MAIN: '/api/feedbacks/getAll',
+    UPDATE_FEEDBACK: '/api/feedbacks/approve',
+  },
+
   FOOD: '/api/foods/getAll',
   ADD_NEW_FOOD: '/api/foods/createNew',
   DELETE_FOOD: '/api/foods/deactive',

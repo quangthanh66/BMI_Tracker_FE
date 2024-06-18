@@ -7,7 +7,7 @@ import { Card, Col, Row, Spin, Typography, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FEEDBACK_API from '@app/api/feedbacks';
-import CreateFeedbackModal from '@app/modules/admin/pages/feedback/CreateFeedbackModal';
+
 
 const FeedbackManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -31,25 +31,25 @@ const FeedbackManagement = () => {
     enabled: false,
   });
 
-  const { mutate: mutateDeleteFeedback, isLoading: isLoadingDeleteFeedback } = useMutation(
-    FEEDBACK_API.DELETE_FEEDBACK,
-    {
-      onSuccess: () => {
-        messageApi.open({
-          type: 'success',
-          content: 'Delete feedback is successful',
-        });
+  // const { mutate: mutateDeleteFeedback, isLoading: isLoadingDeleteFeedback } = useMutation(
+  //   FEEDBACK_API.DELETE_FEEDBACK,
+  //   {
+  //     onSuccess: () => {
+  //       messageApi.open({
+  //         type: 'success',
+  //         content: 'Delete feedback is successful',
+  //       });
 
-        refetch();
-      },
-      onError: () => {
-        messageApi.open({
-          type: 'error',
-          content: 'Delete feedback is failed. Please try again',
-        });
-      },
-    },
-  );
+  //       refetch();
+  //     },
+  //     onError: () => {
+  //       messageApi.open({
+  //         type: 'error',
+  //         content: 'Delete feedback is failed. Please try again',
+  //       });
+  //     },
+  //   },
+  // );
 
   const createFeedbackRef = useRef<any>();
   const updateFeedbackRef = useRef<any>();
@@ -76,25 +76,25 @@ const FeedbackManagement = () => {
     }
   };
 
-  const onFilterFeedbackStatu = (status: string) => {
+  const onFilterFeedbackStatus = (status: boolean) => {
     if (feedbackServer) {
-      if (status === 'all') {
-        setFeedback(feedbackServer);
-      } else {
-        const result = feedbackServer.filter(
-          (feedBackItem: FeedbackItemTypes) => feedBackItem.status.toLowerCase() === status.toLowerCase(),
-        );
-        setFeedback(result);
-      }
+        if (status) {
+            setFeedback(feedbackServer);
+        } else {
+            const result = feedbackServer.filter(
+                (feedBackItem: FeedbackItemTypes) => feedBackItem.status === status
+            );
+            setFeedback(result);
+        }
     }
-  };
+};
 
-  const deleteFeedbackById = (feedBackId: string) => {
-    mutateDeleteFeedback(feedBackId);
-  };
+  // const deleteFeedbackById = (feedBackID: string) => {
+  //   mutateDeleteFeedback(feedBackID);
+  // };
 
   return (
-    <Spin spinning={isLoadingLoadFeedback || isLoadingDeleteFeedback} tip="Loading feedbacks ...">
+    <Spin spinning={isLoadingLoadFeedback} tip="Loading feedbacks ...">
       {contextHolder}
       <Row gutter={[14, 14]}>
         <Col span={24}>
@@ -102,7 +102,7 @@ const FeedbackManagement = () => {
             <Typography.Text className="text-xl font-bold">Feedback management</Typography.Text>
           </Card>
         </Col>
-        <CreateFeedbackModal ref={createFeedbackRef} onRefreshPage={() => refetch()} />
+        {/* <CreateFeedbackModal ref={createFeedbackRef} onRefreshPage={() => refetch()} /> */}
         <UpdateFeedbackModel
           ref={updateFeedbackRef}
           feedbackUpdate={feedbackUpdate as FeedbackItemTypes}
@@ -113,7 +113,7 @@ const FeedbackManagement = () => {
             <FeedbackFilter
               onCreateFeedback={openCreateFeedbackModal}
               onSearchFeedback={onSearchFeedback}
-              onFilterFeedbackStatus={onFilterFeedbackStatu}
+              onFilterFeedbackStatus={onFilterFeedbackStatus}
             />
           </Card>
         </Col>
@@ -123,7 +123,7 @@ const FeedbackManagement = () => {
             className="max-w-[82vw]"
             columns={FeedbackColumns({
               updateFeedbackModal: openUpdateFeedbackModal,
-              deleteFeedBack: deleteFeedbackById,
+          
             })}
             dataSource={feedback}
             scroll={{

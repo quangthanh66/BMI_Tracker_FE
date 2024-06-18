@@ -40,7 +40,7 @@ const TrainerServices = () => {
 
   const { isLoading: isLoadingGetUsers, refetch: refetchUsers } = useQuery(['get-users'], USERS_API.GET_LIST, {
     onSuccess: (response: UserItemTypes[]) => {
-      const usersRole = response.filter((user) => user.role === 'user');
+      const usersRole = response.filter((user) => user.roleNames === 'user');
       const usersOptions = usersRole.map((user) => {
         return {
           label: user.fullName,

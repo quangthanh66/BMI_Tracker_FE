@@ -35,16 +35,16 @@ export const UserColumns: any = ({
   },
   {
     title: 'Role',
-    dataIndex: 'roleName',
-    render: (roleName: any) => (
+    dataIndex: 'roleNames',
+    render: (roleNames: any) => (
       <Tag color={
-        roleName === 'ROLE_ADMIN' ? 'red' : 
-          roleName === 'ROLE_ADVISOR' ? 'blue' : 
-          roleName === 'ROLE_MEMBER' ? 'green' : 'geekblue'
+        roleNames === 'ROLE_ADMIN' ? 'red' : 
+          roleNames === 'ROLE_ADVISOR' ? 'blue' : 
+          roleNames === 'ROLE_MEMBER' ? 'green' : 'geekblue'
       }>
-        {roleName === 'ROLE_ADMIN' ? 'Admin' : 
-            roleName === 'ROLE_ADVISOR' ? 'Advisor' : 
-            roleName === 'ROLE_MEMBER' ? 'Member' : roleName}
+        {roleNames === 'ROLE_ADMIN' ? 'Admin' : 
+            roleNames === 'ROLE_ADVISOR' ? 'Advisor' : 
+            roleNames === 'ROLE_MEMBER' ? 'Member' : roleNames}
       </Tag>
     ),
   },
