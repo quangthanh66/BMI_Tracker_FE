@@ -4,7 +4,7 @@ import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-import { Image } from 'antd';
+import { Image, Tag } from 'antd';
 import errorImage from 'assets/error-image-alt.png';
 import { BLOG_STATUS } from '@app/utils/constant';
 import { BlogItemTypes } from '@app/api/blogs/type';
@@ -25,7 +25,7 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
   {
     title: 'Content',
     dataIndex: 'blogContent',
-    render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
+   // render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
   },
   {
     title: 'Photo',
@@ -47,6 +47,24 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
     title: 'Link',
     dataIndex: 'link',
     render: (link: string) => <BaseTag color="green">{link}</BaseTag>,
+  },
+  {
+    title: 'Status',
+    dataIndex: 'active',
+    render: (active: boolean) => (
+      <Tag
+        color={
+          active === true
+            ? 'green'
+            : active === false
+            ? 'geekblue'
+            : 'volcano'
+        }
+      >
+       {active ? 'Available' : 'Hidden'}
+      </Tag>
+    ),
+    sortDirections: ["descend"],
   },
   {
     title: 'Actions',

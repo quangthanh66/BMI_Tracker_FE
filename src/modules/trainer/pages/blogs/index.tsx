@@ -84,9 +84,9 @@ const BlogTrainer = () => {
     }
   };
 
-  const onFilterBlog = (blogStatus: string) => {
+  const onFilterBlog = (blogStatus: boolean) => {
     if (blogsListServer) {
-      if (blogStatus === 'All') {
+      if (blogStatus === true) {
         setBlogs(blogsListServer);
       } else {
         const result = blogsListServer.filter((blog: BlogItemTypes) => {
@@ -98,8 +98,8 @@ const BlogTrainer = () => {
     }
   };
 
-  const onDeleteBlog = (blogId: string) => {
-    mutateDeleteBlog(blogId);
+  const onDeleteBlog = (blogID: string) => {
+    mutateDeleteBlog(blogID);
   };
 
   useEffect(() => {

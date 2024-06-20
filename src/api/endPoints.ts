@@ -23,7 +23,7 @@ export const END_POINTS = {
   },
 
   BLOGS: {
-    MAIN: '/api/test/blogs/getAll',
+    MAIN: '/api/blogs/getAll',
     DELETE_BLOGS: '/api/test/blogs/delete',
   },
 

@@ -50,6 +50,6 @@ export enum CERTIFICATE_STATUS {
 }
 
 export enum BLOG_STATUS {
-  hidden = 'hidden',
-  available_blog = 'available-blog',
+  true = 'true',
+  false = 'false',
 }

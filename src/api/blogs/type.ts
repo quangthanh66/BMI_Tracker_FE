@@ -5,7 +5,7 @@ export type BlogItemTypes = {
   blogPhoto: string;
   link: string;
   advisorID: string;
-  active: string;
+  active: boolean;
 };
 
 export type CreateNewBlogTypes = {

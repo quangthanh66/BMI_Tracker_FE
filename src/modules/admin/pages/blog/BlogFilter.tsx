@@ -9,7 +9,7 @@ import { ChangeEvent } from 'react';
 type FilterBlogTypes = {
   onCreateNewBlog: () => void;
   onSearchBlog: (keyValue: string) => void;
-  onFilterBlogStatus: (status: string) => void;
+  onFilterBlogStatus: (status: boolean) => void;
 };
 
 const BlogFilter = ({ onCreateNewBlog, onSearchBlog, onFilterBlogStatus }: FilterBlogTypes) => {
@@ -31,8 +31,8 @@ const BlogFilter = ({ onCreateNewBlog, onSearchBlog, onFilterBlogStatus }: Filte
             onChange={onFilterBlogStatus}
             options={[
               { value: 'All', label: 'All' },
-              { value: BLOG_STATUS.available_blog, label: 'Available' },
-              { value: BLOG_STATUS.hidden, label: 'Hidden' },
+              { value: BLOG_STATUS.true, label: 'Available' },
+              { value: BLOG_STATUS.false, label: 'Hidden' },
             ]}
             className="w-full"
           ></Select>

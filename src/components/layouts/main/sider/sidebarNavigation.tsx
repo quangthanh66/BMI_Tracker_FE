@@ -1,6 +1,6 @@
 import { AiOutlineUser, AiOutlineCustomerService } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
-import { CoffeeOutlined } from '@ant-design/icons';
+import { CoffeeOutlined, FormOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
 import { PAGE_ROUTES } from '@app/utils/router';
 import { MdOutlineFastfood, MdOutlineRestaurantMenu } from 'react-icons/md';
 import { GiFoodChain } from 'react-icons/gi';
@@ -51,24 +51,24 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     url: '/feedback',
     icon: <VscFeedback />,
   },
-  {
-    title: 'Services',
-    key: 'services',
-    url: '/services',
-    icon: <AiOutlineCustomerService />,
-  },
+  // {
+  //   title: 'Services',
+  //   key: 'services',
+  //   url: '/services',
+  //   icon: <AiOutlineCustomerService />,
+  // },
 
   {
     title: 'Blog',
     key: 'blog',
     url: '/blog',
-    icon: <CoffeeOutlined />,
+    icon: <FormOutlined />,
   },
   {
     title: 'Certificate',
     key: 'certificate',
     url: '/certificate',
-    icon: <CoffeeOutlined />,
+    icon: <SafetyCertificateOutlined />,
   },
 ];
 
@@ -96,6 +96,6 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     title: 'Blog',
     key: 'blog',
     url: PAGE_ROUTES.TRAINER.BLOG,
-    icon: <CoffeeOutlined />,
+    icon: <FormOutlined />,
   },
 ];

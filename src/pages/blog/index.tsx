@@ -78,8 +78,8 @@ const BlogManagement = () => {
     setBlogs(result);
   };
 
-  const onFilterBlog = (active: string) => {
-    if (active === 'All') {
+  const onFilterBlog = (active: boolean) => {
+    if (active === true) {
       setBlogs(blogsListServer);
     } else {
       const result = blogsListServer.filter((blog: BlogItemTypes) => {
