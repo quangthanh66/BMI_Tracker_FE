@@ -44,10 +44,7 @@ const Blog = () => {
     console.log(value);
   };
 
-  const filterBlogStatus = (statusParams: string) => {
-    console.log(blogsListServer?.data);
-    console.log(statusParams);
-  };
+  const filterBlogStatus = (statusParams: boolean) => {};
 
   const onViewDetailBlog = () => {
     viewDetailRef.current.openModal();

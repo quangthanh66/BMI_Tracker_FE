@@ -51,12 +51,6 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     url: '/feedback',
     icon: <VscFeedback />,
   },
-  // {
-  //   title: 'Services',
-  //   key: 'services',
-  //   url: '/services',
-  //   icon: <AiOutlineCustomerService />,
-  // },
 
   {
     title: 'Blog',
@@ -91,11 +85,16 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     url: PAGE_ROUTES.TRAINER.MENU,
     icon: <MdOutlineRestaurantMenu />,
   },
-
   {
     title: 'Blog',
     key: 'blog',
     url: PAGE_ROUTES.TRAINER.BLOG,
     icon: <FormOutlined />,
+  },
+  {
+    title: 'Certificate',
+    key: 'certificate',
+    url: '/certificate',
+    icon: <SafetyCertificateOutlined />,
   },
 ];
