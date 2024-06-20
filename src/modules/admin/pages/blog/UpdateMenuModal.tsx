@@ -1,6 +1,6 @@
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { Select, Typography, message } from 'antd';
+import { Col, Form, Select, Typography, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
@@ -18,7 +18,7 @@ type UpdateBlogTypesParams = {
   onRefreshPage: () => void;
 };
 
-const UpdateMenuModal = ({ blogUpdateProps, onRefreshPage }: UpdateBlogTypesParams, ref: any) => {
+const UpdateMenuModal = ({ blogUpdateProps , onRefreshPage }: UpdateBlogTypesParams, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const { isLoading, mutate } = useMutation(BLOG_API.UPDATE_BLOG, {
@@ -47,8 +47,8 @@ const UpdateMenuModal = ({ blogUpdateProps, onRefreshPage }: UpdateBlogTypesPara
         blogName: blogUpdateProps.blogName,
         blogContent: blogUpdateProps.blogContent,
         blogPhoto: blogUpdateProps.blogPhoto,
-        tag: blogUpdateProps.active,
         link: blogUpdateProps.blogPhoto,
+
       });
     }
   }, [blogUpdateProps]);
@@ -96,11 +96,11 @@ const UpdateMenuModal = ({ blogUpdateProps, onRefreshPage }: UpdateBlogTypesPara
           </BaseCol>
 
           <BaseCol span={24}>
-            <BaseForm.Item name="tag" label="Tag" rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Enter the tag name of the blog" required />
+            <BaseForm.Item name="link" label="Link" rules={[fieldValidate.required]}>
+              <BaseInput placeholder="Enter the link of the blog" required />
             </BaseForm.Item>
           </BaseCol>
-
+        
           <BaseCol span={24} className="flex items-center justify-end gap-2">
             <BaseButton danger>Reset form</BaseButton>
             <BaseButton
