@@ -102,7 +102,7 @@ const UpdateMenuModal = ({ blogUpdateProps , onRefreshPage }: UpdateBlogTypesPar
           </BaseCol>
         
           <BaseCol span={24} className="flex items-center justify-end gap-2">
-            <BaseButton danger>Reset form</BaseButton>
+            <BaseButton danger>Reset</BaseButton>
             <BaseButton
               icon={<SaveOutlined />}
               className="flex items-center"

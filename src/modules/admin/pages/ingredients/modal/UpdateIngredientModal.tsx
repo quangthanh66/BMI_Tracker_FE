@@ -109,14 +109,14 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Photo" name="ingredientPhoto" rules={[fieldValidate.required]}>
+            <Form.Item label="Photo" name="ingredientPhoto">
               <BaseInput />
             </Form.Item>
           </Col>
 
           <Col span={24} className="flex justify-end">
             <Space>
-              <BaseButton onClick={onCloseModal}>Close modal</BaseButton>
+              <BaseButton onClick={onCloseModal}>Close</BaseButton>
               <BaseButton
                 icon={<EditOutlined />}
                 className="flex items-center"

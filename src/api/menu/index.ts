@@ -4,6 +4,7 @@ import { TAddNewMenu, TUpdateMenu } from './type';
 
 const MENU_API = {
   GET_MENU: () => axiosClient.get(END_POINTS.MENU),
+  GET_MENU_ADVISOR: () => axiosClient.get(END_POINTS.MENU_ADVISOR),
   ADD_NEW_MENU: (params: TAddNewMenu) => axiosClient.post(END_POINTS.ADD_NEW_MENU, params),
   DELETE_MENU: (menuID: number) => axiosClient.delete(`${END_POINTS.DELETE_MENU}/${menuID}`),
   UPDATE_MENU: (params: TUpdateMenu) => {

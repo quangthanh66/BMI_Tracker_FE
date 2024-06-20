@@ -19,15 +19,16 @@ export enum FeedbackStatus {
 
 export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: FeedbackColumnsTypes) => [
   {
+    title: 'Member',
+    dataIndex: 'memberName',
+  },
+  {
     title: 'Title',
     dataIndex: 'title',
     sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) => a.title.length - b.title.length,
     sortDirections: ['descend'],
   },
-  {
-    title: 'Member',
-    dataIndex: 'memberName',
-  },
+ 
   {
     title: 'Type',
     dataIndex: 'type',
@@ -55,11 +56,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
     ),
     sortDirections: ["descend"],
   },
-  // {
-  //   title: 'User',
-  //   dataIndex: 'memberName',
-  //   render: (user: UserItemTypes) => <Typography.Text>{user.fullName}</Typography.Text>,
-  // },
+
   {
     title: 'Actions',
     dataIndex: 'feedbackID',

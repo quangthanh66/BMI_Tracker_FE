@@ -127,9 +127,9 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
           </Col>
 
           <Col span={24} className="flex items-center justify-end gap-2">
-            {/* <BaseButton danger>Reset value</BaseButton>
+            {/* <BaseButton danger>Reset</BaseButton>
             <BaseButton */}
-            <BaseButton danger onClick={handleReset}>Reset value</BaseButton>  {/* Gọi hàm handleReset khi click */}
+            <BaseButton danger onClick={handleReset}>Reset</BaseButton>  {/* Gọi hàm handleReset khi click */}
             <BaseButton
               icon={<SaveOutlined />}
               className="flex items-center"

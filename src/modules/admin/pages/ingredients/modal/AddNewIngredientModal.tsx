@@ -95,14 +95,14 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Photo" name="ingredientPhotoUrl" rules={[fieldValidate.required]}>
+            <Form.Item label="Photo" name="ingredientPhotoUrl">
               <BaseInput />
             </Form.Item>
           </Col>
 
           <Col span={24} className="flex justify-end">
             <Space>
-              <BaseButton onClick={onCloseModal}>Close modal</BaseButton>
+              <BaseButton onClick={onCloseModal}>Close</BaseButton>
               <BaseButton
                 icon={<PlusOutlined />}
                 className="flex items-center"

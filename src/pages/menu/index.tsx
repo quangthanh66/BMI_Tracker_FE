@@ -14,12 +14,15 @@ import FOOD_API from '@app/api/foods/type';
 import { TFoodItem } from '@app/api/foods';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
 import DetailMenuDialog from './DetailMenuDialog';
+import { USER_ROLES_ENUM } from '@app/utils/constant';
+import { UserItemTypes } from '@app/api/users/type';
+import { useSelector } from 'react-redux';
 
 const MenuManagement = () => {
   const addNewMenuRef = useRef<any>();
   const updateMenuRef = useRef<any>();
   const detailMenuRef = useRef<any>();
-
+  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
   const [menuUpdate, setMenuUpdate] = useState<TMenuItem>();
@@ -43,6 +46,9 @@ const MenuManagement = () => {
     },
   });
 
+
+
+
   const { isLoading: isLoadingFoods, refetch: refetchFoods } = useQuery(['get-foods'], FOOD_API.GET_FOODS, {
     enabled: false,
     onSuccess: (response: TFoodItem[]) => {
@@ -62,6 +68,7 @@ const MenuManagement = () => {
       });
     },
   });
+
 
   const { isLoading: isLoadingDeleteFood, mutate: mutateDeleteMenu } = useMutation(MENU_API.DELETE_MENU, {
     onSuccess: () => {
@@ -113,6 +120,7 @@ const MenuManagement = () => {
     setMenuUpdate(menu);
     updateMenuRef.current.openModal();
   };
+
 
   return (
     <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood}>

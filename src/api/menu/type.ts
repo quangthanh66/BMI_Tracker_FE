@@ -44,3 +44,4 @@ export type MenuDetailResponse = {
   advisorID: number;
   menuFoods: MenuFoodItem[];
 };
+

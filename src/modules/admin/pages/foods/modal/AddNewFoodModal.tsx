@@ -157,19 +157,19 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
             </Col>
 
             <Col span={24}>
-              <Form.Item label="Description" name="description" rules={[fieldValidate.required]}>
+              <Form.Item label="Description" name="description">
                 <BaseInput.TextArea rows={3} />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Photo Link" name="foodPhoto" rules={[fieldValidate.required]}>
+              <Form.Item label="Photo Link" name="foodPhoto">
                 <BaseInput />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Video Link" name="foodVideo" rules={[fieldValidate.required]}>
+              <Form.Item label="Video Link" name="foodVideo">
                 <BaseInput />
               </Form.Item>
             </Col>

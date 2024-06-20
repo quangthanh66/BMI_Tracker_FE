@@ -48,7 +48,7 @@ const MenuTrainer = () => {
     isLoading,
     refetch,
     data: menuList,
-  } = useQuery(['get-menus'], MENU_API.GET_MENU, {
+  } = useQuery(['get-menus'], MENU_API.GET_MENU_ADVISOR, {
     enabled: false,
     onSuccess: (response: TMenuItem[]) => {
       setMenu(response);
@@ -142,7 +142,7 @@ const MenuTrainer = () => {
     modal.confirm({
       title: 'Are you sure to delete menu ?',
       okText: 'Confirm to delete',
-      cancelText: 'Close modal',
+      cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
         mutate(Number(menuID));

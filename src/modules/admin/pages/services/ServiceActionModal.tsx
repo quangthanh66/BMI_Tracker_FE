@@ -138,7 +138,7 @@ const ServiceActionModal = ({ serviceUpdate, onActionAfterClose, usersSelect }: 
 
           <Col span={24} className="flex justify-end">
             <Space>
-              <BaseButton onClick={onCloseModal}>Close modal</BaseButton>
+              <BaseButton onClick={onCloseModal}>Close</BaseButton>
               <BaseButton
                 className="flex items-center"
                 htmlType="submit"

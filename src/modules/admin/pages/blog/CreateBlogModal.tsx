@@ -91,7 +91,7 @@ const CreateBlogModal = ({ onRefreshPage }: CreateBlogTypes, ref: any) => {
         <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
           <BaseRow gutter={[20, 20]}>
             <BaseCol span={24}>
-              <BaseForm.Item name="blogName" label="Name" rules={[fieldValidate.required]}>
+              <BaseForm.Item name="blogName" label="Title" rules={[fieldValidate.required]}>
                 <BaseInput placeholder="Enter your blog name" required maxLength={50} />
               </BaseForm.Item>
             </BaseCol>

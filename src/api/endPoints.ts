@@ -44,6 +44,7 @@ export const END_POINTS = {
   DELETE_INGREDIENTS: '/api/ingredients/delete',
   UPDATE_INGREDIENT: '/api/ingredients/update',
   MENU: '/api/menus/getAllMenu',
+  MENU_ADVISOR: '/api/menus/getMenuByAdvisor',
   ADD_NEW_MENU: '/api/menus/createNew',
   UPDATE_MENU: '/api/menus/update',
   SERVICES: '/api/service',

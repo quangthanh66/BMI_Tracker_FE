@@ -95,12 +95,12 @@ const UpdateMenuModal = ({ foodsOptions, menuUpdate, refetchPage }: TUpdateMenuP
           </Col>
 
           <Col span={24}>
-            <Form.Item label="Description" name="menuDescription" rules={[fieldValidate.required]}>
+            <Form.Item label="Description" name="menuDescription">
               <BaseInput.TextArea rows={3} />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Photo" name="menuPhoto" rules={[fieldValidate.required]}>
+            <Form.Item label="Photo" name="menuPhoto" >
               <BaseInput.TextArea rows={3} />
             </Form.Item>
           </Col>
@@ -119,7 +119,7 @@ const UpdateMenuModal = ({ foodsOptions, menuUpdate, refetchPage }: TUpdateMenuP
 
           <Col span={24} className="flex justify-end">
             <Space>
-              <BaseButton onClick={onCloseModal}>Close modal</BaseButton>
+              <BaseButton onClick={onCloseModal}>Close</BaseButton>
               <BaseButton
                 icon={<PlusOutlined />}
                 className="flex items-center"

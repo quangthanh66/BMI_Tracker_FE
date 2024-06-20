@@ -81,7 +81,7 @@ const IngredientManagement = () => {
     modal.confirm({
       title: 'Are you sure to delete this ingredient ?',
       okText: 'Confirm to delete',
-      cancelText: 'Close modal',
+      cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
         mutate(id);

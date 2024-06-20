@@ -88,7 +88,7 @@ const FoodManagement = () => {
     modal.confirm({
       title: 'Are you sure to delete food ?',
       okText: 'Confirm to delete',
-      cancelText: 'Close modal',
+      cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
         deleteFoodMutate(foodID);
@@ -158,9 +158,9 @@ const FoodManagement = () => {
                           Date: <span className="font-semibold">{item.creationDate}</span>
                         </Typography.Text>
 
-                        <Typography.Text>
+                        {/* <Typography.Text>
                           Status: <span className="font-semibold">{item.active}</span>
-                        </Typography.Text>
+                        </Typography.Text> */}
                       </div>
                     </div>
 
