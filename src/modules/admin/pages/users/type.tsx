@@ -3,6 +3,7 @@ import { Button, Tag, Tooltip } from 'antd';
 import { CheckCircleOutlined, DeleteOutlined, EditOutlined, EyeOutlined, FileTextOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
+import { USER_ROLES_ENUM } from '@app/utils/constant';
 // import { USER_STATUS } from '@app/utils/constant';
 
 type UserColumnsTypes = {
@@ -10,6 +11,17 @@ type UserColumnsTypes = {
   deleteUser: (userId: string) => void;
   provideCertificate: (user: UserItemTypes) => void;
   approveTrainer: (userId: string) => void;
+};
+
+const getRoleName = (role: USER_ROLES_ENUM) => {
+  if (role === USER_ROLES_ENUM.ROLE_ADMIN) {
+    return 'Admin';
+  }
+
+  if (role === USER_ROLES_ENUM.ROLE_ADVISOR) {
+    return 'Advisor';
+  }
+  return 'Member';
 };
 
 export const UserColumns: any = ({
@@ -34,28 +46,25 @@ export const UserColumns: any = ({
   },
   {
     title: 'Role',
-    dataIndex: 'role',
-    render: (roleNames: any) => (
-      <Tag
-        color={
-          roleNames === 'ROLE_ADMIN'
-            ? 'red'
-            : roleNames === 'ROLE_ADVISOR'
-            ? 'blue'
-            : roleNames === 'ROLE_MEMBER'
-            ? 'green'
-            : 'geekblue'
-        }
-      >
-        {roleNames === 'ROLE_ADMIN'
-          ? 'Admin'
-          : roleNames === 'ROLE_ADVISOR'
-          ? 'Advisor'
-          : roleNames === 'ROLE_MEMBER'
-          ? 'Member'
-          : roleNames}
-      </Tag>
-    ),
+    dataIndex: 'roleNames',
+    render: (roleNames: any) => {
+      console.log(roleNames);
+      return (
+        <Tag
+          color={
+            roleNames[0] === 'ROLE_ADMIN'
+              ? 'red'
+              : roleNames[0] === 'ROLE_ADVISOR'
+              ? 'blue'
+              : roleNames[0] === 'ROLE_MEMBER'
+              ? 'green'
+              : 'geekblue'
+          }
+        >
+          {getRoleName(roleNames[0])}
+        </Tag>
+      );
+    },
   },
 
   {
