@@ -18,7 +18,6 @@ export const UserColumns: any = ({
   provideCertificate,
   approveTrainer,
 }: UserColumnsTypes) => [
-
   {
     title: 'Full Name',
     dataIndex: 'fullName',
@@ -35,38 +34,44 @@ export const UserColumns: any = ({
   },
   {
     title: 'Role',
-    dataIndex: 'roleNames',
+    dataIndex: 'role',
     render: (roleNames: any) => (
-      <Tag color={
-        roleNames === 'ROLE_ADMIN' ? 'red' : 
-          roleNames === 'ROLE_ADVISOR' ? 'blue' : 
-          roleNames === 'ROLE_MEMBER' ? 'green' : 'geekblue'
-      }>
-        {roleNames === 'ROLE_ADMIN' ? 'Admin' : 
-            roleNames === 'ROLE_ADVISOR' ? 'Advisor' : 
-            roleNames === 'ROLE_MEMBER' ? 'Member' : roleNames}
+      <Tag
+        color={
+          roleNames === 'ROLE_ADMIN'
+            ? 'red'
+            : roleNames === 'ROLE_ADVISOR'
+            ? 'blue'
+            : roleNames === 'ROLE_MEMBER'
+            ? 'green'
+            : 'geekblue'
+        }
+      >
+        {roleNames === 'ROLE_ADMIN'
+          ? 'Admin'
+          : roleNames === 'ROLE_ADVISOR'
+          ? 'Advisor'
+          : roleNames === 'ROLE_MEMBER'
+          ? 'Member'
+          : roleNames}
       </Tag>
     ),
   },
- 
+
   {
     title: 'Status',
     dataIndex: 'isActive',
     render: (isActive: boolean) => (
       <Tag
         color={
-        //   isActive === USER_STATUS.true || isActive === USER_STATUS.true
-          isActive === true
-            ? 'green'
-            : isActive === false
-            ? 'geekblue'
-            : 'volcano'
+          //   isActive === USER_STATUS.true || isActive === USER_STATUS.true
+          isActive === true ? 'green' : isActive === false ? 'geekblue' : 'volcano'
         }
       >
-       {isActive ? 'Active' : 'Inactive'}
+        {isActive ? 'Active' : 'Inactive'}
       </Tag>
     ),
-    sortDirections: ["descend"],
+    sortDirections: ['descend'],
   },
   // {
   //   title: 'Change role',

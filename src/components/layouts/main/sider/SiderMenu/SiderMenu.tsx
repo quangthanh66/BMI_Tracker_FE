@@ -18,7 +18,6 @@ const sidebarNavFlat = sidebarNavigation.reduce(
 );
 
 const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
-  const [role, setRole] = useState(USER_ROLES_ENUM.ROLE_MEMBER);
   const { t } = useTranslation();
   const location = useLocation();
   const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
@@ -30,12 +29,7 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
     children?.some(({ url }) => url === location.pathname),
   );
   const defaultOpenKeys = openedSubmenu ? [openedSubmenu.key] : [];
-
-  useEffect(() => {
-    // if (userProfileState && userProfileState.roles.roleName.toLowerCase() === USER_ROLES_ENUM.ROLE_ADVISOR.toLowerCase()) {
-    //   setRole(USER_ROLES_ENUM.ROLE_ADVISOR);
-    // }
-  }, [userProfileState]);
+  console.log(userProfileState);
 
   return (
     <S.Menu
@@ -43,23 +37,25 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
       defaultSelectedKeys={defaultSelectedKeys}
       defaultOpenKeys={defaultOpenKeys}
       onClick={() => setCollapsed(true)}
-      items={(role === USER_ROLES_ENUM.ROLE_ADVISOR ? trainerSidebar : sidebarNavigation).map((nav) => {
-        const isSubMenu = nav.children?.length;
-        return {
-          key: nav.key,
-          title: t(nav.title),
-          label: isSubMenu ? t(nav.title) : <Link to={nav.url || ''}>{t(nav.title)}</Link>,
-          icon: nav.icon,
-          children:
-            isSubMenu &&
-            nav.children &&
-            nav.children.map((childNav) => ({
-              key: childNav.key,
-              label: <Link to={childNav.url || ''}>{t(childNav.title)}</Link>,
-              title: t(childNav.title),
-            })),
-        };
-      })}
+      items={(userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR ? trainerSidebar : sidebarNavigation).map(
+        (nav) => {
+          const isSubMenu = nav.children?.length;
+          return {
+            key: nav.key,
+            title: t(nav.title),
+            label: isSubMenu ? t(nav.title) : <Link to={nav.url || ''}>{t(nav.title)}</Link>,
+            icon: nav.icon,
+            children:
+              isSubMenu &&
+              nav.children &&
+              nav.children.map((childNav) => ({
+                key: childNav.key,
+                label: <Link to={childNav.url || ''}>{t(childNav.title)}</Link>,
+                title: t(childNav.title),
+              })),
+          };
+        },
+      )}
     />
   );
 };

@@ -3,7 +3,7 @@ export type UserItemTypes = {
   email: string;
   fullName: string;
   phoneNumber: string;
-  roleNames: string;
+  role: string;
   isActive: boolean;
   birthday: string;
 };

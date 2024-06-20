@@ -75,7 +75,7 @@ const CertificateManagement = () => {
   const openUpdateCertificateModal = (certificateProps: CertificateItemTypes) => {
     setCertificateUpdate(certificateProps);
 
-    userProfileState.roleNames === USER_ROLES_ENUM.ROLE_ADVISOR
+    userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR
       ? updateCertificateRef.current.openModal()
       : updateCertificateAdminRef.current.openModal(certificateProps.certificateID);
   };
@@ -110,13 +110,13 @@ const CertificateManagement = () => {
   };
 
   useEffect(() => {
-    userProfileState.roleNames === USER_ROLES_ENUM.ROLE_ADVISOR
+    userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR
       ? getCertificateAdvisorByID(Number(userProfileState.accountID))
       : refetchCertificatesList();
   }, []);
 
   const onRefetchList = () =>
-    userProfileState.roleNames === USER_ROLES_ENUM.ROLE_ADVISOR
+    userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR
       ? getCertificateAdvisorByID(Number(userProfileState.accountID))
       : refetchCertificatesList();
 
