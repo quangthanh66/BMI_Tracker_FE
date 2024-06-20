@@ -7,13 +7,11 @@ import useModal from 'antd/lib/modal/useModal';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { DeleteOutlined, ExclamationCircleOutlined, FileAddOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddNewMenuModal from '@app/modules/admin/pages/menu/modal/AddNewMenuModal';
 import { SelectTypes } from '@app/utils/helper';
 import FOOD_API from '@app/api/foods/type';
 import { TFoodItem } from '@app/api/foods';
-import CATEGORIES_API from '@app/api/categories';
-import { TCategoryItem } from '@app/api/categories/type';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
 import { UserItemTypes } from '@app/api/users/type';
 import USERS_API from '@app/api/users';
@@ -60,6 +58,8 @@ const MenuTrainer = () => {
       });
     },
   });
+
+  console.log(menuList);
 
   const { isLoading: isLoadingFoods, refetch: refetchFoods } = useQuery(['get-foods'], FOOD_API.GET_FOODS, {
     enabled: false,
@@ -138,7 +138,7 @@ const MenuTrainer = () => {
     setMenu(result as TMenuItem[]);
   };
 
-  const confirmModal = (menuID: string) => {
+  const confirmModal = (menuID: number) => {
     modal.confirm({
       title: 'Are you sure to delete menu ?',
       okText: 'Confirm to delete',
@@ -181,9 +181,12 @@ const MenuTrainer = () => {
         </Col>
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
-            {/* {menus.map((item) => {
+            {menus.map((item) => {
               return (
-                <div className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md">
+                <div
+                  className="flex flex-col justify-between gap-4 w-full h-full p-4 shadow-lg rounded-md"
+                  key={item.menuID}
+                >
                   <div className="w-full flex flex-col gap-2 flex-grow">
                     <Image
                       alt="food-alt"
@@ -195,11 +198,11 @@ const MenuTrainer = () => {
                       }}
                     />
                     <Typography.Title level={5}>{item.menuName}</Typography.Title>
-                    <Typography.Paragraph>{item.menuDescription.slice(0, 100)} ...</Typography.Paragraph>
+                    {item.menuDescription ? item.menuDescription.slice(0, 100) : '...'}
                   </div>
 
                   <div className="flex items-center  gap-2 w-full max-w-full">
-                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuId)}>
+                    <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuID)}>
                       Delete menu
                     </BaseButton>
                     <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>
@@ -208,7 +211,7 @@ const MenuTrainer = () => {
                   </div>
                 </div>
               );
-            })} */}
+            })}
           </div>
         </Col>
       </Row>
