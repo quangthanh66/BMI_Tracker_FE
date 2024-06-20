@@ -13,14 +13,13 @@ export type CreateNewBlogTypes = {
   blogContent: string;
   blogPhoto: string;
   link: string;
-  tag: string;
-  userId: string;
 };
 
 export type UpdateBlogTypes = {
-  blogId: string;
+  blogID: number;
   blogName: string;
   blogContent: string;
   blogPhoto: string;
   link: string;
+  isActive: boolean;
 };

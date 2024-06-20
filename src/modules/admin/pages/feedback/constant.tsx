@@ -25,6 +25,10 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
     sortDirections: ['descend'],
   },
   {
+    title: 'Member',
+    dataIndex: 'memberName',
+  },
+  {
     title: 'Type',
     dataIndex: 'type',
     render: (type: string) => <BaseTag color="geekblue">{type}</BaseTag>,
@@ -69,7 +73,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
           ></BaseButton>
         </BaseTooltip>
 
-        <BaseTooltip title="Delete feedback">
+        {/* <BaseTooltip title="Delete feedback">
           <BasePopconfirm
             placement="rightTop"
             title="Delete the feedback"
@@ -79,7 +83,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
           >
             <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
           </BasePopconfirm>
-        </BaseTooltip>
+        </BaseTooltip> */}
       </div>
     ),
   },

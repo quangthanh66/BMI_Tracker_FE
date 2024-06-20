@@ -48,6 +48,7 @@ export const UserColumns: any = ({
       </Tag>
     ),
   },
+ 
   {
     title: 'Status',
     dataIndex: 'isActive',

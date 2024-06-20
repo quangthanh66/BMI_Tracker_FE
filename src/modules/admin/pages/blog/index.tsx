@@ -44,7 +44,7 @@ const Blog = () => {
     console.log(value);
   };
 
-  const filterBlogStatus = (statusParams: string) => {
+  const filterBlogStatus = (statusParams: boolean) => {
     console.log(blogsListServer?.data);
     console.log(statusParams);
   };
