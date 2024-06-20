@@ -162,7 +162,9 @@ const MenuManagement = () => {
                       {item.menuName}
                     </Typography.Title>
                     <Typography.Paragraph className="!text-black">
-                      {item.menuDescription.slice(0, 100)} ...
+                      {/* {item?.menuDescription.slice(0, 100)} ... */}
+
+                      {item.menuDescription ? item.menuDescription.slice(0, 100) : '...'}
                     </Typography.Paragraph>
                   </div>
 
