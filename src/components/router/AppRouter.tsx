@@ -19,7 +19,7 @@ import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage
 import { PAGE_ROUTES } from '@app/utils/router';
 import UsersManagement from '@app/pages/users';
 import FeedbackManagement from '@app/pages/feedback';
-import ServicesManagement from '@app/pages/services';
+
 import ChattingManagement from '@app/pages/chat';
 import BlogManagement from '@app/pages/blog';
 import FoodManagement from '@app/pages/foods';
@@ -28,8 +28,10 @@ import MenuManagement from '@app/pages/menu';
 import UserTrainer from '@app/modules/trainer/pages/users';
 import BlogTrainer from '@app/modules/trainer/pages/blogs';
 import MenuTrainer from '@app/modules/trainer/pages/menu';
-import TrainerServices from '@app/modules/trainer/pages/services';
 import CertificateManagement from '@app/pages/certificate';
+import ExerciseManagement from '@app/pages/exercise';
+import WorkoutManagement from '@app/pages/workout';
+import PlanManagement from '@app/pages/plan';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -145,16 +147,19 @@ export const AppRouter: React.FC = () => {
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route path={PAGE_ROUTES.USERS} element={<UsersManagement />} />
           <Route path={PAGE_ROUTES.FEEDBACK} element={<FeedbackManagement />} />
-          <Route path={PAGE_ROUTES.SERVICES} element={<ServicesManagement />} />
+
           <Route path={PAGE_ROUTES.CHATTING} element={<ChattingManagement />} />
           <Route path={PAGE_ROUTES.BLOG} element={<BlogManagement />} />
           <Route path={PAGE_ROUTES.FOOD} element={<FoodManagement />} />
           <Route path={PAGE_ROUTES.INGREDIENTS} element={<IngredientManagement />} />
+          <Route path={PAGE_ROUTES.EXERCISE} element={<ExerciseManagement />} />
+          <Route path={PAGE_ROUTES.WORKOUT} element={<WorkoutManagement />} />
+          <Route path={PAGE_ROUTES.PLAN} element={<PlanManagement />} />
           <Route path={PAGE_ROUTES.MENU} element={<MenuManagement />} />
           <Route path={PAGE_ROUTES.TRAINER.USERS} element={<UserTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.BLOG} element={<BlogTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.MENU} element={<MenuTrainer />} />
-          <Route path={PAGE_ROUTES.TRAINER.SERVICES} element={<TrainerServices />} />
+
           <Route path={PAGE_ROUTES.CERTIFICATE} element={<CertificateManagement />} />
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />

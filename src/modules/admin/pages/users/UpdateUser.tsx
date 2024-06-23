@@ -68,13 +68,13 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<Typography className="text-xl">Update user profile</Typography>}
+      title={<Typography className="text-xl">Update user status</Typography>}
       width={800}
     >
       {contextHolder}
       <Form layout="vertical" requiredMark={false} onFinish={onFinish} form={form}>
         <Row gutter={[20, 20]}>
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item name="fullName" label="Full name" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your full name" required maxLength={50} />
             </Form.Item>
@@ -84,7 +84,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
             <Form.Item name="phoneNumber" label="Phone number" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your phone number" required maxLength={20} />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           {/* <Col span={12}>
             <Form.Item name="gender" label="Gender" rules={[fieldValidate.required]}>
@@ -103,14 +103,14 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
             </Form.Item>
           </Col> */}
 
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item name="birthday" label="Birthday" rules={[fieldValidate.required]}>
               <DatePicker format={'YYYY-MM-DD'} style={{ width: '100%' }} />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           <Col span={12}>
-            <Form.Item name="isActive" label="isActive" rules={[fieldValidate.required]}>
+            <Form.Item name="isActive" label="Status" rules={[fieldValidate.required]}>
               <Select
                 options={[
                   {

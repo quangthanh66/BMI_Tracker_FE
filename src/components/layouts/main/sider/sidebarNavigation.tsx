@@ -1,6 +1,6 @@
-import { AiOutlineUser, AiOutlineCustomerService } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineCustomerService, AiFillProject } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
-import { CoffeeOutlined, FormOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
+import { CoffeeOutlined, FormOutlined, SafetyCertificateOutlined, ProjectOutlined, ProjectFilled } from '@ant-design/icons';
 import { PAGE_ROUTES } from '@app/utils/router';
 import { MdOutlineFastfood, MdOutlineRestaurantMenu } from 'react-icons/md';
 import { GiFoodChain } from 'react-icons/gi';
@@ -63,6 +63,24 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     key: 'certificate',
     url: '/certificate',
     icon: <SafetyCertificateOutlined />,
+  },
+  {
+    title: 'Exercise',
+    key: 'exercise',
+    url: '/exercise',
+    icon: <ProjectOutlined />,
+  },
+  {
+    title: 'Workout',
+    key: 'workout',
+    url: '/workout',
+    icon: <ProjectFilled />,
+  },
+  {
+    title: 'Plan',
+    key: 'plan',
+    url: '/plan',
+    icon: <AiFillProject />,
   },
 ];
 
