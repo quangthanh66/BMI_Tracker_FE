@@ -1,15 +1,10 @@
 export type TWorkoutItem = {
   workoutID: string;
   workoutName: string;
-  foodCalories: string;
-  description: string;
-  foodPhoto: string;
-  foodVideo: string;
-  foodNutrition: string;
-  foodTimeProcess: number;
-  creationDate: string;
-  foodTags: FoodTags[];
-  active: boolean;
+  workoutDescription: string;
+  totalCloriesBurned: number;
+  isActive: boolean;
+  advisorID: number;
 };
 export type FoodTags = {
   tagID: number;

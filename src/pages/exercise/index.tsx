@@ -30,7 +30,7 @@ const ExerciseManagement = () => {
   } = useQuery(['get-exericse'], EXERCISE_API.GET_EXERCISE, {
     enabled: false,
     onSuccess: (response: ExerciseTypes[]) => {
-      const availableExercise = response.filter((item) => item.status !== 'false');
+      const availableExercise = response.filter((item) => item.isActive !== false);
       setExercise(availableExercise);
     },
     onError: () => {
@@ -92,7 +92,7 @@ const ExerciseManagement = () => {
   const searchExercise = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value.toLowerCase();
     const result = exerciseList?.filter(
-      (exercise) => exercise.exerciseName.toLowerCase().includes(keySearch) && exercise.status !== 'false',
+      (exercise) => exercise.exerciseName.toLowerCase().includes(keySearch) && exercise.isActive !== false,
     );
     setExercise(result as ExerciseTypes[]);
   };
@@ -136,7 +136,7 @@ const ExerciseManagement = () => {
                   <Card size="small">
                     <div className="flex flex-col justify-between gap-4 w-full">
                       <div className="w-full flex flex-col gap-4">
-                        <Image
+                        {/* <Image
                           alt="food-alt"
                           src={item.exercisePhoto}
                           className="w-full h-[200px] object-cover rounded-md"
@@ -144,9 +144,22 @@ const ExerciseManagement = () => {
                             currentTarget.onerror = null;
                             currentTarget.src = errorImage;
                           }}
-                        />
+                        /> */}
                         <Typography.Title level={5}>{item.exerciseName}</Typography.Title>
                       </div>
+                      <div className="flex flex-col justify-between w-full">
+                        <Typography.Text>
+                          Emoji: <span className="font-semibold">{item.emoji}</span>
+                        </Typography.Text>
+                        <Typography.Text>
+                          Duration: <span className="font-semibold">{item.duration}</span>
+                        </Typography.Text>
+                        <Typography.Text>
+                        Calories Burned: <span className="font-semibold">{item.caloriesBurned}</span>
+                        </Typography.Text>
+                        <Typography.Text>
+                        Status: <span className="font-semibold">{item.isActive}</span>
+                        </Typography.Text>
 
                       <div className="grid grid-cols-2 gap-2 w-full">
                         <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.exerciseID)}>
@@ -156,6 +169,7 @@ const ExerciseManagement = () => {
                           Update
                         </BaseButton>
                       </div>
+                    </div>
                     </div>
                   </Card>
                 </Col>

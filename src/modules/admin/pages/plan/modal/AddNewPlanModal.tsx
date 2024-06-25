@@ -77,7 +77,7 @@ const AddNewPlanModal = ({ foodsOptions, refetchPage }: TAddNewPlanModal, ref: a
       <Form layout="vertical" form={form} requiredMark={false} onFinish={submitForm}>
         <Row gutter={[14, 14]}>
           <Col span={24}>
-            <Form.Item label="Name" name="menuName" rules={[fieldValidate.required]}>
+            <Form.Item label="Name" name="planName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
@@ -87,11 +87,11 @@ const AddNewPlanModal = ({ foodsOptions, refetchPage }: TAddNewPlanModal, ref: a
               <BaseInput.TextArea rows={3} />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          {/* <Col span={24}>
             <Form.Item label="Photo" name="menuPhoto">
               <BaseInput.TextArea rows={3} />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           <Col span={12}>
             <Form.Item label="Foods" name="menuFoods" rules={[fieldValidate.required]}>

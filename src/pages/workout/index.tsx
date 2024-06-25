@@ -128,7 +128,7 @@ const WorkoutManagement = () => {
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
             {workout
-              .filter((workoutItem) => workoutItem.active)
+              .filter((workoutItem) => workoutItem.isActive)
               .map((item) => {
                 return (
                   <div
@@ -136,7 +136,7 @@ const WorkoutManagement = () => {
                     key={item.workoutID}
                   >
                     <div className="w-full flex flex-col gap-2 flex-grow">
-                      <Image
+                      {/* <Image
                         alt="workout-alt"
                         src={item.foodPhoto}
                         className="w-full h-[200px] object-cover rounded-md"
@@ -144,18 +144,15 @@ const WorkoutManagement = () => {
                           currentTarget.onerror = null;
                           currentTarget.src = errorImage;
                         }}
-                      />
+                      /> */}
                       <Typography.Title level={5}>{item.workoutName}</Typography.Title>
-                      <Typography.Paragraph>{item.description.slice(0, 100)} ...</Typography.Paragraph>
+                      <Typography.Paragraph>{item.workoutDescription.slice(0, 100)} ...</Typography.Paragraph>
                       <div className="flex flex-col justify-between w-full">
                         <Typography.Text>
-                          Time process: <span className="font-semibold">{item.foodTimeProcess} minutes</span>
+                          Calories: <span className="font-semibold">{item.totalCloriesBurned}</span>
                         </Typography.Text>
                         <Typography.Text>
-                          Calories: <span className="font-semibold">{item.foodCalories}</span>
-                        </Typography.Text>
-                        <Typography.Text>
-                          Date: <span className="font-semibold">{item.creationDate}</span>
+                          Advisor: <span className="font-semibold">{item.advisorID}</span>
                         </Typography.Text>
 
                         {/* <Typography.Text>

@@ -50,7 +50,7 @@ const UpdatePlanModal = ({ foodsOptions, planUpdate, refetchPage }: TUpdatePlanP
       form.setFieldsValue({
         // planName: planUpdate.planName,
         // planDescription: planUpdate.planDescription,
-        totalCalories: planUpdate.totalCalories,
+        // totalCalories: planUpdate.totalCalories,
         planFoods: [],
       });
     }

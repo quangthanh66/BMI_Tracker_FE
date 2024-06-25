@@ -94,11 +94,11 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
               <Select options={tagsSelect} />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          {/* <Col span={24}>
             <Form.Item label="Photo" name="ingredientPhotoUrl">
               <BaseInput />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           <Col span={24} className="flex justify-end">
             <Space>

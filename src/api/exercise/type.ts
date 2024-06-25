@@ -1,11 +1,9 @@
 export type TExerciseItem = {
   exerciseID: string;
-  ingredientName: string;
-  exercisePhoto: string;
-  quantity: number;
-  unitOfMeasurement: number;
-  ingredientCalories: number;
-  tagID: number;
+  exerciseName: string;
+  emoji: string;
+  duration: number;
+  caloriesBurned: number;
   isActive: boolean;
 };
 

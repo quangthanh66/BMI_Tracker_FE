@@ -1,11 +1,12 @@
 export type TPlanItem = {
   planID: number;
   planName: string;
-  planPhoto: string;
-  planDescription: string;
-  totalCalories: number;
-  isActive: boolean;
+  price: number;
+  description: string;
+  planDuration: number;
   advisorID: number;
+  active: boolean;
+  popular: boolean;
 };
 
 export type TAddNewPlan = {

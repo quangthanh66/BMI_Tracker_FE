@@ -1,12 +1,8 @@
 export type ExerciseTypes = {
-  exerciseName: any;
   exerciseID: string;
-  ingredientName: string;
-  exercisePhoto: string;
-  status: string;
-  quantity: number;
-  unitOfMeasurement: number
-  ingredientCalories: number,
-  tagID: number,
-  isActive: boolean,
+  exerciseName: string;
+  emoji: string;
+  duration: number;
+  caloriesBurned: number;
+  isActive: boolean;
 };

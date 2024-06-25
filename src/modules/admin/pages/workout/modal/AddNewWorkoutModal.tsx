@@ -192,7 +192,7 @@ const AddNewWorkoutModal = ({ ingredients, refetchWorkoutPage, workoutUpdateProp
                   options={tagsOptions}
                   mode="multiple"
                   allowClear
-                  value={workoutUpdateProps && workoutUpdateProps.foodTags.map((tag) => tag.tagID)}
+                //  value={workoutUpdateProps && workoutUpdateProps.foodTags.map((tag) => tag.tagID)}
                 />
               </Form.Item>
             </Col>

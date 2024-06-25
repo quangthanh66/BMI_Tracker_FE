@@ -157,7 +157,7 @@ const PlanManagement = () => {
                   key={index}
                 >
                   <div className="w-full flex flex-col gap-2 flex-grow">
-                    <Image
+                    {/* <Image
                       alt="food-alt"
                       src={item.planPhoto}
                       className="w-full h-[200px] object-cover rounded-md"
@@ -165,15 +165,29 @@ const PlanManagement = () => {
                         currentTarget.onerror = null;
                         currentTarget.src = errorImage;
                       }}
-                    />
+                    /> */}
                     <Typography.Title className="!text-black" level={5}>
                       {item.planName}
                     </Typography.Title>
+                    <Typography.Text>
+                          Price: <span className="font-semibold">{item.price}</span>
+                    </Typography.Text>
                     <Typography.Paragraph className="!text-black">
-                      {/* {item?.menuDescription.slice(0, 100)} ... */}
-
-                      {item.planDescription ? item.planDescription.slice(0, 100) : '...'}
+                      {item?.description.slice(0, 100)} ...
+                      {item.description ? item.description.slice(0, 100) : '...'}
                     </Typography.Paragraph>
+                    <Typography.Text>
+                          Duration: <span className="font-semibold">{item.planDuration}</span>
+                    </Typography.Text>
+                    <Typography.Text>
+                          Advisor: <span className="font-semibold">{item.advisorID}</span>
+                        </Typography.Text>
+                        <Typography.Text>
+                        Status: <span className="font-semibold">{item.active}</span>
+                        </Typography.Text>
+                        <Typography.Text>
+                        Polular: <span className="font-semibold">{item.popular}</span>
+                        </Typography.Text>
                   </div>
 
                   <div className="flex flex-col gap-y-2">
