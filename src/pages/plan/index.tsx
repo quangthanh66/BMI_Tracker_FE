@@ -46,9 +46,6 @@ const PlanManagement = () => {
     },
   });
 
-
-
-
   const { isLoading: isLoadingFoods, refetch: refetchFoods } = useQuery(['get-foods'], FOOD_API.GET_FOODS, {
     enabled: false,
     onSuccess: (response: TFoodItem[]) => {
@@ -68,7 +65,6 @@ const PlanManagement = () => {
       });
     },
   });
-
 
   const { isLoading: isLoadingDeleteFood, mutate: mutateDeletePlan } = useMutation(PLAN_API.DELETE_PLAN, {
     onSuccess: () => {
@@ -121,6 +117,7 @@ const PlanManagement = () => {
     updatePlanRef.current.openModal();
   };
 
+  console.log(plan);
 
   return (
     <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood}>
@@ -152,42 +149,30 @@ const PlanManagement = () => {
           <div className="grid grid-cols-4 gap-4 w-full">
             {plan.map((item, index) => {
               return (
-                <div
-                  className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md"
-                  key={index}
-                >
+                <div className="flex flex-col  gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md" key={index}>
                   <div className="w-full flex flex-col gap-2 flex-grow">
-                    {/* <Image
-                      alt="food-alt"
-                      src={item.planPhoto}
-                      className="w-full h-[200px] object-cover rounded-md"
-                      onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src = errorImage;
-                      }}
-                    /> */}
                     <Typography.Title className="!text-black" level={5}>
                       {item.planName}
                     </Typography.Title>
-                    <Typography.Text>
-                          Price: <span className="font-semibold">{item.price}</span>
-                    </Typography.Text>
                     <Typography.Paragraph className="!text-black">
                       {item?.description.slice(0, 100)} ...
                       {item.description ? item.description.slice(0, 100) : '...'}
                     </Typography.Paragraph>
-                    <Typography.Text>
-                          Duration: <span className="font-semibold">{item.planDuration}</span>
+                    <Typography.Text className="!text-black">
+                      Price: <span className="font-semibold">{item.price}</span>
                     </Typography.Text>
-                    <Typography.Text>
-                          Advisor: <span className="font-semibold">{item.advisorID}</span>
-                        </Typography.Text>
-                        <Typography.Text>
-                        Status: <span className="font-semibold">{item.active}</span>
-                        </Typography.Text>
-                        <Typography.Text>
-                        Polular: <span className="font-semibold">{item.popular}</span>
-                        </Typography.Text>
+                    <Typography.Text className="!text-black">
+                      Duration: <span className="font-semibold !text-black">{item.planDuration}</span> minutes
+                    </Typography.Text>
+                    <Typography.Text className="!text-black">
+                      Advisor: <span className="font-semibold !text-black">{item.advisorID}</span>
+                    </Typography.Text>
+                    <Typography.Text className="!text-black">
+                      Status: <span className="font-semibold !text-black">{item.active}</span>
+                    </Typography.Text>
+                    <Typography.Text className="!text-black">
+                      Popular: <span className="font-semibold !text-blacks">{item.popular}</span>
+                    </Typography.Text>
                   </div>
 
                   <div className="flex flex-col gap-y-2">

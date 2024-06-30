@@ -2,14 +2,14 @@ import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
 import { FeedbackItemTypes } from './type';
 import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
 import { UserItemTypes } from '@app/api/users/type';
 import { Tag, Typography } from 'antd';
 
 type FeedbackColumnsTypes = {
   updateFeedbackModal: (feedback: FeedbackItemTypes) => void;
-  deleteFeedBack: (feedId: string) => void;
+  approveFeedback: (feedId: string) => void;
 };
 
 export enum FeedbackStatus {
@@ -17,7 +17,7 @@ export enum FeedbackStatus {
   deactive = 'false',
 }
 
-export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: FeedbackColumnsTypes) => [
+export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: FeedbackColumnsTypes) => [
   {
     title: 'Member',
     dataIndex: 'memberName',
@@ -62,17 +62,15 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
           ></BaseButton>
         </BaseTooltip>
 
-        {/* <BaseTooltip title="Delete feedback">
-          <BasePopconfirm
-            placement="rightTop"
-            title="Delete the feedback"
-            okText="Yes"
-            cancelText="No"
-            onConfirm={() => deleteFeedBack(feedbackID)}
-          >
-            <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
-          </BasePopconfirm>
-        </BaseTooltip> */}
+        {!feedback.status && (
+          <BaseTooltip title="Active">
+            <BaseButton
+              onClick={() => approveFeedback(feedbackID)}
+              icon={<CheckCircleOutlined className="text-[24px]" />}
+              type="text"
+            ></BaseButton>
+          </BaseTooltip>
+        )}
       </div>
     ),
   },

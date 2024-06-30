@@ -30,25 +30,15 @@ const FeedbackManagement = () => {
     enabled: false,
   });
 
-  // const { mutate: mutateDeleteFeedback, isLoading: isLoadingDeleteFeedback } = useMutation(
-  //   FEEDBACK_API.DELETE_FEEDBACK,
-  //   {
-  //     onSuccess: () => {
-  //       messageApi.open({
-  //         type: 'success',
-  //         content: 'Delete feedback is successful',
-  //       });
-
-  //       refetch();
-  //     },
-  //     onError: () => {
-  //       messageApi.open({
-  //         type: 'error',
-  //         content: 'Delete feedback is failed. Please try again',
-  //       });
-  //     },
-  //   },
-  // );
+  const { isLoading: isLoadingApproveFeedback, mutate: approveFeedbackMutate } = useMutation({
+    mutationFn: FEEDBACK_API.APPROVE_FEEDBACK,
+    onSuccess: () => refetch(),
+    onError: () =>
+      messageApi.open({
+        type: 'error',
+        content: 'Approve Feedback is failed',
+      }),
+  });
 
   const createFeedbackRef = useRef<any>();
   const updateFeedbackRef = useRef<any>();
@@ -86,12 +76,12 @@ const FeedbackManagement = () => {
     }
   };
 
-  // const deleteFeedbackById = (feedBackID: string) => {
-  //   mutateDeleteFeedback(feedBackID);
-  // };
+  const onApproveFeedback = (feedbackId: number) => {
+    approveFeedbackMutate(feedbackId);
+  };
 
   return (
-    <Spin spinning={isLoadingLoadFeedback} tip="Loading feedbacks ...">
+    <Spin spinning={isLoadingLoadFeedback || isLoadingApproveFeedback} tip="Loading feedbacks ...">
       {contextHolder}
       <Row gutter={[14, 14]}>
         <Col span={24}>
@@ -99,7 +89,6 @@ const FeedbackManagement = () => {
             <Typography.Text className="text-xl font-bold">Feedback management</Typography.Text>
           </Card>
         </Col>
-        {/* <CreateFeedbackModal ref={createFeedbackRef} onRefreshPage={() => refetch()} /> */}
         <UpdateFeedbackModel
           ref={updateFeedbackRef}
           feedbackUpdate={feedbackUpdate as FeedbackItemTypes}
@@ -121,6 +110,7 @@ const FeedbackManagement = () => {
               className="max-w-[82vw]"
               columns={FeedbackColumns({
                 updateFeedbackModal: openUpdateFeedbackModal,
+                approveFeedback: onApproveFeedback,
               })}
               dataSource={feedback}
               scroll={{
