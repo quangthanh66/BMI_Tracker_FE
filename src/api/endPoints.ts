@@ -24,7 +24,7 @@ export const END_POINTS = {
 
   BLOGS: {
     MAIN: '/api/blogs/getAll',
-    DELETE_BLOGS: '/api/test/blogs/delete',
+    DELETE_BLOGS: '/api/blogs/deactivate',
   },
 
   FEEDBACKS: {
@@ -64,17 +64,17 @@ export const END_POINTS = {
   },
 
   WORKOUT: '/api/workouts/getAll',
-  ADD_NEW_WORKOUT: '/api/foods/createNew',
-  DELETE_WORKOUT: '/api/foods/deactive',
-  UPDATE_WORKOUT: '/api/foods/update',
+  ADD_NEW_WORKOUT: '/api/workouts/createNew',
+  DELETE_WORKOUT: '/api/workouts/deactive',
+  UPDATE_WORKOUT: '/api/workouts/update',
 
   CREATE_USER: '/api/accounts/createNew',
   UPDATE_USER: '/api/accounts/update',
 
   EXERCISE: '/api/exercses/getAll',
-  ADD_NEW_EXERCISE: '/api/foods/createNew',
-  DELETE_EXERCISE: '/api/foods/deactive',
-  UPDATE_EXERCISE: '/api/foods/update',
+  ADD_NEW_EXERCISE: '/api/exercses/createNew',
+  DELETE_EXERCISE: '/api/exercses/deactivate',
+  UPDATE_EXERCISE: '/api/exercses/update',
 
   NOTIFICATIONS: '/api/notification',
 

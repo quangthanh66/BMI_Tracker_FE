@@ -5,24 +5,21 @@ export type TExerciseItem = {
   duration: number;
   caloriesBurned: number;
   isActive: boolean;
+  tags: {
+    tagID: number;
+    tagName: string;
+  }[];
 };
 
 export type TAddNewExercise = {
-  ingredientName: string;
-  unitOfMeasurement: string;
-  quantity: number;
-  ingredientCalories: number;
-  tagID: number;
-  ingredientPhotoUrl: string;
+  exerciseName: string;
+  emoji: string;
+  duration: number;
+  distance: number;
+  caloriesBurned: number;
 };
 
 export type TUpdateExercise = TAddNewExercise & {
-  ingredientID: string;
-  ingredientName: string;
-  ingredientPhoto: string;
-  quantity: number;
-  unitOfMeasurement: string;
-  ingredientCalories: number;
-  tagID: number;
-  isActive: boolean;
+  isActive: true;
+  exerciseID: number;
 };

@@ -62,7 +62,7 @@ const Blog = () => {
 
         <Col span={24}>
           <Card>
-            <Typography.Text className="text-xl font-bold">Blog management 2</Typography.Text>
+            <Typography.Text className="text-xl font-bold">Blog management</Typography.Text>
           </Card>
         </Col>
 

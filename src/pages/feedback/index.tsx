@@ -3,11 +3,10 @@ import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import FeedbackFilter from '@app/modules/admin/pages/feedback/FeedbackFilter';
 import UpdateFeedbackModel from '@app/modules/admin/pages/feedback/UpdateFeedbackModal';
 import { FeedbackItemTypes } from '@app/modules/admin/pages/feedback/type';
-import { Card, Col, Row, Spin, Typography, message } from 'antd';
+import { Card, Col, Empty, Row, Spin, Typography, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FEEDBACK_API from '@app/api/feedbacks';
-
 
 const FeedbackManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -78,16 +77,14 @@ const FeedbackManagement = () => {
 
   const onFilterFeedbackStatus = (status: boolean) => {
     if (feedbackServer) {
-        if (status) {
-            setFeedback(feedbackServer);
-        } else {
-            const result = feedbackServer.filter(
-                (feedBackItem: FeedbackItemTypes) => feedBackItem.status === status
-            );
-            setFeedback(result);
-        }
+      if (status) {
+        setFeedback(feedbackServer);
+      } else {
+        const result = feedbackServer.filter((feedBackItem: FeedbackItemTypes) => feedBackItem.status === status);
+        setFeedback(result);
+      }
     }
-};
+  };
 
   // const deleteFeedbackById = (feedBackID: string) => {
   //   mutateDeleteFeedback(feedBackID);
@@ -118,20 +115,25 @@ const FeedbackManagement = () => {
           </Card>
         </Col>
 
-        <Col span={24}>
-          <BaseTable
-            className="max-w-[82vw]"
-            columns={FeedbackColumns({
-              updateFeedbackModal: openUpdateFeedbackModal,
-          
-            })}
-            dataSource={feedback}
-            scroll={{
-              y: (1 - 450 / window.innerHeight) * window.innerHeight,
-              x: 1200,
-            }}
-          />
-        </Col>
+        {feedback.length > 0 ? (
+          <Col span={24}>
+            <BaseTable
+              className="max-w-[82vw]"
+              columns={FeedbackColumns({
+                updateFeedbackModal: openUpdateFeedbackModal,
+              })}
+              dataSource={feedback}
+              scroll={{
+                y: (1 - 450 / window.innerHeight) * window.innerHeight,
+                x: 1200,
+              }}
+            />
+          </Col>
+        ) : (
+          <Col span={24} className="flex justify-center">
+            <Empty />
+          </Col>
+        )}
       </Row>
     </Spin>
   );

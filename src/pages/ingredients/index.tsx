@@ -113,6 +113,7 @@ const IngredientManagement = () => {
           refetchFoodPage={() => refetch()}
           ingredientProps={ingredientUpdate as IngredientTypes}
           ref={updateIngredientRef}
+          tagsSelect={tagsOptions}
         />
 
         <Col span={24}>

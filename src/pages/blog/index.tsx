@@ -1,7 +1,7 @@
 import { BlogColumns } from '@app/modules/admin/pages/blog/constant';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import BlogFilter from '@app/modules/admin/pages/blog/BlogFilter';
-import { Card, Col, Row, Spin, Typography, message } from 'antd';
+import { Card, Col, Empty, Row, Spin, Typography, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import ViewDetailBlog from '@app/modules/admin/pages/blog/ViewDetailBlog';
 import DescriptionModal from '@app/modules/admin/pages/blog/DescriptionModal';
@@ -40,7 +40,8 @@ const BlogManagement = () => {
   } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: any) => {
-      setBlogs(response);
+      const blogsActive = response.filter((blog: BlogItemTypes) => blog.active);
+      setBlogs(blogsActive);
     },
     onError: () => {
       messageApi.open({
@@ -125,21 +126,27 @@ const BlogManagement = () => {
           </Card>
         </Col>
 
-        <Col span={24}>
-          <BaseTable
-            columns={BlogColumns({
-              updateBlogModal: openUpdateBlogModal,
-              descriptionModal: onOpenDescriptionModal,
-              viewDetailModal: onViewDetailBlog,
-              deleteBlog: onDeleteBlog,
-            })}
-            dataSource={blogs}
-            scroll={{
-              y: (1 - 425 / window.innerHeight) * window.innerHeight,
-              x: 1200,
-            }}
-          />
-        </Col>
+        {blogs.length > 0 ? (
+          <Col span={24}>
+            <BaseTable
+              columns={BlogColumns({
+                updateBlogModal: openUpdateBlogModal,
+                descriptionModal: onOpenDescriptionModal,
+                viewDetailModal: onViewDetailBlog,
+                deleteBlog: onDeleteBlog,
+              })}
+              dataSource={blogs}
+              scroll={{
+                y: (1 - 425 / window.innerHeight) * window.innerHeight,
+                x: 1200,
+              }}
+            />
+          </Col>
+        ) : (
+          <Col span={24} className="flex justify-center">
+            <Empty />
+          </Col>
+        )}
       </Row>
     </Spin>
   );

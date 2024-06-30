@@ -38,9 +38,9 @@ const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackSt
         </Col>
       </Row>
 
-      <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateFeedback}>
+      {/* <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateFeedback}>
         Create a new feedback
-      </BaseButton>
+      </BaseButton> */}
     </div>
   );
 };

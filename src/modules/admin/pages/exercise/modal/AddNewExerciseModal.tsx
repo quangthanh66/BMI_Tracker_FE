@@ -20,7 +20,7 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
-  const { isLoading, mutate } = useMutation(EXERCISE_API.ADD_NEW_EXERCISE, {
+  const { isLoading, mutate: addNewExercise } = useMutation(EXERCISE_API.ADD_NEW_EXERCISE, {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
@@ -50,11 +50,10 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
   };
 
   const submitForm = (values: TAddNewExercise) => {
-    // mutate({
-    //   ...values,
-    //   quantity: Number(values.quantity),
-    //   exerciseCalories: Number(values.exerciseCalories),
-    // });
+    addNewExercise({
+      ...values,
+      emoji: '',
+    });
   };
 
   return (
@@ -70,35 +69,30 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
           <Col span={24}>
-            <Form.Item label="Name" name="ingredientName" rules={[fieldValidate.required]}>
+            <Form.Item label="Name" name="exerciseName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Unit Of Measurement" name="unitOfMeasurement" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
+            <Form.Item label="Duration" name="duration" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
+            <Form.Item label="Distance" name="distance" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
-              <Select options={tagsSelect} />
+            <Form.Item label="Calories Burned" name="caloriesBurned" rules={[fieldValidate.required]}>
+              <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          {/* <Col span={24}>
-            <Form.Item label="Photo" name="ingredientPhotoUrl">
-              <BaseInput />
+          <Col span={24}>
+            <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
+              <Select options={tagsSelect} mode="multiple" />
             </Form.Item>
-          </Col> */}
+          </Col>
 
           <Col span={24} className="flex justify-end">
             <Space>

@@ -39,9 +39,9 @@ const BlogFilter = ({ onCreateNewBlog, onSearchBlog, onFilterBlogStatus }: Filte
         </Col>
       </Row>
 
-      <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateNewBlog}>
+      {/* <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateNewBlog}>
         Create a new blog
-      </BaseButton>
+      </BaseButton> */}
     </div>
   );
 };

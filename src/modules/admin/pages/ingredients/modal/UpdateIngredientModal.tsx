@@ -6,17 +6,18 @@ import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { fieldValidate } from '@app/utils/helper';
+import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
-import { Col, Form, Row, Space, message } from 'antd';
+import { Col, Form, Row, Select, Space, message } from 'antd';
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
 type TUpdateIngredientModal = {
   refetchFoodPage: () => void;
   ingredientProps: TIngredientItem;
+  tagsSelect: SelectTypes[];
 };
 
-const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngredientModal, ref: any) => {
+const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps, tagsSelect }: TUpdateIngredientModal, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
@@ -41,6 +42,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
 
   useEffect(() => {
     if (ingredientProps) {
+      console.log(ingredientProps);
       form.setFieldsValue({
         ingredientName: ingredientProps.ingredientName,
         ingredientPhoto: ingredientProps.ingredientPhoto,
@@ -105,7 +107,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps }: TUpdateIngr
           </Col>
           <Col span={24}>
             <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
-              <BaseInput />
+              <Select options={tagsSelect} />
             </Form.Item>
           </Col>
           <Col span={24}>

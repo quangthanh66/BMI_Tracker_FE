@@ -13,6 +13,7 @@ import useModal from 'antd/lib/modal/useModal';
 import TagsAPI from '@app/api/tags';
 import { TagsRequest } from '@app/api/tags/type';
 import { SelectTypes } from '@app/utils/helper';
+import { TExerciseItem } from '@app/api/exercise/type';
 
 const ExerciseManagement = () => {
   const [exerciseUpdate, setExerciseUpdate] = useState<ExerciseTypes>();
@@ -111,8 +112,9 @@ const ExerciseManagement = () => {
 
         <UpdateExerciseModal
           refetchFoodPage={() => refetch()}
-          exerciseProps={exerciseUpdate as ExerciseTypes}
+          exerciseProps={exerciseUpdate as TExerciseItem}
           ref={updateExerciseRef}
+          tagsSelect={tagsOptions}
         />
 
         <Col span={24}>
@@ -155,21 +157,21 @@ const ExerciseManagement = () => {
                           Duration: <span className="font-semibold">{item.duration}</span>
                         </Typography.Text>
                         <Typography.Text>
-                        Calories Burned: <span className="font-semibold">{item.caloriesBurned}</span>
+                          Calories Burned: <span className="font-semibold">{item.caloriesBurned}</span>
                         </Typography.Text>
                         <Typography.Text>
-                        Status: <span className="font-semibold">{item.isActive}</span>
+                          Status: <span className="font-semibold">{item.isActive}</span>
                         </Typography.Text>
 
-                      <div className="grid grid-cols-2 gap-2 w-full">
-                        <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.exerciseID)}>
-                          Delete
-                        </BaseButton>
-                        <BaseButton icon={<FileAddOutlined />} type="primary" onClick={() => updateExercise(item)}>
-                          Update
-                        </BaseButton>
+                        <div className="grid grid-cols-2 gap-2 w-full">
+                          <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.exerciseID)}>
+                            Delete
+                          </BaseButton>
+                          <BaseButton icon={<FileAddOutlined />} type="primary" onClick={() => updateExercise(item)}>
+                            Update
+                          </BaseButton>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </Card>
                 </Col>

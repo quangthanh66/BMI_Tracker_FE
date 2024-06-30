@@ -6,22 +6,23 @@ import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { fieldValidate } from '@app/utils/helper';
+import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
-import { Col, Form, Row, Space, message } from 'antd';
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { Col, Form, Row, Select, Space, message } from 'antd';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
 type TUpdateExerciseModal = {
   refetchFoodPage: () => void;
   exerciseProps: TExerciseItem;
+  tagsSelect: SelectTypes[];
 };
 
-const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps }: TUpdateExerciseModal, ref: any) => {
+const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUpdateExerciseModal, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
 
-  const { isLoading, mutate } = useMutation(EXERCISE_API.UPDATE_EXERCISE, {
+  const { isLoading, mutate: updateExerciseMutate } = useMutation(EXERCISE_API.UPDATE_EXERCISE, {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
@@ -41,10 +42,10 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps }: TUpdateExercise
 
   useEffect(() => {
     if (exerciseProps) {
+      const convertTagsNumber = exerciseProps.tags.map((item) => item.tagID);
       form.setFieldsValue({
-        // exerciseName: exerciseProps.exerciseName,
-        // exercisePhoto: exerciseProps.exercisePhoto,
-      
+        ...exerciseProps,
+        tagID: convertTagsNumber,
       });
     }
   }, [exerciseProps]);
@@ -60,11 +61,13 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps }: TUpdateExercise
   };
 
   const submitForm = (values: TUpdateExercise) => {
-    // mutate({
-    //   ...values,
-    //   exerciseID: exerciseProps.exerciseID,
-    //   isActive: true,
-    // });
+    if (exerciseProps) {
+      updateExerciseMutate({
+        ...values,
+        exerciseID: Number(exerciseProps.exerciseID),
+        emoji: '',
+      });
+    }
   };
 
   return (
@@ -79,34 +82,47 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps }: TUpdateExercise
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
-          <Col span={12}>
-            <Form.Item label="Name" name="ingredientName" rules={[fieldValidate.required]}>
+          <Col span={24}>
+            <Form.Item label="Name" name="exerciseName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item label="Unit Of Measurement" name="unitOfMeasurement" rules={[fieldValidate.required]}>
-              <BaseInput />
+          <Col span={24}>
+            <Form.Item label="Duration" name="duration" rules={[fieldValidate.required]}>
+              <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
-              <BaseInput />
+          <Col span={24}>
+            <Form.Item label="Distance" name="distance" rules={[fieldValidate.required]}>
+              <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
-              <BaseInput />
+          <Col span={24}>
+            <Form.Item label="Calories Burned" name="caloriesBurned" rules={[fieldValidate.required]}>
+              <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
-              <BaseInput />
+              <Select options={tagsSelect} mode="multiple" />
             </Form.Item>
           </Col>
+
           <Col span={24}>
-            <Form.Item label="Photo" name="ingredientPhoto">
-              <BaseInput />
+            <Form.Item label="Is Active" name="isActive">
+              <Select
+                defaultValue={true}
+                options={[
+                  {
+                    label: 'Active',
+                    value: true,
+                  },
+                  {
+                    label: 'DeActive',
+                    value: false,
+                  },
+                ]}
+              />
             </Form.Item>
           </Col>
 
@@ -114,13 +130,13 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps }: TUpdateExercise
             <Space>
               <BaseButton onClick={onCloseModal}>Close</BaseButton>
               <BaseButton
-                icon={<EditOutlined />}
+                icon={<PlusOutlined />}
                 className="flex items-center"
                 htmlType="submit"
                 loading={isLoading}
                 type="primary"
               >
-                Update
+                Submit
               </BaseButton>
             </Space>
           </Col>

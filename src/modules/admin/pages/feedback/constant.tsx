@@ -28,7 +28,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
     sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) => a.title.length - b.title.length,
     sortDirections: ['descend'],
   },
- 
+
   {
     title: 'Type',
     dataIndex: 'type',
@@ -42,19 +42,11 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, deleteFeedBack }: Fe
     title: 'Status',
     dataIndex: 'status',
     render: (status: boolean) => (
-      <Tag
-        color={
-          status === true
-            ? 'green'
-            : status === false
-            ? 'geekblue'
-            : 'volcano'
-        }
-      >
-       {status ? 'Active' : 'DeActive'}
+      <Tag color={status === true ? 'green' : status === false ? 'geekblue' : 'volcano'}>
+        {status ? 'Active' : 'DeActive'}
       </Tag>
     ),
-    sortDirections: ["descend"],
+    sortDirections: ['descend'],
   },
 
   {

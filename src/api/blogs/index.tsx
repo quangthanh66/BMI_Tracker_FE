@@ -9,7 +9,7 @@ const BLOG_API = {
     axiosClient.put(
       `${END_POINTS.BLOGS.MAIN}?blogID=${params.blogID}&blogName=${params.blogName}&blogContent=${params.blogContent}&blogPhoto=${params.blogPhoto}&link=${params.link}&isActive={params.isActive}`,
     ),
-  DELETE_BLOG: (blogID: string) => axiosClient.delete(`${END_POINTS.BLOGS.DELETE_BLOGS}?blogID=${blogID}`),
+  DELETE_BLOG: (blogID: string) => axiosClient.delete(`${END_POINTS.BLOGS.DELETE_BLOGS}/${blogID}`),
 };
 
 export default BLOG_API;
