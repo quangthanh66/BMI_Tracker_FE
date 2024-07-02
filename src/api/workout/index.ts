@@ -12,15 +12,10 @@ export type FoodTags = {
 };
 
 export type TAddNewWorkout = {
-  foodName: string;
-  foodCalories: number;
-  description: string;
-  foodPhoto: string;
-  foodVideo: string;
-  foodTimeProcess: number;
-  tagIDs: string;
-  ingredientIDs: string;
-  foodNutrition: string;
+  workoutName: string;
+  workoutDescription: string;
+  totalCaloriesBurned: number;
+  isActive: boolean;
 };
 
 export type RecipeRequest = {
@@ -29,5 +24,5 @@ export type RecipeRequest = {
 };
 
 export type TUpdateWorkout = TAddNewWorkout & {
-  foodID: string;
+  workoutID: string;
 };

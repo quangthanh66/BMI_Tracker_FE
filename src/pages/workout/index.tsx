@@ -102,6 +102,8 @@ const WorkoutManagement = () => {
     addNewWorkoutRef.current.openModal();
   };
 
+  console.log(workoutUpdate);
+
   return (
     <Spin spinning={isLoadingGetAllWorkout || isLoadingIngredient || isLoadingDeleteWorkout} tip="Loading workouts...">
       {contextHolder}
@@ -109,7 +111,6 @@ const WorkoutManagement = () => {
 
       <AddNewWorkoutModal
         ref={addNewWorkoutRef}
-        ingredients={ingredients}
         refetchWorkoutPage={() => getWorkout()}
         workoutUpdateProps={workoutUpdate as TWorkoutItem}
       />

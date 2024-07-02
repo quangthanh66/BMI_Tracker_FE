@@ -55,12 +55,12 @@ export const END_POINTS = {
   MENU_ADVISOR: '/api/menus/getMenuByAdvisor',
 
   PLAN: '/api/plans/getAll',
-  ADD_NEW_PLAN: '/api/menus/createNew',
-  UPDATE_PLAN: '/api/menus/update',
-  DELETE_PLAN: '/api/menus/deactivate',
+  ADD_NEW_PLAN: '/api/plans/createNew',
+  UPDATE_PLAN: '/api/plans/update',
+  DELETE_PLAN: '/api/plans/deactivate',
   PLAN_MANAGEMENT: {
-    DEACTIVE: '/api/menus/delete',
-    VIEW_DETAIL: '/api/menus/getMenuByID',
+    DEACTIVE: '/api/plans/delete',
+    VIEW_DETAIL: '/api/plans/getMenuByID',
   },
 
   WORKOUT: '/api/workouts/getAll',

@@ -2,10 +2,9 @@ import PLAN_API from '@app/api/plan';
 import { TPlanItem } from '@app/api/plan/type';
 import FilterPlan from '@app/modules/admin/pages/plan/FilterPlan';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Card, Col, Empty, Image, Row, Spin, Typography, message } from 'antd';
+import { Card, Col, Empty, Row, Spin, Tag, Typography, message } from 'antd';
 import useModal from 'antd/lib/modal/useModal';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import errorImage from 'assets/error-image-alt.png';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddNewPlanModal from '@app/modules/admin/pages/plan/modal/AddNewPlanModal';
@@ -14,15 +13,11 @@ import FOOD_API from '@app/api/foods/type';
 import { TFoodItem } from '@app/api/foods';
 import UpdatePlanModal from '@app/modules/admin/pages/plan/modal/UpdatePlanModal';
 import DetailPlanDialog from './DetailPlanDialog';
-import { USER_ROLES_ENUM } from '@app/utils/constant';
-import { UserItemTypes } from '@app/api/users/type';
-import { useSelector } from 'react-redux';
 
 const PlanManagement = () => {
   const addNewPlanRef = useRef<any>();
   const updatePlanRef = useRef<any>();
   const detailPlanRef = useRef<any>();
-  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
   const [planUpdate, setPlanUpdate] = useState<TPlanItem>();
@@ -126,12 +121,7 @@ const PlanManagement = () => {
 
       <DetailPlanDialog ref={detailPlanRef} />
 
-      <UpdatePlanModal
-        foodsOptions={foodSelect}
-        refetchPage={() => refetch()}
-        planUpdate={planUpdate as TPlanItem}
-        ref={updatePlanRef}
-      />
+      <UpdatePlanModal refetchPage={() => refetch()} planUpdate={planUpdate as TPlanItem} ref={updatePlanRef} />
 
       <AddNewPlanModal foodsOptions={foodSelect} refetchPage={() => refetch()} ref={addNewPlanRef} />
 
@@ -164,14 +154,12 @@ const PlanManagement = () => {
                     <Typography.Text className="!text-black">
                       Duration: <span className="font-semibold !text-black">{item.planDuration}</span> minutes
                     </Typography.Text>
+
                     <Typography.Text className="!text-black">
-                      Advisor: <span className="font-semibold !text-black">{item.advisorID}</span>
-                    </Typography.Text>
-                    <Typography.Text className="!text-black">
-                      Status: <span className="font-semibold !text-black">{item.active}</span>
-                    </Typography.Text>
-                    <Typography.Text className="!text-black">
-                      Popular: <span className="font-semibold !text-blacks">{item.popular}</span>
+                      Status:{' '}
+                      <span className="font-semibold !text-black">
+                        {item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}
+                      </span>
                     </Typography.Text>
                   </div>
 

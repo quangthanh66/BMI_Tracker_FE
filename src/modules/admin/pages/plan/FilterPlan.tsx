@@ -20,9 +20,9 @@ const FilterPlan = ({ addNewPlan, searchPlan }: TFilterPlan) => {
           </Col>
         </Row>
 
-        <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewPlan}>
+        {/* <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewPlan}>
           Add new plan
-        </BaseButton>
+        </BaseButton> */}
       </div>
     </Card>
   );

@@ -20,9 +20,9 @@ const FilterWorkout = ({ addNewWorkout, searchWorkout }: TFilterWorkout) => {
           </Col>
         </Row>
 
-        <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewWorkout}>
+        {/* <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewWorkout}>
           Add new Workout
-        </BaseButton>
+        </BaseButton> */}
       </div>
     </Card>
   );

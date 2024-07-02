@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import * as S from './SiderMenu.styles';
@@ -29,7 +29,6 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
     children?.some(({ url }) => url === location.pathname),
   );
   const defaultOpenKeys = openedSubmenu ? [openedSubmenu.key] : [];
-  console.log(userProfileState);
 
   return (
     <S.Menu
