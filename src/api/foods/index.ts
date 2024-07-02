@@ -9,11 +9,19 @@ export type TFoodItem = {
   foodTimeProcess: number;
   creationDate: string;
   foodTags: FoodTags[];
-  active: boolean;
+  isActive: boolean;
+  serving: string;
 };
 export type FoodTags = {
   tagID: number;
   tagName: string;
+};
+
+export type RecipeItem = {
+  ingredientID: number;
+  unit: string;
+  quantity: number;
+  isActive: boolean;
 };
 
 export type TAddNewFood = {
@@ -26,7 +34,7 @@ export type TAddNewFood = {
   serving: string;
   foodTimeProcess: number;
   tagIDs: string;
-  ingredientIDs: string;
+  recipeRequests: RecipeItem[];
 };
 
 export type RecipeRequest = {

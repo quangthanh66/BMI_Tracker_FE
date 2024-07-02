@@ -18,7 +18,7 @@ type UpdateBlogTypesParams = {
   onRefreshPage: () => void;
 };
 
-const UpdateMenuModal = ({ blogUpdateProps , onRefreshPage }: UpdateBlogTypesParams, ref: any) => {
+const UpdateMenuModal = ({ blogUpdateProps, onRefreshPage }: UpdateBlogTypesParams, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const { isLoading, mutate } = useMutation(BLOG_API.UPDATE_BLOG, {
@@ -48,7 +48,6 @@ const UpdateMenuModal = ({ blogUpdateProps , onRefreshPage }: UpdateBlogTypesPar
         blogContent: blogUpdateProps.blogContent,
         blogPhoto: blogUpdateProps.blogPhoto,
         link: blogUpdateProps.blogPhoto,
-
       });
     }
   }, [blogUpdateProps]);
@@ -100,7 +99,7 @@ const UpdateMenuModal = ({ blogUpdateProps , onRefreshPage }: UpdateBlogTypesPar
               <BaseInput placeholder="Enter the link of the blog" required />
             </BaseForm.Item>
           </BaseCol>
-        
+
           <BaseCol span={24} className="flex items-center justify-end gap-2">
             <BaseButton danger>Reset</BaseButton>
             <BaseButton

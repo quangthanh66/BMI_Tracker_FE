@@ -14,7 +14,6 @@ import useModal from 'antd/lib/modal/useModal';
 
 const FoodManagement = () => {
   const addNewFoodRef = useRef<any>();
-  const updateFoodRef = useRef<any>();
 
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
@@ -128,7 +127,7 @@ const FoodManagement = () => {
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
             {foods
-              .filter((foodItem) => foodItem.active)
+              .filter((foodItem) => foodItem.isActive)
               .map((item) => {
                 return (
                   <div

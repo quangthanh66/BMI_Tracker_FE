@@ -34,7 +34,7 @@ export const END_POINTS = {
 
   FOOD: '/api/foods/getAll',
   ADD_NEW_FOOD: '/api/foods/createNew',
-  DELETE_FOOD: '/api/foods/deactive',
+  DELETE_FOOD: '/api/foods/deactivate',
   UPDATE_FOOD: '/api/foods/update',
 
   GET_CERTIFICATE_BY_ADVISOR: '/api/certificates/getAllByID',

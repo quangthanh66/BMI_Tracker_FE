@@ -5,13 +5,15 @@ import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { Col, Form, Row, Select, Space, Spin, message } from 'antd';
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { TAddNewFood, TFoodItem } from '@app/api/foods';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { RecipeItem, TAddNewFood, TFoodItem } from '@app/api/foods';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
 import { TagsRequest } from '@app/api/tags/type';
 import { TIngredientItem } from '@app/api/ingredients/type';
 import TagsAPI from '@app/api/tags';
+import { PlusOutlined } from '@ant-design/icons';
+import RecipeDialog from './RecipeDialog';
 
 type TAddNewFoodModal = {
   ingredients: TIngredientItem[];
@@ -25,6 +27,8 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
   const [form] = BaseForm.useForm();
   const [tagsOptions, setTagsOptions] = useState<SelectTypes[]>([]);
   const [ingredientOptions, setIngredientOptions] = useState<SelectTypes[]>([]);
+
+  const recipeRefDialog = useRef<any>();
 
   const { isLoading: isLoadingHandleFood, mutate: handleFoodMutate } = useMutation(FOOD_API.ADD_NEW_FOOD, {
     onSuccess: () => {
@@ -125,6 +129,16 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     }
   };
 
+  const onOpenRecipeDialog = () => recipeRefDialog.current.openModal();
+
+  const afterClosedRecipeDialog = (value: RecipeItem) => {
+    if (value) {
+      form.setFieldsValue({
+        recipeRequests: [...form.getFieldValue('recipeRequests'), value],
+      });
+    }
+  };
+
   return (
     <BaseModal
       centered
@@ -135,6 +149,8 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
       width={800}
     >
       {contextHolder}
+
+      <RecipeDialog ingredientSelect={ingredientOptions} ref={recipeRefDialog} afterClosed={afterClosedRecipeDialog} />
       <Spin spinning={isLoadingTags}>
         <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
           <Row gutter={[10, 10]}>
@@ -195,6 +211,20 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
                   value={foodUpdateProps && foodUpdateProps.foodTags.map((tag) => tag.tagID)}
                 />
               </Form.Item>
+            </Col>
+
+            {/* <Col span={24}>
+              <Row gutter={[14, 14]}>
+                {form.getFieldValue('recipeRequests').map((item: RecipeItem) => {
+                  return <div>{item.quantity}</div>;
+                })}
+              </Row>
+            </Col> */}
+
+            <Col span={24}>
+              <BaseButton type="primary" icon={<PlusOutlined />} block onClick={onOpenRecipeDialog}>
+                Add New Recipe
+              </BaseButton>
             </Col>
 
             <Col span={24} className="flex justify-end">
