@@ -30,7 +30,7 @@ type MenuFoodItem = {
     foodNutrition: string;
     foodTimeProcess: number;
     creationDate: string;
-    active: boolean;
+    isActive: boolean;
   };
   mealType: string;
 };
@@ -44,4 +44,3 @@ export type MenuDetailResponse = {
   advisorID: number;
   menuFoods: MenuFoodItem[];
 };
-

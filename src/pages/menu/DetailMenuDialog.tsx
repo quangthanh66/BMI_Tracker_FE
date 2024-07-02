@@ -84,7 +84,7 @@ const DetailMenuDialog = ({}, ref: any) => {
                 <div className="flex items-center justify-between">
                   <Typography.Text>{food.food.foodName}</Typography.Text>
 
-                  <Tag color={food.food.active ? 'green' : 'red'}>{food.food.active ? 'Active' : 'Inactive'}</Tag>
+                  <Tag color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'Inactive'}</Tag>
                 </div>
 
                 <div className="flex items-center gap-x-2 flex-wrap ">
@@ -110,7 +110,7 @@ const DetailMenuDialog = ({}, ref: any) => {
                 <BaseButton
                   type="primary"
                   danger
-                  disabled={!food.food.active}
+                  disabled={!food.food.isActive}
                   onClick={() => onDeactiveFoodMenu(food.food.foodID)}
                 >
                   DeActive

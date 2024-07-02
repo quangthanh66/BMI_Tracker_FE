@@ -46,9 +46,6 @@ const MenuManagement = () => {
     },
   });
 
-
-
-
   const { isLoading: isLoadingFoods, refetch: refetchFoods } = useQuery(['get-foods'], FOOD_API.GET_FOODS, {
     enabled: false,
     onSuccess: (response: TFoodItem[]) => {
@@ -68,7 +65,6 @@ const MenuManagement = () => {
       });
     },
   });
-
 
   const { isLoading: isLoadingDeleteFood, mutate: mutateDeleteMenu } = useMutation(MENU_API.DELETE_MENU, {
     onSuccess: () => {
@@ -120,7 +116,6 @@ const MenuManagement = () => {
     setMenuUpdate(menu);
     updateMenuRef.current.openModal();
   };
-
 
   return (
     <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood}>

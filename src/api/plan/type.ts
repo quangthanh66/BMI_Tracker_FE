@@ -10,10 +10,10 @@ export type TPlanItem = {
 };
 
 export type TAddNewPlan = {
-  menuName: string;
-  menuDescription: string;
-  totalCalories: number;
-  menuFoods: { foodID: number; mealType: string }[];
+  planName: string;
+  price: number;
+  description: string;
+  planDuration: number;
 };
 
 export type TUpdatePlan = TAddNewPlan & {
@@ -45,4 +45,3 @@ export type PlanDetailResponse = {
   advisorID: number;
   menuFoods: PlanExerciseItem[];
 };
-

@@ -91,7 +91,7 @@ const UpdateIngredientModal = ({ refetchFoodPage, ingredientProps, tagsSelect }:
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Unit Of Measurement" name="unitOfMeasurement" rules={[fieldValidate.required]}>
+            <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>

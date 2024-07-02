@@ -22,10 +22,11 @@ export type TAddNewFood = {
   description: string;
   foodPhoto: string;
   foodVideo: string;
+  foodNutrition: string;
+  serving: string;
   foodTimeProcess: number;
   tagIDs: string;
   ingredientIDs: string;
-  foodNutrition: string;
 };
 
 export type RecipeRequest = {

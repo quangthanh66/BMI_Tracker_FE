@@ -61,18 +61,17 @@ const UpdatePlanModal = ({ foodsOptions, planUpdate, refetchPage }: TUpdatePlanP
   };
 
   const submitForm = (values: TAddNewPlan) => {
-    const convertPlanFood = values.menuFoods.map((item: any) => {
-      return {
-        foodID: item,
-        mealType: 'Breakfast',
-      };
-    });
-
-    updatePlanMutate({
-      ...values,
-      menuID: planUpdate.planID,
-      menuFoods: convertPlanFood,
-    });
+    // const convertPlanFood = values.menuFoods.map((item: any) => {
+    //   return {
+    //     foodID: item,
+    //     mealType: 'Breakfast',
+    //   };
+    // });
+    // updatePlanMutate({
+    //   ...values,
+    //   menuID: planUpdate.planID,
+    //   menuFoods: convertPlanFood,
+    // });
   };
 
   return (
@@ -100,7 +99,7 @@ const UpdatePlanModal = ({ foodsOptions, planUpdate, refetchPage }: TUpdatePlanP
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Photo" name="menuPhoto" >
+            <Form.Item label="Photo" name="menuPhoto">
               <BaseInput.TextArea rows={3} />
             </Form.Item>
           </Col>

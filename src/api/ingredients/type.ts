@@ -23,7 +23,7 @@ export type TUpdateIngredient = TAddNewIngredient & {
   ingredientName: string;
   ingredientPhoto: string;
   quantity: number;
-  unitOfMeasurement: string;
+  unit: string;
   ingredientCalories: number;
   tagID: number;
   isActive: boolean;

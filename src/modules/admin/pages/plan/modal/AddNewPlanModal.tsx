@@ -50,17 +50,7 @@ const AddNewPlanModal = ({ foodsOptions, refetchPage }: TAddNewPlanModal, ref: a
   };
 
   const submitForm = (values: TAddNewPlan) => {
-    const convertPlanFood = values.menuFoods.map((item: any) => {
-      return {
-        foodID: item,
-        mealType: 'Breakfast',
-      };
-    });
-    mutateAddNewPlan({
-      ...values,
-      menuFoods: convertPlanFood,
-      totalCalories: Number(values.totalCalories),
-    });
+    mutateAddNewPlan({ ...values, price: Number(values.price), planDuration: Number(values.planDuration) });
   };
 
   return (
@@ -83,24 +73,19 @@ const AddNewPlanModal = ({ foodsOptions, refetchPage }: TAddNewPlanModal, ref: a
           </Col>
 
           <Col span={24}>
-            <Form.Item label="Description" name="menuDescription">
+            <Form.Item label="Description" name="description">
               <BaseInput.TextArea rows={3} />
-            </Form.Item>
-          </Col>
-          {/* <Col span={24}>
-            <Form.Item label="Photo" name="menuPhoto">
-              <BaseInput.TextArea rows={3} />
-            </Form.Item>
-          </Col> */}
-
-          <Col span={12}>
-            <Form.Item label="Foods" name="menuFoods" rules={[fieldValidate.required]}>
-              <Select options={foodsOptions} mode="multiple" allowClear />
             </Form.Item>
           </Col>
 
           <Col span={12}>
-            <Form.Item label="Total Calories" name="totalCalories" rules={[fieldValidate.required]}>
+            <Form.Item label="Price" name="price" rules={[fieldValidate.required]}>
+              <BaseInput min={0} type="number" />
+            </Form.Item>
+          </Col>
+
+          <Col span={12}>
+            <Form.Item label="Duration" name="planDuration" rules={[fieldValidate.required]}>
               <BaseInput min={0} type="number" />
             </Form.Item>
           </Col>
