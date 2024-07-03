@@ -14,15 +14,11 @@ import FOOD_API from '@app/api/foods/type';
 import { TFoodItem } from '@app/api/foods';
 import UpdateMenuModal from '@app/modules/admin/pages/menu/modal/UpdateMenuModal';
 import DetailMenuDialog from './DetailMenuDialog';
-import { USER_ROLES_ENUM } from '@app/utils/constant';
-import { UserItemTypes } from '@app/api/users/type';
-import { useSelector } from 'react-redux';
 
 const MenuManagement = () => {
   const addNewMenuRef = useRef<any>();
   const updateMenuRef = useRef<any>();
   const detailMenuRef = useRef<any>();
-  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
   const [menuUpdate, setMenuUpdate] = useState<TMenuItem>();
@@ -36,7 +32,8 @@ const MenuManagement = () => {
   } = useQuery(['get-menus'], MENU_API.GET_MENU, {
     enabled: false,
     onSuccess: (response: TMenuItem[]) => {
-      setMenu(response);
+      const activeMenus = response.filter((menu) => menu.isActive);
+      setMenu(activeMenus);
     },
     onError: () => {
       messageApi.open({

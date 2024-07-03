@@ -5,3 +5,7 @@
 .ant-btn-primary {
   color: whitesmoke !important;
 }
+
+.ant-descriptions-bordered .ant-descriptions-item-label {
+  background-color: transparent !important;
+}

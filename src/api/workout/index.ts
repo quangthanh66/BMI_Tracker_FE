@@ -5,6 +5,7 @@ export type TWorkoutItem = {
   totalCloriesBurned: number;
   isActive: boolean;
   advisorID: number;
+  workoutExercises: WorkoutExercise[];
 };
 export type FoodTags = {
   tagID: number;
@@ -25,4 +26,14 @@ export type RecipeRequest = {
 
 export type TUpdateWorkout = TAddNewWorkout & {
   workoutID: string;
+};
+
+export type WorkoutExercise = {
+  caloriesBurned: number;
+  distance: null;
+  duration: number;
+  emoji: string;
+  exerciseID: number;
+  exerciseName: string;
+  isActive: boolean;
 };

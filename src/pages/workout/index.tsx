@@ -1,26 +1,23 @@
-import { DeleteOutlined, ExclamationCircleOutlined, FileAddOutlined } from '@ant-design/icons';
-import { TWorkoutItem, TUpdateWorkout } from '@app/api/workout';
+import { DeleteOutlined, ExclamationCircleOutlined, EyeOutlined, FileAddOutlined } from '@ant-design/icons';
+import { TWorkoutItem } from '@app/api/workout';
 import WORKOUT_API from '@app/api/workout/type';
-import INGREDIENT_API from '@app/api/ingredients';
-import { TIngredientItem } from '@app/api/ingredients/type';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import FilterWorkout from '@app/modules/admin/pages/workout/FilterWorkout';
 import AddNewWorkoutModal from '@app/modules/admin/pages/workout/modal/AddNewWorkoutModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Spin, Row, Col, message, Empty, Card, Typography, Image } from 'antd';
+import { Spin, Row, Col, message, Empty, Card, Typography, Tag } from 'antd';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import errorImage from 'assets/error-image-alt.png';
 import useModal from 'antd/lib/modal/useModal';
+import WorkoutDetail from './WorkoutDetail';
 
 const WorkoutManagement = () => {
   const addNewWorkoutRef = useRef<any>();
-  const updateWorkoutRef = useRef<any>();
+  const workoutDetailRef = useRef<any>();
 
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
   const [workout, setWorkout] = useState<TWorkoutItem[]>([]);
   const [workoutUpdate, setWorkoutUpdate] = useState<TWorkoutItem>();
-  const [ingredients, setIngredients] = useState<TIngredientItem[]>([]);
 
   const {
     isLoading: isLoadingGetAllWorkout,
@@ -38,23 +35,6 @@ const WorkoutManagement = () => {
       });
     },
   });
-
-  const { isLoading: isLoadingIngredient, refetch: refetchIngredient } = useQuery(
-    ['get-ingredients'],
-    INGREDIENT_API.GET_INGREDIENTS,
-    {
-      enabled: false,
-      onSuccess: (response: TIngredientItem[]) => {
-        setIngredients(response);
-      },
-      onError: () => {
-        messageApi.open({
-          type: 'error',
-          content: 'Cant get ingredient list. Please try again !',
-        });
-      },
-    },
-  );
 
   const { isLoading: isLoadingDeleteWorkout, mutate: deleteWorkoutMutate } = useMutation(WORKOUT_API.DELETE_WORKOUT, {
     onSuccess: () => {
@@ -75,7 +55,6 @@ const WorkoutManagement = () => {
 
   useEffect(() => {
     getWorkout();
-    refetchIngredient();
   }, []);
 
   const searchWorkout = (event: ChangeEvent<HTMLInputElement>) => {
@@ -102,10 +81,12 @@ const WorkoutManagement = () => {
     addNewWorkoutRef.current.openModal();
   };
 
-  console.log(workoutUpdate);
+  const onOpenWorkoutDetail = (value: TWorkoutItem) => {
+    workoutDetailRef.current.openModal(value);
+  };
 
   return (
-    <Spin spinning={isLoadingGetAllWorkout || isLoadingIngredient || isLoadingDeleteWorkout} tip="Loading workouts...">
+    <Spin spinning={isLoadingGetAllWorkout || isLoadingDeleteWorkout} tip="Loading workouts...">
       {contextHolder}
       {modalContextHolder}
 
@@ -114,6 +95,8 @@ const WorkoutManagement = () => {
         refetchWorkoutPage={() => getWorkout()}
         workoutUpdateProps={workoutUpdate as TWorkoutItem}
       />
+
+      <WorkoutDetail ref={workoutDetailRef} />
 
       <Row gutter={[14, 14]}>
         <Col span={24}>
@@ -128,63 +111,62 @@ const WorkoutManagement = () => {
 
         <Col span={24}>
           <div className="grid grid-cols-4 gap-4 w-full">
-            {workout
-              .filter((workoutItem) => workoutItem.isActive)
-              .map((item) => {
-                return (
-                  <div
-                    className="flex flex-col justify-between gap-2 w-full h-full p-4 bg-black-500 shadow-lg rounded-md"
-                    key={item.workoutID}
-                  >
-                    <div className="w-full flex flex-col gap-2 flex-grow">
-                      {/* <Image
-                        alt="workout-alt"
-                        src={item.foodPhoto}
-                        className="w-full h-[200px] object-cover rounded-md"
-                        onError={({ currentTarget }) => {
-                          currentTarget.onerror = null;
-                          currentTarget.src = errorImage;
-                        }}
-                      /> */}
-                      <Typography.Title level={5}>{item.workoutName}</Typography.Title>
-                      <Typography.Paragraph>{item.workoutDescription.slice(0, 100)} ...</Typography.Paragraph>
-                      <div className="flex flex-col justify-between w-full">
-                        <Typography.Text>
-                          Calories: <span className="font-semibold">{item.totalCloriesBurned}</span>
-                        </Typography.Text>
-                        <Typography.Text>
-                          Advisor: <span className="font-semibold">{item.advisorID}</span>
-                        </Typography.Text>
+            {workout.map((item) => {
+              return (
+                <div
+                  className="flex flex-col justify-between gap-2 w-full h-full p-4 bg-black-500 shadow-lg rounded-md"
+                  key={item.workoutID}
+                >
+                  <div className="w-full flex flex-col gap-2 flex-grow">
+                    <Typography.Title level={5}>{item.workoutName}</Typography.Title>
+                    <Typography.Paragraph>{item.workoutDescription.slice(0, 100)} ...</Typography.Paragraph>
+                    <div className="flex flex-col justify-between w-full">
+                      <Typography.Text>
+                        Calories: <span className="font-semibold">{item.totalCloriesBurned}</span>
+                      </Typography.Text>
+                      <Typography.Text>
+                        Advisor: <span className="font-semibold">{item.advisorID}</span>
+                      </Typography.Text>
 
-                        {/* <Typography.Text>
-                          Status: <span className="font-semibold">{item.active}</span>
-                        </Typography.Text> */}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center mt-4  gap-2 w-full">
-                      <BaseButton
-                        danger
-                        icon={<DeleteOutlined />}
-                        className="flex-1"
-                        onClick={() => confirmModal(item.workoutID)}
-                        size="small"
-                      >
-                        Delete
-                      </BaseButton>
-                      <BaseButton
-                        icon={<FileAddOutlined />}
-                        className="flex-1"
-                        type="primary"
-                        onClick={() => updateWorkout(item.workoutID)}
-                        size="small"
-                      >
-                        Update
-                      </BaseButton>
+                      <Typography.Text>
+                        Status:{' '}
+                        <Tag color={item.isActive ? 'green' : 'red'}>{item.isActive ? 'Active' : 'InActive'}</Tag>
+                      </Typography.Text>
                     </div>
                   </div>
-                );
-              })}
+
+                  <div className="flex items-center mt-4  gap-2 w-full">
+                    <BaseButton
+                      danger
+                      icon={<DeleteOutlined />}
+                      className="flex-1"
+                      onClick={() => confirmModal(item.workoutID)}
+                      size="small"
+                    >
+                      Delete
+                    </BaseButton>
+                    <BaseButton
+                      icon={<FileAddOutlined />}
+                      className="flex-1"
+                      type="primary"
+                      onClick={() => updateWorkout(item.workoutID)}
+                      size="small"
+                    >
+                      Update
+                    </BaseButton>
+                  </div>
+                  <BaseButton
+                    icon={<EyeOutlined />}
+                    type="primary"
+                    block
+                    size="small"
+                    onClick={() => onOpenWorkoutDetail(item)}
+                  >
+                    View Detail
+                  </BaseButton>
+                </div>
+              );
+            })}
           </div>
         </Col>
 
