@@ -36,6 +36,7 @@ export const END_POINTS = {
   ADD_NEW_FOOD: '/api/foods/createNew',
   DELETE_FOOD: '/api/foods/deactivate',
   UPDATE_FOOD: '/api/foods/update',
+  TAGS_FOOD: '/api/tags/food/getAll',
 
   GET_CERTIFICATE_BY_ADVISOR: '/api/certificates/getAllByID',
   CERTIFICATE: '/api/certificates/getAll',
@@ -47,6 +48,7 @@ export const END_POINTS = {
   DELETE_INGREDIENTS: '/api/ingredients/delete',
   UPDATE_INGREDIENT: '/api/ingredients/update',
   ADD_NEW_INGREDIENTS: '/api/ingredients/createNew',
+  TAG_INGREDIENT: '/api/tags/ingredient/getAll',
 
   MENU: '/api/menus/getAllMenu',
   ADD_NEW_MENU: '/api/menus/createNew',
@@ -75,6 +77,7 @@ export const END_POINTS = {
   ADD_NEW_EXERCISE: '/api/exercses/createNew',
   DELETE_EXERCISE: '/api/exercses/deactivate',
   UPDATE_EXERCISE: '/api/exercses/update',
+  TAG_EXERCISE: '/api/tags/exercise/getAll',
 
   NOTIFICATIONS: '/api/notification',
 

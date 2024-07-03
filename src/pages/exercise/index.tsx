@@ -61,7 +61,7 @@ const ExerciseManagement = () => {
 
   const { isLoading: isLoadingTags } = useQuery({
     queryKey: ['tags-key'],
-    queryFn: TagsAPI.getAllTag,
+    queryFn: EXERCISE_API.GET_EXERCISE_TAGS,
     onError: () => message.error('Load tags is failed'),
     onSuccess: (response: TagsRequest[]) => {
       const result: SelectTypes[] = response.map((item) => {

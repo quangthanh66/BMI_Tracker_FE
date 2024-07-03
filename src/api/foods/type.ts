@@ -9,6 +9,7 @@ const FOOD_API = {
     return axiosClient.put(END_POINTS.UPDATE_FOOD, params);
   },
   DELETE_FOOD: (foodID: string) => axiosClient.delete(`${END_POINTS.DELETE_FOOD}/${foodID}`),
+  GET_TAGS_FOOD: () => axiosClient.get(END_POINTS.TAGS_FOOD),
 };
 
 export default FOOD_API;

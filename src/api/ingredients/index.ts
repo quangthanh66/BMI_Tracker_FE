@@ -9,6 +9,7 @@ const INGREDIENT_API = {
     return axiosClient.put(END_POINTS.UPDATE_INGREDIENT, params);
   },
   DELETE_INGREDIENT: (ingredientId: string) => axiosClient.delete(`${END_POINTS.DELETE_INGREDIENTS}/${ingredientId}`),
+  GET_INGREDIENT_TAGS: () => axiosClient.get(END_POINTS.TAG_INGREDIENT),
 };
 
 export default INGREDIENT_API;

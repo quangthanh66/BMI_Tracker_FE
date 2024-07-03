@@ -9,6 +9,7 @@ const EXERCISE_API = {
     return axiosClient.put(END_POINTS.UPDATE_EXERCISE, params);
   },
   DELETE_EXERCISE: (exerciseId: string) => axiosClient.delete(`${END_POINTS.DELETE_EXERCISE}/${exerciseId}`),
+  GET_EXERCISE_TAGS: () => axiosClient.get(END_POINTS.TAG_EXERCISE),
 };
 
 export default EXERCISE_API;

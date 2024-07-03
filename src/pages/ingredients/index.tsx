@@ -60,7 +60,7 @@ const IngredientManagement = () => {
 
   const { isLoading: isLoadingTags } = useQuery({
     queryKey: ['tags-key'],
-    queryFn: TagsAPI.getAllTag,
+    queryFn: INGREDIENT_API.GET_INGREDIENT_TAGS,
     onError: () => message.error('Load tags is failed'),
     onSuccess: (response: TagsRequest[]) => {
       const result: SelectTypes[] = response.map((item) => {

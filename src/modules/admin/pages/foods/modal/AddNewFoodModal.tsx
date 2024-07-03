@@ -68,7 +68,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   const { isLoading: isLoadingTags } = useQuery({
     queryKey: ['tags-key'],
-    queryFn: TagsAPI.getAllTag,
+    queryFn: FOOD_API.GET_TAGS_FOOD,
     onError: () => message.error('Load tags is failed'),
     onSuccess: (response: TagsRequest[]) => {
       const result: SelectTypes[] = response.map((item) => {
