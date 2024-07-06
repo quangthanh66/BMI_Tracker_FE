@@ -2,7 +2,7 @@ import MENU_API from '@app/api/menu';
 import { TMenuItem } from '@app/api/menu/type';
 import FilterMenu from '@app/modules/admin/pages/menu/FilterMenu';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Card, Col, Empty, Image, Row, Spin, Typography, message } from 'antd';
+import { Card, Col, Empty, Image, Row, Spin, Tag, Typography, message } from 'antd';
 import useModal from 'antd/lib/modal/useModal';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
@@ -32,8 +32,7 @@ const MenuManagement = () => {
   } = useQuery(['get-menus'], MENU_API.GET_MENU, {
     enabled: false,
     onSuccess: (response: TMenuItem[]) => {
-      const activeMenus = response.filter((menu) => menu.isActive);
-      setMenu(activeMenus);
+      setMenu(response);
     },
     onError: () => {
       messageApi.open({
@@ -148,7 +147,7 @@ const MenuManagement = () => {
                   className="flex flex-col justify-between gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md"
                   key={index}
                 >
-                  <div className="w-full flex flex-col gap-2 flex-grow">
+                  <div className="w-full flex flex-col gap-1 flex-grow">
                     <Image
                       alt="food-alt"
                       src={item.menuPhoto}
@@ -161,24 +160,27 @@ const MenuManagement = () => {
                     <Typography.Title className="!text-black" level={5}>
                       {item.menuName}
                     </Typography.Title>
-                    <Typography.Paragraph className="!text-black">
-                      {/* {item?.menuDescription.slice(0, 100)} ... */}
-
-                      {item.menuDescription ? item.menuDescription.slice(0, 100) : '...'}
+                    <Typography.Paragraph className="!text-black line-clamp-2">
+                      {item.menuDescription}
                     </Typography.Paragraph>
+
+                    <div className="flex items-center gap-x-2 text-black">
+                      Status:
+                      {item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}
+                    </div>
                   </div>
 
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-2 w-full">
-                      <BaseButton danger className="flex-1" onClick={() => confirmModal(item.menuID)}>
+                      <BaseButton danger className="flex-1" size="small" onClick={() => confirmModal(item.menuID)}>
                         Delete menu
                       </BaseButton>
-                      <BaseButton className="flex-1" type="primary" onClick={() => updateMenu(item)}>
+                      <BaseButton className="flex-1" type="primary" size="small" onClick={() => updateMenu(item)}>
                         Update menu
                       </BaseButton>
                     </div>
 
-                    <BaseButton type="primary" onClick={() => onOpenDetailMenuDialog(item.menuID)}>
+                    <BaseButton type="primary" size="small" onClick={() => onOpenDetailMenuDialog(item.menuID)}>
                       View Detail
                     </BaseButton>
                   </div>

@@ -29,6 +29,7 @@ const RecipeDialog = ({ ingredientSelect, afterClosed }: RecipeDialogProps, ref:
 
   const onSubmitForm = (values: RecipeItem) => {
     afterClosed(values);
+    form.resetFields();
     onCloseModal();
   };
   return (

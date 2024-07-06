@@ -18,6 +18,7 @@ export type FoodTags = {
 };
 
 export type RecipeItem = {
+  recipeID: number;
   ingredientID: number;
   unit: string;
   quantity: number;

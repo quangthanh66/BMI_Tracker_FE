@@ -69,7 +69,7 @@ const DetailMenuDialog = ({}, ref: any) => {
           key: String(index + 1),
           label: food.food.foodName,
           children: (
-            <Row gutter={[4, 4]} className="w-full ">
+            <Row gutter={[24, 24]} className="w-full  ">
               <Col span={12} className="min-h-full">
                 <Image
                   src={food.food.foodPhoto}
@@ -87,8 +87,8 @@ const DetailMenuDialog = ({}, ref: any) => {
                   <Tag color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'Inactive'}</Tag>
                 </div>
 
-                <div className="flex items-center gap-x-2 flex-wrap ">
-                  <span className="font-semibold">Description</span>: {food.food.description}
+                <div className="flex items-center gap-x-2 flex-wrap line-clamp-4">
+                  <Typography>{food.food.description}</Typography>
                 </div>
 
                 <div className="flex items-center gap-x-2 flex-wrap">
@@ -113,7 +113,7 @@ const DetailMenuDialog = ({}, ref: any) => {
                   disabled={!food.food.isActive}
                   onClick={() => onDeactiveFoodMenu(food.food.foodID)}
                 >
-                  DeActive
+                  InActive
                 </BaseButton>
               </Col>
             </Row>

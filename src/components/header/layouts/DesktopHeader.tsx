@@ -8,7 +8,6 @@ import * as S from '../Header.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { IoIosLogOut } from 'react-icons/io';
-import { Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_ROUTES } from '@app/utils/router';
 
@@ -22,9 +21,6 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
   const leftSide = isTwoColumnsLayout ? (
     <S.SearchColumn xl={16} xxl={17}>
       <BaseRow justify="space-between">
-        <BaseCol xl={15} xxl={12}>
-          <HeaderSearch />
-        </BaseCol>
         <BaseCol>
           <S.GHButton />
         </BaseCol>
@@ -32,9 +28,6 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
     </S.SearchColumn>
   ) : (
     <>
-      <BaseCol lg={10} xxl={8}>
-        <HeaderSearch />
-      </BaseCol>
       <BaseCol>
         <S.GHButton />
       </BaseCol>

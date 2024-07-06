@@ -1,19 +1,18 @@
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
-import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
-import { Col, Form, Row, Select, Space, Spin, message } from 'antd';
+import { Col, Form, Input, Row, Select, Space, Spin, Tag, Typography, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { RecipeItem, TAddNewFood, TFoodItem } from '@app/api/foods';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
 import { TagsRequest } from '@app/api/tags/type';
 import { TIngredientItem } from '@app/api/ingredients/type';
-import TagsAPI from '@app/api/tags';
-import { PlusOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import RecipeDialog from './RecipeDialog';
+import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
+import _ from 'lodash';
 
 type TAddNewFoodModal = {
   ingredients: TIngredientItem[];
@@ -24,9 +23,10 @@ type TAddNewFoodModal = {
 const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAddNewFoodModal, ref: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [form] = BaseForm.useForm();
+  const [form] = Form.useForm();
   const [tagsOptions, setTagsOptions] = useState<SelectTypes[]>([]);
   const [ingredientOptions, setIngredientOptions] = useState<SelectTypes[]>([]);
+  const [recipes, setRecipes] = useState<RecipeItem[]>([]);
 
   const recipeRefDialog = useRef<any>();
 
@@ -36,7 +36,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
         type: 'success',
         content: 'Add a new food is successfully',
       });
-
+      setRecipes([]);
       refetchFoodPage();
       onCloseModal();
     },
@@ -125,6 +125,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
         ...values,
         foodCalories: Number(values.foodCalories),
         foodTimeProcess: Number(values.foodTimeProcess),
+        recipeRequests: recipes,
       });
     }
   };
@@ -133,10 +134,20 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   const afterClosedRecipeDialog = (value: RecipeItem) => {
     if (value) {
-      form.setFieldsValue({
-        recipeRequests: [...form.getFieldValue('recipeRequests'), value],
-      });
+      const result = recipes?.length > 0 ? [...recipes, value] : [value];
+      setRecipes(result);
     }
+  };
+
+  const onRemoveRecipe = (value: RecipeItem) => {
+    if (recipes.length > 0) {
+      const result = _.without(recipes, value);
+      setRecipes(result);
+    }
+  };
+
+  const getRecipeInfo = (recipeId: number): string => {
+    return ingredientOptions.length === 0 ? '' : ingredientOptions.find((item) => item.value === recipeId)!.label;
   };
 
   return (
@@ -156,53 +167,53 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
           <Row gutter={[10, 10]}>
             <Col span={12}>
               <Form.Item label="Name" name="foodName" rules={[fieldValidate.required]}>
-                <BaseInput />
+                <Input />
               </Form.Item>
             </Col>
 
             <Col span={12}>
               <Form.Item label="Calories" name="foodCalories" rules={[fieldValidate.required]}>
-                <BaseInput type="number" min={0} />
+                <Input type="number" min={0} />
               </Form.Item>
             </Col>
 
-            <Col span={24}>
+            <Col span={12}>
               <Form.Item label="Nutrition" name="foodNutrition" rules={[fieldValidate.required]}>
-                <BaseInput />
+                <Input />
+              </Form.Item>
+            </Col>
+
+            <Col span={12}>
+              <Form.Item label="Serving" name="serving" rules={[fieldValidate.required]}>
+                <Input />
               </Form.Item>
             </Col>
 
             <Col span={24}>
               <Form.Item label="Description" name="description">
-                <BaseInput.TextArea rows={3} />
+                <Input.TextArea rows={3} />
               </Form.Item>
             </Col>
 
             <Col span={12}>
               <Form.Item label="Photo Link" name="foodPhoto">
-                <BaseInput />
+                <Input />
               </Form.Item>
             </Col>
 
             <Col span={12}>
               <Form.Item label="Video Link" name="foodVideo">
-                <BaseInput />
+                <Input />
               </Form.Item>
             </Col>
 
             <Col span={12}>
               <Form.Item label="Time process" name="foodTimeProcess" rules={[fieldValidate.required]}>
-                <BaseInput type="number" />
+                <Input type="number" />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Ingredients" name="ingredientIDs" rules={[fieldValidate.required]}>
-                <Select options={ingredientOptions} mode="multiple" allowClear />
-              </Form.Item>
-            </Col>
-
-            <Col span={24}>
               <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
                 <Select
                   options={tagsOptions}
@@ -213,13 +224,28 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
               </Form.Item>
             </Col>
 
-            {/* <Col span={24}>
-              <Row gutter={[14, 14]}>
-                {form.getFieldValue('recipeRequests').map((item: RecipeItem) => {
-                  return <div>{item.quantity}</div>;
-                })}
-              </Row>
-            </Col> */}
+            <Col span={24}>
+              <div className="flex flex-col gap-y-2">
+                <Typography>Recipe Selected</Typography>
+
+                <div className="flex items-center gap-2 flex-wrap">
+                  {recipes.length > 0 &&
+                    recipes.map((value: RecipeItem, index: number) => {
+                      return (
+                        <BaseTag
+                          className="p-2"
+                          closeIcon={<CloseCircleOutlined color="white" className="ml-2 text-lg text-white" />}
+                          closable
+                          onClose={() => onRemoveRecipe(value)}
+                          key={index}
+                        >
+                          {getRecipeInfo(value.ingredientID)}
+                        </BaseTag>
+                      );
+                    })}
+                </div>
+              </div>
+            </Col>
 
             <Col span={24}>
               <BaseButton type="primary" icon={<PlusOutlined />} block onClick={onOpenRecipeDialog}>
