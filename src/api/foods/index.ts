@@ -11,6 +11,8 @@ export type TFoodItem = {
   foodTags: FoodTags[];
   isActive: boolean;
   serving: string;
+
+  recipes: RecipeItem[];
 };
 export type FoodTags = {
   tagID: number;
@@ -20,6 +22,8 @@ export type FoodTags = {
 export type RecipeItem = {
   recipeID: number;
   ingredientID: number;
+  ingredientName: string;
+  ingredientPhoto: string;
   unit: string;
   quantity: number;
   isActive: boolean;

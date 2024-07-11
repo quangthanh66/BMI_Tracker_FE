@@ -1,5 +1,5 @@
 import { DeleteOutlined, ExclamationCircleOutlined, FileAddOutlined } from '@ant-design/icons';
-import { TFoodItem, TUpdateFood } from '@app/api/foods';
+import { RecipeItem, TFoodItem, TUpdateFood } from '@app/api/foods';
 import FOOD_API from '@app/api/foods/type';
 import INGREDIENT_API from '@app/api/ingredients';
 import { TIngredientItem } from '@app/api/ingredients/type';
@@ -7,13 +7,15 @@ import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import FilterFoods from '@app/modules/admin/pages/foods/FilterFoods';
 import AddNewFoodModal from '@app/modules/admin/pages/foods/modal/AddNewFoodModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Spin, Row, Col, message, Empty, Card, Typography, Image } from 'antd';
+import { Spin, Row, Col, message, Empty, Card, Typography, Image, Button } from 'antd';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
 import useModal from 'antd/lib/modal/useModal';
+import ViewDetailRecipeDialog from './ViewDetailRecipeDialog';
 
 const FoodManagement = () => {
   const addNewFoodRef = useRef<any>();
+  const viewDetailRecipeRef = useRef<any>();
 
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
@@ -101,6 +103,8 @@ const FoodManagement = () => {
     addNewFoodRef.current.openModal();
   };
 
+  const onViewDetailRecipeDialog = (recipes: RecipeItem[]) => viewDetailRecipeRef.current.openModal(recipes);
+
   return (
     <Spin spinning={isLoadingGetAllFoods || isLoadingIngredient || isLoadingDeleteFood} tip="Loading foods...">
       {contextHolder}
@@ -112,6 +116,8 @@ const FoodManagement = () => {
         refetchFoodPage={() => getFoods()}
         foodUpdateProps={foodUpdate as TFoodItem}
       />
+
+      <ViewDetailRecipeDialog ref={viewDetailRecipeRef} />
 
       <Row gutter={[14, 14]}>
         <Col span={24}>
@@ -179,6 +185,10 @@ const FoodManagement = () => {
                         Update
                       </BaseButton>
                     </div>
+
+                    <BaseButton size="small" type="primary" onClick={() => onViewDetailRecipeDialog(item.recipes)}>
+                      View detail recipe
+                    </BaseButton>
                   </div>
                 );
               })}
