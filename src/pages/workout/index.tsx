@@ -114,24 +114,27 @@ const WorkoutManagement = () => {
             {workout.map((item) => {
               return (
                 <div
-                  className="flex flex-col justify-between gap-2 w-full h-full p-4 bg-black-500 shadow-lg rounded-md"
+                  className="flex flex-col  gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md"
                   key={item.workoutID}
                 >
                   <div className="w-full flex flex-col gap-2 flex-grow">
-                    <Typography.Title level={5}>{item.workoutName}</Typography.Title>
-                    <Typography.Paragraph>{item.workoutDescription.slice(0, 100)} ...</Typography.Paragraph>
-                    <div className="flex flex-col justify-between w-full">
-                      <Typography.Text>
-                        Calories: <span className="font-semibold">{item.totalCloriesBurned}</span>
+                    <Typography.Title className="!text-black" level={3}>{item.workoutName}</Typography.Title>
+                    <Typography.Paragraph className="!text-black text-lg" >{item.workoutDescription.slice(0, 100)} ...</Typography.Paragraph>
+                    <div className="w-full flex flex-col gap-2 flex-grow">
+                      <Typography.Text className="!text-black">
+                        <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
+                        <span style={{ textTransform: 'lowercase' }}>{item.totalCloriesBurned}</span>
                       </Typography.Text>
-                      <Typography.Text>
-                        Advisor: <span className="font-semibold">{item.advisorID}</span>
+                      <Typography.Text className="!text-black">
+                        <span style={{ fontWeight: 'bold' }}>Created by :</span>{" "}
+                        <span style={{ textTransform: 'lowercase' }}>{item.fullName}</span>
                       </Typography.Text>
-
-                      <Typography.Text>
-                        Status:{' '}
-                        <Tag color={item.isActive ? 'green' : 'red'}>{item.isActive ? 'Active' : 'InActive'}</Tag>
-                      </Typography.Text>
+                      <Typography.Text className="!text-black">
+                      <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
+                      <span className="font-semibold !text-black">
+                        {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
+                      </span>
+                    </Typography.Text>
                     </div>
                   </div>
 

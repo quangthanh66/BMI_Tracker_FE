@@ -132,7 +132,7 @@ const MenuManagement = () => {
       <Row gutter={[14, 14]}>
         <Col span={24}>
           <Card size="small">
-            <Typography.Text className="text-xl font-bold !text-white">Menu management</Typography.Text>
+            <Typography.Text className="text-xl font-bold !text-black">Menu management</Typography.Text>
           </Card>
         </Col>
 

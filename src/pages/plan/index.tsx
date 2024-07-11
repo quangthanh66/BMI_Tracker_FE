@@ -128,7 +128,7 @@ const PlanManagement = () => {
       <Row gutter={[14, 14]}>
         <Col span={24}>
           <Card size="small">
-            <Typography.Text className="text-xl font-bold !text-white">Plan management</Typography.Text>
+            <Typography.Text className="text-xl font-bold !text-black">Plan management</Typography.Text>
           </Card>
         </Col>
 
@@ -141,24 +141,40 @@ const PlanManagement = () => {
               return (
                 <div className="flex flex-col  gap-4 w-full h-full p-4 bg-white shadow-lg rounded-md" key={index}>
                   <div className="w-full flex flex-col gap-2 flex-grow">
-                    <Typography.Title className="!text-black" level={5}>
+                    <Typography.Title className="!text-black" level={3}>
                       {item.planName}
                     </Typography.Title>
-                    <Typography.Paragraph className="!text-black">
+
+                    <Typography.Paragraph className="!text-black text-lg">
                       {item?.description.slice(0, 100)} ...
                       {item.description ? item.description.slice(0, 100) : '...'}
                     </Typography.Paragraph>
+
                     <Typography.Text className="!text-black">
-                      Price: <span className="font-semibold">{item.price}</span>
+                    <span style={{ fontWeight: 'bold' }}>Created by :</span>{" "}
+                    <span style={{ textTransform: 'lowercase' }}>{item.fullName}</span>
                     </Typography.Text>
+
+
                     <Typography.Text className="!text-black">
-                      Duration: <span className="font-semibold !text-black">{item.planDuration}</span> minutes
+                    <span style={{ fontWeight: 'bold' }}>Number of registered member :</span>{" "}
+                    <span style={{ textTransform: 'lowercase' }}>{item.numberOfUses}</span>
                     </Typography.Text>
 
                     <Typography.Text className="!text-black">
-                      Status:{' '}
+                    <span style={{ fontWeight: 'bold' }}>Price :</span>{" "}
+                    <span style={{ textTransform: 'lowercase' }}>{item.price}</span>
+                    </Typography.Text>
+
+                    <Typography.Text className="!text-black">
+                    <span style={{ fontWeight: 'bold' }}>Duration :</span>{" "}
+                    <span style={{ textTransform: 'lowercase' }}>{item.planDuration}</span>
+                    </Typography.Text>
+
+                    <Typography.Text className="!text-black">
+                    <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
                       <span className="font-semibold !text-black">
-                        {item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}
+                        {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
                       </span>
                     </Typography.Text>
                   </div>
@@ -166,16 +182,16 @@ const PlanManagement = () => {
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-2 w-full">
                       <BaseButton danger className="flex-1" onClick={() => confirmModal(item.planID)}>
-                        Delete plan
+                        Delete
                       </BaseButton>
                       <BaseButton className="flex-1" type="primary" onClick={() => updatePlan(item)}>
-                        Update plan
+                        Update
                       </BaseButton>
                     </div>
 
-                    <BaseButton type="primary" onClick={() => onOpenDetailPlanDialog(item.planID)}>
+                    {/* <BaseButton type="primary" onClick={() => onOpenDetailPlanDialog(item.planID)}>
                       View Detail
-                    </BaseButton>
+                    </BaseButton> */}
                   </div>
                 </div>
               );

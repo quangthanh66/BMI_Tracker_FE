@@ -5,4 +5,9 @@ export type ExerciseTypes = {
   duration: number;
   caloriesBurned: number;
   isActive: boolean;
+  distance: string;
+  tags: {
+    tagID: number;
+    tagName: string;
+  }[];
 };

@@ -82,19 +82,19 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
         <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
           <Row gutter={[10, 10]}>
             <Col span={24}>
-              <Form.Item label="Name" name="workoutName" rules={[fieldValidate.required]}>
+              <Form.Item label={<span style={{fontWeight: 'bold'}}>Name</span>} name="workoutName" rules={[fieldValidate.required]}>
                 <BaseInput />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Calories Burned" name="totalCaloriesBurned" rules={[fieldValidate.required]}>
+              <Form.Item label={<span style={{fontWeight: 'bold'}}>Calories</span>} name="totalCaloriesBurned" rules={[fieldValidate.required]}>
                 <BaseInput type="number" min={0} step={0.1} />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Is Active" name="isActive">
+              <Form.Item label={<span style={{fontWeight: 'bold'}}>Status</span>} name="isActive">
                 <BaseSelect
                   defaultValue={true}
                   options={[
@@ -106,7 +106,7 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
             </Col>
 
             <Col span={24}>
-              <Form.Item label="Description" name="workoutDescription">
+              <Form.Item label={<span style={{fontWeight: 'bold'}}>Description</span>} name="workoutDescription">
                 <BaseInput.TextArea rows={3} />
               </Form.Item>
             </Col>

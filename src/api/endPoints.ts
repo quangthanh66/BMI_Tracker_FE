@@ -59,7 +59,7 @@ export const END_POINTS = {
   PLAN: '/api/plans/getAll',
   ADD_NEW_PLAN: '/api/plans/createNew',
   UPDATE_PLAN: '/api/plans/update',
-  DELETE_PLAN: '/api/plans/deactive',
+  DELETE_PLAN: '/api/plans/deactivate',
   PLAN_MANAGEMENT: {
     DEACTIVE: '/api/plans/delete',
     VIEW_DETAIL: '/api/plans/getMenuByID',
@@ -67,7 +67,7 @@ export const END_POINTS = {
 
   WORKOUT: '/api/workouts/getAll',
   ADD_NEW_WORKOUT: '/api/workouts/createNew',
-  DELETE_WORKOUT: '/api/workouts/deactive',
+  DELETE_WORKOUT: '/api/workouts/deactivate',
   UPDATE_WORKOUT: '/api/workouts/update',
 
   CREATE_USER: '/api/accounts/createNew',

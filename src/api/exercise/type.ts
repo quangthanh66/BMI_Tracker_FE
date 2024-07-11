@@ -4,6 +4,7 @@ export type TExerciseItem = {
   emoji: string;
   duration: number;
   caloriesBurned: number;
+  distance: string;
   isActive: boolean;
   tags: {
     tagID: number;

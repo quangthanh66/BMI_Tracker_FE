@@ -3,11 +3,11 @@ export type TPlanItem = {
   planName: string;
   price: number;
   planDuration: number;
-
+  fullName: string;
   advisorID: number;
   isActive: boolean;
   description: string;
-  numberOfUsers: number;
+  numberOfUses: number;
 };
 
 export type TAddNewPlan = {
@@ -15,7 +15,6 @@ export type TAddNewPlan = {
   price: number;
   description: string;
   planDuration: number;
-  popular: boolean;
 };
 
 export type TUpdatePlan = TAddNewPlan & {

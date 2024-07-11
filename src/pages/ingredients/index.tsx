@@ -118,7 +118,7 @@ const IngredientManagement = () => {
 
         <Col span={24}>
           <Card size="small">
-            <Typography.Text className="text-xl font-bold !text-white ">Ingredients management</Typography.Text>
+            <Typography.Text className="text-xl font-bold !text-black ">Ingredients management</Typography.Text>
           </Card>
         </Col>
 

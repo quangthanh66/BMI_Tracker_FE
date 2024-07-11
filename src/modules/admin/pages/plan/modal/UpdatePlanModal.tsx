@@ -103,7 +103,7 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
             </Form.Item>
           </Col>
 
-          <Col span={24}>
+          {/* <Col span={24}>
             <Form.Item label="Popular" name="popular">
               <BaseSelect
                 defaultValue={true}
@@ -119,7 +119,7 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
                 ]}
               />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           <Col span={24} className="flex justify-end">
             <Space>

@@ -1,4 +1,4 @@
-import { Card, Col, Empty, Image, Row, Spin, Typography, message } from 'antd';
+import { Card, Col, Empty, Form, Image, Row, Select, Spin, Tag, Typography, message } from 'antd';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
@@ -12,7 +12,7 @@ import UpdateExerciseModal from '@app/modules/admin/pages/exercise/modal/UpdateE
 import useModal from 'antd/lib/modal/useModal';
 import TagsAPI from '@app/api/tags';
 import { TagsRequest } from '@app/api/tags/type';
-import { SelectTypes } from '@app/utils/helper';
+import { fieldValidate, SelectTypes } from '@app/utils/helper';
 import { TExerciseItem } from '@app/api/exercise/type';
 
 const ExerciseManagement = () => {
@@ -119,7 +119,7 @@ const ExerciseManagement = () => {
 
         <Col span={24}>
           <Card size="small">
-            <Typography.Text className="text-xl font-bold !text-white ">Exercise management</Typography.Text>
+            <Typography.Text className="text-xl font-bold !text-black ">Exercise management</Typography.Text>
           </Card>
         </Col>
 
@@ -137,30 +137,38 @@ const ExerciseManagement = () => {
                 <Col span={6} key={item.exerciseID}>
                   <Card size="small">
                     <div className="flex flex-col justify-between gap-4 w-full">
-                      <div className="w-full flex flex-col gap-4">
-                        {/* <Image
-                          alt="food-alt"
-                          src={item.exercisePhoto}
-                          className="w-full h-[200px] object-cover rounded-md"
-                          onError={({ currentTarget }) => {
-                            currentTarget.onerror = null;
-                            currentTarget.src = errorImage;
-                          }}
-                        /> */}
-                        <Typography.Title level={5}>{item.exerciseName}</Typography.Title>
+                      <div className="w-full flex flex-col gap-2 flex-grow">
+                        <Typography.Title className="!text-black" level={3}>{item.exerciseName}</Typography.Title>
                       </div>
                       <div className="flex flex-col justify-between w-full">
-                        <Typography.Text>
-                          Emoji: <span className="font-semibold">{item.emoji}</span>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Distance :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.distance}</span>
                         </Typography.Text>
-                        <Typography.Text>
-                          Duration: <span className="font-semibold">{item.duration}</span>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Duration :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.duration}</span>
                         </Typography.Text>
-                        <Typography.Text>
-                          Calories Burned: <span className="font-semibold">{item.caloriesBurned}</span>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Calories burned :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.caloriesBurned}</span>
                         </Typography.Text>
-                        <Typography.Text>
-                          Status: <span className="font-semibold">{item.isActive}</span>
+
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Tags :</span>{" "}
+                          {
+                            item.tags.map((tags, index) => (
+                              <Tag key={index} style={{ textTransform: 'lowercase' }}>{tags.tagName}</Tag>
+                            ))
+                          }
+                        </Typography.Text>
+
+
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
+                          {/* <span className="font-semibold !text-black"> */}
+                            {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
+                          {/* </span> */}
                         </Typography.Text>
 
                         <div className="grid grid-cols-2 gap-2 w-full">

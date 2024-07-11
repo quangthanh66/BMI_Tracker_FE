@@ -4,10 +4,12 @@ export type TWorkoutItem = {
   workoutDescription: string;
   totalCloriesBurned: number;
   isActive: boolean;
+  fullName: string;
   advisorID: number;
   workoutExercises: WorkoutExercise[];
+  workoutTags: WorkoutTags[];
 };
-export type FoodTags = {
+export type WorkoutTags = {
   tagID: number;
   tagName: string;
 };

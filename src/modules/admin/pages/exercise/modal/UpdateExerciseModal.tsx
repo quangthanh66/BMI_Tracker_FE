@@ -66,6 +66,7 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
         ...values,
         exerciseID: Number(exerciseProps.exerciseID),
         emoji: '',
+        
       });
     }
   };
@@ -77,39 +78,40 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
       open={isOpenModal}
       onCancel={onCloseModal}
       title={<BaseTypography className="text-xl">Update Exercise</BaseTypography>}
-      width={800}
+      width={600}
+
     >
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
-          <Col span={24}>
-            <Form.Item label="Name" name="exerciseName" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Name</span>} name="exerciseName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Duration" name="duration" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Duration</span>} name="duration" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Distance" name="distance" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Distance</span>} name="distance" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Calories Burned" name="caloriesBurned" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Calories burned</span>} name="caloriesBurned" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Tags</span>} name="tagID" rules={[fieldValidate.required]}>
               <Select options={tagsSelect} mode="multiple" />
             </Form.Item>
           </Col>
 
-          <Col span={24}>
-            <Form.Item label="Is Active" name="isActive">
+          {/* <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Status</span>} name="isActive">
               <Select
                 defaultValue={true}
                 options={[
@@ -124,7 +126,7 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
                 ]}
               />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           <Col span={24} className="flex justify-end">
             <Space>

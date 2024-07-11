@@ -62,39 +62,39 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl !text-white">Add new exercise</BaseTypography>}
+      title={<BaseTypography className="text-xl !text-black">Add new exercise</BaseTypography>}
       width={800}
     >
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
-          <Col span={24}>
-            <Form.Item label="Name" name="exerciseName" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Name</span>} name="exerciseName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Duration" name="duration" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Duration</span>} name="duration" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Distance" name="distance" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Distance</span>} name="distance">
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Calories Burned" name="caloriesBurned" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Calories burned</span>} name="caloriesBurned" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
-            <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Tags</span>} name="tagIDs" rules={[fieldValidate.required]}>
               <Select options={tagsSelect} mode="multiple" />
             </Form.Item>
           </Col>
 
-          <Col span={24} className="flex justify-end">
+          <Col span={12} className="flex justify-end">
             <Space>
               <BaseButton onClick={onCloseModal}>Close</BaseButton>
               <BaseButton
