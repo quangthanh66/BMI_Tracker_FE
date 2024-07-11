@@ -6,6 +6,7 @@ import { CheckCircleOutlined, DeleteOutlined, EditOutlined } from '@ant-design/i
 import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
 import { UserItemTypes } from '@app/api/users/type';
 import { Tag, Typography } from 'antd';
+import dayjs from 'dayjs';
 
 type CommissionColumnsTypes = {
   updateCommissionModal: (commission: CommissionItemTypes) => void;
@@ -25,57 +26,42 @@ export const CommissionColumns: any = ({ updateCommissionModal, approveCommissio
   {
     title: 'Commission Amount',
     dataIndex: 'commissionAmount',
-    sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => a.title.length - b.title.length,
     sortDirections: ['descend'],
   },
 
   {
     title: 'Payment Status',
     dataIndex: 'paymentStatus',
-    render: (type: string) => (
-      <BaseTag color={type === 'PAID' ? 'green' : 'red'}>{type}</BaseTag>
-    ),
+    render: (type: string) => <BaseTag color={type === 'PAID' ? 'green' : 'red'}>{type}</BaseTag>,
   },
   {
     title: 'Paid Amount',
     dataIndex: 'paidAmount',
-    sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => a.title.length - b.title.length,
     sortDirections: ['descend'],
   },
   {
     title: 'Commission Rate',
     dataIndex: 'commissionRate',
-    sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => a.title.length - b.title.length,
     sortDirections: ['descend'],
   },
   {
     title: 'Paid Date',
     dataIndex: 'paidDate',
-    sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => a.title.length - b.title.length,
-    sortDirections: ['descend'],
+    sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
+    render: (a: string) => (a ? dayjs(a).format('YYYY-MM-DD') : '....'),
+    sortDirections: ['ascend', 'descend'],
   },
   {
     title: 'Expected PaymentDate',
     dataIndex: 'expectedPaymentDate',
-    sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => a.title.length - b.title.length,
-    sortDirections: ['descend'],
+    sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
+    sortDirections: ['ascend', 'descend'],
   },
   {
     title: 'Description',
     dataIndex: 'commissionDescription',
-    sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => a.title.length - b.title.length,
     sortDirections: ['descend'],
   },
-  // {
-  //   title: 'Status',
-  //   dataIndex: 'paymentStatus',
-  //   render: (status: boolean) => (
-  //     <Tag color={status === true ? 'green' : status === false ? 'geekblue' : 'volcano'}>
-  //       {status ? 'Active' : 'DeActive'}
-  //     </Tag>
-  //   ),
-  //   sortDirections: ['descend'],
-  // },
 
   {
     title: 'Actions',
@@ -90,7 +76,7 @@ export const CommissionColumns: any = ({ updateCommissionModal, approveCommissio
           ></BaseButton>
         </BaseTooltip>
 
-        {!commission.status && (
+        {/* {!commission.status && (
           <BaseTooltip title="Active">
             <BaseButton
               onClick={() => approveCommission(commissionID)}
@@ -98,7 +84,7 @@ export const CommissionColumns: any = ({ updateCommissionModal, approveCommissio
               type="text"
             ></BaseButton>
           </BaseTooltip>
-        )}
+        )} */}
       </div>
     ),
   },

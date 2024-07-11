@@ -58,10 +58,10 @@ const CommissionManagement = () => {
 
   const onSearchCommission = async (keyValue: string) => {
     if (commissionServer) {
-      const result = await commissionServer.filter((commission: CommissionItemTypes) =>
-        commission.title.toLowerCase().includes(keyValue.toLowerCase()),
-      );
-      setCommission(result);
+      // const result = await commissionServer.filter((commission: CommissionItemTypes) =>
+      //   commission.title.toLowerCase().includes(keyValue.toLowerCase()),
+      // );
+      // setCommission(result);
     }
   };
 
@@ -70,8 +70,8 @@ const CommissionManagement = () => {
       if (status) {
         setCommission(commissionServer);
       } else {
-        const result = commissionServer.filter((commissionItem: CommissionItemTypes) => commissionItem.status === status);
-        setCommission(result);
+        // const result = commissionServer.filter((commissionItem: CommissionItemTypes) => commissionItem.status === status);
+        // setCommission(result);
       }
     }
   };

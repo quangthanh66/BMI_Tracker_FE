@@ -11,6 +11,10 @@ import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { PlusOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';
 import COMMISSION_API from '@app/api/commission';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 type UpdateCommissionTypes = {
   commissionUpdate: CommissionItemTypes;
@@ -44,11 +48,11 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
 
   useEffect(() => {
     if (commissionUpdate) {
+      console.log(commissionUpdate);
+
       form.setFieldsValue({
-        title: commissionUpdate.title,
-        description: commissionUpdate.description,
-        type: commissionUpdate.type,
-     //   userId: feedbackUpdate.users.accountID,
+        ...commissionUpdate,
+        paidDate: dayjs(commissionUpdate.paidDate, 'YYYY-MM-DD'),
       });
     }
   }, [commissionUpdate]);
@@ -61,9 +65,12 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
 
   const onCloseModal = () => setIsOpenModal(false);
   const onSubmit = (values: CommissionItemTypes) => {
-    console.log(values);
+    mutateUpdateCommission({
+      ...values,
+      paidDate: dayjs.utc(values.paidDate).format(),
+      commissionID: String(commissionUpdate.commissionID),
+    });
   };
-
 
   return (
     <BaseModal
@@ -77,42 +84,47 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
       {contextHolder}
       <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
         <BaseRow gutter={[20, 20]}>
-          {/* <BaseCol span={24}>
-            <BaseForm.Item name="paidDate" label="Paid Date" rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Enter your paid date" required maxLength={50} />
-            </BaseForm.Item>
-          </BaseCol> */}
-          
           <BaseCol span={12}>
-            <Form.Item name="paidDate" label={<span style={{fontWeight: 'bold'}}>Paid Date</span>} rules={[fieldValidate.required]}>
-              <DatePicker format={'YYYY-MM-DD'} style={{ width: '100%' }} />
+            <Form.Item
+              name="paidDate"
+              label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
+              rules={[fieldValidate.required]}
+            >
+              <DatePicker style={{ width: '100%' }} />
             </Form.Item>
           </BaseCol>
 
           <BaseCol span={12}>
-            <BaseForm.Item name="paidAmount" label={<span style={{fontWeight: 'bold'}}>Paid amount</span>} rules={[fieldValidate.required]}>
+            <BaseForm.Item
+              name="paidAmount"
+              label={<span style={{ fontWeight: 'bold' }}>Paid amount</span>}
+              rules={[fieldValidate.required]}
+            >
               <BaseInput placeholder="Enter your paid amount" required maxLength={50} />
             </BaseForm.Item>
           </BaseCol>
 
           <BaseCol span={24}>
-            <BaseForm.Item name="commissionDescription" label={<span style={{fontWeight: 'bold'}}>Description</span>} rules={[fieldValidate.required]}>
+            <BaseForm.Item
+              name="commissionDescription"
+              label={<span style={{ fontWeight: 'bold' }}>Description</span>}
+              rules={[fieldValidate.required]}
+            >
               <BaseInput placeholder="Enter description" required maxLength={50} />
             </BaseForm.Item>
           </BaseCol>
 
-              <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Status</span>} name="paymentStatus">
+          <Col span={24}>
+            <Form.Item label={<span style={{ fontWeight: 'bold' }}>Status</span>} name="paymentStatus">
               <Select
-                defaultValue={true}
                 options={[
                   {
                     label: 'PAID',
-                    value: true,
+                    value: 'PAID',
                   },
                   {
                     label: 'UNPAID',
-                    value: false,
+                    value: 'UNPAID',
                   },
                 ]}
               />
