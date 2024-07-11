@@ -32,6 +32,11 @@ export const END_POINTS = {
     UPDATE_FEEDBACK: '/api/feedbacks/approve',
   },
 
+  COMMISSION: {
+    MAIN: '/api/commissions/advisor/getAll',
+    UPDATE_COMMISSION: '/api/commissions/update-paid',
+  },
+
   FOOD: '/api/foods/getAll',
   ADD_NEW_FOOD: '/api/foods/createNew',
   DELETE_FOOD: '/api/foods/deactivate',

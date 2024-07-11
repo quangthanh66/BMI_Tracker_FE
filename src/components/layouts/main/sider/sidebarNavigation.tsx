@@ -86,27 +86,27 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
 
 export const trainerSidebar: SidebarNavigationItem[] = [
   {
-    title: 'Users',
-    key: 'users-management',
-    url: PAGE_ROUTES.TRAINER.USERS,
+    title: 'Commission',
+    key: 'commission-management',
+    url: PAGE_ROUTES.TRAINER.COMMISSION,
     icon: <AiOutlineUser />,
   },
-  {
-    title: 'Menu',
-    key: 'menu',
-    url: PAGE_ROUTES.TRAINER.MENU,
-    icon: <MdOutlineRestaurantMenu />,
-  },
-  {
-    title: 'Blog',
-    key: 'blog',
-    url: PAGE_ROUTES.TRAINER.BLOG,
-    icon: <FormOutlined />,
-  },
-  {
-    title: 'Certificate',
-    key: 'certificate',
-    url: '/certificate',
-    icon: <SafetyCertificateOutlined />,
-  },
+  // {
+  //   title: 'Menu',
+  //   key: 'menu',
+  //   url: PAGE_ROUTES.TRAINER.MENU,
+  //   icon: <MdOutlineRestaurantMenu />,
+  // },
+  // {
+  //   title: 'Blog',
+  //   key: 'blog',
+  //   url: PAGE_ROUTES.TRAINER.BLOG,
+  //   icon: <FormOutlined />,
+  // },
+  // {
+  //   title: 'Certificate',
+  //   key: 'certificate',
+  //   url: '/certificate',
+  //   icon: <SafetyCertificateOutlined />,
+  // },
 ];

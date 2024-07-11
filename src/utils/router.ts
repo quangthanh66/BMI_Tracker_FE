@@ -23,5 +23,6 @@ export const PAGE_ROUTES = {
     MENU: '/trainer/menus',
     BLOG: '/trainer/blogs',
     SERVICES: '/trainer/services',
+    COMMISSION: 'trainer/commission',
   },
 };
