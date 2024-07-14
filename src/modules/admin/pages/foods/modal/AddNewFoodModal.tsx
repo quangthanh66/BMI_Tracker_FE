@@ -2,17 +2,20 @@ import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
-import { Col, Form, Input, Row, Select, Space, Spin, Tag, Typography, message } from 'antd';
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { Button, Col, Form, Image, Input, Row, Select, Space, Spin, Tag, Typography, message } from 'antd';
+import { ChangeEvent, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { RecipeItem, TAddNewFood, TFoodItem } from '@app/api/foods';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import FOOD_API from '@app/api/foods/type';
 import { TagsRequest } from '@app/api/tags/type';
 import { TIngredientItem } from '@app/api/ingredients/type';
-import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import RecipeDialog from './RecipeDialog';
 import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
 import _ from 'lodash';
+import { imageDb } from '@app/services/firebase/config';
+import { v4 } from 'uuid';
+import { listAll, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 
 type TAddNewFoodModal = {
   ingredients: TIngredientItem[];
@@ -20,7 +23,7 @@ type TAddNewFoodModal = {
   refetchFoodPage: () => void;
 };
 
-const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAddNewFoodModal, ref: any) => {
+const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAddNewFoodModal, refPage: any) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = Form.useForm();
@@ -81,7 +84,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     },
   });
 
-  useImperativeHandle(ref, () => {
+  useImperativeHandle(refPage, () => {
     return {
       openModal: () => setIsOpenModal(true),
     };
@@ -103,6 +106,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   useEffect(() => {
     if (foodUpdateProps) {
+      setRecipes(foodUpdateProps.recipes);
       form.setFieldsValue(foodUpdateProps);
     }
   }, [foodUpdateProps]);
@@ -113,12 +117,16 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
   };
 
   const submitForm = (values: TAddNewFood) => {
+    const imageResult = _.last(imageUrls);
+
     if (foodUpdateProps) {
       updateFoodMutate({
         ...values,
         foodCalories: Number(values.foodCalories),
         foodTimeProcess: Number(values.foodTimeProcess),
         foodID: foodUpdateProps.foodID,
+        recipeRequests: recipes,
+        foodPhoto: imageResult,
       });
     } else {
       handleFoodMutate({
@@ -126,6 +134,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
         foodCalories: Number(values.foodCalories),
         foodTimeProcess: Number(values.foodTimeProcess),
         recipeRequests: recipes,
+        foodPhoto: imageResult,
       });
     }
   };
@@ -150,13 +159,30 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     return ingredientOptions.length === 0 ? '' : ingredientOptions.find((item) => item.value === recipeId)!.label;
   };
 
+  const [imageUpload, setImageUpload] = useState<string>('');
+  const [imageUrls, setImageUrls] = useState<any[]>([]);
+
+  const uploadFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+
+    if (!files || !files[0]) return;
+
+    setImageUpload(URL.createObjectURL(files[0]));
+    const imageRef = ref(imageDb, `images/${files[0].name + v4()}`);
+    uploadBytes(imageRef, files[0]).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
+  };
+
   return (
     <BaseModal
       centered
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl">{foodUpdateProps ? 'Update Food' : 'Add new food'}</BaseTypography>}
+      title={<BaseTypography className="text-xl">{foodUpdateProps ? 'Update Food 22' : 'Add new food'}</BaseTypography>}
       width={800}
     >
       {contextHolder}
@@ -197,7 +223,17 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
             <Col span={12}>
               <Form.Item label="Photo Link" name="foodPhoto">
-                <Input />
+                <div className="flex items-center justify-between gap-x-2 h-10">
+                  <label
+                    htmlFor="food-photo"
+                    className="border border-blue-400 flex justify-center items-center h-full rounded-md flex-1 cursor-pointer gap-x-2"
+                  >
+                    <UploadOutlined /> Upload
+                  </label>
+                  {imageUrls.length > 0 && <img className="h-full w-[20%] " src={imageUpload} />}
+                </div>
+
+                <input id="food-photo" type="file" onChange={uploadFile} style={{ visibility: 'hidden' }} />
               </Form.Item>
             </Col>
 
