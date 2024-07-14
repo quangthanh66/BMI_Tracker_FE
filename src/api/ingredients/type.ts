@@ -5,7 +5,13 @@ export type TIngredientItem = {
   quantity: number;
   unitOfMeasurement: number;
   ingredientCalories: number;
-  tagID: number;
+  tag: {
+    isActive: boolean;
+    tagDescription: string;
+    tagID: number;
+    tagName: string;
+    tagTypeID: number;
+  };
   isActive: boolean;
 };
 

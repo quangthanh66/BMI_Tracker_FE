@@ -107,7 +107,14 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
   useEffect(() => {
     if (foodUpdateProps) {
       setRecipes(foodUpdateProps.recipes);
-      form.setFieldsValue(foodUpdateProps);
+
+      const convertFoodTags =
+        foodUpdateProps.foodTags.length > 0 ? foodUpdateProps.foodTags.map((item) => item.tagID) : [];
+
+      form.setFieldsValue({
+        ...foodUpdateProps,
+        tagIDs: convertFoodTags,
+      });
     }
   }, [foodUpdateProps]);
 
@@ -156,7 +163,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
   };
 
   const getRecipeInfo = (recipeId: number): string => {
-    return ingredientOptions.length === 0 ? '' : ingredientOptions.find((item) => item.value === recipeId)!.label;
+    return ingredientOptions.length === 0 ? '' : ingredientOptions.find((item) => item.value === recipeId)?.label || '';
   };
 
   const [imageUpload, setImageUpload] = useState<string>('');

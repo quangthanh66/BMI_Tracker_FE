@@ -90,11 +90,11 @@ const UpdateCertificateAdmin = ({}, ref: any) => {
             </Descriptions.Item>
 
             <Descriptions.Item label="Height" className="!text-black">
-              <Typography.Text className="!text-black">{certficiateDetailResult.advisor.height}</Typography.Text>
+              <Typography.Text className="!text-black">{certficiateDetailResult.advisor?.height}</Typography.Text>
             </Descriptions.Item>
 
             <Descriptions.Item label="Weight" className="!text-black">
-              <Typography.Text className="!text-black">{certficiateDetailResult.advisor.weight}</Typography.Text>
+              <Typography.Text className="!text-black">{certficiateDetailResult.advisor?.weight}</Typography.Text>
             </Descriptions.Item>
 
             <Descriptions.Item label="Status" className="!text-black">

@@ -1,4 +1,4 @@
-import { EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import EXERCISE_API from '@app/api/exercise';
 import { TExerciseItem, TUpdateExercise } from '@app/api/exercise/type';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
@@ -66,7 +66,6 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
         ...values,
         exerciseID: Number(exerciseProps.exerciseID),
         emoji: '',
-        
       });
     }
   };
@@ -79,33 +78,52 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
       onCancel={onCloseModal}
       title={<BaseTypography className="text-xl">Update Exercise</BaseTypography>}
       width={600}
-
     >
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
           <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Name</span>} name="exerciseName" rules={[fieldValidate.required]}>
+            <Form.Item
+              label={<span style={{ fontWeight: 'bold' }}>Name</span>}
+              name="exerciseName"
+              rules={[fieldValidate.required]}
+            >
               <BaseInput />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Duration</span>} name="duration" rules={[fieldValidate.required]}>
+            <Form.Item
+              label={<span style={{ fontWeight: 'bold' }}>Duration</span>}
+              name="duration"
+              rules={[fieldValidate.required]}
+            >
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Distance</span>} name="distance" rules={[fieldValidate.required]}>
+            <Form.Item
+              label={<span style={{ fontWeight: 'bold' }}>Distance</span>}
+              name="distance"
+              rules={[fieldValidate.required]}
+            >
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Calories burned</span>} name="caloriesBurned" rules={[fieldValidate.required]}>
+            <Form.Item
+              label={<span style={{ fontWeight: 'bold' }}>Calories burned</span>}
+              name="caloriesBurned"
+              rules={[fieldValidate.required]}
+            >
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Tags</span>} name="tagID" rules={[fieldValidate.required]}>
+            <Form.Item
+              label={<span style={{ fontWeight: 'bold' }}>Tags</span>}
+              name="tagID"
+              rules={[fieldValidate.required]}
+            >
               <Select options={tagsSelect} mode="multiple" />
             </Form.Item>
           </Col>

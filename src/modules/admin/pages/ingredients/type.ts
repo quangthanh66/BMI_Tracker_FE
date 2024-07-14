@@ -4,8 +4,14 @@ export type IngredientTypes = {
   ingredientPhoto: string;
   status: string;
   quantity: number;
-  unitOfMeasurement: number
-  ingredientCalories: number,
-  tagID: number,
-  isActive: boolean,
+  unitOfMeasurement: number;
+  ingredientCalories: number;
+  tag: {
+    isActive: boolean;
+    tagDescription: string;
+    tagID: number;
+    tagName: string;
+    tagTypeID: number;
+  };
+  isActive: boolean;
 };

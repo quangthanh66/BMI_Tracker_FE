@@ -55,7 +55,7 @@ const UpdateIngredientModal = (
         quantity: ingredientProps.quantity,
         unitOfMeasurement: ingredientProps.unitOfMeasurement,
         ingredientCalories: ingredientProps.ingredientCalories,
-        tagID: ingredientProps.tagID,
+        tagID: ingredientProps.tag.tagID,
         isActive: ingredientProps.isActive,
       });
 
