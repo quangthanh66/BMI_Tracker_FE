@@ -6,6 +6,7 @@ export type TMenuItem = {
   totalCalories: number;
   isActive: boolean;
   advisorID: number;
+  advisorName: string; 
 };
 
 export type TAddNewMenu = {

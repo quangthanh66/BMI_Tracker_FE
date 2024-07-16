@@ -37,7 +37,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     onSuccess: () => {
       messageApi.open({
         type: 'success',
-        content: 'Add a new food is successfully',
+        content: 'Create a new food is successfully',
       });
       setRecipes([]);
       refetchFoodPage();
@@ -46,7 +46,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     onError: () => {
       messageApi.open({
         type: 'error',
-        content: 'Cant add new food . Please try again !',
+        content: 'Cant create new food . Please try again !',
       });
     },
   });
@@ -198,65 +198,43 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
       <Spin spinning={isLoadingTags}>
         <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
           <Row gutter={[10, 10]}>
-            <Col span={12}>
+            <Col span={8}>
               <Form.Item label="Name" name="foodName" rules={[fieldValidate.required]}>
                 <Input />
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            <Col span={8}>
               <Form.Item label="Calories" name="foodCalories" rules={[fieldValidate.required]}>
                 <Input type="number" min={0} />
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            <Col span={8}>
               <Form.Item label="Nutrition" name="foodNutrition" rules={[fieldValidate.required]}>
                 <Input />
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            <Col span={8}>
               <Form.Item label="Serving" name="serving" rules={[fieldValidate.required]}>
                 <Input />
               </Form.Item>
             </Col>
 
-            <Col span={24}>
-              <Form.Item label="Description" name="description">
-                <Input.TextArea rows={3} />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item label="Photo Link" name="foodPhoto">
-                <div className="flex items-center justify-between gap-x-2 h-10">
-                  <label
-                    htmlFor="food-photo"
-                    className="border border-blue-400 flex justify-center items-center h-full rounded-md flex-1 cursor-pointer gap-x-2"
-                  >
-                    <UploadOutlined /> Upload
-                  </label>
-                  {imageUrls.length > 0 && <img className="h-full w-[20%] " src={imageUpload} />}
-                </div>
-
-                <input id="food-photo" type="file" onChange={uploadFile} style={{ visibility: 'hidden' }} />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
+            <Col span={8}>
               <Form.Item label="Video Link" name="foodVideo">
                 <Input />
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            <Col span={8}>
               <Form.Item label="Time process" name="foodTimeProcess" rules={[fieldValidate.required]}>
                 <Input type="number" />
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            <Col span={8}>
               <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
                 <Select
                   options={tagsOptions}
@@ -266,6 +244,26 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
                 />
               </Form.Item>
             </Col>
+            <Col span={15}>
+              <Form.Item label="Description" name="description">
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={5}>
+              <Form.Item label="Photo Link" name="foodPhoto">
+                <div className="flex items-center justify-between gap-x-2 h-10">
+                  <label
+                    htmlFor="food-photo"
+                    className="border border-blue-400 flex justify-center items-center h-full rounded-md flex-1 cursor-pointer gap-x-2"
+                  >
+                    <UploadOutlined /> Upload
+                  </label>
+                </div>
+                <input id="food-photo" type="file" onChange={uploadFile} style={{ visibility: 'hidden' }} />
+              </Form.Item>
+            </Col>
+            
+            <Col span={12}>{imageUpload && <img className=" w-full " src={imageUpload} />}</Col>
 
             <Col span={24}>
               <div className="flex flex-col gap-y-2">

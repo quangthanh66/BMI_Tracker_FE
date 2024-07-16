@@ -16,13 +16,13 @@ const FilterMenu = ({ addNewMenu, searchMenu }: TFilterMenus) => {
       <div className="flex items-center justify-between">
         <Row gutter={[14, 14]} className="flex-1">
           <Col span={6}>
-            <BaseInput placeholder="Search menu name ... " onChange={debounce(searchMenu, 1000)} />
+            <BaseInput placeholder="Search... " onChange={debounce(searchMenu, 1000)} />
           </Col>
         </Row>
 
-        <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewMenu}>
+        {/* <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewMenu}>
           Add new menu
-        </BaseButton>
+        </BaseButton> */}
       </div>
     </Card>
   );

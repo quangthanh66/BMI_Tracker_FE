@@ -8,7 +8,7 @@ import { forwardRef, useImperativeHandle, useMemo, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 
-const DetailMenuDialog = ({}, ref: any) => {
+const DetailMenuDialog = ({ }, ref: any) => {
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const [menuId, setMenuId] = useState(-1);
@@ -74,47 +74,46 @@ const DetailMenuDialog = ({}, ref: any) => {
                 <Image
                   src={food.food.foodPhoto}
                   className="min-h-full w-full object-cover"
+                  style={{ width: '500px', height: '400px' }}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null; // prevents looping
                     currentTarget.src = errorImage;
                   }}
                 />
               </Col>
-              <Col span={12} className="flex flex-col gap-y-2">
-                <div className="flex items-center justify-between">
-                  <Typography.Text>{food.food.foodName}</Typography.Text>
-
-                  <Tag color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'Inactive'}</Tag>
-                </div>
-
+              <Col span={12} className="flex flex-col gap-y-2">              
                 <div className="flex items-center gap-x-2 flex-wrap line-clamp-4">
-                  <Typography>{food.food.description}</Typography>
+                  <Typography> <span className="font-semibold">Description</span>: {food.food.description}</Typography>
                 </div>
 
                 <div className="flex items-center gap-x-2 flex-wrap">
-                  <span className="font-semibold">Calories</span>: {food.food.foodCalories}
+                <Typography> <span className="font-semibold">Calories</span>: {food.food.foodCalories} (kcal)</Typography>
                 </div>
 
                 <div className="flex items-center gap-x-2 flex-wrap">
-                  <span className="font-semibold">Nutrition</span>: {food.food.foodNutrition}
+                  <Typography> <span className="font-semibold">Nutrition</span>: {food.food.foodNutrition}</Typography>
                 </div>
 
                 <div className="flex items-center gap-x-2 flex-wrap">
-                  <span className="font-semibold">Time Process</span>: {food.food.foodTimeProcess} minutes
+                  <Typography> <span className="font-semibold">Time process</span>: {food.food.foodTimeProcess} (minutes) </Typography>
                 </div>
 
                 <div className="$ flex-wrap">
                   <span className="font-semibold">Video</span>: {food.food.foodVideo}
                 </div>
 
-                <BaseButton
+                <div className="flex items-center justify-between">
+                  <Tag style={{ fontSize: '20px' }} color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'DeActivate'}</Tag>
+                </div>
+
+                {/* <BaseButton
                   type="primary"
                   danger
                   disabled={!food.food.isActive}
                   onClick={() => onDeactiveFoodMenu(food.food.foodID)}
                 >
-                  InActive
-                </BaseButton>
+                  Active
+                </BaseButton> */}
               </Col>
             </Row>
           ),

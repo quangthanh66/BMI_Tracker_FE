@@ -24,7 +24,7 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
     onSuccess: () => {
       messageApi.open({
         type: 'success',
-        content: 'Add a new exercise is successfully',
+        content: 'Create a new exercise is successfully',
       });
 
       refetchPage();
@@ -33,7 +33,7 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
     onError: () => {
       messageApi.open({
         type: 'error',
-        content: 'Cant add new exercise . Please try again !',
+        content: 'Cannot create new exercise . Please try again !',
       });
     },
   });
@@ -62,7 +62,7 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl !text-black">Add new exercise</BaseTypography>}
+      title={<BaseTypography className="text-xl !text-black">Create new exercise</BaseTypography>}
       width={800}
     >
       {contextHolder}

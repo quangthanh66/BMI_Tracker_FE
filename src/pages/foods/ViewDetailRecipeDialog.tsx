@@ -4,7 +4,7 @@ import { Descriptions, Empty, Image, Tabs } from 'antd';
 import _ from 'lodash';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
-const ViewDetailRecipeDialog = ({}, ref: any) => {
+const ViewDetailRecipeDialog = ({ }, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [recipeItem, setRecipeItem] = useState<RecipeItem[]>([]);
 
@@ -25,11 +25,11 @@ const ViewDetailRecipeDialog = ({}, ref: any) => {
       children: (
         <Descriptions layout="vertical" bordered>
           <Descriptions.Item label="Ingredient Name">{recipe.ingredientName}</Descriptions.Item>
-          <Descriptions.Item label="Image">
-            <Image src={recipe.ingredientPhoto} alt="recipe-alt" />
-          </Descriptions.Item>
           <Descriptions.Item label="Quantity">{recipe.quantity}</Descriptions.Item>
           <Descriptions.Item label="Unit">{recipe.unit}</Descriptions.Item>
+          <Descriptions.Item label="Image" style={{ display: 'flex', alignItems: 'center' }}>
+            <Image src={recipe.ingredientPhoto} alt="recipe-alt" style={{ maxWidth: '200px'}} />
+          </Descriptions.Item>
         </Descriptions>
       ),
     };

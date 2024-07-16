@@ -2,9 +2,9 @@ export type IngredientTypes = {
   ingredientID: string;
   ingredientName: string;
   ingredientPhoto: string;
-  status: string;
+  nutritionalInformation: string;
   quantity: number;
-  unitOfMeasurement: number;
+  unit: number;
   ingredientCalories: number;
   tag: {
     isActive: boolean;

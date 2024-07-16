@@ -16,12 +16,12 @@ const FilterExercise = ({ searchExercise,  addNewExercise }: TFilterExercise) =>
       <div className="flex items-center justify-between">
         <Row gutter={[14, 14]} className="flex-1">
           <Col span={6}>
-            <BaseInput placeholder="Search exercises name ... " onChange={debounce(searchExercise, 1000)} />
+            <BaseInput placeholder="Search... " onChange={debounce(searchExercise, 1000)} />
           </Col>
         </Row>
 
         <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewExercise}>
-          Add new exercise
+          Create
         </BaseButton>
       </div>
     </Card>

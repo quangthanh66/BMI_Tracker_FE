@@ -21,7 +21,7 @@ const FilterFoods = ({ addNewFood, searchFood }: TFilterFoods) => {
         </Row>
 
         <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewFood}>
-          Add new food
+          Create
         </BaseButton>
       </div>
     </Card>

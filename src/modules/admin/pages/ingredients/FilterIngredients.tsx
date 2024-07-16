@@ -16,12 +16,12 @@ const FilterIngredients = ({ searchIngredients, addNewIngredient }: TFilterIngre
       <div className="flex items-center justify-between">
         <Row gutter={[14, 14]} className="flex-1">
           <Col span={6}>
-            <BaseInput placeholder="Search ingredient name ... " onChange={debounce(searchIngredients, 1000)} />
+            <BaseInput placeholder="Search... " onChange={debounce(searchIngredients, 1000)} />
           </Col>
         </Row>
 
         <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewIngredient}>
-          Add new ingredient
+          Create
         </BaseButton>
       </div>
     </Card>

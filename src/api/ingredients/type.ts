@@ -3,7 +3,7 @@ export type TIngredientItem = {
   ingredientName: string;
   ingredientPhoto: string;
   quantity: number;
-  unitOfMeasurement: number;
+  unit: number;
   ingredientCalories: number;
   tag: {
     isActive: boolean;

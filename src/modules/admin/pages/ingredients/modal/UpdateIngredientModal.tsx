@@ -53,7 +53,7 @@ const UpdateIngredientModal = (
         ingredientName: ingredientProps.ingredientName,
         ingredientPhoto: ingredientProps.ingredientPhoto,
         quantity: ingredientProps.quantity,
-        unitOfMeasurement: ingredientProps.unitOfMeasurement,
+        unit: ingredientProps.unit,
         ingredientCalories: ingredientProps.ingredientCalories,
         tagID: ingredientProps.tag.tagID,
         isActive: ingredientProps.isActive,
@@ -125,11 +125,11 @@ const UpdateIngredientModal = (
             </Form.Item>
           </Col>
 
-          <Col span={24}>
+          {/* <Col span={12}>
             <Form.Item label="Nutrition information" name="nutritionalInformation">
               <BaseInput.TextArea rows={3} />
             </Form.Item>
-          </Col>
+          </Col> */}
           <Col span={12}>
             <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
               <BaseInput />
@@ -140,17 +140,17 @@ const UpdateIngredientModal = (
               <BaseInput />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
               <Select options={tagsSelect} />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Photo" name="ingredientPhoto">
               <div className="flex items-center justify-between gap-x-2 h-10">
                 <label
                   htmlFor="food-photo"
-                  className="border border-blue-400 flex justify-center items-center h-full rounded-md flex-1 cursor-pointer gap-x-2"
+                  className="border border-blue-100 flex justify-center items-center h-full rounded-md flex-1 cursor-pointer gap-x-2"
                 >
                   <UploadOutlined /> Upload
                 </label>
@@ -159,7 +159,7 @@ const UpdateIngredientModal = (
               <input id="food-photo" type="file" onChange={uploadFile} style={{ visibility: 'hidden' }} />
             </Form.Item>
           </Col>
-          <Col span={24}>{imageUpload && <img className=" w-full " src={imageUpload} />}</Col>
+          <Col span={12}>{imageUpload && <img className=" w-full " src={imageUpload} />}</Col>
 
           <Col span={24} className="flex justify-end">
             <Space>

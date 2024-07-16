@@ -87,43 +87,43 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl !text-white">Add new ingredient</BaseTypography>}
+      title={<BaseTypography className="text-xl !text-black">Add new ingredient</BaseTypography>}
       width={800}
     >
       {contextHolder}
       <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Name" name="ingredientName" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Unit Of Measurement" name="unit" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Nutrition information" name="nutritionalInformation">
               <BaseInput.TextArea rows={3} />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
               <Select options={tagsSelect} />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item label="Photo" name="ingredientPhotoUrl">
               <div className="flex items-center justify-between gap-x-2 h-10">
                 <label
@@ -132,13 +132,14 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
                 >
                   <UploadOutlined /> Upload
                 </label>
+              
               </div>
 
               <input id="food-photo" type="file" onChange={uploadFile} style={{ visibility: 'hidden' }} />
             </Form.Item>
           </Col>
 
-          <Col span={24}>{imageUpload && <img className=" w-full " src={imageUpload} />}</Col>
+          <Col span={12}>{imageUpload && <img className=" w-full " src={imageUpload} />}</Col>
 
           <Col span={24} className="flex justify-end">
             <Space>

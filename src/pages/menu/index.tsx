@@ -66,7 +66,7 @@ const MenuManagement = () => {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
-        content: 'Delete menu is successfully',
+        content: 'DeActivate menu is successfully',
       });
 
       refetch();
@@ -74,7 +74,7 @@ const MenuManagement = () => {
     onError: () => {
       messageApi.open({
         type: 'error',
-        content: 'Cant delete menu. Please try again !',
+        content: 'Cant DeActivate menu. Please try again !',
       });
     },
   });
@@ -98,8 +98,8 @@ const MenuManagement = () => {
 
   const confirmModal = (menuID: number) => {
     modal.confirm({
-      title: 'Are you sure to delete menu ?',
-      okText: 'Delete',
+      title: 'Are you sure to deActivate menu ?',
+      okText: 'DeActivate',
       cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
@@ -148,7 +148,7 @@ const MenuManagement = () => {
                   key={index}
                 >
                   <div className="w-full flex flex-col gap-1 flex-grow">
-                    <Image
+                    {/* <Image
                       alt="food-alt"
                       src={item.menuPhoto}
                       className="w-full h-[200px] object-cover rounded-md"
@@ -156,32 +156,34 @@ const MenuManagement = () => {
                         currentTarget.onerror = null;
                         currentTarget.src = errorImage;
                       }}
-                    />
-                    <Typography.Title className="!text-black" level={5}>
-                      {item.menuName}
+                    /> */}
+                    <Typography.Title level={5}>
+                   {item.menuName}
                     </Typography.Title>
-                    <Typography.Paragraph className="!text-black line-clamp-2">
-                      {item.menuDescription}
+                    <Typography.Paragraph className="!text-black">
+                    <span style={{ fontWeight: 'bold' }}>Description :</span>{" "}
+                    <span style={{ textTransform: 'lowercase' }}>{item.menuDescription}</span>
                     </Typography.Paragraph>
-
-                    <div className="flex items-center gap-x-2 text-black">
-                      Status:
-                      {item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}
-                    </div>
+                    <Typography.Paragraph className="!text-black">
+                    <span style={{ fontWeight: 'bold' }}>Created by :</span>{" "}
+                    <span style={{ textTransform: 'lowercase' }}>{item.advisorName}</span>
+                    </Typography.Paragraph>
+                    <Typography.Paragraph className="!text-black">
+                        <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
+                        <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}</span>
+                        </Typography.Paragraph>
+                   
                   </div>
 
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-2 w-full">
                       <BaseButton danger className="flex-1" size="small" onClick={() => confirmModal(item.menuID)}>
-                        Delete menu
-                      </BaseButton>
-                      <BaseButton className="flex-1" type="primary" size="small" onClick={() => updateMenu(item)}>
-                        Update menu
+                        DeActivate
                       </BaseButton>
                     </div>
 
                     <BaseButton type="primary" size="small" onClick={() => onOpenDetailMenuDialog(item.menuID)}>
-                      View Detail
+                      Detail
                     </BaseButton>
                   </div>
                 </div>

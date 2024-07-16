@@ -21,7 +21,7 @@ const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackSt
     <div className="flex justify-between items-center w-full py-2">
       <Row gutter={[20, 20]} className="w-[90%]">
         <Col span={6}>
-          <BaseInput placeholder={'Enter your feedback name'} onChange={debounce(onSearchDataValue, 1000)} />
+          <BaseInput placeholder={'Search...'} onChange={debounce(onSearchDataValue, 1000)} />
         </Col>
 
         <Col span={6}>

@@ -20,7 +20,7 @@ const FilterUser = ({ onCreateNewUser, onSearchUser, onChangeRole }: FilterUserT
     <div className="flex justify-between items-center w-full py-2">
       <Row gutter={[20, 20]} className="w-[90%]">
         <Col span={6}>
-          <Input placeholder={'Enter your user name'} onChange={debounce(onSearchDataValue, 1000)} />
+          <Input placeholder={'Search...'} onChange={debounce(onSearchDataValue, 1000)} />
         </Col>
 
         <Col span={6}>
@@ -38,7 +38,7 @@ const FilterUser = ({ onCreateNewUser, onSearchUser, onChangeRole }: FilterUserT
         </Col>
       </Row>
       <BaseButton icon={<PlusOutlined />} type="primary" onClick={onCreateNewUser}>
-        Create a new user
+        Create
       </BaseButton>
     </div>
   );

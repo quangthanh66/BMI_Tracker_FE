@@ -1,4 +1,4 @@
-import { Card, Col, Empty, Image, Row, Spin, Typography, message } from 'antd';
+import { Card, Col, Empty, Image, Row, Spin, Tag, Typography, message } from 'antd';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
@@ -30,7 +30,7 @@ const IngredientManagement = () => {
   } = useQuery(['get-ingredients'], INGREDIENT_API.GET_INGREDIENTS, {
     enabled: false,
     onSuccess: (response: IngredientTypes[]) => {
-      const availableIngredients = response.filter((item) => item.status !== 'false');
+      const availableIngredients = response.filter((item) => item.isActive !== false);
       setIngredients(availableIngredients);
     },
     onError: () => {
@@ -92,7 +92,7 @@ const IngredientManagement = () => {
   const searchIngredients = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value.toLowerCase();
     const result = ingredientsList?.filter(
-      (ingredient) => ingredient.ingredientName.toLowerCase().includes(keySearch) && ingredient.status !== 'false',
+      (ingredient) => ingredient.ingredientName.toLowerCase().includes(keySearch) && ingredient.isActive !== false,
     );
     setIngredients(result as IngredientTypes[]);
   };
@@ -136,7 +136,7 @@ const IngredientManagement = () => {
                 <Col span={6} key={item.ingredientID}>
                   <Card size="small">
                     <div className="flex flex-col justify-between gap-4 w-full">
-                      <div className="w-full flex flex-col gap-4">
+                      <div className="w-full flex flex-col gap-2">
                         <Image
                           alt="food-alt"
                           src={item.ingredientPhoto}
@@ -147,6 +147,28 @@ const IngredientManagement = () => {
                           }}
                         />
                         <Typography.Title level={5}>{item.ingredientName}</Typography.Title>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Quantity :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.quantity}</span>
+                        </Typography.Text>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Unit :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.unit}</span>
+                        </Typography.Text>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.ingredientCalories}</span>
+                        </Typography.Text>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Tags :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.tag.tagName}</span>
+                        </Typography.Text>
+                        <Typography.Text className="!text-black">
+                        <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
+                        <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}</span>
+                        </Typography.Text>
+                        <div className="flex items-center gap-x-2 text-black">
+                        </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-2 w-full">

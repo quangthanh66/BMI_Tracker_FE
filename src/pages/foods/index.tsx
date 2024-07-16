@@ -152,15 +152,18 @@ const FoodManagement = () => {
                       />
                       <Typography.Title level={5}>{item.foodName}</Typography.Title>
                       <Typography.Paragraph className="line-clamp-2">{item.description}</Typography.Paragraph>
-                      <div className="flex flex-col justify-between w-full">
-                        <Typography.Text>
-                          Time process: <span className="font-semibold">{item.foodTimeProcess} minutes</span>
+                      <div className="w-full flex flex-col gap-2">
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Time process :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.foodTimeProcess}</span>
                         </Typography.Text>
-                        <Typography.Text>
-                          Calories: <span className="font-semibold">{item.foodCalories}</span>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.foodCalories}</span>
                         </Typography.Text>
-                        <Typography.Text>
-                          Date: <span className="font-semibold">{item.creationDate}</span>
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Date :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.creationDate}</span>
                         </Typography.Text>
                       </div>
                     </div>

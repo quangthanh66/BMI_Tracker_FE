@@ -16,7 +16,7 @@ const FilterPlan = ({ addNewPlan, searchPlan }: TFilterPlan) => {
       <div className="flex items-center justify-between">
         <Row gutter={[14, 14]} className="flex-1">
           <Col span={6}>
-            <BaseInput placeholder="Search plan name ... " onChange={debounce(searchPlan, 1000)} />
+            <BaseInput placeholder="Search... " onChange={debounce(searchPlan, 1000)} />
           </Col>
         </Row>
 
