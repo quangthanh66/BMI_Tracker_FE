@@ -36,7 +36,7 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
       defaultSelectedKeys={defaultSelectedKeys}
       defaultOpenKeys={defaultOpenKeys}
       onClick={() => setCollapsed(true)}
-      items={(userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR ? trainerSidebar : sidebarNavigation).map(
+      items={(userProfileState.role === USER_ROLES_ENUM.ROLE_MANAGER ? trainerSidebar : sidebarNavigation).map(
         (nav) => {
           const isSubMenu = nav.children?.length;
           return {

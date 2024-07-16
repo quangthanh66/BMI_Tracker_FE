@@ -28,24 +28,6 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     icon: <AiOutlineUser />,
   },
   {
-    title: 'Food',
-    key: 'food',
-    url: PAGE_ROUTES.FOOD,
-    icon: <MdOutlineFastfood />,
-  },
-  {
-    title: 'Ingredients',
-    key: 'ingredients',
-    url: PAGE_ROUTES.INGREDIENTS,
-    icon: <GiFoodChain />,
-  },
-  {
-    title: 'Menu',
-    key: 'menu',
-    url: PAGE_ROUTES.MENU,
-    icon: <MdOutlineRestaurantMenu />,
-  },
-  {
     title: 'Feedback',
     key: 'feedback',
     url: '/feedback',
@@ -65,6 +47,41 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     icon: <SafetyCertificateOutlined />,
   },
   {
+    title: 'Plan',
+    key: 'plan',
+    url: '/plan',
+    icon: <AiFillProject />,
+  },
+  {
+    title: 'Commission',
+    key: 'commission-management',
+    url: PAGE_ROUTES.TRAINER.COMMISSION,
+    icon: <AiOutlineUser />,
+  },
+];
+
+export const trainerSidebar: SidebarNavigationItem[] = [
+  
+  {
+    title: 'Ingredients',
+    key: 'ingredients',
+    url: PAGE_ROUTES.INGREDIENTS,
+    icon: <GiFoodChain />,
+  },
+  {
+    title: 'Food',
+    key: 'food',
+    url: PAGE_ROUTES.FOOD,
+    icon: <MdOutlineFastfood />,
+  },
+
+  {
+    title: 'Menu',
+    key: 'menu',
+    url: PAGE_ROUTES.MENU,
+    icon: <MdOutlineRestaurantMenu />,
+  },
+  {
     title: 'Exercise',
     key: 'exercise',
     url: '/exercise',
@@ -76,37 +93,4 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     url: '/workout',
     icon: <ProjectFilled />,
   },
-  {
-    title: 'Plan',
-    key: 'plan',
-    url: '/plan',
-    icon: <AiFillProject />,
-  },
-];
-
-export const trainerSidebar: SidebarNavigationItem[] = [
-  {
-    title: 'Commission',
-    key: 'commission-management',
-    url: PAGE_ROUTES.TRAINER.COMMISSION,
-    icon: <AiOutlineUser />,
-  },
-  // {
-  //   title: 'Menu',
-  //   key: 'menu',
-  //   url: PAGE_ROUTES.TRAINER.MENU,
-  //   icon: <MdOutlineRestaurantMenu />,
-  // },
-  // {
-  //   title: 'Blog',
-  //   key: 'blog',
-  //   url: PAGE_ROUTES.TRAINER.BLOG,
-  //   icon: <FormOutlined />,
-  // },
-  // {
-  //   title: 'Certificate',
-  //   key: 'certificate',
-  //   url: '/certificate',
-  //   icon: <SafetyCertificateOutlined />,
-  // },
 ];

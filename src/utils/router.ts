@@ -25,4 +25,11 @@ export const PAGE_ROUTES = {
     SERVICES: '/trainer/services',
     COMMISSION: 'trainer/commission',
   },
+  MANAGER: {
+    INGREDIENTS: '/ingredients',
+    FOOD: '/food',
+    MENU: '/menu',
+    EXERCISE: '/exercise',
+    WORKOUT: '/workout',
+  }
 };

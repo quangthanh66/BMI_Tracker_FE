@@ -82,6 +82,7 @@ export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
 
 const MedicalDashboard = withLoading(MedicalDashboardPage);
 const NftDashboard = withLoading(NftDashboardPage);
+export const DefaultPage = withLoading(LoginPage);
 const NewsFeed = withLoading(NewsFeedPage);
 const AdvancedForm = withLoading(AdvancedFormsPage);
 
@@ -164,7 +165,7 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.CERTIFICATE} element={<CertificateManagement />} />
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />
-          <Route index element={<NftDashboard />} />
+          <Route element={<DefaultPage />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path="forms">
             <Route path="advanced-forms" element={<AdvancedForm />} />

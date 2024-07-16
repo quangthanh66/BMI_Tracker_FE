@@ -6,6 +6,7 @@ export enum USER_ROLES_ENUM {
   ROLE_MEMBER = 'ROLE_MEMBER',
   ROLE_ADMIN = 'ROLE_ADMIN',
   ROLE_ADVISOR = 'ROLE_ADVISOR',
+  ROLE_MANAGER = 'ROLE_MANAGER',
 }
 
 export enum USER_SEX_ENUM {
@@ -25,6 +26,10 @@ export const USER_ROLES_VALUES = [
   {
     label: USER_ROLES_ENUM.ROLE_ADVISOR,
     value: 'Advisor',
+  },
+  {
+    label: USER_ROLES_ENUM.ROLE_MANAGER,
+    value: 'Manager',
   },
 ];
 
