@@ -21,7 +21,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
     onSuccess: () => {
       messageApi.open({
         type: 'success',
-        content: 'Update user is successful',
+        content: 'Update account is successful',
       });
 
       onRefreshAfterUpdate();
@@ -30,7 +30,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
     onError: () => {
       messageApi.open({
         type: 'error',
-        content: 'Update user is failed',
+        content: 'Update account is failed',
       });
     },
   });
@@ -48,6 +48,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
 
   const handleReset = () => {
     form.resetFields(); 
+    
   };
   useEffect(() => {
     if (userUpdate) {
@@ -68,7 +69,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<Typography className="text-xl">Update user status</Typography>}
+      title={<Typography className="text-xl">Update account status</Typography>}
       width={800}
     >
       {contextHolder}
@@ -118,7 +119,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
                     value: 'true',
                   },
                   {
-                    label: 'Inactive',
+                    label: 'DeActivate',
                     value: 'False',
                   },
                 ]}
@@ -129,7 +130,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
           <Col span={24} className="flex items-center justify-end gap-2">
             {/* <BaseButton danger>Reset</BaseButton>
             <BaseButton */}
-            <BaseButton danger onClick={handleReset}>Reset</BaseButton>  {/* Gọi hàm handleReset khi click */}
+  
             <BaseButton
               icon={<SaveOutlined />}
               className="flex items-center"

@@ -9,7 +9,10 @@ export type CertificateItemTypes = {
     height: string;
     weight: string;
   };
+  accountPhoto: string;
+  fullName: string;
 };
+
 
 export type CreateNewCertificateTypes = {
   certificateID: string;

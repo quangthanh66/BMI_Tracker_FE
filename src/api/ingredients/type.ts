@@ -21,7 +21,7 @@ export type TAddNewIngredient = {
   quantity: number;
   ingredientCalories: number;
   tagID: number;
-  ingredientPhotoUrl: string;
+  ingredientPhoto: string;
   nutritionalInformation: string;
 };
 

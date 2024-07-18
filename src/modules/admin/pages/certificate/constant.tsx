@@ -26,6 +26,12 @@ export const CertificateColumns: any = ({
     sortDirections: ['descend'],
   },
   {
+    title: 'Created by',
+    dataIndex: 'fullName',
+    sorter: (a: CertificateItemTypes, b: CertificateItemTypes) => a.fullName.length - b.fullName.length,
+    sortDirections: ['descend'],
+  },
+  {
     title: 'Photo',
     dataIndex: 'certificateLink',
     render: (certificatePhoto: string) => (
@@ -49,11 +55,11 @@ export const CertificateColumns: any = ({
           isActive === true
             ? 'green'
             : isActive === false
-            ? 'geekblue'
-            : 'volcano'
+            ? 'volcano'
+            : 'geekblue'
         }
       >
-       {isActive ? 'Active' : 'Inactive'}
+       {isActive ? 'Available' : 'Waitting'}
       </Tag>
     ),
     sortDirections: ["descend"],

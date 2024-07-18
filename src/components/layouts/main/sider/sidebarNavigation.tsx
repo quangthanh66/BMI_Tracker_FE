@@ -61,7 +61,19 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
 ];
 
 export const trainerSidebar: SidebarNavigationItem[] = [
-  
+
+  {
+    title: 'Advisor',
+    key: 'advisor',
+    url: '/advisor',
+    icon: <AiOutlineUser />,
+  },
+    {
+    title: 'Certificate',
+    key: 'certificate',
+    url: '/certificate',
+    icon: <SafetyCertificateOutlined />,
+  },
   {
     title: 'Ingredients',
     key: 'ingredients',
@@ -92,5 +104,11 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     key: 'workout',
     url: '/workout',
     icon: <ProjectFilled />,
+  },
+  {
+    title: 'Subscription',
+    key: 'subscription',
+    url: '/subscription',
+    icon: <CoffeeOutlined />,
   },
 ];

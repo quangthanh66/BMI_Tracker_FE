@@ -81,7 +81,6 @@ const UpdateIngredientModal = (
       ingredientID: ingredientProps.ingredientID,
       isActive: true,
       ingredientPhoto: imageResult,
-      ingredientPhotoUrl: imageResult,
     });
   };
 
@@ -171,7 +170,7 @@ const UpdateIngredientModal = (
                 loading={isLoading}
                 type="primary"
               >
-                Update
+                Submit
               </BaseButton>
             </Space>
           </Col>

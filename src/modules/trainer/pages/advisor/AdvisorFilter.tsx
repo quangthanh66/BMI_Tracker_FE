@@ -4,35 +4,35 @@ import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { Col, Row, Select } from 'antd';
 import { debounce } from 'debounce';
 import { ChangeEvent } from 'react';
-import { FeedbackStatus } from './constant';
+import { AdvisorStatus } from './constant';
 
-type FilterFeedbackTypes = {
-  onCreateFeedback: () => void;
-  onSearchFeedback: (keyValue: string) => void;
-  onFilterFeedbackStatus: (status: boolean) => void;
+type FilterAdvisorTypes = {
+  onCreateAdvisor: () => void;
+  onSearchAdvisor: (keyValue: string) => void;
+  onFilterAdvisorStatus: (status: boolean) => void;
 };
 
-const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackStatus }: FilterFeedbackTypes) => {
+const AdvisorFilter = ({ onCreateAdvisor, onSearchAdvisor, onFilterAdvisorStatus }: FilterAdvisorTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
-    onSearchFeedback(keySearch);
+    onSearchAdvisor(keySearch);
   };
   return (
     <div className="flex justify-between items-center w-full py-2">
       <Row gutter={[20, 20]} className="w-[90%]">
         <Col span={6}>
-          <BaseInput placeholder={'Search...'} onChange={debounce(onSearchDataValue, 1000)} />
+          <BaseInput placeholder={'Enter your advisor name'} onChange={debounce(onSearchDataValue, 1000)} />
         </Col>
 
         <Col span={6}>
           <Select
             className="w-full"
-            onChange={onFilterFeedbackStatus}
-            placeholder="Choose your feedback type"
+            onChange={onFilterAdvisorStatus}
+            placeholder="Choose your Advisor type"
             options={[
               { value: 'all', label: 'All' },
-              { value: FeedbackStatus.active, label: 'Active' },
-              { value: FeedbackStatus.deactive, label: 'Waiting' },
+              { value: AdvisorStatus.active, label: 'Active' },
+              { value: AdvisorStatus.deactive, label: 'DeActive' },
             ]}
           ></Select>
         </Col>
@@ -45,4 +45,4 @@ const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackSt
   );
 };
 
-export default FeedbackFilter;
+export default AdvisorFilter;

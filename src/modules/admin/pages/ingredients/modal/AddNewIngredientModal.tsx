@@ -60,7 +60,7 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
       ...values,
       quantity: Number(values.quantity),
       ingredientCalories: Number(values.ingredientCalories),
-      ingredientPhotoUrl: imageResult,
+      ingredientPhoto: imageResult,
     });
   };
 
@@ -124,7 +124,7 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Photo" name="ingredientPhotoUrl">
+            <Form.Item label="Photo" name="ingredientPhoto">
               <div className="flex items-center justify-between gap-x-2 h-10">
                 <label
                   htmlFor="food-photo"

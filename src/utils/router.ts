@@ -31,5 +31,7 @@ export const PAGE_ROUTES = {
     MENU: '/menu',
     EXERCISE: '/exercise',
     WORKOUT: '/workout',
+    SUBSCRIPTION: '/subscription',
+    ADVISOR: '/advisor',
   }
 };

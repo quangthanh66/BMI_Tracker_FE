@@ -33,6 +33,8 @@ import ExerciseManagement from '@app/pages/exercise';
 import WorkoutManagement from '@app/pages/workout';
 import PlanManagement from '@app/pages/plan';
 import CommissionManagement from '@app/pages/commission';
+import SubscriptionManagement from '@app/pages/subscription';
+import AdvisorManagement from '@app/pages/advisor';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -161,7 +163,9 @@ export const AppRouter: React.FC = () => {
           <Route path={PAGE_ROUTES.TRAINER.USERS} element={<UserTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.BLOG} element={<BlogTrainer />} />
           <Route path={PAGE_ROUTES.TRAINER.MENU} element={<MenuTrainer />} />
+          <Route path={PAGE_ROUTES.MANAGER.SUBSCRIPTION} element={<SubscriptionManagement />} />
           <Route path={PAGE_ROUTES.TRAINER.COMMISSION} element={<CommissionManagement />} />
+          <Route path={PAGE_ROUTES.MANAGER.ADVISOR} element={<AdvisorManagement />} />
           <Route path={PAGE_ROUTES.CERTIFICATE} element={<CertificateManagement />} />
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />

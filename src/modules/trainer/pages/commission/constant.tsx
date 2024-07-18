@@ -28,17 +28,6 @@ export const CommissionColumns: any = ({ updateCommissionModal, approveCommissio
     dataIndex: 'commissionAmount',
     sortDirections: ['descend'],
   },
-
-  {
-    title: 'Payment Status',
-    dataIndex: 'paymentStatus',
-    render: (type: string) => <BaseTag color={type === 'PAID' ? 'green' : 'red'}>{type}</BaseTag>,
-  },
-  {
-    title: 'Paid Amount',
-    dataIndex: 'paidAmount',
-    sortDirections: ['descend'],
-  },
   {
     title: 'Commission Rate',
     dataIndex: 'commissionRate',
@@ -56,6 +45,16 @@ export const CommissionColumns: any = ({ updateCommissionModal, approveCommissio
     dataIndex: 'expectedPaymentDate',
     sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
     sortDirections: ['ascend', 'descend'],
+  },
+  {
+    title: 'Paid Amount',
+    dataIndex: 'paidAmount',
+    sortDirections: ['descend'],
+  },
+  {
+    title: 'Payment Status',
+    dataIndex: 'paymentStatus',
+    render: (type: string) => <BaseTag color={type === 'PAID' ? 'green' : 'red'}>{type}</BaseTag>,
   },
   {
     title: 'Description',

@@ -1,9 +1,11 @@
-export type CommissionItemTypesItemTypes = {
+export type CommissionItemTypes = {
   commissionID: string;
+  commissionAmout: string;
   commissionRate: string;
   paidDate: string;
   expectedPaymentDate: string;
-  paidAmount: boolean;
+  paidAmount: string;
+  paymentStatus: boolean;
   commissionDescription: number;
   memberName: string;
   advisorID: number;

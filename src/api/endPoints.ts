@@ -1,3 +1,5 @@
+import SUBSCRIPTION_API from "./subscription";
+
 export const END_POINTS = {
   CERTIFICATE_MANAGEMENT: {
     CREATE_NEW: '/api/certificates/createNew',
@@ -10,7 +12,7 @@ export const END_POINTS = {
   },
 
   ADVISOR: {
-    GET_ALL: '/api/advisors/getAll',
+    MAIN: '/api/advisors/getAll',
   },
 
   AUTH: {
@@ -33,8 +35,12 @@ export const END_POINTS = {
   },
 
   COMMISSION: {
-    MAIN: '/api/commissions/advisor/getAll',
+    MAIN: '/api/commissions/getAll',
     UPDATE_COMMISSION: '/api/commissions/update-paid',
+  },
+
+  SUBSCRIPTION: {
+    MAIN: '/api/subscriptions/getAll',
   },
 
   FOOD: '/api/foods/getAll',
