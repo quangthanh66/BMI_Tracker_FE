@@ -21,6 +21,9 @@ const getRoleName = (role: USER_ROLES_ENUM) => {
   if (role === USER_ROLES_ENUM.ROLE_ADVISOR) {
     return 'Advisor';
   }
+  if (role === USER_ROLES_ENUM.ROLE_MANAGER) {
+    return 'Manager';
+  }
   return 'Member';
 };
 
@@ -30,79 +33,82 @@ export const UserColumns: any = ({
   provideCertificate,
   approveTrainer,
 }: UserColumnsTypes) => [
-  {
-    title: 'Full Name',
-    dataIndex: 'fullName',
-    sortDirections: ['descend'],
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
+    {
+      title: 'Full Name',
+      dataIndex: 'fullName',
+      sortDirections: ['descend'],
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+    },
+
+    {
+      title: 'Phone number',
+      dataIndex: 'phoneNumber',
+    },
+    {
+      title: 'Role',
+      dataIndex: 'roleNames',
+      render: (roleNames: any) => {
+        console.log(roleNames);
+        return (
+          <Tag
+            color={
+              roleNames[0] === 'ROLE_ADMIN'
+                ? 'red'
+                : roleNames[0] === 'ROLE_ADVISOR'
+                  ? 'blue'
+                  : roleNames[0] === 'ROLE_MANAGER'
+                    ? 'silver'
+                    : roleNames[0] === 'ROLE_MEMBER'
+                      ? 'green'
+                      : 'geekblue'
+            }
+          >
+            {getRoleName(roleNames[0])}
+          </Tag>
+        );
+      },
+    },
+ 
 
   {
-    title: 'Phone number',
-    dataIndex: 'phoneNumber',
-  },
-  {
-    title: 'Role',
-    dataIndex: 'roleNames',
-    render: (roleNames: any) => {
-      console.log(roleNames);
-      return (
+      title: 'Status',
+      dataIndex: 'isActive',
+      render: (isActive: boolean) => (
         <Tag
           color={
-            roleNames[0] === 'ROLE_ADMIN'
-              ? 'red'
-              : roleNames[0] === 'ROLE_ADVISOR'
-              ? 'blue'
-              : roleNames[0] === 'ROLE_MEMBER'
-              ? 'green'
-              : 'geekblue'
+            //   isActive === USER_STATUS.true || isActive === USER_STATUS.true
+            isActive === true ? 'green' : isActive === false ? 'geekblue' : 'volcano'
           }
         >
-          {getRoleName(roleNames[0])}
+          {isActive ? 'Active' : 'Inactive'}
         </Tag>
-      );
+      ),
+      sortDirections: ['descend'],
     },
-  },
+    // {
+    //   title: 'Change role',
+    //   dataIndex: 'change_role',
+    //   render: () => {
+    //     return (
+    //       <Tooltip title="Change user role">
+    //         <BaseButton onClick={changeUserRole}>Change role</BaseButton>
+    //       </Tooltip>
+    //     );
+    //   },
+    // },
+    {
+      title: 'Actions',
+      dataIndex: 'accountID',
+      render: (id: string, user: UserItemTypes) => (
+        <div className="flex items-center gap-x-4">
+          <Tooltip title="Edit user profile">
+            <Button icon={<EditOutlined />} type="text" onClick={() => updateUserModal(user)}></Button>
+          </Tooltip>
 
-  {
-    title: 'Status',
-    dataIndex: 'isActive',
-    render: (isActive: boolean) => (
-      <Tag
-        color={
-          //   isActive === USER_STATUS.true || isActive === USER_STATUS.true
-          isActive === true ? 'green' : isActive === false ? 'geekblue' : 'volcano'
-        }
-      >
-        {isActive ? 'Active' : 'Inactive'}
-      </Tag>
-    ),
-    sortDirections: ['descend'],
-  },
-  // {
-  //   title: 'Change role',
-  //   dataIndex: 'change_role',
-  //   render: () => {
-  //     return (
-  //       <Tooltip title="Change user role">
-  //         <BaseButton onClick={changeUserRole}>Change role</BaseButton>
-  //       </Tooltip>
-  //     );
-  //   },
-  // },
-  {
-    title: 'Actions',
-    dataIndex: 'accountID',
-    render: (id: string, user: UserItemTypes) => (
-      <div className="flex items-center gap-x-4">
-        <Tooltip title="Edit user profile">
-          <Button icon={<EditOutlined />} type="text" onClick={() => updateUserModal(user)}></Button>
-        </Tooltip>
-
-        {/* <Tooltip title="Provide certificate for user">
+          {/* <Tooltip title="Provide certificate for user">
           <Button icon={<FileTextOutlined />} type="text" onClick={() => provideCertificate(user)}></Button>
         </Tooltip>
 
@@ -112,7 +118,7 @@ export const UserColumns: any = ({
           </Tooltip>
         )} */}
 
-        {/* <Tooltip title="Delete user">
+          {/* <Tooltip title="Delete user">
           <BasePopconfirm
             placement="rightTop"
             title="Delete the user"
@@ -123,7 +129,7 @@ export const UserColumns: any = ({
             <Button icon={<DeleteOutlined />} danger type="text"></Button>
           </BasePopconfirm>
         </Tooltip> */}
-      </div>
-    ),
-  },
-];
+        </div>
+      ),
+    },
+  ];

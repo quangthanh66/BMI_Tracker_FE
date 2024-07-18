@@ -18,6 +18,7 @@ export type TAddNewExercise = {
   duration: number;
   distance: number;
   caloriesBurned: number;
+  tagIDs: number;
 };
 
 export type TUpdateExercise = TAddNewExercise & {

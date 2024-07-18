@@ -121,7 +121,7 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
           <Col span={12}>
             <Form.Item
               label={<span style={{ fontWeight: 'bold' }}>Tags</span>}
-              name="tagID"
+              name="tagIDs"
               rules={[fieldValidate.required]}
             >
               <Select options={tagsSelect} mode="multiple" />

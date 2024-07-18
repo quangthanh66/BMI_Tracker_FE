@@ -29,7 +29,7 @@ const CertificateFilter = ({ onCreateNewCertificate, onSearchCertificate }: Filt
         </Col>
       </Row>
 
-      {userProfileState.role === USER_ROLES_ENUM.ROLE_ADVISOR && (
+      {userProfileState.role === USER_ROLES_ENUM.ROLE_ADMIN && (
         <BaseButton
           type="primary"
           className="flex items-center "

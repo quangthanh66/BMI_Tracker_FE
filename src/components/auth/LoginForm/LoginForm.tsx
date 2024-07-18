@@ -95,9 +95,9 @@ export const LoginForm: React.FC = () => {
           <BaseSelect
             defaultValue={USER_ROLES_ENUM.ROLE_ADMIN}
             options={[
-              { label: 'Admin Role', value: USER_ROLES_ENUM.ROLE_ADMIN },
+              { label: 'Admin', value: USER_ROLES_ENUM.ROLE_ADMIN },
               // { label: 'Advisor Role', value: USER_ROLES_ENUM.ROLE_ADVISOR },
-              { label: 'Manager Role', value: USER_ROLES_ENUM.ROLE_MANAGER },
+              { label: 'Manager', value: USER_ROLES_ENUM.ROLE_MANAGER },
             ]}
           />
         </Auth.FormItem>

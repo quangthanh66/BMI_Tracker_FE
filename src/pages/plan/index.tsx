@@ -182,7 +182,7 @@ const PlanManagement = () => {
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-2 w-full">
                       <BaseButton danger className="flex-1" onClick={() => confirmModal(item.planID)}>
-                        Delete
+                        Reject
                       </BaseButton>
                       <BaseButton className="flex-1" type="primary" onClick={() => updatePlan(item)}>
                         Update
