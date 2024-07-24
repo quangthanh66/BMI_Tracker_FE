@@ -81,7 +81,7 @@ const SubscriptionManagement = () => {
   };
 
   return (
-    <Spin spinning={isLoadingLoadSubscription|| isLoadingApproveSubscription} tip="Loading subscription ...">
+    <Spin spinning={isLoadingLoadSubscription || isLoadingApproveSubscription} tip="Loading subscription ...">
       {contextHolder}
       <Row gutter={[14, 14]}>
         <Col span={24}>

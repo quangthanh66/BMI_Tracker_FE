@@ -1,6 +1,12 @@
 import { AiOutlineUser, AiOutlineCustomerService, AiFillProject } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
-import { CoffeeOutlined, FormOutlined, SafetyCertificateOutlined, ProjectOutlined, ProjectFilled } from '@ant-design/icons';
+import {
+  CoffeeOutlined,
+  FormOutlined,
+  SafetyCertificateOutlined,
+  ProjectOutlined,
+  ProjectFilled,
+} from '@ant-design/icons';
 import { PAGE_ROUTES } from '@app/utils/router';
 import { MdOutlineFastfood, MdOutlineRestaurantMenu } from 'react-icons/md';
 import { GiFoodChain } from 'react-icons/gi';
@@ -18,7 +24,7 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
   {
     title: 'Dashboard',
     key: 'dashboard',
-    url: PAGE_ROUTES.DASHBOARD,
+    url: PAGE_ROUTES.HOME,
     icon: <FaChartSimple />,
   },
   {
@@ -61,7 +67,6 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
 ];
 
 export const trainerSidebar: SidebarNavigationItem[] = [
-
   {
     title: 'Advisor',
     key: 'advisor',

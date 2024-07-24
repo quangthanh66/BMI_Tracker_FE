@@ -1,21 +1,13 @@
 import { Card, Col, Row, Spin, Typography } from 'antd';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import BlogFilter from './BlogFilter';
-import CreateBlogModal from './CreateBlogModal';
 import UpdateBlogModal from './UpdateBlogModal';
-import { BlogColumns } from './constant';
-import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import DescriptionModal from './DescriptionModal';
-import ViewDetailBlog from './ViewDetailBlog';
 import { useQuery } from '@tanstack/react-query';
 import BLOG_API from '@app/api/blogs';
 
 const Blog = () => {
-  const {
-    isLoading: isLoadingBlogList,
-    refetch: refetchBlogsList,
-    data: blogsListServer,
-  } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
+  const { isLoading: isLoadingBlogList, refetch: refetchBlogsList } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
     enabled: false,
     onSuccess: (response) => {
       console.log(response);
@@ -26,18 +18,9 @@ const Blog = () => {
   const createBlogRef = useRef<any>();
   const updateBlogRef = useRef<any>();
   const descriptionRef = useRef<any>();
-  const viewDetailRef = useRef<any>();
 
   const onCreateNewBlog = () => {
     createBlogRef.current.openModal();
-  };
-
-  const onUpdateBlog = () => {
-    updateBlogRef.current.openModal();
-  };
-
-  const onOpenDescriptionModal = () => {
-    descriptionRef.current.openModal();
   };
 
   const onSearchBlogName = (value: string) => {
@@ -45,10 +28,6 @@ const Blog = () => {
   };
 
   const filterBlogStatus = (statusParams: boolean) => {};
-
-  const onViewDetailBlog = () => {
-    viewDetailRef.current.openModal();
-  };
 
   useEffect(() => {
     refetchBlogsList();

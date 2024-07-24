@@ -1,6 +1,12 @@
-import SUBSCRIPTION_API from "./subscription";
-
 export const END_POINTS = {
+  STATISTIC: {
+    TOTAL_WORKOUT: '/api/statistics/get-total-workout',
+    TOTAL_SUBSCRIPTION: '/api/statistics/get-total-subscription',
+    TOTAL_MENU: '/api/statistics/get-total-menu',
+    TOTAL_ADVISOR_MEMBER: '/api/statistics/get-total-advisor-member',
+    COMMISSION_SUMMARY: '/api/statistics/commission-summary',
+  },
+
   CERTIFICATE_MANAGEMENT: {
     CREATE_NEW: '/api/certificates/createNew',
     DETAIL: '/api/certificates/getByID',

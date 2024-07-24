@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
 import { useTranslation } from 'react-i18next';
 import { PieChart } from '../common/charts/PieChart';
+import { TotalWorkoutItem } from '@app/api/statistic/types';
 
-export const VisitorsPieChart: React.FC = () => {
+type PieChartProps = {
+  totalWorkout: TotalWorkoutItem[];
+};
+
+export const VisitorsPieChart: React.FC<PieChartProps> = ({ totalWorkout }) => {
   const { t } = useTranslation();
-  const data = [
-    { value: 1048, name: t('charts.search') },
-    { value: 735, name: t('charts.direct') },
-    { value: 580, name: t('common.email') },
-    { value: 484, name: t('charts.union') },
-    { value: 300, name: t('charts.video') },
-  ];
+
   const name = t('charts.visitorsFrom');
 
+  const convertPieChart = useMemo(
+    () =>
+      totalWorkout.map((item) => {
+        return {
+          value: item.totalWorkout,
+          name: item.yearMonth,
+        };
+      }),
+    [totalWorkout],
+  );
+
   return (
-    <BaseCard padding="0 0 1.875rem" title={t('charts.pie')}>
-      <PieChart data={data} name={name} showLegend={true} />
+    <BaseCard title={'Total Workouts'}>
+      <PieChart data={convertPieChart} name={name} showLegend={true} />
     </BaseCard>
   );
 };

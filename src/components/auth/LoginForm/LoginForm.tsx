@@ -8,7 +8,6 @@ import { useMutation } from '@tanstack/react-query';
 import AUTH_API from '@app/api/auth';
 import { message } from 'antd';
 import { PAGE_ROUTES } from '@app/utils/router';
-import { UserItemTypes } from '@app/api/users/type';
 import { USER_ROLES_ENUM } from '@app/utils/constant';
 import { useDispatch } from 'react-redux';
 import { setUserProfile } from '@app/store/slices/appSlice';

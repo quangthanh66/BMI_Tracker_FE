@@ -55,6 +55,7 @@
     "react-simple-maps": "^2.3.0",
     "react-slick": "^0.28.1",
     "react-verification-input": "^2.0.3",
+    "recharts": "^2.12.7",
     "redux-persist": "^6.0.0",
     "round-slider": "altence/round-slider#refactor/slider",
     "slick-carousel": "^1.8.1",

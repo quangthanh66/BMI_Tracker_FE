@@ -44,7 +44,7 @@ export const SignUpForm: React.FC = () => {
         content: 'Create a new account is successful',
       });
 
-      navigate(PAGE_ROUTES.DASHBOARD);
+      navigate(PAGE_ROUTES.HOME);
     },
     onError: () => {
       messageApi.open({

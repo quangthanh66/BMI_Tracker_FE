@@ -1,5 +1,4 @@
 export const PAGE_ROUTES = {
-  DASHBOARD: '/charts',
   HOME: '/charts',
   USERS: '/users',
   INGREDIENTS: '/ingredients',
@@ -33,5 +32,5 @@ export const PAGE_ROUTES = {
     WORKOUT: '/workout',
     SUBSCRIPTION: '/subscription',
     ADVISOR: '/advisor',
-  }
+  },
 };
