@@ -1,65 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BaseNotification } from '@app/components/common/BaseNotification/BaseNotification';
-import { Notification as NotificationType } from 'api/notifications.api';
 import * as S from './NotificationsOverlay.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseSpace } from '@app/components/common/BaseSpace/BaseSpace';
-import { TNotifyItemState } from '@app/api/notifications/type';
+import { Spin } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import NotificationAPI from '@app/api/notifications';
-import { Spin, message } from 'antd';
-import { UserItemTypes } from '@app/api/users/type';
-import { useSelector } from 'react-redux';
+import { NotificationItemResponse } from '@app/api/notifications/type';
 
-interface NotificationsOverlayProps {
-  notifications: NotificationType[];
-  setNotifications: (state: NotificationType[]) => void;
-}
-
-export const NotificationsOverlay: React.FC<NotificationsOverlayProps> = ({
-  notifications,
-  setNotifications,
-  ...props
-}) => {
+export const NotificationsOverlay: React.FC = () => {
   const { t } = useTranslation();
-  const [messageApi, contextHolder] = message.useMessage();
-  const userProfileState: UserItemTypes = useSelector((state: any) => state.app.userProfile.payload);
-  const [notify, setNotify] = useState<TNotifyItemState[]>([]);
-  const { isLoading, refetch } = useQuery(['get-notifications'], NotificationAPI.getNotificationsList, {
-    enabled: false,
-    onSuccess: (response: TNotifyItemState[]) => {
-      const notificationsUser = response.filter((notify) => notify.userId === userProfileState?.accountID);
-      setNotify(notificationsUser);
+  const [notifications, setNotifications] = useState<NotificationItemResponse[]>([]);
+  const { isLoading: isLoadingNotifications, refetch: refetchNotifications } = useQuery(
+    ['notifications'],
+    NotificationAPI.getNotificationsList,
+    {
+      enabled: false,
+      onSuccess: (response: NotificationItemResponse[]) => setNotifications(response),
     },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Cant get notifications list',
-      });
-    },
-  });
+  );
 
   useEffect(() => {
-    refetch();
-  }, [userProfileState]);
+    refetchNotifications();
+  }, []);
 
   return (
-    <S.NoticesOverlayMenu {...props}>
-      {contextHolder}
-      <Spin spinning={isLoading}>
+    <S.NoticesOverlayMenu>
+      <Spin spinning={isLoadingNotifications}>
         <BaseRow gutter={[20, 20]}>
           <BaseCol span={24}>
-            {notify.length > 0 ? (
-              <BaseSpace direction="vertical" size={10} split={<S.SplitDivider />}>
-                {notify.map((notification, index) => {
+            {notifications.length > 0 ? (
+              <BaseSpace className="w-full relative " direction="vertical" size={10} split={<S.SplitDivider />}>
+                {notifications.map((notification, index) => {
                   return (
                     <BaseNotification
                       key={index}
                       type={'info'}
-                      title={notification.notificationName}
+                      title={notification.title}
                       description={notification.content}
+                      time={notification.createdTime}
+                      isRead={notification.isRead}
                     />
                   );
                 })}
@@ -68,22 +50,6 @@ export const NotificationsOverlay: React.FC<NotificationsOverlayProps> = ({
               <S.Text>{t('header.notifications.noNotifications')}</S.Text>
             )}
           </BaseCol>
-          {/* <BaseCol span={24}>
-            <BaseRow gutter={[10, 10]}>
-              {notifications.length > 0 && (
-                <BaseCol span={24}>
-                  <S.Btn type="ghost" onClick={() => setNotifications([])}>
-                    {t('header.notifications.readAll')}
-                  </S.Btn>
-                </BaseCol>
-              )}
-              <BaseCol span={24}>
-                <S.Btn type="link">
-                  <Link to="/">{t('header.notifications.viewAll')}</Link>
-                </S.Btn>
-              </BaseCol>
-            </BaseRow>
-          </BaseCol> */}
         </BaseRow>
       </Spin>
     </S.NoticesOverlayMenu>

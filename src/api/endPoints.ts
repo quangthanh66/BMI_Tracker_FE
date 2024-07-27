@@ -96,7 +96,7 @@ export const END_POINTS = {
   UPDATE_EXERCISE: '/api/exercises/update',
   TAG_EXERCISE: '/api/tags/exercise/getAll',
 
-  NOTIFICATIONS: '/api/notification',
+  NOTIFICATIONS: '/api/notifications/get-all-for-user',
 
   TAGS: {
     ADD_NEW: '/api/tags/createNew',

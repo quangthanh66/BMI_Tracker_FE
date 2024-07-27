@@ -42,11 +42,11 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
 
   useEffect(() => {
     if (exerciseProps) {
-      const convertTagsNumber = exerciseProps.tags.map((item) => item.tagID);
-      form.setFieldsValue({
-        ...exerciseProps,
-        tagID: convertTagsNumber,
-      });
+      // const convertTagsNumber = exerciseProps?.tags.map((item: any) => item.tagID);
+      // form.setFieldsValue({
+      //   ...exerciseProps,
+      //   tagID: convertTagsNumber,
+      // });
     }
   }, [exerciseProps]);
 

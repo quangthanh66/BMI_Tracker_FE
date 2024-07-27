@@ -49,11 +49,6 @@ export const USER_SEX_VALUES = [
   },
 ];
 
-// export enum USER_STATUS {
-//   true = 'true',
-//   false = 'false',
-// }
-
 export enum CERTIFICATE_STATUS {
   hidden = 'hidden',
   available_certificate = 'available-certificate',
@@ -62,4 +57,8 @@ export enum CERTIFICATE_STATUS {
 export enum BLOG_STATUS {
   true = 'true',
   false = 'false',
+}
+
+export enum DATE_TIME_FORMAT {
+  FULL_DATE_TIME = 'MM/DD/YYYY - HH:mm A',
 }

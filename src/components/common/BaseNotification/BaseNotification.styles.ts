@@ -21,6 +21,7 @@ export const Description = styled(BaseTypography.Text)`
 
 export const SpaceWrapper = styled(BaseSpace)<SpacewWrapperProps>`
   background-color: var(--background-color);
+  width: 100%;
 
   & ${Title}, span[role='img'] {
     ${(props) => {

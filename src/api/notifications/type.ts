@@ -1,22 +1,7 @@
-export type TNotifyItemState = {
-  notificationId: string;
-  notificationName: string;
+export type NotificationItemResponse = {
+  notificationID: number;
   content: string;
-  type: 'available-noti' | 'hidden';
-  status: string;
-  userId: string;
-};
-
-export type TAddNewNotifyState = {
-  notificationName: string;
-  content: string;
-  userId: string;
-  type: number;
-};
-
-export type TUpdateNotifyState = {
-  notiId: string;
-  notificationName: string;
-  content: string;
-  type: number;
+  title: string;
+  createdTime: string;
+  isRead: boolean;
 };

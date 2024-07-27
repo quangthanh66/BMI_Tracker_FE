@@ -138,36 +138,36 @@ const ExerciseManagement = () => {
                   <Card size="small">
                     <div className="flex flex-col justify-between gap-4 w-full">
                       <div className="w-full flex flex-col gap-2 flex-grow">
-                        <Typography.Title className="!text-black" level={3}>{item.exerciseName}</Typography.Title>
+                        <Typography.Title className="!text-black" level={3}>
+                          {item.exerciseName}
+                        </Typography.Title>
                       </div>
                       <div className="flex flex-col justify-between w-full">
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Photo :</span>{" "}
+                          <span style={{ fontWeight: 'bold' }}>Photo :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.exercisePhoto}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Video :</span>{" "}
+                          <span style={{ fontWeight: 'bold' }}>Video :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.exerciseVideo}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Description :</span>{" "}
+                          <span style={{ fontWeight: 'bold' }}>Description :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.exerciseDescription}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Met :</span>{" "}
+                          <span style={{ fontWeight: 'bold' }}>Met :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.met}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Tags :</span>{" "}
+                          <span style={{ fontWeight: 'bold' }}>Tags :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.tagName}</span>
                         </Typography.Text>
-                    
-
 
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
+                          <span style={{ fontWeight: 'bold' }}>Status :</span>{' '}
                           {/* <span className="font-semibold !text-black"> */}
-                            {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
+                          {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
                           {/* </span> */}
                         </Typography.Text>
 
