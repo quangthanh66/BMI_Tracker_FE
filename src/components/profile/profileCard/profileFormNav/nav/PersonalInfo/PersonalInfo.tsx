@@ -81,20 +81,13 @@ export const PersonalInfo: React.FC = () => {
 
   const userFormValues = useMemo(
     () =>
-      user
+      userProfileState
         ? {
             fullName: userProfileState.fullName,
             email: userProfileState.email,
             phone: userProfileState.phoneNumber,
-            nickname: user.userName,
-            sex: user.sex,
-            birthday: Dates.getDate(user.birthday),
-            language: user.lang,
-            country: user.country,
-            city: user.city,
-            address1: user.address1,
+
             address2: user?.address2,
-            zipcode: user.zipcode,
             website: user?.website,
             twitter: user?.socials?.twitter,
             linkedin: user?.socials?.linkedin,
