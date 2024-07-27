@@ -13,6 +13,11 @@ export enum USER_SEX_ENUM {
   MALE = 'MALE',
   FEMALE = 'FEMALE',
 }
+export enum PAYMENT_STATUS {
+  PAID = 'PAID',
+  UNPAID = 'UNPAID',
+  PARTIALLY_PAID = 'PARTIALLY_PAID',
+}
 
 export const USER_ROLES_VALUES = [
   {

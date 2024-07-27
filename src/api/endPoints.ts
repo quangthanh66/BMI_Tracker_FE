@@ -90,10 +90,10 @@ export const END_POINTS = {
   CREATE_USER: '/api/accounts/createNew',
   UPDATE_USER: '/api/accounts/update',
 
-  EXERCISE: '/api/exercses/getAll',
-  ADD_NEW_EXERCISE: '/api/exercses/createNew',
-  DELETE_EXERCISE: '/api/exercses/deactivate',
-  UPDATE_EXERCISE: '/api/exercses/update',
+  EXERCISE: '/api/exercises/getAll',
+  ADD_NEW_EXERCISE: '/api/exercises/createNew',
+  DELETE_EXERCISE: '/api/exercises/deactivate',
+  UPDATE_EXERCISE: '/api/exercises/update',
   TAG_EXERCISE: '/api/tags/exercise/getAll',
 
   NOTIFICATIONS: '/api/notification',

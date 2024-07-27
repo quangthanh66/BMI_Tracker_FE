@@ -1,15 +1,13 @@
 export type TExerciseItem = {
   exerciseID: string;
   exerciseName: string;
-  emoji: string;
-  duration: number;
-  caloriesBurned: number;
-  distance: string;
+  exercisePhoto: string;
+  exerciseVideo: string;
+  met: number;
+  exerciseDescription: string;
+  tagID: number;
+  tagName: string;
   isActive: boolean;
-  tags: {
-    tagID: number;
-    tagName: string;
-  }[];
 };
 
 export type TAddNewExercise = {

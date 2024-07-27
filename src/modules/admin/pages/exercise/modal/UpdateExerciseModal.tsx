@@ -93,7 +93,7 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
           </Col>
           <Col span={12}>
             <Form.Item
-              label={<span style={{ fontWeight: 'bold' }}>Duration</span>}
+              label={<span style={{ fontWeight: 'bold' }}>Duration(minutes)</span>}
               name="duration"
               rules={[fieldValidate.required]}
             >
@@ -102,7 +102,7 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
           </Col>
           <Col span={12}>
             <Form.Item
-              label={<span style={{ fontWeight: 'bold' }}>Distance</span>}
+              label={<span style={{ fontWeight: 'bold' }}>Distance(km)</span>}
               name="distance"
               rules={[fieldValidate.required]}
             >
@@ -111,7 +111,7 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
           </Col>
           <Col span={12}>
             <Form.Item
-              label={<span style={{ fontWeight: 'bold' }}>Calories burned</span>}
+              label={<span style={{ fontWeight: 'bold' }}>Calories burned(kcal)</span>}
               name="caloriesBurned"
               rules={[fieldValidate.required]}
             >

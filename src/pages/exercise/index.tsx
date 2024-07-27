@@ -142,26 +142,26 @@ const ExerciseManagement = () => {
                       </div>
                       <div className="flex flex-col justify-between w-full">
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Distance :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.distance}</span>
+                          <span style={{ fontWeight: 'bold' }}>Photo :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.exercisePhoto}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Duration :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.duration}</span>
+                          <span style={{ fontWeight: 'bold' }}>Video :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.exerciseVideo}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Calories burned :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.caloriesBurned}</span>
+                          <span style={{ fontWeight: 'bold' }}>Description :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.exerciseDescription}</span>
                         </Typography.Text>
-
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Met :</span>{" "}
+                          <span style={{ textTransform: 'lowercase' }}>{item.met}</span>
+                        </Typography.Text>
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Tags :</span>{" "}
-                          {
-                            item.tags.map((tags, index) => (
-                              <Tag key={index} style={{ textTransform: 'lowercase' }}>{tags.tagName}</Tag>
-                            ))
-                          }
+                          <span style={{ textTransform: 'lowercase' }}>{item.tagName}</span>
                         </Typography.Text>
+                    
 
 
                         <Typography.Text className="!text-black">
