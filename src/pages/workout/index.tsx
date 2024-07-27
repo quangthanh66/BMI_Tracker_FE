@@ -118,23 +118,27 @@ const WorkoutManagement = () => {
                   key={item.workoutID}
                 >
                   <div className="w-full flex flex-col gap-2 flex-grow">
-                    <Typography.Title className="!text-black" level={3}>{item.workoutName}</Typography.Title>
-                    <Typography.Paragraph className="!text-black text-lg" >{item.workoutDescription.slice(0, 100)} ...</Typography.Paragraph>
+                    <Typography.Title className="!text-black" level={3}>
+                      {item.workoutName}
+                    </Typography.Title>
+                    <Typography.Paragraph className="!text-black text-lg">
+                      {item.workoutDescription.slice(0, 100)} ...
+                    </Typography.Paragraph>
                     <div className="w-full flex flex-col gap-2 flex-grow">
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
+                        <span style={{ fontWeight: 'bold' }}>Calories :</span>{' '}
                         <span style={{ textTransform: 'lowercase' }}>{item.totalCloriesBurned}</span>
                       </Typography.Text>
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: 'bold' }}>Created by :</span>{" "}
+                        <span style={{ fontWeight: 'bold' }}>Created by :</span>{' '}
                         <span style={{ textTransform: 'lowercase' }}>{item.fullName}</span>
                       </Typography.Text>
                       <Typography.Text className="!text-black">
-                      <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
-                      <span className="font-semibold !text-black">
-                        {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
-                      </span>
-                    </Typography.Text>
+                        <span style={{ fontWeight: 'bold' }}>Status :</span>{' '}
+                        <span className="font-semibold !text-black">
+                          {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
+                        </span>
+                      </Typography.Text>
                     </div>
                   </div>
 

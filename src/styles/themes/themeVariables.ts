@@ -86,7 +86,6 @@ const getThemeVariables = (theme: ThemeType) => css`
   --box-shadow-nft-color: ${themeObject[theme].boxShadowNft};
   --box-shadow-nft-secondary-color: ${themeObject[theme].boxShadowNftSecondary};
 
-  --heading-color: ${themeObject[theme].heading};
   --item-hover-bg: ${themeObject[theme].itemHoverBg};
   --background-base-color: ${themeObject[theme].backgroundColorBase};
   --border-base-color: ${themeObject[theme].borderBase};

@@ -1,14 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const appSlice = createSlice({
-  name: 'app-slice',
+  name: "app-slice",
   initialState: {
     userProfile: {
-      accessToken: '',
-      accountID: 0,
-      email: '',
-      refreshToken: '',
-      role: '',
+      accountID: -1,
+      email: "",
+      fullName: "",
+      accountPhoto: "",
+      phoneNumber: "",
+      roleNames: [],
+      isActive: true,
     },
   },
   reducers: {

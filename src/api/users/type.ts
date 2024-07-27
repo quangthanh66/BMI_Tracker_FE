@@ -8,6 +8,16 @@ export type UserItemTypes = {
   birthday: string;
 };
 
+export type UserProfileResponse = {
+  accountID: number;
+  email: string;
+  fullName: string;
+  accountPhoto: string;
+  phoneNumber: string;
+  roleNames: string[];
+  isActive: boolean;
+};
+
 export type UpdateUserTypesAPI = {
   accountID: string;
   fullName: string;

@@ -1,21 +1,23 @@
-import React from 'react';
-import { NotificationsDropdown } from '../components/notificationsDropdown/NotificationsDropdown';
-import { ProfileDropdown } from '../components/profileDropdown/ProfileDropdown/ProfileDropdown';
-import { HeaderSearch } from '../components/HeaderSearch/HeaderSearch';
-import { SettingsDropdown } from '../components/settingsDropdown/SettingsDropdown';
-import { HeaderFullscreen } from '../components/HeaderFullscreen/HeaderFullscreen';
-import * as S from '../Header.styles';
-import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
-import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { IoIosLogOut } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
-import { PAGE_ROUTES } from '@app/utils/router';
+import React from "react";
+import { NotificationsDropdown } from "../components/notificationsDropdown/NotificationsDropdown";
+import { ProfileDropdown } from "../components/profileDropdown/ProfileDropdown/ProfileDropdown";
+import { HeaderSearch } from "../components/HeaderSearch/HeaderSearch";
+import { SettingsDropdown } from "../components/settingsDropdown/SettingsDropdown";
+import { HeaderFullscreen } from "../components/HeaderFullscreen/HeaderFullscreen";
+import * as S from "../Header.styles";
+import { BaseRow } from "@app/components/common/BaseRow/BaseRow";
+import { BaseCol } from "@app/components/common/BaseCol/BaseCol";
+import { IoIosLogOut } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { PAGE_ROUTES } from "@app/utils/router";
 
 interface DesktopHeaderProps {
   isTwoColumnsLayout: boolean;
 }
 
-export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout }) => {
+export const DesktopHeader: React.FC<DesktopHeaderProps> = ({
+  isTwoColumnsLayout,
+}) => {
   const navigate = useNavigate();
 
   const leftSide = isTwoColumnsLayout ? (
@@ -54,12 +56,12 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
                 <SettingsDropdown />
               </BaseCol>
 
-              <BaseCol className="flex items-center">
+              {/* <BaseCol className="flex items-center">
                 <IoIosLogOut
                   className="w-[26px] h-[26px] cursor-pointer"
                   onClick={() => navigate(PAGE_ROUTES.AUTH.LOGIN)}
                 />
-              </BaseCol>
+              </BaseCol> */}
             </BaseRow>
           </BaseCol>
 

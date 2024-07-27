@@ -1,31 +1,33 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/BaseButtonsForm';
-import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
-import { FirstNameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/FirstNameItem/FirstNameItem';
-import { LastNameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/LastNameItem/LastNameItem';
-import { NicknameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/NicknameItem/NicknameItem';
-import { SexItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/SexItem/SexItem';
-import { BirthdayItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/BirthdayItem/BirthdayItem';
-import { LanguageItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/LanguageItem/LanguageItem';
-import { PhoneItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/PhoneItem/PhoneItem';
-import { EmailItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/EmailItem/EmailItem';
-import { CountriesItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/CountriesItem/CountriesItem';
-import { CitiesItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/CitiesItem/CitiesItem';
-import { ZipcodeItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/ZipcodeItem/ZipcodeItem';
-import { AddressItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/AddressItem/AddressItem';
-import { WebsiteItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/WebsiteItem/WebsiteItem';
-import { SocialLinksItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/SocialLinksItem/SocialLinksItem';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { Dates } from '@app/constants/Dates';
-import { notificationController } from '@app/controllers/notificationController';
-import { PaymentCard } from '@app/interfaces/interfaces';
-import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
-import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import React, { useCallback, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { BaseButtonsForm } from "@app/components/common/forms/BaseButtonsForm/BaseButtonsForm";
+import { BaseCard } from "@app/components/common/BaseCard/BaseCard";
+import { FirstNameItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/FirstNameItem/FirstNameItem";
+import { LastNameItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/LastNameItem/LastNameItem";
+import { NicknameItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/NicknameItem/NicknameItem";
+import { SexItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/SexItem/SexItem";
+import { BirthdayItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/BirthdayItem/BirthdayItem";
+import { LanguageItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/LanguageItem/LanguageItem";
+import { PhoneItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/PhoneItem/PhoneItem";
+import { EmailItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/EmailItem/EmailItem";
+import { CountriesItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/CountriesItem/CountriesItem";
+import { CitiesItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/CitiesItem/CitiesItem";
+import { ZipcodeItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/ZipcodeItem/ZipcodeItem";
+import { AddressItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/AddressItem/AddressItem";
+import { WebsiteItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/WebsiteItem/WebsiteItem";
+import { SocialLinksItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/SocialLinksItem/SocialLinksItem";
+import { useAppSelector } from "@app/hooks/reduxHooks";
+import { Dates } from "@app/constants/Dates";
+import { notificationController } from "@app/controllers/notificationController";
+import { PaymentCard } from "@app/interfaces/interfaces";
+import { BaseRow } from "@app/components/common/BaseRow/BaseRow";
+import { BaseCol } from "@app/components/common/BaseCol/BaseCol";
+import { UserProfileResponse } from "@app/api/users/type";
+import { useSelector } from "react-redux";
+import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
 
 interface PersonalInfoFormValues {
   birthday?: string;
-  lastName: string;
   country?: string;
   website: string;
   city?: string;
@@ -37,30 +39,35 @@ interface PersonalInfoFormValues {
   language?: string;
   linkedin: string;
   zipcode: string;
-  firstName: string;
   twitter: string;
   phone: string;
   email: string;
+  fullName: string;
+
+  role: string;
+  isActive: boolean;
 }
 
 const initialPersonalInfoValues: PersonalInfoFormValues = {
-  firstName: '',
-  lastName: '',
-  nickName: '',
+  fullName: "",
+  nickName: "",
   sex: undefined,
   birthday: undefined,
   language: undefined,
-  phone: '',
-  email: '',
+  phone: "",
+  email: "",
   country: undefined,
   city: undefined,
-  address1: '',
-  address2: '',
-  zipcode: '',
-  website: '',
-  twitter: '',
-  linkedin: '',
-  facebook: '',
+  address1: "",
+  address2: "",
+  zipcode: "",
+  website: "",
+  twitter: "",
+  linkedin: "",
+  facebook: "",
+
+  role: "",
+  isActive: false,
 };
 
 export const PersonalInfo: React.FC = () => {
@@ -68,15 +75,17 @@ export const PersonalInfo: React.FC = () => {
 
   const [isFieldsChanged, setFieldsChanged] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const userProfileState: UserProfileResponse = useSelector(
+    (state: any) => state.app.userProfile.payload
+  );
 
   const userFormValues = useMemo(
     () =>
       user
         ? {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email.name,
-            phone: user.phone.number,
+            fullName: userProfileState.fullName,
+            email: userProfileState.email,
+            phone: userProfileState.phoneNumber,
             nickname: user.userName,
             sex: user.sex,
             birthday: Dates.getDate(user.birthday),
@@ -90,9 +99,11 @@ export const PersonalInfo: React.FC = () => {
             twitter: user?.socials?.twitter,
             linkedin: user?.socials?.linkedin,
             facebook: user?.socials?.facebook,
+            role: userProfileState.roleNames[0],
+            isActive: userProfileState.isActive,
           }
         : initialPersonalInfoValues,
-    [user],
+    [user]
   );
 
   const [form] = BaseButtonsForm.useForm();
@@ -106,11 +117,11 @@ export const PersonalInfo: React.FC = () => {
       setTimeout(() => {
         setLoading(false);
         setFieldsChanged(false);
-        notificationController.success({ message: t('common.success') });
+        notificationController.success({ message: t("common.success") });
         console.log(values);
       }, 1000);
     },
-    [t],
+    [t]
   );
 
   return (
@@ -128,37 +139,21 @@ export const PersonalInfo: React.FC = () => {
         <BaseRow gutter={{ xs: 10, md: 15, xl: 30 }}>
           <BaseCol span={24}>
             <BaseButtonsForm.Item>
-              <BaseButtonsForm.Title>{t('profile.nav.personalInfo.title')}</BaseButtonsForm.Title>
+              <BaseButtonsForm.Title>
+                {t("profile.nav.personalInfo.title")}
+              </BaseButtonsForm.Title>
             </BaseButtonsForm.Item>
           </BaseCol>
 
-          <BaseCol xs={24} md={12}>
+          <BaseCol xs={24} md={24}>
             <FirstNameItem />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <LastNameItem />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <NicknameItem />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <SexItem />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <BirthdayItem />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <LanguageItem />
           </BaseCol>
 
           <BaseCol span={24}>
             <BaseButtonsForm.Item>
-              <BaseButtonsForm.Title>{t('profile.nav.personalInfo.contactInfo')}</BaseButtonsForm.Title>
+              <BaseButtonsForm.Title>
+                {t("profile.nav.personalInfo.contactInfo")}
+              </BaseButtonsForm.Title>
             </BaseButtonsForm.Item>
           </BaseCol>
 
@@ -170,45 +165,25 @@ export const PersonalInfo: React.FC = () => {
             <EmailItem verified={user?.email.verified} />
           </BaseCol>
 
-          <BaseCol span={24}>
-            <BaseButtonsForm.Item>
-              <BaseButtonsForm.Title>{t('common.address')}</BaseButtonsForm.Title>
+          <BaseCol xs={24} md={12}>
+            <BaseButtonsForm.Item name="role" label={"Role"}>
+              <BaseInput />
             </BaseButtonsForm.Item>
           </BaseCol>
 
           <BaseCol xs={24} md={12}>
-            <CountriesItem />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <CitiesItem />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <AddressItem number={1} />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <AddressItem number={2} />
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <ZipcodeItem />
-          </BaseCol>
-
-          <BaseCol span={24}>
-            <BaseButtonsForm.Item>
-              <BaseButtonsForm.Title>{t('profile.nav.personalInfo.otherInfo')}</BaseButtonsForm.Title>
+            <BaseButtonsForm.Item name="isActive" label={"Is Active"}>
+              <BaseInput />
             </BaseButtonsForm.Item>
           </BaseCol>
 
-          <BaseCol xs={24} md={12}>
-            <WebsiteItem />
-          </BaseCol>
-
-          <BaseCol span={24}>
-            <SocialLinksItem />
-          </BaseCol>
+          {/* <BaseCol span={24}>
+            <BaseButtonsForm.Item>
+              <BaseButtonsForm.Title>
+                {t("common.address")}
+              </BaseButtonsForm.Title>
+            </BaseButtonsForm.Item>
+          </BaseCol> */}
         </BaseRow>
       </BaseButtonsForm>
     </BaseCard>
