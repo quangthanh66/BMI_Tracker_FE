@@ -36,4 +36,5 @@ export const PAGE_ROUTES = {
 
   VERIFY_SUCCESS: "verification-success",
   VERIFY_FAILED: "verification-failed",
+  VERIFY_ACCOUNT: "account-verified",
 };

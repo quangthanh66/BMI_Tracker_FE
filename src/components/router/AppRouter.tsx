@@ -38,6 +38,7 @@ import SubscriptionManagement from "@app/pages/subscription";
 import AdvisorManagement from "@app/pages/advisor";
 import VerifySuccessAccount from "@app/pages/verify/verifySuccess";
 import VerifyFailAccount from "@app/pages/verify/verifyFail";
+import VerifyAccount from "@app/pages/verify/verifyAccount";
 
 const NewsFeedPage = React.lazy(() => import("@app/pages/NewsFeedPage"));
 const DataTablesPage = React.lazy(() => import("@app/pages/DataTablesPage"));
@@ -313,6 +314,10 @@ export const AppRouter: React.FC = () => {
           <Route
             path={PAGE_ROUTES.VERIFY_FAILED}
             element={<VerifyFailAccount />}
+          />
+          <Route
+            path={PAGE_ROUTES.VERIFY_ACCOUNT}
+            element={<VerifyAccount />}
           />
 
           <Route path="login" element={<LoginPage />} />
