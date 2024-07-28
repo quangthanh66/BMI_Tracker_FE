@@ -30,13 +30,13 @@ const ExerciseManagement = () => {
     data: exerciseList,
   } = useQuery(['get-exericse'], EXERCISE_API.GET_EXERCISE, {
     enabled: false,
-    // onSuccess: (response: ExerciseTypes[]) => {
-    //   const availableExercise = response.filter((item) => item.isActive !== false);
-    //   setExercise(availableExercise);
-    // },
     onSuccess: (response: ExerciseTypes[]) => {
-      setExercise(response);
+      const availableExercise = response.filter((item) => item.isActive !== false);
+      setExercise(availableExercise);
     },
+    // onSuccess: (response: ExerciseTypes[]) => {
+    //   setExercise(response);
+    // },
     onError: () => {
       messageApi.open({
         type: 'error',

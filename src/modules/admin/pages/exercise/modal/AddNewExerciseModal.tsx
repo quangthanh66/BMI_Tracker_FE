@@ -8,7 +8,7 @@ import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { useMutation } from '@tanstack/react-query';
-import { Col, Form, Row, Select, Space, message } from 'antd';
+import { Col, Form, Input, Row, Select, Space, message } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 type TAddNewExerciseModal = {
