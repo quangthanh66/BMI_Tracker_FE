@@ -63,6 +63,7 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
     updateWorkoutMutate({
       ...values,
       workoutID: workoutUpdateProps.workoutID,
+      standardWeight: '',
     });
   };
 
@@ -88,12 +89,12 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
             </Col>
 
             <Col span={12}>
-              <Form.Item label={<span style={{fontWeight: 'bold'}}>Calories</span>} name="totalCaloriesBurned" rules={[fieldValidate.required]}>
+              <Form.Item label={<span style={{fontWeight: 'bold'}}>Standard Weight</span>} name="standardWeight" rules={[fieldValidate.required]}>
                 <BaseInput type="number" min={0} step={0.1} />
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            {/* <Col span={12}>
               <Form.Item label={<span style={{fontWeight: 'bold'}}>Status</span>} name="isActive">
                 <BaseSelect
                   defaultValue={true}
@@ -103,7 +104,7 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
                   ]}
                 />
               </Form.Item>
-            </Col>
+            </Col> */}
 
             <Col span={24}>
               <Form.Item label={<span style={{fontWeight: 'bold'}}>Description</span>} name="workoutDescription">

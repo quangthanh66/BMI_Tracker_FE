@@ -30,9 +30,12 @@ const ExerciseManagement = () => {
     data: exerciseList,
   } = useQuery(['get-exericse'], EXERCISE_API.GET_EXERCISE, {
     enabled: false,
+    // onSuccess: (response: ExerciseTypes[]) => {
+    //   const availableExercise = response.filter((item) => item.isActive !== false);
+    //   setExercise(availableExercise);
+    // },
     onSuccess: (response: ExerciseTypes[]) => {
-      const availableExercise = response.filter((item) => item.isActive !== false);
-      setExercise(availableExercise);
+      setExercise(response);
     },
     onError: () => {
       messageApi.open({
@@ -137,24 +140,30 @@ const ExerciseManagement = () => {
                 <Col span={6} key={item.exerciseID}>
                   <Card size="small">
                     <div className="flex flex-col justify-between gap-4 w-full">
+                    <Image
+                        alt="food-alt"
+                        src={item.exercisePhoto}
+                        className="w-full h-[200px] object-cover rounded-md"
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null;
+                          currentTarget.src = errorImage;
+                        }}
+                      />
                       <div className="w-full flex flex-col gap-2 flex-grow">
                         <Typography.Title className="!text-black" level={3}>
                           {item.exerciseName}
                         </Typography.Title>
                       </div>
                       <div className="flex flex-col justify-between w-full">
-                        <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Photo :</span>{' '}
-                          <span style={{ textTransform: 'lowercase' }}>{item.exercisePhoto}</span>
+                      <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Description :</span>{' '}
+                          <span style={{ textTransform: 'lowercase' }}>{item.exerciseDescription}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Video :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.exerciseVideo}</span>
                         </Typography.Text>
-                        <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Description :</span>{' '}
-                          <span style={{ textTransform: 'lowercase' }}>{item.exerciseDescription}</span>
-                        </Typography.Text>
+                     
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Met :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.met}</span>
@@ -165,11 +174,11 @@ const ExerciseManagement = () => {
                         </Typography.Text>
 
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Status :</span>{' '}
-                          {/* <span className="font-semibold !text-black"> */}
+                        <span style={{ fontWeight: 'bold' }}>Status :</span>{' '}
+                        <span className="font-semibold !text-black">
                           {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
-                          {/* </span> */}
-                        </Typography.Text>
+                        </span>
+                      </Typography.Text>
 
                         <div className="grid grid-cols-2 gap-2 w-full">
                           <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.exerciseID)}>

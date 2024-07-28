@@ -65,7 +65,6 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
       updateExerciseMutate({
         ...values,
         exerciseID: Number(exerciseProps.exerciseID),
-        emoji: '',
       });
     }
   };
@@ -93,8 +92,8 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
           </Col>
           <Col span={12}>
             <Form.Item
-              label={<span style={{ fontWeight: 'bold' }}>Duration(minutes)</span>}
-              name="duration"
+              label={<span style={{ fontWeight: 'bold' }}>Met</span>}
+              name="met"
               rules={[fieldValidate.required]}
             >
               <BaseInput type="number" min={0} />
@@ -102,49 +101,41 @@ const UpdateExerciseModal = ({ refetchFoodPage, exerciseProps, tagsSelect }: TUp
           </Col>
           <Col span={12}>
             <Form.Item
-              label={<span style={{ fontWeight: 'bold' }}>Distance(km)</span>}
-              name="distance"
+              label={<span style={{ fontWeight: 'bold' }}>Photo</span>}
+              name="exercisePhoto"
               rules={[fieldValidate.required]}
             >
-              <BaseInput type="number" min={0} />
+            <BaseInput />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item
-              label={<span style={{ fontWeight: 'bold' }}>Calories burned(kcal)</span>}
-              name="caloriesBurned"
+              label={<span style={{ fontWeight: 'bold' }}>Video</span>}
+              name="exerciseVideo"
               rules={[fieldValidate.required]}
             >
-              <BaseInput type="number" min={0} />
+            <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label={<span style={{ fontWeight: 'bold' }}>Description</span>}
+              name="exerciseDescription"
+              rules={[fieldValidate.required]}
+            >
+           <BaseInput />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item
               label={<span style={{ fontWeight: 'bold' }}>Tags</span>}
-              name="tagIDs"
+              name="tagID"
               rules={[fieldValidate.required]}
             >
               <Select options={tagsSelect} mode="multiple" />
             </Form.Item>
           </Col>
 
-          {/* <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Status</span>} name="isActive">
-              <Select
-                defaultValue={true}
-                options={[
-                  {
-                    label: 'Active',
-                    value: true,
-                  },
-                  {
-                    label: 'DeActive',
-                    value: false,
-                  },
-                ]}
-              />
-            </Form.Item>
-          </Col> */}
 
           <Col span={24} className="flex justify-end">
             <Space>

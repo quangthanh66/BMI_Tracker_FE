@@ -28,6 +28,7 @@ export type RecipeRequest = {
 
 export type TUpdateWorkout = TAddNewWorkout & {
   workoutID: string;
+  standardWeight: string;
 };
 
 export type WorkoutExercise = {

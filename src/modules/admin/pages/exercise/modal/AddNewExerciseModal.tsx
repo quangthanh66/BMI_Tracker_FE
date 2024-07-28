@@ -52,7 +52,6 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
   const submitForm = (values: TAddNewExercise) => {
     addNewExercise({
       ...values,
-      emoji: '',
     });
   };
 
@@ -74,22 +73,27 @@ const AddNewExerciseModal = ({ refetchPage, tagsSelect }: TAddNewExerciseModal, 
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Duration</span>} name="duration" rules={[fieldValidate.required]}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Photo</span>} name="exercisePhoto" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Video</span>} name="exerciseVideo" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Description</span>} name="exerciseDescription" rules={[fieldValidate.required]}>
+              <BaseInput />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Met</span>} name="met" rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Distance</span>} name="distance">
-              <BaseInput type="number" min={0} />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Calories burned</span>} name="caloriesBurned" rules={[fieldValidate.required]}>
-              <BaseInput type="number" min={0} />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label={<span style={{fontWeight: 'bold'}}>Tags</span>} name="tagIDs" rules={[fieldValidate.required]}>
+            <Form.Item label={<span style={{fontWeight: 'bold'}}>Tags</span>} name="tagID" rules={[fieldValidate.required]}>
               <Select options={tagsSelect} mode="multiple" />
             </Form.Item>
           </Col>

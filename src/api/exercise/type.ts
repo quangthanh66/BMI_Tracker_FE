@@ -12,13 +12,12 @@ export type TExerciseItem = {
 
 export type TAddNewExercise = {
   exerciseName: string;
-  emoji: string;
-  duration: number;
-  distance: number;
-  caloriesBurned: number;
-  tagIDs: number;
+  exercisePhoto: string;
+  exerciseVideo: string;
+  met: number;
+  exerciseDescription: string;
+  tagID: number;
 };
-
 export type TUpdateExercise = TAddNewExercise & {
   isActive: true;
   exerciseID: number;
