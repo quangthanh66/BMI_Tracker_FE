@@ -254,7 +254,6 @@ export const AppRouter: React.FC = () => {
             element={<CertificateManagement />}
           />
 
-          <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />
           <Route element={<DefaultPage />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />

@@ -95,9 +95,6 @@ const ChartsPage: React.FC = () => {
     getTotalAdvisor();
   }, []);
 
-  console.log("Total meu ", totalMenu);
-  console.log("Total menu reverse", [...totalMenu].reverse());
-
   return (
     <Spin
       spinning={

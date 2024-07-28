@@ -39,9 +39,11 @@ export const LoginForm: React.FC = () => {
     {
       enabled: false,
       onSuccess: (response: any) => {
-        console.log("Runnning");
         dispatch(setUserProfile(response));
-        navigate(PAGE_ROUTES.HOME);
+
+        response.roleNames.includes(USER_ROLES_ENUM.ROLE_MANAGER)
+          ? navigate("/profile/personal-info")
+          : navigate(PAGE_ROUTES.HOME);
       },
     }
   );
