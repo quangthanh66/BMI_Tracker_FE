@@ -34,6 +34,6 @@ export const PAGE_ROUTES = {
     ADVISOR: "/advisor",
   },
 
-  VERIFY_SUCCESS: "/verification-success",
-  VERIFY_FAILED: "/verification-failed",
+  VERIFY_SUCCESS: "verification-success",
+  VERIFY_FAILED: "verification-failed",
 };

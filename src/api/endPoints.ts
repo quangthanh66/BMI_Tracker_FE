@@ -103,4 +103,5 @@ export const END_POINTS = {
     GET_ALL: "/api/tags/getAll",
   },
   GET_PROFILE: "/api/accounts/get-profile",
+  ADD_MORE_ACCOUNT: "/api/accounts/role/add-more-role",
 };

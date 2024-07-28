@@ -1,13 +1,13 @@
-import USERS_API from '@app/api/users';
-import { UserItemTypes } from '@app/api/users/type';
-import CreateNewUser from '@app/modules/admin/pages/users/CreateNewUser';
-import FilterUser from '@app/modules/admin/pages/users/Filter';
-import ProveCertificate from '@app/modules/admin/pages/users/ProveCertificate';
-import UpdateUser from '@app/modules/admin/pages/users/UpdateUser';
-import { UserColumns } from '@app/modules/admin/pages/users/type';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { Card, Col, Row, Spin, Table, Typography, message } from 'antd';
-import { useRef, useState, useEffect } from 'react';
+import USERS_API from "@app/api/users";
+import { UserItemTypes } from "@app/api/users/type";
+import CreateNewUser from "@app/modules/admin/pages/users/CreateNewUser";
+import FilterUser from "@app/modules/admin/pages/users/Filter";
+import ProveCertificate from "@app/modules/admin/pages/users/ProveCertificate";
+import UpdateUser from "@app/modules/admin/pages/users/UpdateUser";
+import { UserColumns } from "@app/modules/admin/pages/users/type";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Card, Col, Row, Spin, Table, Typography, message } from "antd";
+import { useRef, useState, useEffect } from "react";
 
 const UserTrainer = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -21,51 +21,55 @@ const UserTrainer = () => {
     isLoading,
     refetch,
     data: usersListServer,
-  } = useQuery(['get-users-list'], USERS_API.GET_LIST, {
+  } = useQuery(["get-users-list"], USERS_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: UserItemTypes[]) => {
       setUsers(response);
     },
     onError: () => {
       messageApi.open({
-        type: 'error',
-        content: 'Get users is failed',
+        type: "error",
+        content: "Get users is failed",
       });
     },
   });
-  const { isLoading: isLoadingDeleteUser, mutate: mutateDeleteUser } = useMutation(USERS_API.DELETE_USER, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Delete user is successful',
-      });
+  const { isLoading: isLoadingDeleteUser, mutate: mutateDeleteUser } =
+    useMutation(USERS_API.DELETE_USER, {
+      onSuccess: () => {
+        messageApi.open({
+          type: "success",
+          content: "Delete user is successful",
+        });
 
-      refetch();
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Delete user is failed',
-      });
-    },
-  });
+        refetch();
+      },
+      onError: () => {
+        messageApi.open({
+          type: "error",
+          content: "Delete user is failed",
+        });
+      },
+    });
 
-  const { mutate: mutateApproveTrainer } = useMutation(USERS_API.APPROVE_TRAINER, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Approve trainer is success',
-      });
+  const { mutate: mutateApproveTrainer } = useMutation(
+    USERS_API.APPROVE_TRAINER,
+    {
+      onSuccess: () => {
+        messageApi.open({
+          type: "success",
+          content: "Approve trainer is success",
+        });
 
-      refetch();
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Approve trainer is failed',
-      });
-    },
-  });
+        refetch();
+      },
+      onError: () => {
+        messageApi.open({
+          type: "error",
+          content: "Approve trainer is failed",
+        });
+      },
+    }
+  );
 
   useEffect(() => {
     refetch();
@@ -83,7 +87,7 @@ const UserTrainer = () => {
   const onSearchUser = (keyValue: string) => {
     if (usersListServer) {
       const result = usersListServer.filter((user: UserItemTypes) =>
-        user.fullName.toLowerCase().includes(keyValue.toLowerCase()),
+        user.fullName.toLowerCase().includes(keyValue.toLowerCase())
       );
       setUsers(result);
     }
@@ -123,12 +127,25 @@ const UserTrainer = () => {
       {contextHolder}
       <Col span={24}>
         <Card>
-          <Typography.Text className="text-xl font-bold">User management</Typography.Text>
+          <Typography.Text className="text-xl font-bold">
+            User management
+          </Typography.Text>
         </Card>
       </Col>
-      <CreateNewUser ref={createNewUserRef} onUpdateAfterCreateNew={() => refetch()} />
-      <UpdateUser ref={updateUserRef} userUpdate={userUpdate as UserItemTypes} onRefreshAfterUpdate={() => refetch()} />
-      <ProveCertificate ref={provideUserRef} userProps={userUpdate as UserItemTypes} onRefreshPage={() => refetch()} />
+      <CreateNewUser
+        ref={createNewUserRef}
+        onUpdateAfterCreateNew={() => refetch()}
+      />
+      <UpdateUser
+        ref={updateUserRef}
+        userUpdate={userUpdate as UserItemTypes}
+        onRefreshAfterUpdate={() => refetch()}
+      />
+      <ProveCertificate
+        ref={provideUserRef}
+        userProps={userUpdate as UserItemTypes}
+        onRefreshPage={() => refetch()}
+      />
 
       <Col span={24}>
         <Card size="small">

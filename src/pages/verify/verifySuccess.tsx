@@ -1,5 +1,4 @@
 import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
-import { BaseImage } from "@app/components/common/BaseImage/BaseImage";
 import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +11,7 @@ const VerifySuccessAccount = () => {
 
   const onCloseModalButton = () => {
     onCloseModal();
-    navigate("/charts");
+    navigate("/auth/login");
   };
 
   return (
@@ -27,7 +26,7 @@ const VerifySuccessAccount = () => {
         <h1 className="text-2xl">Verify account is successfully</h1>
 
         <BaseButton type="primary" block onClick={onCloseModalButton}>
-          Close Modal
+          Login Page
         </BaseButton>
       </div>
     </BaseModal>

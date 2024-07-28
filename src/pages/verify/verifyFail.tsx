@@ -11,7 +11,7 @@ const VerifyFailAccount = () => {
 
   const onCloseModalButton = () => {
     onCloseModal();
-    navigate("/charts");
+    navigate("/auth/login");
   };
 
   return (
@@ -26,7 +26,7 @@ const VerifyFailAccount = () => {
         <h1 className="text-2xl">Verify account is failed</h1>
 
         <BaseButton type="primary" block onClick={onCloseModalButton}>
-          Close Modal
+          Login Page
         </BaseButton>
       </div>
     </BaseModal>

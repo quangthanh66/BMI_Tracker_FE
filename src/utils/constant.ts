@@ -1,64 +1,64 @@
 export enum AUTH_TOKEN {
-  TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkR1Y0hOSEBnbWFpbC5jb20iLCJpYXQiOjE2OTY5NDUxODQsImV4cCI6MTY5OTUzNzE4NH0.h78GE2JeCInk2a9_dchHQiLFK42zSMQ7SP05nlpPpTU',
+  TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkR1Y0hOSEBnbWFpbC5jb20iLCJpYXQiOjE2OTY5NDUxODQsImV4cCI6MTY5OTUzNzE4NH0.h78GE2JeCInk2a9_dchHQiLFK42zSMQ7SP05nlpPpTU",
 }
 
 export enum USER_ROLES_ENUM {
-  ROLE_MEMBER = 'ROLE_MEMBER',
-  ROLE_ADMIN = 'ROLE_ADMIN',
-  ROLE_ADVISOR = 'ROLE_ADVISOR',
-  ROLE_MANAGER = 'ROLE_MANAGER',
+  ROLE_MEMBER = "ROLE_MEMBER",
+  ROLE_ADMIN = "ROLE_ADMIN",
+  ROLE_ADVISOR = "ROLE_ADVISOR",
+  ROLE_MANAGER = "ROLE_MANAGER",
 }
 
 export enum USER_SEX_ENUM {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
+  MALE = "MALE",
+  FEMALE = "FEMALE",
 }
 export enum PAYMENT_STATUS {
-  PAID = 'PAID',
-  UNPAID = 'UNPAID',
-  PARTIALLY_PAID = 'PARTIALLY_PAID',
+  PAID = "PAID",
+  UNPAID = "UNPAID",
+  PARTIALLY_PAID = "PARTIALLY_PAID",
 }
 
 export const USER_ROLES_VALUES = [
   {
-    label: USER_ROLES_ENUM.ROLE_MEMBER,
-    value: 'Member',
+    value: USER_ROLES_ENUM.ROLE_MEMBER,
+    label: "Member",
   },
   {
-    label: USER_ROLES_ENUM.ROLE_ADMIN,
-    value: 'Admin',
+    value: USER_ROLES_ENUM.ROLE_ADMIN,
+    label: "Admin",
   },
   {
-    label: USER_ROLES_ENUM.ROLE_ADVISOR,
-    value: 'Advisor',
+    value: USER_ROLES_ENUM.ROLE_ADVISOR,
+    label: "Advisor",
   },
   {
-    label: USER_ROLES_ENUM.ROLE_MANAGER,
-    value: 'Manager',
+    value: USER_ROLES_ENUM.ROLE_MANAGER,
+    label: "Manager",
   },
 ];
 
 export const USER_SEX_VALUES = [
   {
     label: USER_SEX_ENUM.MALE,
-    value: 'Male',
+    value: "Male",
   },
   {
     label: USER_SEX_ENUM.FEMALE,
-    value: 'Female',
+    value: "Female",
   },
 ];
 
 export enum CERTIFICATE_STATUS {
-  hidden = 'hidden',
-  available_certificate = 'available-certificate',
+  hidden = "hidden",
+  available_certificate = "available-certificate",
 }
 
 export enum BLOG_STATUS {
-  true = 'true',
-  false = 'false',
+  true = "true",
+  false = "false",
 }
 
 export enum DATE_TIME_FORMAT {
-  FULL_DATE_TIME = 'MM/DD/YYYY - HH:mm A',
+  FULL_DATE_TIME = "MM/DD/YYYY - HH:mm A",
 }

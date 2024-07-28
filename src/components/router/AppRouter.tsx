@@ -253,14 +253,6 @@ export const AppRouter: React.FC = () => {
             path={PAGE_ROUTES.CERTIFICATE}
             element={<CertificateManagement />}
           />
-          <Route
-            path={PAGE_ROUTES.VERIFY_SUCCESS}
-            element={<VerifySuccessAccount />}
-          />
-          <Route
-            path={PAGE_ROUTES.VERIFY_FAILED}
-            element={<VerifyFailAccount />}
-          />
 
           <Route path="charts" element={<Charts />} />
           <Route path="feed" element={<NewsFeed />} />
@@ -315,6 +307,15 @@ export const AppRouter: React.FC = () => {
           </Route>
         </Route>
         <Route path="/auth" element={<AuthLayoutFallback />}>
+          <Route
+            path={PAGE_ROUTES.VERIFY_SUCCESS}
+            element={<VerifySuccessAccount />}
+          />
+          <Route
+            path={PAGE_ROUTES.VERIFY_FAILED}
+            element={<VerifyFailAccount />}
+          />
+
           <Route path="login" element={<LoginPage />} />
           <Route path="sign-up" element={<SignUpPage />} />
 

@@ -33,7 +33,7 @@ export const LoginForm: React.FC = () => {
   const { t } = useTranslation();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const { isLoading: isLoadingGetProfile, refetch: getUserProfile } = useQuery(
+  const { refetch: getUserProfile } = useQuery(
     ["get-user-profile"],
     USERS_API.GET_PROFILE,
     {

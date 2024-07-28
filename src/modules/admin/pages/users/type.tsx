@@ -1,135 +1,125 @@
-import { UserItemTypes } from '@app/api/users/type';
-import { Button, Tag, Tooltip } from 'antd';
-import { CheckCircleOutlined, DeleteOutlined, EditOutlined, EyeOutlined, FileTextOutlined } from '@ant-design/icons';
-import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { USER_ROLES_ENUM } from '@app/utils/constant';
+import { UserItemTypes } from "@app/api/users/type";
+import { Button, Tag, Tooltip } from "antd";
+import {
+  CheckCircleOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  EyeOutlined,
+  FileTextOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+import { BasePopconfirm } from "@app/components/common/BasePopconfirm/BasePopconfirm";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { USER_ROLES_ENUM } from "@app/utils/constant";
 // import { USER_STATUS } from '@app/utils/constant';
 
 type UserColumnsTypes = {
   updateUserModal: (user: UserItemTypes) => void;
-  deleteUser: (userId: string) => void;
-  provideCertificate: (user: UserItemTypes) => void;
-  approveTrainer: (userId: string) => void;
+  addMoreAccount: (accountId: number) => void;
 };
 
 const getRoleName = (role: USER_ROLES_ENUM) => {
   if (role === USER_ROLES_ENUM.ROLE_ADMIN) {
-    return 'Admin';
+    return "Admin";
   }
 
   if (role === USER_ROLES_ENUM.ROLE_ADVISOR) {
-    return 'Advisor';
+    return "Advisor";
   }
   if (role === USER_ROLES_ENUM.ROLE_MANAGER) {
-    return 'Manager';
+    return "Manager";
   }
-  return 'Member';
+  return "Member";
 };
 
 export const UserColumns: any = ({
   updateUserModal,
-  deleteUser,
-  provideCertificate,
-  approveTrainer,
+  addMoreAccount,
 }: UserColumnsTypes) => [
-    {
-      title: 'Full Name',
-      dataIndex: 'fullName',
-      sortDirections: ['descend'],
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-    },
-
-    {
-      title: 'Phone number',
-      dataIndex: 'phoneNumber',
-    },
-    {
-      title: 'Role',
-      dataIndex: 'roleNames',
-      render: (roleNames: any) => {
-        console.log(roleNames);
-        return (
-          <Tag
-            color={
-              roleNames[0] === 'ROLE_ADMIN'
-                ? 'red'
-                : roleNames[0] === 'ROLE_ADVISOR'
-                  ? 'blue'
-                  : roleNames[0] === 'ROLE_MANAGER'
-                    ? 'silver'
-                    : roleNames[0] === 'ROLE_MEMBER'
-                      ? 'green'
-                      : 'geekblue'
-            }
-          >
-            {getRoleName(roleNames[0])}
-          </Tag>
-        );
-      },
-    },
- 
+  {
+    title: "Full Name",
+    dataIndex: "fullName",
+    sortDirections: ["descend"],
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+  },
 
   {
-      title: 'Status',
-      dataIndex: 'isActive',
-      render: (isActive: boolean) => (
-        <Tag
-          color={
-            //   isActive === USER_STATUS.true || isActive === USER_STATUS.true
-            isActive === true ? 'green' : isActive === false ? 'geekblue' : 'volcano'
-          }
-        >
-          {isActive ? 'Active' : 'Inactive'}
-        </Tag>
-      ),
-      sortDirections: ['descend'],
+    title: "Phone number",
+    dataIndex: "phoneNumber",
+  },
+  {
+    title: "Role",
+    dataIndex: "roleNames",
+    render: (roleNames: any) => {
+      return (
+        <div className="flex items-center gap-x-2">
+          {roleNames.map((role: any) => {
+            return (
+              <Tag
+                color={
+                  role === "ROLE_ADMIN"
+                    ? "red"
+                    : role === "ROLE_ADVISOR"
+                    ? "blue"
+                    : role === "ROLE_MANAGER"
+                    ? "silver"
+                    : role === "ROLE_MEMBER"
+                    ? "green"
+                    : "geekblue"
+                }
+              >
+                {getRoleName(role)}
+              </Tag>
+            );
+          })}
+        </div>
+      );
     },
-    // {
-    //   title: 'Change role',
-    //   dataIndex: 'change_role',
-    //   render: () => {
-    //     return (
-    //       <Tooltip title="Change user role">
-    //         <BaseButton onClick={changeUserRole}>Change role</BaseButton>
-    //       </Tooltip>
-    //     );
-    //   },
-    // },
-    {
-      title: 'Actions',
-      dataIndex: 'accountID',
-      render: (id: string, user: UserItemTypes) => (
-        <div className="flex items-center gap-x-4">
-          <Tooltip title="Edit user profile">
-            <Button icon={<EditOutlined />} type="text" onClick={() => updateUserModal(user)}></Button>
-          </Tooltip>
+  },
 
-          {/* <Tooltip title="Provide certificate for user">
-          <Button icon={<FileTextOutlined />} type="text" onClick={() => provideCertificate(user)}></Button>
+  {
+    title: "Status",
+    dataIndex: "isActive",
+    render: (isActive: boolean) => (
+      <Tag
+        color={
+          isActive === true
+            ? "green"
+            : isActive === false
+            ? "geekblue"
+            : "volcano"
+        }
+      >
+        {isActive ? "Active" : "Inactive"}
+      </Tag>
+    ),
+    sortDirections: ["descend"],
+  },
+
+  {
+    title: "Actions",
+    dataIndex: "accountID",
+    render: (id: string, user: UserItemTypes) => (
+      <div className="flex items-center gap-x-4">
+        <Tooltip title="Edit user profile">
+          <Button
+            icon={<EditOutlined />}
+            type="text"
+            onClick={() => updateUserModal(user)}
+          ></Button>
         </Tooltip>
 
-        {user.isActive === USER_STATUS.true && (
-          <Tooltip title="Approve trainer">
-            <Button icon={<CheckCircleOutlined />} type="text" onClick={() => approveTrainer(id)}></Button>
-          </Tooltip>
-        )} */}
-
-          {/* <Tooltip title="Delete user">
-          <BasePopconfirm
-            placement="rightTop"
-            title="Delete the user"
-            okText="Yes"
-            cancelText="No"
-            onConfirm={() => deleteUser(id)}
-          >
-            <Button icon={<DeleteOutlined />} danger type="text"></Button>
-          </BasePopconfirm>
-        </Tooltip> */}
-        </div>
-      ),
-    },
-  ];
+        <Tooltip title="Add more account">
+          <Button
+            icon={<PlusOutlined />}
+            type="text"
+            onClick={() => addMoreAccount(Number(id))}
+          ></Button>
+        </Tooltip>
+      </div>
+    ),
+  },
+];

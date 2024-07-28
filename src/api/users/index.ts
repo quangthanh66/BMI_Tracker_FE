@@ -1,3 +1,4 @@
+import { USER_ROLES_ENUM } from "@app/utils/constant";
 import { SignUpAccountTypes } from "../auth/type";
 import axiosClient from "../axiosClient";
 import { END_POINTS } from "../endPoints";
@@ -19,6 +20,10 @@ const USERS_API = {
     axiosClient.put(`${END_POINTS.USERS.MAIN}/TrainerApprove?userId=${userId}`),
 
   GET_PROFILE: () => axiosClient.get(END_POINTS.GET_PROFILE),
+  ADD_MORE_ACCOUNT: (params: {
+    accountID: number;
+    roleName: USER_ROLES_ENUM;
+  }) => axiosClient.post(END_POINTS.ADD_MORE_ACCOUNT, null, { params }),
 };
 
 export default USERS_API;
