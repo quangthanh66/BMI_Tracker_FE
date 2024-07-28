@@ -22,4 +22,11 @@ export const profileNavData: ProfileNavItem[] = [
     color: "primary",
     href: "personal-info",
   },
+  {
+    id: 2,
+    name: 'profile.nav.securitySettings.title',
+    icon: <SecurityScanOutlined />,
+    color: 'success',
+    href: 'security-settings',
+  },
 ];
