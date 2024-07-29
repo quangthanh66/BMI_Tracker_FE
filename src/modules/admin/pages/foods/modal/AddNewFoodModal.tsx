@@ -16,6 +16,7 @@ import _ from 'lodash';
 import { imageDb } from '@app/services/firebase/config';
 import { v4 } from 'uuid';
 import { listAll, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
+import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 
 type TAddNewFoodModal = {
   ingredients: TIngredientItem[];
@@ -246,7 +247,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
             </Col>
             <Col span={15}>
               <Form.Item label="Description" name="description">
-                <Input />
+              <BaseInput.TextArea rows={3} />
               </Form.Item>
             </Col>
             <Col span={5}>

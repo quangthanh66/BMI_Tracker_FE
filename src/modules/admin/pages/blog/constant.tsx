@@ -17,19 +17,23 @@ type BlogColumnsTypes = {
 
 export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog }: BlogColumnsTypes) => [
   {
-    title: 'Name',
-    dataIndex: 'blogName',
+    title: "Name",
+    dataIndex: "blogName",
     sorter: (a: BlogItemTypes, b: BlogItemTypes) => a.blogName.length - b.blogName.length,
-    sortDirections: ['descend'],
+    sortDirections: ["descend"],
   },
   {
-    title: 'Content',
-    dataIndex: 'blogContent',
+    title: "Created by",
+    dataIndex: "advisorName",
+  },
+  {
+    title: "Content",
+    dataIndex: "blogContent",
    // render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
   },
   {
-    title: 'Photo',
-    dataIndex: 'blogPhoto',
+    title: "Photo",
+    dataIndex: "blogPhoto",
     render: (blogPhoto: string) => (
       <Image
         alt="blog-photo-alt"
@@ -44,31 +48,37 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
   },
 
   {
-    title: 'Link',
-    dataIndex: 'link',
-    render: (link: string) => <BaseTag color="green">{link}</BaseTag>,
-  },
+    title: "Link",
+    dataIndex: "link",
+    render: (link: string) => {
+        const truncatedLink = link.length > 10 ? link.slice(0, 5) + '...' + link.slice(-5) : link;
+        return <BaseTag color="green">{truncatedLink}</BaseTag>;
+    },
+},
+
   {
-    title: 'Status',
-    dataIndex: 'active',
+    title: "Status",
+    dataIndex: "active",
     render: (active: boolean) => (
       <Tag
         color={
           active === true
-            ? 'green'
+            ? "green"
             : active === false
-            ? 'geekblue'
-            : 'volcano'
+            ? "geekblue"
+            : "volcano"
         }
       >
-       {active ? 'Available' : 'Hidden'}
+       {active ? "Available" : "Hidden"}
+      
       </Tag>
     ),
     sortDirections: ["descend"],
   },
+ 
   {
-    title: 'Actions',
-    dataIndex: 'blogID',
+    title: "Actions",
+    dataIndex: "blogID",
     render: (blogID: string, blog: BlogItemTypes) => (
       <div className="flex items-center gap-x-4">
         <BaseTooltip title="View detail">

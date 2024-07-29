@@ -24,8 +24,8 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
   const { isLoading: isLoadingUpdateWorkout, mutate: updateWorkoutMutate } = useMutation(WORKOUT_API.UPDATE_WORKOUT, {
     onSuccess: () => {
       messageApi.open({
-        type: 'success',
-        content: 'Update workout is successfully',
+        type: "success",
+        content: "Update workout is successfully",
       });
 
       refetchWorkoutPage();
@@ -33,8 +33,8 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
     },
     onError: () => {
       messageApi.open({
-        type: 'error',
-        content: 'Cant update workout . Please try again !',
+        type: "error",
+        content: "Cant update workout . Please try again !",
       });
     },
   });
@@ -49,7 +49,7 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
     if (workoutUpdateProps) {
       form.setFieldsValue({
         ...workoutUpdateProps,
-        totalCaloriesBurned: workoutUpdateProps.totalCloriesBurned,
+        totalCaloriesBurned: workoutUpdateProps.totalCaloriesBurned,
       });
     }
   }, [workoutUpdateProps]);
@@ -63,7 +63,7 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
     updateWorkoutMutate({
       ...values,
       workoutID: workoutUpdateProps.workoutID,
-      standardWeight: '',
+      standardWeight: "",
     });
   };
 
@@ -74,7 +74,7 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
       open={isOpenModal}
       onCancel={onCloseModal}
       title={
-        <BaseTypography className="text-xl">{workoutUpdateProps ? 'Update workout' : 'Add new workout'}</BaseTypography>
+        <BaseTypography className="text-xl">{workoutUpdateProps ? "Update workout" : "Add new workout"}</BaseTypography>
       }
       width={800}
     >
@@ -83,13 +83,13 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
         <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
           <Row gutter={[10, 10]}>
             <Col span={24}>
-              <Form.Item label={<span style={{fontWeight: 'bold'}}>Name</span>} name="workoutName" rules={[fieldValidate.required]}>
+              <Form.Item label={<span style={{fontWeight: "bold"}}>Name</span>} name="workoutName" rules={[fieldValidate.required]}>
                 <BaseInput />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              <Form.Item label={<span style={{fontWeight: 'bold'}}>Standard Weight</span>} name="standardWeight" rules={[fieldValidate.required]}>
+              <Form.Item label={<span style={{fontWeight: "bold"}}>Standard Weight</span>} name="standardWeight" rules={[fieldValidate.required]}>
                 <BaseInput type="number" min={0} step={0.1} />
               </Form.Item>
             </Col>
@@ -107,7 +107,7 @@ const AddNewWorkoutModal = ({ refetchWorkoutPage, workoutUpdateProps }: TAddNewW
             </Col> */}
 
             <Col span={24}>
-              <Form.Item label={<span style={{fontWeight: 'bold'}}>Description</span>} name="workoutDescription">
+              <Form.Item label={<span style={{fontWeight: "bold"}}>Description</span>} name="workoutDescription">
                 <BaseInput.TextArea rows={3} />
               </Form.Item>
             </Col>

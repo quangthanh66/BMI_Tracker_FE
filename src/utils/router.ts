@@ -32,6 +32,7 @@ export const PAGE_ROUTES = {
     WORKOUT: "/workout",
     SUBSCRIPTION: "/subscription",
     ADVISOR: "/advisor",
+
   },
 
   VERIFY_SUCCESS: "verification-success",

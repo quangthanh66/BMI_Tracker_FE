@@ -51,11 +51,29 @@ export const UserColumns: any = ({
     dataIndex: "phoneNumber",
   },
   {
+    title: "Status",
+    dataIndex: "isActive",
+    render: (isActive: boolean) => (
+      <Tag
+        color={
+          isActive === true
+            ? "green"
+            : isActive === false
+            ? "geekblue"
+            : "volcano"
+        }
+      >
+        {isActive ? "Active" : "Inactive"}
+      </Tag>
+    ),
+    sortDirections: ["descend"],
+  },
+  {
     title: "Role",
     dataIndex: "roleNames",
     render: (roleNames: any) => {
       return (
-        <div className="flex items-center gap-x-2">
+        <div className="flex-wrap items-center gap-x-2">
           {roleNames.map((role: any) => {
             return (
               <Tag
@@ -80,24 +98,7 @@ export const UserColumns: any = ({
     },
   },
 
-  {
-    title: "Status",
-    dataIndex: "isActive",
-    render: (isActive: boolean) => (
-      <Tag
-        color={
-          isActive === true
-            ? "green"
-            : isActive === false
-            ? "geekblue"
-            : "volcano"
-        }
-      >
-        {isActive ? "Active" : "Inactive"}
-      </Tag>
-    ),
-    sortDirections: ["descend"],
-  },
+ 
 
   {
     title: "Actions",

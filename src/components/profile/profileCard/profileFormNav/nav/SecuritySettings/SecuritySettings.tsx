@@ -12,9 +12,9 @@ export const SecuritySettings: React.FC = () => (
         <PasswordForm />
       </BaseCol>
 
-      <BaseCol xs={24} xl={14}>
+      {/* <BaseCol xs={24} xl={14}>
         <TwoFactorAuth />
-      </BaseCol>
+      </BaseCol> */}
     </BaseRow>
   </BaseCard>
 );

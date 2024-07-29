@@ -73,8 +73,8 @@ export const AdvisorColumns: any = ({ updateAdvisorModal, approveAdvisor }: Advi
     sortDirections: ['ascend', 'descend'],
   },
   {
-    title: 'Total Booking',
-    dataIndex: 'totalBooking',
+    title: 'Total subscription',
+    dataIndex: 'totalSubscription',
     sortDirections: ['descend'],
   },
 ];

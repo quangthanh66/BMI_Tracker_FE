@@ -23,7 +23,7 @@ const WorkoutDetailDialog = ({}, ref: any) => {
         <Descriptions layout="vertical" bordered>
           <Descriptions.Item label="Name" labelStyle={labelStyle}>{workoutDetail?.workoutName}</Descriptions.Item>
           <Descriptions.Item label="Description" labelStyle={labelStyle}>{workoutDetail?.workoutDescription}</Descriptions.Item>
-          <Descriptions.Item label="Total calories" labelStyle={labelStyle}>{workoutDetail?.totalCloriesBurned}</Descriptions.Item>
+          <Descriptions.Item label="Total calories" labelStyle={labelStyle}>{workoutDetail?.totalCaloriesBurned}</Descriptions.Item>
           <Descriptions.Item label="Status" labelStyle={labelStyle}>
             <Tag color={workoutDetail.isActive ? 'green' : 'red'}>
               {workoutDetail.isActive ? 'Active' : 'In Active'}
@@ -31,7 +31,7 @@ const WorkoutDetailDialog = ({}, ref: any) => {
           </Descriptions.Item>
 
           <Descriptions.Item label="Exercises" labelStyle={labelStyle}>
-            <div className="flex items-center gap-x-2">
+            <div className="flex-wrap items-center gap-x-2">
               {workoutDetail.workoutExercises.map((item) => {
                 return <Tag key={item.exerciseID}>{item.exerciseName}</Tag>;
               })}

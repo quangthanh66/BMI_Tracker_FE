@@ -83,18 +83,14 @@ export const PersonalInfo: React.FC = () => {
     () =>
       userProfileState
         ? {
-            fullName: userProfileState.fullName,
-            email: userProfileState.email,
-            phone: userProfileState.phoneNumber,
-
-            address2: user?.address2,
-            website: user?.website,
-            twitter: user?.socials?.twitter,
-            linkedin: user?.socials?.linkedin,
-            facebook: user?.socials?.facebook,
-            role: userProfileState.roleNames[0],
-            isActive: userProfileState.isActive,
-          }
+          fullName: userProfileState.fullName,
+          email: userProfileState.email,
+          phone: userProfileState.phoneNumber,
+          role: userProfileState.roleNames[0],
+          birthday: userProfileState.birthday,
+          gender: userProfileState.gender,
+          isActive: userProfileState.isActive,
+        }
         : initialPersonalInfoValues,
     [user]
   );
@@ -138,8 +134,26 @@ export const PersonalInfo: React.FC = () => {
             </BaseButtonsForm.Item>
           </BaseCol>
 
-          <BaseCol xs={24} md={24}>
+          <BaseCol xs={24} md={12}>
             <FirstNameItem />
+          </BaseCol>
+
+          <BaseCol xs={24} md={12}>
+            <BaseButtonsForm.Item name="gender" label={"Gender"}>
+              <BaseInput />
+            </BaseButtonsForm.Item>
+          </BaseCol>
+
+          <BaseCol xs={24} md={12}>
+            <BaseButtonsForm.Item name="birthday" label={"Birthday"}>
+              <BaseInput />
+            </BaseButtonsForm.Item>
+          </BaseCol>
+
+          <BaseCol xs={24} md={12}>
+            <BaseButtonsForm.Item name="role" label={"Role"}>
+              <BaseInput />
+            </BaseButtonsForm.Item>
           </BaseCol>
 
           <BaseCol span={24}>
@@ -154,21 +168,19 @@ export const PersonalInfo: React.FC = () => {
             <PhoneItem verified={user?.phone.verified} />
           </BaseCol>
 
+          {/* <BaseCol xs={24} md={12}>
+            <EmailItem verified={user?.email.verified} />
+          </BaseCol> */}
           <BaseCol xs={24} md={12}>
             <EmailItem verified={user?.email.verified} />
           </BaseCol>
 
-          <BaseCol xs={24} md={12}>
-            <BaseButtonsForm.Item name="role" label={"Role"}>
-              <BaseInput />
-            </BaseButtonsForm.Item>
-          </BaseCol>
 
-          <BaseCol xs={24} md={12}>
+          {/* <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="isActive" label={"Is Active"}>
               <BaseInput />
             </BaseButtonsForm.Item>
-          </BaseCol>
+          </BaseCol> */}
 
           {/* <BaseCol span={24}>
             <BaseButtonsForm.Item>

@@ -70,7 +70,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
       onCancel={onCloseModal}
       closeIcon
       title={<Typography className="text-xl">Update account status</Typography>}
-      width={800}
+      width={500}
     >
       {contextHolder}
       <Form layout="vertical" requiredMark={false} onFinish={onFinish} form={form}>
@@ -127,20 +127,25 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
             </Form.Item>
           </Col>
 
-          <Col span={24} className="flex items-center justify-end gap-2">
-            {/* <BaseButton danger>Reset</BaseButton>
-            <BaseButton */}
-  
-            <BaseButton
-              icon={<SaveOutlined />}
-              className="flex items-center"
-              htmlType="submit"
-              loading={isLoading}
-              type="primary"
-            >
-              Save
-            </BaseButton>
-          </Col>
+          <Col span={12} className="flex items-center justify-end gap-2">
+  <div className="mt-auto">  {/* Đưa nút vào một div để có thể căn dưới */}
+    <BaseButton
+      icon={<SaveOutlined />}
+      className="flex items-center"
+      htmlType="submit"
+      loading={isLoading}
+      type="primary"
+      style={{
+        fontSize: '16px', // Kích thước chữ
+        padding: '10px 20px', // Kích thước padding
+        // width: '100px', // Có thể thay đổi width nếu cần thiết
+      }}
+    >
+      Save
+    </BaseButton>
+  </div>
+</Col>
+
         </Row>
       </Form>
     </BaseModal>

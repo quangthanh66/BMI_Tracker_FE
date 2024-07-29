@@ -61,11 +61,11 @@ const PlanManagement = () => {
     },
   });
 
-  const { isLoading: isLoadingDeleteFood, mutate: mutateDeletePlan } = useMutation(PLAN_API.DELETE_PLAN, {
+  const { isLoading: isLoadingDeleteFood, mutate: mutateDeletePlan } = useMutation(PLAN_API.APPROVE_PLAN, {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
-        content: 'Delete plan is successfully',
+        content: 'Approve plan is successfully',
       });
 
       refetch();
@@ -97,8 +97,8 @@ const PlanManagement = () => {
 
   const confirmModal = (planID: number) => {
     modal.confirm({
-      title: 'Are you sure to delete plan ?',
-      okText: 'Delete',
+      title: 'Are you sure to confirm plan ?',
+      okText: 'Confirm',
       cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
@@ -174,19 +174,27 @@ const PlanManagement = () => {
                     <Typography.Text className="!text-black">
                     <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
                       <span className="font-semibold !text-black">
-                        {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
+                        {item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">DeActivate</Tag>}
                       </span>
                     </Typography.Text>
+
+                    <Typography.Text className="!text-black">
+                    <span style={{ fontWeight: 'bold' }}>Verify :</span>{" "}
+                      <span className="font-semibold !text-black">
+                        {item.isApproved ? <Tag color="green">Approve</Tag> : <Tag color="red">Waitting</Tag>}
+                      </span>
+                    </Typography.Text>
+
                   </div>
 
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-2 w-full">
                       <BaseButton danger className="flex-1" onClick={() => confirmModal(item.planID)}>
-                        Reject
+                      Confirm
                       </BaseButton>
-                      <BaseButton className="flex-1" type="primary" onClick={() => updatePlan(item)}>
+                      {/* <BaseButton className="flex-1" type="primary" onClick={() => updatePlan(item)}>
                         Update
-                      </BaseButton>
+                      </BaseButton> */}
                     </div>
 
                     {/* <BaseButton type="primary" onClick={() => onOpenDetailPlanDialog(item.planID)}>

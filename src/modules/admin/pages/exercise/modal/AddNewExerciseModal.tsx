@@ -116,7 +116,7 @@ const AddNewExerciseModal = (
               name="exerciseDescription"
               rules={[fieldValidate.required]}
             >
-              <BaseInput />
+             <BaseInput.TextArea rows={3} />              
             </Form.Item>
           </Col>
           <Col span={12}>

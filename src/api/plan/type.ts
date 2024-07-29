@@ -8,6 +8,7 @@ export type TPlanItem = {
   isActive: boolean;
   description: string;
   numberOfUses: number;
+  isApproved: boolean;
 };
 
 export type TAddNewPlan = {

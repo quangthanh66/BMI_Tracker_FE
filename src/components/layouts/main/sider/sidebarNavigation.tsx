@@ -73,12 +73,12 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     url: '/advisor',
     icon: <AiOutlineUser />,
   },
-  //   {
-  //   title: 'Certificate',
-  //   key: 'certificate',
-  //   url: '/certificate',
-  //   icon: <SafetyCertificateOutlined />,
-  // },
+    {
+    title: 'Certificate',
+    key: 'certificate',
+    url: '/certificate',
+    icon: <SafetyCertificateOutlined />,
+  },
   {
     title: 'Ingredients',
     key: 'ingredients',

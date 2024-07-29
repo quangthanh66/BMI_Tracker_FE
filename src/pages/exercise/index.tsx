@@ -140,7 +140,7 @@ const ExerciseManagement = () => {
                 <Col span={6} key={item.exerciseID}>
                   <Card size="small">
                     <div className="flex flex-col justify-between gap-4 w-full">
-                    <Image
+                      <Image
                         alt="food-alt"
                         src={item.exercisePhoto}
                         className="w-full h-[200px] object-cover rounded-md"
@@ -155,7 +155,7 @@ const ExerciseManagement = () => {
                         </Typography.Title>
                       </div>
                       <div className="flex flex-col justify-between w-full">
-                      <Typography.Text className="!text-black">
+                        <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Description :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.exerciseDescription}</span>
                         </Typography.Text>
@@ -163,22 +163,24 @@ const ExerciseManagement = () => {
                           <span style={{ fontWeight: 'bold' }}>Video :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.exerciseVideo}</span>
                         </Typography.Text>
-                     
+
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Met :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.met}</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Tags :</span>{' '}
-                          <span style={{ textTransform: 'lowercase' }}>{item.tagName}</span>
+                          <span style={{ textTransform: 'lowercase', padding: '2px 4px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f0f0f0' }}>
+                            {item.tagName}
+                          </span>
                         </Typography.Text>
 
                         <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: 'bold' }}>Status :</span>{' '}
-                        <span className="font-semibold !text-black">
-                          {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
-                        </span>
-                      </Typography.Text>
+                          <span style={{ fontWeight: 'bold' }}>Status :</span>{' '}
+                          <span className="font-semibold !text-black">
+                            {item.isActive ? <Tag color="green">Approve</Tag> : <Tag color="red">Cancel</Tag>}
+                          </span>
+                        </Typography.Text>
 
                         <div className="grid grid-cols-2 gap-2 w-full">
                           <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.exerciseID)}>

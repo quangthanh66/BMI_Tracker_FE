@@ -85,19 +85,19 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
       <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
         <BaseRow gutter={[20, 20]}>
           <BaseCol span={12}>
-            <Form.Item
+            <BaseForm.Item
               name="paidDate"
               label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
               rules={[fieldValidate.required]}
             >
               <DatePicker style={{ width: '100%' }} />
-            </Form.Item>
+            </BaseForm.Item>
           </BaseCol>
 
           <BaseCol span={12}>
             <BaseForm.Item
               name="paidAmount"
-              label={<span style={{ fontWeight: 'bold' }}>Paid amount</span>}
+              label={<span style={{ fontWeight: 'bold' }}>Paid amount (VND)</span>}
               rules={[fieldValidate.required]}
             >
               <BaseInput placeholder="Enter your paid amount" required maxLength={50} />
@@ -115,7 +115,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
           </BaseCol>
 
           <Col span={24}>
-            <Form.Item label={<span style={{ fontWeight: 'bold' }}>Status</span>} name="paymentStatus">
+            <BaseForm.Item label={<span style={{ fontWeight: 'bold' }}>Status</span>} name="paymentStatus">
               <Select
                 options={[
                   {
@@ -128,7 +128,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
                   },
                 ]}
               />
-            </Form.Item>
+            </BaseForm.Item>
           </Col>
 
           <BaseCol span={24} className="flex items-center justify-end gap-2">

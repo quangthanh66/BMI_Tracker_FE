@@ -157,12 +157,19 @@ const IngredientManagement = () => {
                         </Typography.Text>
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.ingredientCalories}</span>
+                          <span style={{ textTransform: 'lowercase' }}>{item.ingredientCalories} (kcal)</span>
                         </Typography.Text>
-                        <Typography.Text className="!text-black">
+                        {/* <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Tags :</span>{" "}
                           <span style={{ textTransform: 'lowercase' }}>{item.tag.tagName}</span>
+                        </Typography.Text> */}
+                        <Typography.Text className="!text-black">
+                          <span style={{ fontWeight: 'bold' }}>Tags :</span>{' '}
+                          <span style={{ textTransform: 'lowercase', padding: '2px 4px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f0f0f0' }}>
+                            {item.tag.tagName}
+                          </span>
                         </Typography.Text>
+
                         <Typography.Text className="!text-black">
                         <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
                         <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}</span>

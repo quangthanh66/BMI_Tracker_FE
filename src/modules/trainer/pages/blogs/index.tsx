@@ -42,9 +42,12 @@ const BlogTrainer = () => {
     data: blogsListServer,
   } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
     enabled: false,
+    // onSuccess: (response: BlogItemTypes[]) => {
+    //   // const blogsTrainer = response.filter((blog) => blog.userId === userProfileState?.accountID);
+    //   // setBlogs(blogsTrainer);
+    // },
     onSuccess: (response: BlogItemTypes[]) => {
-      // const blogsTrainer = response.filter((blog) => blog.userId === userProfileState?.accountID);
-      // setBlogs(blogsTrainer);
+      setBlogs(response);
     },
     onError: () => {
       messageApi.open({

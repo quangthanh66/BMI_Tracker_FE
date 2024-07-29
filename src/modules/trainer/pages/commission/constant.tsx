@@ -24,6 +24,9 @@ function convertDateFormat(inputDate: string): string {
     return 'Invalid date format';
   }
 }
+function formatNumber(num: number): string {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
 export enum CommissionStatus {
   active = 'true',
   deactive = 'false',
@@ -31,37 +34,33 @@ export enum CommissionStatus {
 
 export const CommissionColumns: any = ({ updateCommissionModal, approveCommission }: CommissionColumnsTypes) => [
   {
-    title: 'Created by',
+    title: 'Name',
     dataIndex: 'advisorName',
   },
   {
-    title: 'Commission Amount',
+    title: 'Commission Amount (VND)',
     dataIndex: 'commissionAmount',
     sortDirections: ['descend'],
+    render: (text: number) => formatNumber(text),
   },
-  {
-    title: 'Commission Rate',
-    dataIndex: 'commissionRate',
-    sortDirections: ['descend'],
-  },
+
   {
     title: 'Paid Date',
     dataIndex: 'paidDate',
     sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
-    render: (a: string) => (a ? dayjs(a).format('DD-MM-YYYY') : '....'),
     sortDirections: ['ascend', 'descend'],
   },
   {
-    title: 'Expected PaymentDate',
+    title: 'Deadline',
     dataIndex: 'expectedPaymentDate',
-    render: (text: string) => convertDateFormat(text),
     sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
     sortDirections: ['ascend', 'descend'],
   },
   {
-    title: 'Paid Amount',
+    title: 'Paid Amount (VND)',
     dataIndex: 'paidAmount',
     sortDirections: ['descend'],
+    render: (text: number) => formatNumber(text),
   },
   {
     title: 'Payment Status',

@@ -155,11 +155,11 @@ const FoodManagement = () => {
                       <div className="w-full flex flex-col gap-2">
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Time process :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.foodTimeProcess}</span>
+                          <span style={{ textTransform: 'lowercase' }}>{item.foodTimeProcess} (minutes)</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.foodCalories}</span>
+                          <span style={{ textTransform: 'lowercase' }}>{item.foodCalories} (kcal)</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Date :</span>{" "}

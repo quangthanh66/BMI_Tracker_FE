@@ -19,7 +19,7 @@ export const ProfileOverlay: React.FC = ({ ...props }) => {
   };
 
   return (
-    <div {...props} className="flex flex-col gap-y-2 min-w-[200px]">
+    <div {...props} className="flex flex-col gap-y-2 min-w-[100px]">
       <BaseButton onClick={() => navigate("/profile")}>
         {t("profile.title")}
       </BaseButton>

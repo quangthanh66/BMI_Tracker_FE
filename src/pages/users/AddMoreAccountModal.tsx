@@ -2,7 +2,7 @@ import USERS_API from "@app/api/users";
 import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
 import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
 import { BaseSelect } from "@app/components/common/selects/BaseSelect/BaseSelect";
-import { USER_ROLES_ENUM, USER_ROLES_VALUES } from "@app/utils/constant";
+import { ADD_USER_ROLES, USER_ROLES_ENUM, USER_ROLES_VALUES } from "@app/utils/constant";
 import { useMutation } from "@tanstack/react-query";
 import { message } from "antd";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
@@ -59,7 +59,7 @@ const AddMoreAccountModal = (
       {contextHolder}
       <div className="flex flex-col gap-y-4">
         <BaseSelect
-          options={USER_ROLES_VALUES}
+          options={ADD_USER_ROLES}
           defaultValue={role}
           onChange={(value) => setRole(value)}
         />

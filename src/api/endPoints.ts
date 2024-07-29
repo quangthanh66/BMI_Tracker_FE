@@ -77,6 +77,7 @@ export const END_POINTS = {
   ADD_NEW_PLAN: "/api/plans/createNew",
   UPDATE_PLAN: "/api/plans/update",
   DELETE_PLAN: "/api/plans/deactivate",
+  APPROVE_PLAN: "/api/plans/approve-plan",
   PLAN_MANAGEMENT: {
     DEACTIVE: "/api/plans/delete",
     VIEW_DETAIL: "/api/plans/getMenuByID",

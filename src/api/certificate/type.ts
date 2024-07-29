@@ -14,6 +14,7 @@ export type CertificateItemTypes = {
 };
 
 
+
 export type CreateNewCertificateTypes = {
   certificateID: string;
   certificateName: string;

@@ -40,8 +40,7 @@ const BlogManagement = () => {
   } = useQuery(['blogs-list'], BLOG_API.GET_LIST, {
     enabled: false,
     onSuccess: (response: any) => {
-      const blogsActive = response.filter((blog: BlogItemTypes) => blog.active);
-      setBlogs(blogsActive);
+      setBlogs(response);
     },
     onError: () => {
       messageApi.open({

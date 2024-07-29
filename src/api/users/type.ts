@@ -15,6 +15,8 @@ export type UserProfileResponse = {
   accountPhoto: string;
   phoneNumber: string;
   roleNames: string[];
+  gender: string;
+  birthday: string;
   isActive: boolean;
 };
 

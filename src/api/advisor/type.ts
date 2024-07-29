@@ -6,5 +6,5 @@ export type AdvisorItemTypes = {
   phoneNumber: string;
   gender: string;
   birthday: string;
-  totalBooking: string;
+  totalSubscription: string;
 };

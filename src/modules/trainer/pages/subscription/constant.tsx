@@ -40,17 +40,7 @@ export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubsc
     dataIndex: 'memberName',
   },
   {
-    title: 'Subscription number',
-    dataIndex: 'subscriptionNumber',
-    sortDirections: ['descend'],
-  },
-  {
-    title: 'Description',
-    dataIndex: 'subscriptionDescription',
-    sortDirections: ['descend'],
-  },
-  {
-    title: 'Amount',
+    title: 'Amount (VND)',
     dataIndex: 'amount',
     sortDirections: ['descend'],
   },
@@ -78,6 +68,9 @@ export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubsc
     title: 'Description',
     dataIndex: 'subscriptionDescription',
     sortDirections: ['descend'],
+    render: (text: string) => (
+      <div style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}>{text}</div>
+  ),
   },
   {
     title: 'Status',

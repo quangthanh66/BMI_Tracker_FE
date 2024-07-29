@@ -2,12 +2,13 @@ export type TWorkoutItem = {
   workoutID: string;
   workoutName: string;
   workoutDescription: string;
-  totalCloriesBurned: number;
+  totalCaloriesBurned: number;
   isActive: boolean;
   fullName: string;
   advisorID: number;
   workoutExercises: WorkoutExercise[];
   workoutTags: WorkoutTags[];
+  standardWeight: string;
 };
 export type WorkoutTags = {
   tagID: number;
