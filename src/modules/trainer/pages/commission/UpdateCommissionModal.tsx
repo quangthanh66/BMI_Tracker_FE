@@ -126,6 +126,10 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
                     label: 'UNPAID',
                     value: 'UNPAID',
                   },
+                  {
+                    label: 'PARTIALLY_PAID',
+                    value: 'PARTIALLY_PAID',
+                  },
                 ]}
               />
             </BaseForm.Item>
