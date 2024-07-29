@@ -12,7 +12,7 @@ type FilterBlogTypes = {
   onFilterBlogStatus: (status: boolean) => void;
 };
 
-const BlogFilter = ({ onCreateNewBlog, onSearchBlog, onFilterBlogStatus }: FilterBlogTypes) => {
+const BlogFilter = ({ onCreateNewBlog, onSearchBlog }: FilterBlogTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
     onSearchBlog(keySearch);
@@ -25,7 +25,7 @@ const BlogFilter = ({ onCreateNewBlog, onSearchBlog, onFilterBlogStatus }: Filte
           <BaseInput placeholder={'Enter your blog title'} onChange={debounce(onSearchDataValue, 1000)} />
         </Col>
 
-        <Col span={6}>
+        {/* <Col span={6}>
           <Select
             placeholder="Choose your blog type"
             onChange={onFilterBlogStatus}
@@ -36,7 +36,7 @@ const BlogFilter = ({ onCreateNewBlog, onSearchBlog, onFilterBlogStatus }: Filte
             ]}
             className="w-full"
           ></Select>
-        </Col>
+        </Col> */}
       </Row>
 
       {/* <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateNewBlog}>

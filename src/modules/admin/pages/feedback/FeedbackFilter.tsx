@@ -12,7 +12,7 @@ type FilterFeedbackTypes = {
   onFilterFeedbackStatus: (status: boolean) => void;
 };
 
-const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackStatus }: FilterFeedbackTypes) => {
+const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback }: FilterFeedbackTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
     onSearchFeedback(keySearch);
@@ -24,10 +24,10 @@ const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackSt
           <BaseInput placeholder={'Search...'} onChange={debounce(onSearchDataValue, 1000)} />
         </Col>
 
-        <Col span={6}>
+        {/* <Col span={6}>
           <Select
             className="w-full"
-            onChange={onFilterFeedbackStatus}
+          
             placeholder="Choose your feedback type"
             options={[
               { value: 'all', label: 'All' },
@@ -35,7 +35,7 @@ const FeedbackFilter = ({ onCreateFeedback, onSearchFeedback, onFilterFeedbackSt
               { value: FeedbackStatus.deactive, label: 'Waiting' },
             ]}
           ></Select>
-        </Col>
+        </Col> */}
       </Row>
 
       {/* <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateFeedback}>

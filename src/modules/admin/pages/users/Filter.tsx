@@ -11,7 +11,7 @@ type FilterUserTypes = {
   onChangeRole: (role: string) => void;
 };
 
-const FilterUser = ({ onCreateNewUser, onSearchUser, onChangeRole }: FilterUserTypes) => {
+const FilterUser = ({ onCreateNewUser, onSearchUser}: FilterUserTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
     onSearchUser(keySearch);
@@ -23,19 +23,7 @@ const FilterUser = ({ onCreateNewUser, onSearchUser, onChangeRole }: FilterUserT
           <Input placeholder={'Search...'} onChange={debounce(onSearchDataValue, 1000)} />
         </Col>
 
-        <Col span={6}>
-          <Select
-            className="w-full"
-            onChange={onChangeRole}
-            placeholder="Choose your role"
-            options={[
-              { value: 'All', label: 'All' },
-              { value: 'ROLE_ADMIN', label: 'Admin' },
-              { value: 'ROLE_MEMBER', label: 'Member' },
-              { value: 'ROLE_ADVISOR', label: 'Advisor' },
-            ]}
-          ></Select>
-        </Col>
+       
       </Row>
       <BaseButton icon={<PlusOutlined />} type="primary" onClick={onCreateNewUser}>
         Create

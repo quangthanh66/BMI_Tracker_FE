@@ -94,7 +94,7 @@ const CommissionManagement = () => {
           commissionUpdate={commissionUpdate as CommissionItemTypes}
           onRefreshPage={() => refetch()}
         />
-        <Col span={24}>
+        {/* <Col span={24}>
           <Card size="small">
             <CommissionFilter
               onCreateCommission={openCreateCommissionModal}
@@ -102,7 +102,7 @@ const CommissionManagement = () => {
               onFilterCommissionStatus={onFilterCommissionStatus}
             />
           </Card>
-        </Col>
+        </Col> */}
 
         {commission.length > 0 ? (
           <Col span={24}>
@@ -114,7 +114,7 @@ const CommissionManagement = () => {
               })}
               dataSource={commission}
               scroll={{
-                y: (1 - 450 / window.innerHeight) * window.innerHeight,
+                y: (1 - 350 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />

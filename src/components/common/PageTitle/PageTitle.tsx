@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 export const PageTitle: React.FC<WithChildrenProps> = ({ children }) => {
   return (
     <Helmet>
-      <title>{children} | BMIT Tracker</title>
+      <title>BMI Tracker</title>
     </Helmet>
   );
 };

@@ -110,7 +110,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
               label={<span style={{ fontWeight: 'bold' }}>Description</span>}
               rules={[fieldValidate.required]}
             >
-              <BaseInput placeholder="Enter description" required maxLength={50} />
+              <BaseInput placeholder="Enter description" required maxLength={1000} />
             </BaseForm.Item>
           </BaseCol>
 
