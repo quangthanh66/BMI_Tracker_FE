@@ -1,4 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import EXERCISE_API from "@app/api/exercise";
 import { TAddNewExercise } from "@app/api/exercise/type";
 import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
@@ -8,8 +8,13 @@ import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
 import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
 import { SelectTypes, fieldValidate } from "@app/utils/helper";
 import { useMutation } from "@tanstack/react-query";
-import { Col, Form, Input, Row, Select, Space, message } from "antd";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { Button, Col, Form, Input, Row, Select, Space, message } from "antd";
+import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
+import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
+import { imageDb } from "@app/services/firebase/config";
+import { v4 } from "uuid";
+import _ from "lodash";
+import { FaTrash } from "react-icons/fa6";
 
 type TAddNewExerciseModal = {
   refetchPage: () => void;
@@ -18,11 +23,14 @@ type TAddNewExerciseModal = {
 
 const AddNewExerciseModal = (
   { refetchPage, tagsSelect }: TAddNewExerciseModal,
-  ref: any
+  refProps: any
 ) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
+  const [imageUpload, setImageUpload] = useState<string>("");
+  const [imageUrls, setImageUrls] = useState<any[]>([]);
+
   const { isLoading, mutate: addNewExercise } = useMutation(
     EXERCISE_API.ADD_NEW_EXERCISE,
     {
@@ -44,7 +52,7 @@ const AddNewExerciseModal = (
     }
   );
 
-  useImperativeHandle(ref, () => {
+  useImperativeHandle(refProps, () => {
     return {
       openModal: () => setIsOpenModal(true),
     };
@@ -59,7 +67,27 @@ const AddNewExerciseModal = (
     addNewExercise({
       ...values,
       met: Number(values.met),
+      exercisePhoto: _.last(imageUrls),
     });
+  };
+
+  const uploadFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+
+    if (!files || !files[0]) return;
+
+    setImageUpload(URL.createObjectURL(files[0]));
+    const imageRef = ref(imageDb, `images/${files[0].name + v4()}`);
+    uploadBytes(imageRef, files[0]).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
+  };
+
+  const onRemovePhotoUpload = () => {
+    setImageUpload("");
+    setImageUrls([]);
   };
 
   return (
@@ -92,15 +120,38 @@ const AddNewExerciseModal = (
               <BaseInput />
             </Form.Item>
           </Col>
+
           <Col span={12}>
-            <Form.Item
-              label={<span style={{ fontWeight: "bold" }}>Photo</span>}
-              name="exercisePhoto"
-              rules={[fieldValidate.required]}
-            >
-              <BaseInput />
-            </Form.Item>
+            {imageUpload ? (
+              <div className="flex flex-col items-end gap-y-2 text-right">
+                <BaseButton
+                  size="small"
+                  icon={<FaTrash color="red" />}
+                  onClick={onRemovePhotoUpload}
+                />
+                <img className=" w-full " src={imageUpload} />
+              </div>
+            ) : (
+              <Form.Item label="Photo" name="exercisePhoto">
+                <div className="flex items-center justify-between gap-x-2 h-10">
+                  <label
+                    htmlFor="food-photo"
+                    className="border border-blue-400 flex justify-center items-center h-full rounded-md flex-1 cursor-pointer gap-x-2"
+                  >
+                    <UploadOutlined /> Upload
+                  </label>
+                </div>
+
+                <input
+                  id="food-photo"
+                  type="file"
+                  onChange={uploadFile}
+                  style={{ visibility: "hidden" }}
+                />
+              </Form.Item>
+            )}
           </Col>
+
           <Col span={12}>
             <Form.Item
               label={<span style={{ fontWeight: "bold" }}>Video</span>}
@@ -116,7 +167,7 @@ const AddNewExerciseModal = (
               name="exerciseDescription"
               rules={[fieldValidate.required]}
             >
-             <BaseInput.TextArea rows={3} />              
+              <BaseInput.TextArea rows={3} />
             </Form.Item>
           </Col>
           <Col span={12}>

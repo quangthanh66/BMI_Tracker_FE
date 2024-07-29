@@ -1,13 +1,13 @@
-import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
-import { MdOutlineDescription } from 'react-icons/md';
-import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
-import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-import { Image, Tag } from 'antd';
-import errorImage from 'assets/error-image-alt.png';
-import { BLOG_STATUS } from '@app/utils/constant';
-import { BlogItemTypes } from '@app/api/blogs/type';
+import { BaseTag } from "@app/components/common/BaseTag/BaseTag";
+import { MdOutlineDescription } from "react-icons/md";
+import { BaseTooltip } from "@app/components/common/BaseTooltip/BaseTooltip";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
+import { BasePopconfirm } from "@app/components/common/BasePopconfirm/BasePopconfirm";
+import { Image, Tag } from "antd";
+import errorImage from "assets/error-image-alt.png";
+import { BLOG_STATUS } from "@app/utils/constant";
+import { BlogItemTypes } from "@app/api/blogs/type";
 
 type BlogColumnsTypes = {
   updateBlogModal: (blog: BlogItemTypes) => void;
@@ -15,11 +15,16 @@ type BlogColumnsTypes = {
   deleteBlog: (blogID: string) => void;
 };
 
-export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog }: BlogColumnsTypes) => [
+export const BlogColumns: any = ({
+  updateBlogModal,
+  viewDetailModal,
+  deleteBlog,
+}: BlogColumnsTypes) => [
   {
     title: "Name",
     dataIndex: "blogName",
-    sorter: (a: BlogItemTypes, b: BlogItemTypes) => a.blogName.length - b.blogName.length,
+    sorter: (a: BlogItemTypes, b: BlogItemTypes) =>
+      a.blogName.length - b.blogName.length,
     sortDirections: ["descend"],
   },
   {
@@ -29,7 +34,7 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
   {
     title: "Content",
     dataIndex: "blogContent",
-   // render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
+    // render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
   },
   {
     title: "Photo",
@@ -51,31 +56,27 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
     title: "Link",
     dataIndex: "link",
     render: (link: string) => {
-        const truncatedLink = link.length > 10 ? link.slice(0, 5) + '...' + link.slice(-5) : link;
-        return <BaseTag color="green">{truncatedLink}</BaseTag>;
+      const truncatedLink =
+        link.length > 10 ? link.slice(0, 5) + "..." + link.slice(-5) : link;
+      return <BaseTag color="green">{truncatedLink}</BaseTag>;
     },
-},
+  },
 
   {
     title: "Status",
-    dataIndex: "active",
+    dataIndex: "isActive",
     render: (active: boolean) => (
       <Tag
         color={
-          active === true
-            ? "green"
-            : active === false
-            ? "geekblue"
-            : "volcano"
+          active === true ? "green" : active === false ? "geekblue" : "volcano"
         }
       >
-       {active ? "Available" : "Hidden"}
-      
+        {active ? "Available" : "Hidden"}
       </Tag>
     ),
     sortDirections: ["descend"],
   },
- 
+
   {
     title: "Actions",
     dataIndex: "blogID",
@@ -104,7 +105,11 @@ export const BlogColumns: any = ({ updateBlogModal, viewDetailModal, deleteBlog 
             cancelText="No"
             onConfirm={() => deleteBlog(blogID)}
           >
-            <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
+            <BaseButton
+              icon={<DeleteOutlined className="text-[24px]" />}
+              danger
+              type="text"
+            ></BaseButton>
           </BasePopconfirm>
         </BaseTooltip>
       </div>

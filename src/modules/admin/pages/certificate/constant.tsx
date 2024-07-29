@@ -1,12 +1,12 @@
-import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
-import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
-import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-import { Image, Tag } from 'antd';
-import errorImage from 'assets/error-image-alt.png';
-import { CERTIFICATE_STATUS } from '@app/utils/constant';
-import { CertificateItemTypes } from '@app/api/certificate/type';
+import { BaseTag } from "@app/components/common/BaseTag/BaseTag";
+import { BaseTooltip } from "@app/components/common/BaseTooltip/BaseTooltip";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
+import { BasePopconfirm } from "@app/components/common/BasePopconfirm/BasePopconfirm";
+import { Image, Tag } from "antd";
+import errorImage from "assets/error-image-alt.png";
+import { CERTIFICATE_STATUS } from "@app/utils/constant";
+import { CertificateItemTypes } from "@app/api/certificate/type";
 
 type CertificateColumnsTypes = {
   updateCertificateModal: (certificate: CertificateItemTypes) => void;
@@ -20,20 +20,22 @@ export const CertificateColumns: any = ({
   deleteCertificate,
 }: CertificateColumnsTypes) => [
   {
-    title: 'Name',
-    dataIndex: 'certificateName',
-    sorter: (a: CertificateItemTypes, b: CertificateItemTypes) => a.certificateName.length - b.certificateName.length,
-    sortDirections: ['descend'],
+    title: "Name",
+    dataIndex: "certificateName",
+    sorter: (a: CertificateItemTypes, b: CertificateItemTypes) =>
+      a.certificateName.length - b.certificateName.length,
+    sortDirections: ["descend"],
   },
   {
-    title: 'Created by',
-    dataIndex: 'fullName',
-    sorter: (a: CertificateItemTypes, b: CertificateItemTypes) => a.fullName.length - b.fullName.length,
-    sortDirections: ['descend'],
+    title: "Created by",
+    dataIndex: "fullName",
+    sorter: (a: CertificateItemTypes, b: CertificateItemTypes) =>
+      a.fullName.length - b.fullName.length,
+    sortDirections: ["descend"],
   },
   {
-    title: 'Photo',
-    dataIndex: 'certificateLink',
+    title: "Photo",
+    dataIndex: "certificateLink",
     render: (certificatePhoto: string) => (
       <Image
         alt="certificate-photo-alt"
@@ -47,26 +49,26 @@ export const CertificateColumns: any = ({
     ),
   },
   {
-    title: 'Status',
-    dataIndex: 'isActive',
+    title: "Status",
+    dataIndex: "isActive",
     render: (isActive: boolean) => (
       <Tag
         color={
           isActive === true
-            ? 'green'
+            ? "green"
             : isActive === false
-            ? 'volcano'
-            : 'geekblue'
+            ? "volcano"
+            : "geekblue"
         }
       >
-       {isActive ? 'Available' : 'Waitting'}
+        {isActive ? "Available" : "Waitting"}
       </Tag>
     ),
     sortDirections: ["descend"],
   },
   {
-    title: 'Actions',
-    dataIndex: 'certificateID',
+    title: "Actions",
+    dataIndex: "certificateID",
     render: (certificateID: string, certificate: CertificateItemTypes) => (
       <div className="flex items-center gap-x-4">
         <BaseTooltip title="View detail">
@@ -93,7 +95,11 @@ export const CertificateColumns: any = ({
             cancelText="No"
             onConfirm={() => deleteCertificate(certificateID)}
           >
-            <BaseButton icon={<DeleteOutlined className="text-[24px]" />} danger type="text"></BaseButton>
+            <BaseButton
+              icon={<DeleteOutlined className="text-[24px]" />}
+              danger
+              type="text"
+            ></BaseButton>
           </BasePopconfirm>
         </BaseTooltip>
       </div>
