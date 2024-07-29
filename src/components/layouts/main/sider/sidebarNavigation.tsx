@@ -25,39 +25,40 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     title: 'Dashboard',
     key: 'dashboard',
     url: PAGE_ROUTES.HOME,
-    icon: <FaChartSimple />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/12522/12522439.png" alt="Dashboard Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Users',
     key: 'users-management',
     url: PAGE_ROUTES.USERS,
-    icon: <AiOutlineUser />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/7439/7439231.png" alt="Users Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Feedback',
     key: 'feedback',
     url: '/feedback',
-    icon: <VscFeedback />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/1541/1541419.png" alt="Feedback Icon" style={{ width: '35px', height: '35px' }} />,
   },
 
   {
     title: 'Blog',
     key: 'blog',
     url: '/blog',
-    icon: <FormOutlined />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/9079/9079294.png" alt="Blog Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Plan',
     key: 'plan',
     url: '/plan',
-    icon: <AiFillProject />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/3198/3198968.png" alt="Plan Icon" style={{ width: '35px', height: '35px' }} />,
   },
+
   {
     title: 'Commission',
     key: 'commission-management',
     url: PAGE_ROUTES.TRAINER.COMMISSION,
-    icon: <AiOutlineUser />,
-  },
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/10044/10044628.png" alt="Commission Icon" style={{ width: '35px', height: '35px' }} />,
+}
 ];
 
 export const trainerSidebar: SidebarNavigationItem[] = [
@@ -65,49 +66,49 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     title: 'Advisor',
     key: 'advisor',
     url: '/advisor',
-    icon: <AiOutlineUser />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/7439/7439231.png" alt="Advisor" style={{ width: '35px', height: '35px' }} />,
   },
     {
     title: 'Certificate',
     key: 'certificate',
     url: '/certificate',
-    icon: <SafetyCertificateOutlined />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/7748/7748280.png" alt="Certificate" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Ingredients',
     key: 'ingredients',
     url: PAGE_ROUTES.INGREDIENTS,
-    icon: <GiFoodChain />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/3521/3521770.png" alt="Ingredients" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Food',
     key: 'food',
     url: PAGE_ROUTES.FOOD,
-    icon: <MdOutlineFastfood />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/3765/3765493.png" alt="Food" style={{ width: '35px', height: '35px' }} />,
   },
 
   {
     title: 'Menu',
     key: 'menu',
     url: PAGE_ROUTES.MENU,
-    icon: <MdOutlineRestaurantMenu />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/3837/3837791.png" alt="Menu" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Exercise',
     key: 'exercise',
     url: '/exercise',
-    icon: <ProjectOutlined />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/6984/6984145.png" alt="Exercise" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Workout',
     key: 'workout',
     url: '/workout',
-    icon: <ProjectFilled />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/17063/17063716.png" alt="Workout" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Subscription',
     key: 'subscription',
     url: '/subscription',
-    icon: <CoffeeOutlined />,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/2299/2299464.png" alt="Subscription" style={{ width: '35px', height: '35px' }} />,
   },
 ];
