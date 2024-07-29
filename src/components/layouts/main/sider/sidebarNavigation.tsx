@@ -47,12 +47,6 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     icon: <FormOutlined />,
   },
   {
-    title: 'Certificate',
-    key: 'certificate',
-    url: '/certificate',
-    icon: <SafetyCertificateOutlined />,
-  },
-  {
     title: 'Plan',
     key: 'plan',
     url: '/plan',
