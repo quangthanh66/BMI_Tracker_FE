@@ -186,12 +186,13 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   return (
     <BaseModal
-      centered
+      // centered
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
       title={<BaseTypography className="text-xl">{foodUpdateProps ? 'Add new food' : 'Add new food'}</BaseTypography>}
       width={800}
+      style={{ height: '500px' , top: '20px', bottom: '20px' }} 
     >
       {contextHolder}
 

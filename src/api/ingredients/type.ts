@@ -5,6 +5,7 @@ export type TIngredientItem = {
   quantity: number;
   unit: number;
   ingredientCalories: number;
+  nutritionalInformation: string;
   tag: {
     isActive: boolean;
     tagDescription: string;
@@ -29,9 +30,9 @@ export type TUpdateIngredient = TAddNewIngredient & {
   ingredientID: string;
   ingredientName: string;
   ingredientPhoto: string;
+  nutritionalInformation: string;
   quantity: number;
   unit: string;
   ingredientCalories: number;
   tagID: number;
-  isActive: boolean;
 };
