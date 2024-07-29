@@ -18,8 +18,8 @@ const AdvisorFilter = ({ onCreateAdvisor, onSearchAdvisor, onFilterAdvisorStatus
     onSearchAdvisor(keySearch);
   };
   return (
-    <div className="flex justify-between items-center w-full py-2">
-      <Row gutter={[20, 20]} className="w-[90%]">
+    <div className="">
+      {/* <Row gutter={[20, 20]} className="w-[90%]">
         <Col span={6}>
           <BaseInput placeholder={'Enter your advisor name'} onChange={debounce(onSearchDataValue, 1000)} />
         </Col>
@@ -38,7 +38,7 @@ const AdvisorFilter = ({ onCreateAdvisor, onSearchAdvisor, onFilterAdvisorStatus
         </Col>
       </Row>
 
-      {/* <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateFeedback}>
+      <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateFeedback}>
         Create a new feedback
       </BaseButton> */}
     </div>

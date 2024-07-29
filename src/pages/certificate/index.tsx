@@ -138,14 +138,14 @@ const CertificateManagement = () => {
         <ViewDetailCertificate ref={viewDetailRef} certificateProps={certificateUpdate as CertificateItemTypes} />
         <UpdateCertificateAdmin ref={updateCertificateAdminRef} />
 
-        <Col span={24}>
+        {/* <Col span={24}>
           <Card size="small">
             <CertificateFilter
               onCreateNewCertificate={openCreateCertificateModal}
               onSearchCertificate={onSearchCertificate}
             />
           </Card>
-        </Col>
+        </Col> */}
 
         <Col span={24}>
           {certificates && certificates.length > 0 && (

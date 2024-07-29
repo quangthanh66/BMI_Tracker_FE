@@ -44,7 +44,7 @@ export const AdvisorColumns: any = ({ updateAdvisorModal, approveAdvisor }: Advi
       <Image
         alt="advisor-photo-alt"
         src={accountPhoto}
-        className="h-[200px] w-full object-cover"
+        className="h-[100px] w-full object-cover"
         onError={({ currentTarget }) => {
           currentTarget.onerror = null; // prevents looping
           currentTarget.src = errorImage;

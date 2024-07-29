@@ -93,7 +93,7 @@ const AdvisorManagement = () => {
           subscriptionUpdate={subscriptionUpdate as SubscriptionItemTypes}
           onRefreshPage={() => refetch()}
         /> */}
-        <Col span={24}>
+        {/* <Col span={24}>
           <Card size="small">
             <AdvisorFilter
               onCreateAdvisor={openCreateAdvisorModal}
@@ -101,7 +101,7 @@ const AdvisorManagement = () => {
               onFilterAdvisorStatus={onFilterAdvisorStatus}
             />
           </Card>
-        </Col>
+        </Col> */}
 
         {advisor.length > 0 ? (
           <Col span={24}>
@@ -113,7 +113,7 @@ const AdvisorManagement = () => {
               })}
               dataSource={advisor}
               scroll={{
-                y: (1 - 450 / window.innerHeight) * window.innerHeight,
+                y: (1 - 325 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />

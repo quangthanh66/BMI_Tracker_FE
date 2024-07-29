@@ -75,6 +75,12 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     icon: <img src="https://cdn-icons-png.flaticon.com/128/7748/7748280.png" alt="Certificate" style={{ width: '35px', height: '35px' }} />,
   },
   {
+    title: 'Subscription',
+    key: 'subscription',
+    url: '/subscription',
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/2299/2299464.png" alt="Subscription" style={{ width: '35px', height: '35px' }} />,
+  },
+  {
     title: 'Ingredients',
     key: 'ingredients',
     url: PAGE_ROUTES.INGREDIENTS,
@@ -105,10 +111,5 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     url: '/workout',
     icon: <img src="https://cdn-icons-png.flaticon.com/128/17063/17063716.png" alt="Workout" style={{ width: '35px', height: '35px' }} />,
   },
-  {
-    title: 'Subscription',
-    key: 'subscription',
-    url: '/subscription',
-    icon: <img src="https://cdn-icons-png.flaticon.com/128/2299/2299464.png" alt="Subscription" style={{ width: '35px', height: '35px' }} />,
-  },
+
 ];

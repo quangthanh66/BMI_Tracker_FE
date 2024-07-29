@@ -94,7 +94,7 @@ const SubscriptionManagement = () => {
           subscriptionUpdate={subscriptionUpdate as SubscriptionItemTypes}
           onRefreshPage={() => refetch()}
         /> */}
-        <Col span={24}>
+        {/* <Col span={24}>
           <Card size="small">
             <SubscriptionFilter
               onCreateSubscription={openCreateSubscriptionModal}
@@ -102,7 +102,7 @@ const SubscriptionManagement = () => {
               onFilterSubscriptionStatus={onFilterSubscriptionStatus}
             />
           </Card>
-        </Col>
+        </Col> */}
 
         {subscription.length > 0 ? (
           <Col span={24}>
@@ -114,7 +114,7 @@ const SubscriptionManagement = () => {
               })}
               dataSource={subscription}
               scroll={{
-                y: (1 - 450 / window.innerHeight) * window.innerHeight,
+                y: (1 - 325 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />
