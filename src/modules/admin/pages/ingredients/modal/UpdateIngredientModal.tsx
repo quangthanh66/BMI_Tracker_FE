@@ -52,11 +52,11 @@ const UpdateIngredientModal = (
       form.setFieldsValue({
         ingredientName: ingredientProps.ingredientName,
         ingredientPhoto: ingredientProps.ingredientPhoto,
+        nutritionalInformation: ingredientProps.nutritionalInformation,
         quantity: ingredientProps.quantity,
         unit: ingredientProps.unit,
         ingredientCalories: ingredientProps.ingredientCalories,
         tagID: ingredientProps.tag.tagID,
-        isActive: ingredientProps.isActive,
       });
 
       setImageUpload(ingredientProps.ingredientPhoto);
@@ -79,8 +79,8 @@ const UpdateIngredientModal = (
     mutate({
       ...values,
       ingredientID: ingredientProps.ingredientID,
-      isActive: true,
       ingredientPhoto: imageResult,
+      nutritionalInformation: ingredientProps.nutritionalInformation,
     });
   };
 
@@ -124,11 +124,11 @@ const UpdateIngredientModal = (
             </Form.Item>
           </Col>
 
-          {/* <Col span={12}>
+          <Col span={12}>
             <Form.Item label="Nutrition information" name="nutritionalInformation">
               <BaseInput.TextArea rows={3} />
             </Form.Item>
-          </Col> */}
+          </Col>
           <Col span={12}>
             <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
               <BaseInput />
