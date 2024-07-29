@@ -26,7 +26,7 @@ export type RecipeItem = {
   ingredientPhoto: string;
   unit: string;
   quantity: number;
-  isActive: boolean;
+
 };
 
 export type TAddNewFood = {
