@@ -11,7 +11,6 @@ export type TFoodItem = {
   foodTags: FoodTags[];
   isActive: boolean;
   serving: string;
-
   recipes: RecipeItem[];
 };
 export type FoodTags = {

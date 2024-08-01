@@ -31,11 +31,11 @@ export const BlogColumns: any = ({
     title: "Created by",
     dataIndex: "advisorName",
   },
-  {
-    title: "Content",
-    dataIndex: "blogContent",
-    // render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
-  },
+  // {
+  //   title: "Content",
+  //   dataIndex: "blogContent",
+  //   // render: (blogContent: string) => <BaseTag color="green">{blogContent}</BaseTag>,
+  // },
   {
     title: "Photo",
     dataIndex: "blogPhoto",

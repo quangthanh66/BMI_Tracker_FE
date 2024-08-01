@@ -34,7 +34,7 @@ export enum CommissionStatus {
 
 export const CommissionColumns: any = ({ updateCommissionModal, approveCommission }: CommissionColumnsTypes) => [
   {
-    title: 'Name',
+    title: 'Advisor',
     dataIndex: 'advisorName',
   },
   {
@@ -47,12 +47,14 @@ export const CommissionColumns: any = ({ updateCommissionModal, approveCommissio
   {
     title: 'Paid Date',
     dataIndex: 'paidDate',
+    //render: (text: string) => convertDateFormat(text),
     sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
     sortDirections: ['ascend', 'descend'],
   },
   {
     title: 'Deadline',
     dataIndex: 'expectedPaymentDate',
+    // render: (text: string) => convertDateFormat(text),
     sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
     sortDirections: ['ascend', 'descend'],
   },

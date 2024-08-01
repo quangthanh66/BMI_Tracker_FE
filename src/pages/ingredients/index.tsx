@@ -29,9 +29,12 @@ const IngredientManagement = () => {
     data: ingredientsList,
   } = useQuery(['get-ingredients'], INGREDIENT_API.GET_INGREDIENTS, {
     enabled: false,
+    // onSuccess: (response: IngredientTypes[]) => {
+    //   const availableIngredients = response.filter((item) => item.isActive !== false);
+    //   setIngredients(availableIngredients);
+    // },
     onSuccess: (response: IngredientTypes[]) => {
-      const availableIngredients = response.filter((item) => item.isActive !== false);
-      setIngredients(availableIngredients);
+      setIngredients(response);
     },
     onError: () => {
       messageApi.open({
@@ -159,10 +162,6 @@ const IngredientManagement = () => {
                           <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
                           <span style={{ textTransform: 'lowercase' }}>{item.ingredientCalories} (kcal)</span>
                         </Typography.Text>
-                        {/* <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Tags :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.tag.tagName}</span>
-                        </Typography.Text> */}
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: 'bold' }}>Tags :</span>{' '}
                           <span style={{ textTransform: 'lowercase', padding: '2px 4px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f0f0f0' }}>

@@ -38,7 +38,7 @@ const RecipeDialog = ({ ingredientSelect, afterClosed }: RecipeDialogProps, ref:
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl">New Recipe</BaseTypography>}
+      title={<BaseTypography className="text-xl">Add ingredient to food</BaseTypography>}
     >
       <Form layout="vertical" onFinish={onSubmitForm} requiredMark={false} form={form}>
         <Row gutter={[14, 14]}>

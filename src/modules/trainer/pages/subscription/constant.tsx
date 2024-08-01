@@ -32,7 +32,7 @@ function convertDateFormat(inputDate: string): string {
 
 export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubscription }: SubscriptionColumnsTypes) => [
   {
-    title: 'Subscription by',
+    title: 'Advisor',
     dataIndex: 'advisorName',
   },
   {

@@ -18,6 +18,8 @@ import { v4 } from 'uuid';
 import { listAll, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
 
+const { Option } = Select;
+
 type TAddNewFoodModal = {
   ingredients: TIngredientItem[];
   foodUpdateProps: TFoodItem;
@@ -219,10 +221,21 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
             </Col>
 
             <Col span={8}>
-              <Form.Item label="Serving" name="serving" rules={[fieldValidate.required]}>
-                <Input />
-              </Form.Item>
-            </Col>
+            <Form.Item label="Serving" name="serving" rules={[fieldValidate.required]}>
+            <Select placeholder="Select number person" dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}>
+                <Option value="1">1</Option>
+                <Option value="2">2</Option>
+                <Option value="3">3</Option>
+                <Option value="4">4</Option>
+                <Option value="5">4</Option>
+                <Option value="6">5</Option>
+                <Option value="7">7</Option>
+                <Option value="8">8</Option>
+                <Option value="9">9</Option>
+                <Option value="10">10</Option>
+              </Select>
+            </Form.Item>
+          </Col>
 
             <Col span={8}>
               <Form.Item label="Video Link" name="foodVideo">
@@ -269,7 +282,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
             <Col span={24}>
               <div className="flex flex-col gap-y-2">
-                <Typography>Recipe Selected</Typography>
+                <Typography>Ingredients selected</Typography>
 
                 <div className="flex items-center gap-2 flex-wrap">
                   {recipes.length > 0 &&
@@ -292,7 +305,7 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
             <Col span={24}>
               <BaseButton type="primary" icon={<PlusOutlined />} block onClick={onOpenRecipeDialog}>
-                Add New Recipe
+                Add ingredient
               </BaseButton>
             </Col>
 

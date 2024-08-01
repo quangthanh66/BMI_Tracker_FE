@@ -121,6 +121,45 @@ const AddNewExerciseModal = (
             </Form.Item>
           </Col>
 
+      
+
+          <Col span={12}>
+            <Form.Item
+              label={<span style={{ fontWeight: "bold" }}>Video</span>}
+              name="exerciseVideo"
+              rules={[fieldValidate.required]}
+            >
+              <BaseInput />
+            </Form.Item>
+          </Col>
+         
+          <Col span={12}>
+            <Form.Item
+              label={<span style={{ fontWeight: "bold" }}>Met</span>}
+              name="met"
+              rules={[fieldValidate.required]}
+            >
+              <BaseInput type="number" min={0} />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label={<span style={{ fontWeight: "bold" }}>Tags</span>}
+              name="tagID"
+              rules={[fieldValidate.required]}
+            >
+              <Select options={tagsSelect} />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label={<span style={{ fontWeight: "bold" }}>Description</span>}
+              name="exerciseDescription"
+              rules={[fieldValidate.required]}
+            >
+              <BaseInput.TextArea rows={3} />
+            </Form.Item>
+          </Col>
           <Col span={12}>
             {imageUpload ? (
               <div className="flex flex-col items-end gap-y-2 text-right">
@@ -152,44 +191,7 @@ const AddNewExerciseModal = (
             )}
           </Col>
 
-          <Col span={12}>
-            <Form.Item
-              label={<span style={{ fontWeight: "bold" }}>Video</span>}
-              name="exerciseVideo"
-              rules={[fieldValidate.required]}
-            >
-              <BaseInput />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label={<span style={{ fontWeight: "bold" }}>Description</span>}
-              name="exerciseDescription"
-              rules={[fieldValidate.required]}
-            >
-              <BaseInput.TextArea rows={3} />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label={<span style={{ fontWeight: "bold" }}>Met</span>}
-              name="met"
-              rules={[fieldValidate.required]}
-            >
-              <BaseInput type="number" min={0} />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label={<span style={{ fontWeight: "bold" }}>Tags</span>}
-              name="tagID"
-              rules={[fieldValidate.required]}
-            >
-              <Select options={tagsSelect} />
-            </Form.Item>
-          </Col>
-
-          <Col span={12} className="flex justify-end">
+          <Col span={24} className="flex justify-end">
             <Space>
               <BaseButton onClick={onCloseModal}>Close</BaseButton>
               <BaseButton

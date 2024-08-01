@@ -15,6 +15,8 @@ import _ from 'lodash';
 import { ChangeEvent, forwardRef, useImperativeHandle, useState } from 'react';
 import { v4 } from 'uuid';
 
+
+const { Option } = Select;
 type TAddNewIngredientModal = {
   refetchPage: () => void;
   tagsSelect: SelectTypes[];
@@ -98,14 +100,17 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
               <BaseInput />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item label="Unit Of Measurement" name="unit" rules={[fieldValidate.required]}>
+          {/* <Col span={12}>
+            <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
-          </Col>
+          </Col> */}
           <Col span={12}>
-            <Form.Item label="Nutrition information" name="nutritionalInformation">
-              <BaseInput.TextArea rows={3} />
+            <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
+              <Select placeholder="Select a unit">
+                <Option value="gr">g</Option>
+                <Option value="ml">ml</Option>
+              </Select>
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -114,7 +119,7 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
+            <Form.Item label="Calories (kcal)" name="ingredientCalories"  rules={[fieldValidate.required]}>
               <BaseInput type="number" min={0} />
             </Form.Item>
           </Col>
@@ -132,7 +137,7 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
                 >
                   <UploadOutlined /> Upload
                 </label>
-              
+
               </div>
 
               <input id="food-photo" type="file" onChange={uploadFile} style={{ visibility: 'hidden' }} />

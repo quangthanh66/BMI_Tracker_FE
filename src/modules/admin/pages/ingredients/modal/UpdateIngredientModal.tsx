@@ -14,7 +14,7 @@ import { getDownloadURL, uploadBytes, ref } from 'firebase/storage';
 import _ from 'lodash';
 import { ChangeEvent, forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { v4 } from 'uuid';
-
+const { Option } = Select;
 type TUpdateIngredientModal = {
   refetchFoodPage: () => void;
   ingredientProps: TIngredientItem;
@@ -120,13 +120,10 @@ const UpdateIngredientModal = (
           </Col>
           <Col span={12}>
             <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item label="Nutrition information" name="nutritionalInformation">
-              <BaseInput.TextArea rows={3} />
+              <Select placeholder="Select a unit">
+                <Option value="gr">g</Option>
+                <Option value="ml">ml</Option>
+              </Select>
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -135,7 +132,7 @@ const UpdateIngredientModal = (
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Ingredient Calories" name="ingredientCalories" rules={[fieldValidate.required]}>
+            <Form.Item label="Calories (kcal)" name="ingredientCalories" rules={[fieldValidate.required]}>
               <BaseInput />
             </Form.Item>
           </Col>

@@ -7,7 +7,7 @@ import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import FilterFoods from '@app/modules/admin/pages/foods/FilterFoods';
 import AddNewFoodModal from '@app/modules/admin/pages/foods/modal/AddNewFoodModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Spin, Row, Col, message, Empty, Card, Typography, Image, Button } from 'antd';
+import { Spin, Row, Col, message, Empty, Card, Typography, Image, Button, Tag } from 'antd';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import errorImage from 'assets/error-image-alt.png';
 import useModal from 'antd/lib/modal/useModal';
@@ -27,21 +27,24 @@ const FoodManagement = () => {
     isLoading: isLoadingGetAllFoods,
     refetch: getFoods,
     data: foodsList,
-  } = useQuery(['get-foods'], FOOD_API.GET_FOODS, {
+  } = useQuery(["get-foods"], FOOD_API.GET_FOODS, {
     enabled: false,
+    // onSuccess: (response: TFoodItem[]) => {
+    //   setFoods(response);
+    // },
     onSuccess: (response: TFoodItem[]) => {
       setFoods(response);
     },
     onError: () => {
       messageApi.open({
-        type: 'error',
-        content: 'Cant get foods list. Please try again !',
+        type: "error",
+        content: "Cant get foods list. Please try again !",
       });
     },
   });
 
   const { isLoading: isLoadingIngredient, refetch: refetchIngredient } = useQuery(
-    ['get-ingredients'],
+    ["get-ingredients"],
     INGREDIENT_API.GET_INGREDIENTS,
     {
       enabled: false,
@@ -50,8 +53,8 @@ const FoodManagement = () => {
       },
       onError: () => {
         messageApi.open({
-          type: 'error',
-          content: 'Cant get ingredient list. Please try again !',
+          type: "error",
+          content: "Cant get ingredient list. Please try again !",
         });
       },
     },
@@ -60,16 +63,16 @@ const FoodManagement = () => {
   const { isLoading: isLoadingDeleteFood, mutate: deleteFoodMutate } = useMutation(FOOD_API.DELETE_FOOD, {
     onSuccess: () => {
       messageApi.open({
-        type: 'success',
-        content: 'Delete food is successfully',
+        type: "success",
+        content: "Delete food is successfully",
       });
 
       getFoods();
     },
     onError: () => {
       messageApi.open({
-        type: 'error',
-        content: 'Cant delete food. Please try again !',
+        type: "error",
+        content: "Cant delete food. Please try again !",
       });
     },
   });
@@ -87,9 +90,9 @@ const FoodManagement = () => {
 
   const confirmModal = (foodID: string) => {
     modal.confirm({
-      title: 'Are you sure to delete food ?',
-      okText: 'Confirm to delete',
-      cancelText: 'Close',
+      title: "Are you sure to delete food ?",
+      okText: "Confirm to delete",
+      cancelText: "Close",
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
         deleteFoodMutate(foodID);
@@ -154,16 +157,20 @@ const FoodManagement = () => {
                       <Typography.Paragraph className="line-clamp-2">{item.description}</Typography.Paragraph>
                       <div className="w-full flex flex-col gap-2">
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Time process :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.foodTimeProcess} (minutes)</span>
+                          <span style={{ fontWeight: "bold" }}>Time process :</span>{" "}
+                          <span style={{ textTransform: "lowercase" }}>{item.foodTimeProcess} (minutes)</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Calories :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.foodCalories} (kcal)</span>
+                          <span style={{ fontWeight: "bold" }}>Calories :</span>{" "}
+                          <span style={{ textTransform: "lowercase" }}>{item.foodCalories} (kcal)</span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: 'bold' }}>Date :</span>{" "}
-                          <span style={{ textTransform: 'lowercase' }}>{item.creationDate}</span>
+                          <span style={{ fontWeight: "bold" }}>Date :</span>{" "}
+                          <span style={{ textTransform: "lowercase" }}>{item.creationDate}</span>
+                        </Typography.Text>
+                        <Typography.Text className="!text-black">
+                        <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
+                        <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}</span>
                         </Typography.Text>
                       </div>
                     </div>
