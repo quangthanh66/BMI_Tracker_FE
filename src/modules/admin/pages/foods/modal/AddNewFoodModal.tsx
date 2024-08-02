@@ -251,14 +251,10 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
             <Col span={8}>
               <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
-                <Select
-                  options={tagsOptions}
-                  mode="multiple"
-                  allowClear
-                  value={foodUpdateProps && foodUpdateProps.foodTags.map((tag) => tag.tagID)}
-                />
+              <Select options={tagsOptions} />
               </Form.Item>
             </Col>
+
             <Col span={15}>
               <Form.Item label="Description" name="description">
               <BaseInput.TextArea rows={3} />

@@ -113,6 +113,7 @@ export const PersonalInfo: React.FC = () => {
     [t]
   );
 
+
   return (
     <BaseCard>
       <BaseButtonsForm
@@ -156,6 +157,7 @@ export const PersonalInfo: React.FC = () => {
             </BaseButtonsForm.Item>
           </BaseCol>
 
+
           <BaseCol span={24}>
             <BaseButtonsForm.Item>
               <BaseButtonsForm.Title>
@@ -167,28 +169,9 @@ export const PersonalInfo: React.FC = () => {
           <BaseCol xs={24} md={12}>
             <PhoneItem verified={user?.phone.verified} />
           </BaseCol>
-
-          {/* <BaseCol xs={24} md={12}>
-            <EmailItem verified={user?.email.verified} />
-          </BaseCol> */}
           <BaseCol xs={24} md={12}>
             <EmailItem verified={user?.email.verified} />
           </BaseCol>
-
-
-          {/* <BaseCol xs={24} md={12}>
-            <BaseButtonsForm.Item name="isActive" label={"Is Active"}>
-              <BaseInput />
-            </BaseButtonsForm.Item>
-          </BaseCol> */}
-
-          {/* <BaseCol span={24}>
-            <BaseButtonsForm.Item>
-              <BaseButtonsForm.Title>
-                {t("common.address")}
-              </BaseButtonsForm.Title>
-            </BaseButtonsForm.Item>
-          </BaseCol> */}
         </BaseRow>
       </BaseButtonsForm>
     </BaseCard>

@@ -43,7 +43,7 @@ export const LoginForm: React.FC = () => {
 
         response.roleNames.includes(USER_ROLES_ENUM.ROLE_MANAGER)
           ? navigate("/profile/personal-info")
-          : navigate(PAGE_ROUTES.HOME);
+          : navigate("/profile/personal-info");
       },
     }
   );
