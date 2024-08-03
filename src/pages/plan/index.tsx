@@ -157,18 +157,18 @@ const PlanManagement = () => {
 
 
                     <Typography.Text className="!text-black">
-                    <span style={{ fontWeight: 'bold' }}>Number of registered member :</span>{" "}
-                    <span style={{ textTransform: 'lowercase' }}>{item.numberOfUses}</span>
+                    <span style={{ fontWeight: 'bold' }}>Registered member :</span>{" "}
+                    <span style={{ textTransform: 'lowercase' }}>{item.numberOfUses} (member)</span>
                     </Typography.Text>
 
                     <Typography.Text className="!text-black">
                     <span style={{ fontWeight: 'bold' }}>Price :</span>{" "}
-                    <span style={{ textTransform: 'lowercase' }}>{item.price}</span>
+                    <span style={{ textTransform: 'lowercase' }}>{item.price} (VND)</span>
                     </Typography.Text>
 
                     <Typography.Text className="!text-black">
                     <span style={{ fontWeight: 'bold' }}>Duration :</span>{" "}
-                    <span style={{ textTransform: 'lowercase' }}>{item.planDuration}</span>
+                    <span style={{ textTransform: 'lowercase' }}>{item.planDuration} (Days)</span>
                     </Typography.Text>
 
                     <Typography.Text className="!text-black">
