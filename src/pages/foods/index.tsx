@@ -3,7 +3,7 @@ import {
   ExclamationCircleOutlined,
   FileAddOutlined,
 } from "@ant-design/icons";
-import { RecipeItem, TFoodItem, TUpdateFood } from "@app/api/foods";
+import { RecipeItem, TFoodItem } from "@app/api/foods";
 import FOOD_API from "@app/api/foods/type";
 import INGREDIENT_API from "@app/api/ingredients";
 import { TIngredientItem } from "@app/api/ingredients/type";
@@ -20,7 +20,6 @@ import {
   Card,
   Typography,
   Image,
-  Button,
   Tag,
 } from "antd";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
@@ -44,9 +43,6 @@ const FoodManagement = () => {
     data: foodsList,
   } = useQuery(["get-foods"], FOOD_API.GET_FOODS, {
     enabled: false,
-    // onSuccess: (response: TFoodItem[]) => {
-    //   setFoods(response);
-    // },
     onSuccess: (response: TFoodItem[]) => {
       setFoods(response);
     },
@@ -122,8 +118,9 @@ const FoodManagement = () => {
     addNewFoodRef.current.openModal();
   };
 
-  const onViewDetailRecipeDialog = (recipes: RecipeItem[]) =>
-    viewDetailRecipeRef.current.openModal(recipes);
+  const onViewDetailRecipeDialog = (food: TFoodItem) => {
+    viewDetailRecipeRef.current.openModal(food);
+  };
 
   return (
     <Spin
@@ -142,7 +139,10 @@ const FoodManagement = () => {
         foodUpdateProps={foodUpdate as TFoodItem}
       />
 
-      <ViewDetailRecipeDialog ref={viewDetailRecipeRef} />
+      <ViewDetailRecipeDialog
+        ref={viewDetailRecipeRef}
+        refreshFoods={() => getFoods()}
+      />
 
       <Row gutter={[14, 14]}>
         <Col span={24}>
@@ -245,7 +245,7 @@ const FoodManagement = () => {
                   <BaseButton
                     size="small"
                     type="primary"
-                    onClick={() => onViewDetailRecipeDialog(item.recipes)}
+                    onClick={() => onViewDetailRecipeDialog(item)}
                   >
                     View detail recipe
                   </BaseButton>

@@ -48,3 +48,10 @@ export type RecipeRequest = {
 export type TUpdateFood = TAddNewFood & {
   foodID: string;
 };
+
+export type AddFoodRecipeRequest = {
+  foodID: number;
+  ingredientID: number;
+  unit: string;
+  quantity: number;
+};
