@@ -1,22 +1,43 @@
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
-import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
-import { SelectTypes, fieldValidate } from '@app/utils/helper';
-import { Button, Col, Form, Image, Input, Row, Select, Space, Spin, Tag, Typography, message } from 'antd';
-import { ChangeEvent, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { RecipeItem, TAddNewFood, TFoodItem } from '@app/api/foods';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import FOOD_API from '@app/api/foods/type';
-import { TagsRequest } from '@app/api/tags/type';
-import { TIngredientItem } from '@app/api/ingredients/type';
-import { CloseCircleOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
-import RecipeDialog from './RecipeDialog';
-import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
-import _ from 'lodash';
-import { imageDb } from '@app/services/firebase/config';
-import { v4 } from 'uuid';
-import { listAll, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
-import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
+import { BaseTypography } from "@app/components/common/BaseTypography/BaseTypography";
+import { SelectTypes, fieldValidate } from "@app/utils/helper";
+import {
+  Col,
+  Form,
+  Input,
+  Row,
+  Select,
+  Space,
+  Spin,
+  Typography,
+  message,
+} from "antd";
+import {
+  ChangeEvent,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import { RecipeItem, TAddNewFood, TFoodItem } from "@app/api/foods";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import FOOD_API from "@app/api/foods/type";
+import { TagsRequest } from "@app/api/tags/type";
+import { TIngredientItem } from "@app/api/ingredients/type";
+import {
+  CloseCircleOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
+import RecipeDialog from "./RecipeDialog";
+import { BaseTag } from "@app/components/common/BaseTag/BaseTag";
+import _ from "lodash";
+import { imageDb } from "@app/services/firebase/config";
+import { v4 } from "uuid";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
 
 const { Option } = Select;
 
@@ -26,7 +47,10 @@ type TAddNewFoodModal = {
   refetchFoodPage: () => void;
 };
 
-const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAddNewFoodModal, refPage: any) => {
+const AddNewFoodModal = (
+  { ingredients, refetchFoodPage, foodUpdateProps }: TAddNewFoodModal,
+  refPage: any
+) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = Form.useForm();
@@ -36,46 +60,48 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   const recipeRefDialog = useRef<any>();
 
-  const { isLoading: isLoadingHandleFood, mutate: handleFoodMutate } = useMutation(FOOD_API.ADD_NEW_FOOD, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Create a new food is successfully',
-      });
-      setRecipes([]);
-      refetchFoodPage();
-      onCloseModal();
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Cant create new food . Please try again !',
-      });
-    },
-  });
+  const { isLoading: isLoadingHandleFood, mutate: handleFoodMutate } =
+    useMutation(FOOD_API.ADD_NEW_FOOD, {
+      onSuccess: () => {
+        messageApi.open({
+          type: "success",
+          content: "Create a new food is successfully",
+        });
+        setRecipes([]);
+        refetchFoodPage();
+        onCloseModal();
+      },
+      onError: () => {
+        messageApi.open({
+          type: "error",
+          content: "Cant create new food . Please try again !",
+        });
+      },
+    });
 
-  const { isLoading: isLoadingUpdateFood, mutate: updateFoodMutate } = useMutation(FOOD_API.UPDATE_FOOD, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Update food is successfully',
-      });
+  const { isLoading: isLoadingUpdateFood, mutate: updateFoodMutate } =
+    useMutation(FOOD_API.UPDATE_FOOD, {
+      onSuccess: () => {
+        messageApi.open({
+          type: "success",
+          content: "Update food is successfully",
+        });
 
-      refetchFoodPage();
-      onCloseModal();
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Cant update food . Please try again !',
-      });
-    },
-  });
+        refetchFoodPage();
+        onCloseModal();
+      },
+      onError: () => {
+        messageApi.open({
+          type: "error",
+          content: "Cant update food . Please try again !",
+        });
+      },
+    });
 
   const { isLoading: isLoadingTags } = useQuery({
-    queryKey: ['tags-key'],
+    queryKey: ["tags-key"],
     queryFn: FOOD_API.GET_TAGS_FOOD,
-    onError: () => message.error('Load tags is failed'),
+    onError: () => message.error("Load tags is failed"),
     onSuccess: (response: TagsRequest[]) => {
       const result: SelectTypes[] = response.map((item) => {
         return {
@@ -109,10 +135,10 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   useEffect(() => {
     if (foodUpdateProps) {
-      setRecipes(foodUpdateProps.recipes);
-
       const convertFoodTags =
-        foodUpdateProps.foodTags.length > 0 ? foodUpdateProps.foodTags.map((item) => item.tagID) : [];
+        foodUpdateProps.foodTags.length > 0
+          ? foodUpdateProps.foodTags.map((item) => item.tagID)
+          : [];
 
       form.setFieldsValue({
         ...foodUpdateProps,
@@ -128,14 +154,14 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   const submitForm = (values: TAddNewFood) => {
     const imageResult = _.last(imageUrls);
+    const convertValues = _.omit(values, ["recipeRequests"]);
 
     if (foodUpdateProps) {
       updateFoodMutate({
-        ...values,
+        ...convertValues,
         foodCalories: Number(values.foodCalories),
         foodTimeProcess: Number(values.foodTimeProcess),
         foodID: foodUpdateProps.foodID,
-        recipeRequests: recipes,
         foodPhoto: imageResult,
       });
     } else {
@@ -149,7 +175,10 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
     }
   };
 
-  const onOpenRecipeDialog = () => recipeRefDialog.current.openModal();
+  const onOpenRecipeDialog = () => {
+    setRecipes([]);
+    recipeRefDialog.current.openModal();
+  };
 
   const afterClosedRecipeDialog = (value: RecipeItem) => {
     if (value) {
@@ -166,10 +195,12 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
   };
 
   const getRecipeInfo = (recipeId: number): string => {
-    return ingredientOptions.length === 0 ? '' : ingredientOptions.find((item) => item.value === recipeId)?.label || '';
+    return ingredientOptions.length === 0
+      ? ""
+      : ingredientOptions.find((item) => item.value === recipeId)?.label || "";
   };
 
-  const [imageUpload, setImageUpload] = useState<string>('');
+  const [imageUpload, setImageUpload] = useState<string>("");
   const [imageUrls, setImageUrls] = useState<any[]>([]);
 
   const uploadFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -188,54 +219,85 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
 
   return (
     <BaseModal
-      // centered
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl">{foodUpdateProps ? 'Add new food' : 'Add new food'}</BaseTypography>}
+      title={
+        <BaseTypography className="text-xl">
+          {foodUpdateProps ? "Update food" : "Add new food"}
+        </BaseTypography>
+      }
       width={800}
-      style={{ height: '500px' , top: '20px', bottom: '20px' }} 
+      style={{ height: "500px", top: "20px", bottom: "20px" }}
     >
       {contextHolder}
 
-      <RecipeDialog ingredientSelect={ingredientOptions} ref={recipeRefDialog} afterClosed={afterClosedRecipeDialog} />
+      <RecipeDialog
+        ingredientSelect={ingredientOptions}
+        ref={recipeRefDialog}
+        afterClosed={afterClosedRecipeDialog}
+      />
       <Spin spinning={isLoadingTags}>
-        <Form layout="vertical" onFinish={submitForm} requiredMark={false} form={form}>
+        <Form
+          layout="vertical"
+          onFinish={submitForm}
+          requiredMark={false}
+          form={form}
+        >
           <Row gutter={[10, 10]}>
             <Col span={8}>
-              <Form.Item label="Name" name="foodName" rules={[fieldValidate.required]}>
+              <Form.Item
+                label="Name"
+                name="foodName"
+                rules={[fieldValidate.required]}
+              >
                 <Input />
               </Form.Item>
             </Col>
 
             <Col span={8}>
-              <Form.Item label="Calories" name="foodCalories" rules={[fieldValidate.required]}>
+              <Form.Item
+                label="Calories"
+                name="foodCalories"
+                rules={[fieldValidate.required]}
+              >
                 <Input type="number" min={0} />
               </Form.Item>
             </Col>
 
             <Col span={8}>
-              <Form.Item label="Nutrition" name="foodNutrition" rules={[fieldValidate.required]}>
+              <Form.Item
+                label="Nutrition"
+                name="foodNutrition"
+                rules={[fieldValidate.required]}
+              >
                 <Input />
               </Form.Item>
             </Col>
 
             <Col span={8}>
-            <Form.Item label="Serving" name="serving" rules={[fieldValidate.required]}>
-            <Select placeholder="Select number person" dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}>
-                <Option value="1">1</Option>
-                <Option value="2">2</Option>
-                <Option value="3">3</Option>
-                <Option value="4">4</Option>
-                <Option value="5">4</Option>
-                <Option value="6">5</Option>
-                <Option value="7">7</Option>
-                <Option value="8">8</Option>
-                <Option value="9">9</Option>
-                <Option value="10">10</Option>
-              </Select>
-            </Form.Item>
-          </Col>
+              <Form.Item
+                label="Serving"
+                name="serving"
+                rules={[fieldValidate.required]}
+              >
+                <Select
+                  placeholder="Select number person"
+                  dropdownStyle={{ maxHeight: 200, overflow: "auto" }}
+                >
+                  <Option value="1">1</Option>
+                  <Option value="2">2</Option>
+                  <Option value="3">3</Option>
+                  <Option value="4">4</Option>
+                  <Option value="5">4</Option>
+                  <Option value="6">5</Option>
+                  <Option value="7">7</Option>
+                  <Option value="8">8</Option>
+                  <Option value="9">9</Option>
+                  <Option value="10">10</Option>
+                </Select>
+              </Form.Item>
+            </Col>
 
             <Col span={8}>
               <Form.Item label="Video Link" name="foodVideo">
@@ -244,20 +306,28 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
             </Col>
 
             <Col span={8}>
-              <Form.Item label="Time process" name="foodTimeProcess" rules={[fieldValidate.required]}>
+              <Form.Item
+                label="Time process"
+                name="foodTimeProcess"
+                rules={[fieldValidate.required]}
+              >
                 <Input type="number" />
               </Form.Item>
             </Col>
 
             <Col span={8}>
-              <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
-              <Select options={tagsOptions} />
+              <Form.Item
+                label="Tags"
+                name="tagIDs"
+                rules={[fieldValidate.required]}
+              >
+                <Select options={tagsOptions} />
               </Form.Item>
             </Col>
 
             <Col span={15}>
               <Form.Item label="Description" name="description">
-              <BaseInput.TextArea rows={3} />
+                <BaseInput.TextArea rows={3} />
               </Form.Item>
             </Col>
             <Col span={5}>
@@ -270,40 +340,61 @@ const AddNewFoodModal = ({ ingredients, refetchFoodPage, foodUpdateProps }: TAdd
                     <UploadOutlined /> Upload
                   </label>
                 </div>
-                <input id="food-photo" type="file" onChange={uploadFile} style={{ visibility: 'hidden' }} />
+                <input
+                  id="food-photo"
+                  type="file"
+                  onChange={uploadFile}
+                  style={{ visibility: "hidden" }}
+                />
               </Form.Item>
             </Col>
-            
-            <Col span={12}>{imageUpload && <img className=" w-full " src={imageUpload} />}</Col>
 
-            <Col span={24}>
-              <div className="flex flex-col gap-y-2">
-                <Typography>Ingredients selected</Typography>
-
-                <div className="flex items-center gap-2 flex-wrap">
-                  {recipes.length > 0 &&
-                    recipes.map((value: RecipeItem, index: number) => {
-                      return (
-                        <BaseTag
-                          className="p-2"
-                          closeIcon={<CloseCircleOutlined color="white" className="ml-2 text-lg text-white" />}
-                          closable
-                          onClose={() => onRemoveRecipe(value)}
-                          key={index}
-                        >
-                          {getRecipeInfo(value.ingredientID)}
-                        </BaseTag>
-                      );
-                    })}
-                </div>
-              </div>
+            <Col span={12}>
+              {imageUpload && <img className=" w-full " src={imageUpload} />}
             </Col>
 
-            <Col span={24}>
-              <BaseButton type="primary" icon={<PlusOutlined />} block onClick={onOpenRecipeDialog}>
-                Add ingredient
-              </BaseButton>
-            </Col>
+            {!foodUpdateProps && (
+              <>
+                <Col span={24}>
+                  <div className="flex flex-col gap-y-2">
+                    <Typography>Ingredients selected</Typography>
+
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {recipes.length > 0 &&
+                        recipes.map((value: RecipeItem, index: number) => {
+                          return (
+                            <BaseTag
+                              className="p-2"
+                              closeIcon={
+                                <CloseCircleOutlined
+                                  color="white"
+                                  className="ml-2 text-lg text-white"
+                                />
+                              }
+                              closable
+                              onClose={() => onRemoveRecipe(value)}
+                              key={index}
+                            >
+                              {getRecipeInfo(value.ingredientID)}
+                            </BaseTag>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </Col>
+
+                <Col span={24}>
+                  <BaseButton
+                    type="primary"
+                    icon={<PlusOutlined />}
+                    block
+                    onClick={onOpenRecipeDialog}
+                  >
+                    Add ingredient
+                  </BaseButton>
+                </Col>
+              </>
+            )}
 
             <Col span={24} className="flex justify-end">
               <Space>

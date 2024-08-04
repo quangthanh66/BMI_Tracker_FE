@@ -6,6 +6,8 @@ export const END_POINTS = {
     TOTAL_ADVISOR_MEMBER: "/api/statistics/get-total-advisor-member",
     COMMISSION_SUMMARY: "/api/statistics/commission-summary",
   },
+  ADD_FOOD_RECIPE: "/api/foods/createRecipe",
+  DELETE_FOOD_RECIPE: "/api/foods/deleteRecipe",
 
   CERTIFICATE_MANAGEMENT: {
     CREATE_NEW: "/api/certificates/createNew",

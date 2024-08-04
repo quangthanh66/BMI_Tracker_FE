@@ -25,7 +25,6 @@ export type RecipeItem = {
   ingredientPhoto: string;
   unit: string;
   quantity: number;
-
 };
 
 export type TAddNewFood = {
@@ -38,7 +37,7 @@ export type TAddNewFood = {
   serving: string;
   foodTimeProcess: number;
   tagIDs: string;
-  recipeRequests: RecipeItem[];
+  recipeRequests?: RecipeItem[];
 };
 
 export type RecipeRequest = {

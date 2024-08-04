@@ -95,6 +95,8 @@ const ChartsPage: React.FC = () => {
     getTotalAdvisor();
   }, []);
 
+  console.log(totalSubscription);
+
   return (
     <Spin
       spinning={
@@ -178,7 +180,6 @@ const ChartsPage: React.FC = () => {
                 <XAxis dataKey="yearMonth" />
                 <YAxis />
                 <Tooltip />
-                <Legend />
                 <Line
                   type="monotone"
                   dataKey="totalMenu"
@@ -205,10 +206,9 @@ const ChartsPage: React.FC = () => {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="yearMonth" />
                 <YAxis />
                 <Tooltip />
-                <Legend />
                 <Bar
                   dataKey="totalSubscription"
                   fill="#8884d8"
