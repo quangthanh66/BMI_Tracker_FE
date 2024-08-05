@@ -257,7 +257,7 @@ const AddNewFoodModal = (
 
             <Col span={8}>
               <Form.Item
-                label="Calories"
+                label="Calories (kcal)"
                 name="foodCalories"
                 rules={[fieldValidate.required]}
               >
@@ -277,7 +277,7 @@ const AddNewFoodModal = (
 
             <Col span={8}>
               <Form.Item
-                label="Serving"
+                label="Serving (person)"
                 name="serving"
                 rules={[fieldValidate.required]}
               >
@@ -307,7 +307,7 @@ const AddNewFoodModal = (
 
             <Col span={8}>
               <Form.Item
-                label="Time process"
+                label="Time process (min)"
                 name="foodTimeProcess"
                 rules={[fieldValidate.required]}
               >
@@ -331,7 +331,7 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
             <Col span={5}>
-              <Form.Item label="Photo Link" name="foodPhoto">
+              <Form.Item label="Photo" name="foodPhoto">
                 <div className="flex items-center justify-between gap-x-2 h-10">
                   <label
                     htmlFor="food-photo"

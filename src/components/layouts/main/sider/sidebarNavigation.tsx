@@ -52,13 +52,18 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     url: '/plan',
     icon: <img src="https://cdn-icons-png.flaticon.com/128/3198/3198968.png" alt="Plan Icon" style={{ width: '35px', height: '35px' }} />,
   },
-
+  {
+    title: 'Subscription',
+    key: 'subscription',
+    url: '/subscription',
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/2299/2299464.png" alt="Subscription" style={{ width: '35px', height: '35px' }} />,
+  },
   {
     title: 'Commission',
     key: 'commission-management',
     url: PAGE_ROUTES.TRAINER.COMMISSION,
     icon: <img src="https://cdn-icons-png.flaticon.com/128/10044/10044628.png" alt="Commission Icon" style={{ width: '35px', height: '35px' }} />,
-}
+  }
 ];
 
 export const trainerSidebar: SidebarNavigationItem[] = [

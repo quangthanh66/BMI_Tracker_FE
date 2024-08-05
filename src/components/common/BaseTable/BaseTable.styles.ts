@@ -42,13 +42,15 @@ export const Table = styled(AntdTable)`
     min-width: 2.0625rem;
     height: 2.0625rem;
     line-height: 2.0625rem;
-    border-radius: 0;
+    border-radius: 0.5rem;
+  
+    margin-right: 0.5rem;
     font-size: ${FONT_SIZE.xs};
   }
 
   & .ant-pagination-prev .ant-pagination-item-link,
   .ant-pagination-next .ant-pagination-item-link {
-    border-radius: 0;
+    border-radius: 0.5rem;
   }
 
   & .ant-checkbox-inner {
