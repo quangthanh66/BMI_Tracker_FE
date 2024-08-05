@@ -109,7 +109,9 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
             <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
               <Select placeholder="Select a unit">
                 <Option value="gr">g</Option>
-                <Option value="ml">ml</Option>
+                <Option value="ml">mL</Option>
+                <Option value="ml">tbsp</Option>
+                <Option value="ml">tsp</Option>
               </Select>
             </Form.Item>
           </Col>

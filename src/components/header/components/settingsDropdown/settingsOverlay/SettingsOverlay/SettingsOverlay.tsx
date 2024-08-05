@@ -28,9 +28,7 @@ export const SettingsOverlay: React.FC = ({ ...props }) => {
       </DropdownCollapse>
       {isPWASupported && (
         <S.PwaInstallWrapper>
-          <BaseButton block type="primary" onClick={() => event && (event as BeforeInstallPromptEvent).prompt()}>
-            {t('common.pwa')}
-          </BaseButton>
+         
         </S.PwaInstallWrapper>
       )}
     </S.SettingsOverlayMenu>

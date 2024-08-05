@@ -81,16 +81,23 @@ const ViewDetailRecipeDialog = (
       onCancel={onCloseModal}
       footer={
         <div className="flex items-center justify-end gap-2 w-full py-2">
+
           <BaseButton
             type="primary"
             icon={<PlusOutlined />}
             onClick={onOpenAddNewRecipeDialog}
           >
-            Add New Recipe
+            Add ingredient
           </BaseButton>
         </div>
       }
-      width={800}
+      width={1000}
+      bodyStyle={{
+        padding: '0px',
+        margin: 0,
+        height: '525px',
+        marginTop: '0px', 
+      }}
     >
       {contextHolder}
 
@@ -103,7 +110,7 @@ const ViewDetailRecipeDialog = (
           columns={FoodRecipeColumns({ onDeleteFoodRecipe })}
           dataSource={recipeItem}
           pagination={{
-            pageSize: 5,
+            pageSize: 3,
           }}
         />
       </Spin>

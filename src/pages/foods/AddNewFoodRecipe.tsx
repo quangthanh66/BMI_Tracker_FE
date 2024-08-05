@@ -11,13 +11,13 @@ import { BaseSelect } from "@app/components/common/selects/BaseSelect/BaseSelect
 import { IngredientTypes } from "@app/modules/admin/pages/ingredients/type";
 import { fieldValidate, SelectTypes } from "@app/utils/helper";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { message, Spin } from "antd";
+import { Col, Form, message, Select, Spin } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
 type AddNewFoodRecipeProps = {
   afterClosedDialog: (value: RecipeItem) => void;
 };
-
+const { Option } = Select;
 const AddNewFoodRecipe = (
   { afterClosedDialog }: AddNewFoodRecipeProps,
   ref: any
@@ -55,7 +55,7 @@ const AddNewFoodRecipe = (
       onError: () => {
         messageApi.open({
           type: "error",
-          content: "Add new recipe is failed",
+          content: "Add new ingredient is failed",
         });
       },
     });
@@ -80,7 +80,7 @@ const AddNewFoodRecipe = (
         onSuccess: () => {
           messageApi.open({
             type: "success",
-            content: "Add new recipe is successful",
+            content: "Add new ingredient is successful",
           });
 
           const ingredientItem = ingredientsList?.find(
@@ -106,7 +106,7 @@ const AddNewFoodRecipe = (
 
   return (
     <BaseModal
-      title="Add New Recipe"
+      title="Add ingredient"
       open={isOpenModal}
       onCancel={onCloseModal}
       footer={null}
@@ -130,17 +130,19 @@ const AddNewFoodRecipe = (
               </BaseForm.Item>
             </BaseCol>
 
-            <BaseCol span={24}>
-              <BaseForm.Item
-                name="unit"
-                label="Unit"
-                rules={[fieldValidate.required]}
-              >
-                <BaseInput placeholder="Unit..." />
-              </BaseForm.Item>
-            </BaseCol>
+        
+            <Col span={12}>
+            <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
+              <Select placeholder="Select a unit">
+                <Option value="gr">g</Option>
+                <Option value="ml">mL</Option>
+                <Option value="ml">tbsp</Option>
+                <Option value="ml">tsp</Option>
+              </Select>
+            </Form.Item>
+          </Col>
 
-            <BaseCol span={24}>
+            <BaseCol span={12}>
               <BaseForm.Item
                 name="quantity"
                 label="Quantity"

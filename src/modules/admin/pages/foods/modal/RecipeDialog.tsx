@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { Col, Form, Row, Spin } from 'antd';
+import { Col, Form, Row, Select, Spin } from 'antd';
 import { RecipeItem } from '@app/api/foods';
 import { SelectTypes, fieldValidate } from '@app/utils/helper';
 import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
@@ -14,7 +14,7 @@ type RecipeDialogProps = {
   ingredientSelect: SelectTypes[];
   afterClosed: (value: RecipeItem) => void;
 };
-
+const { Option } = Select;
 const RecipeDialog = ({ ingredientSelect, afterClosed }: RecipeDialogProps, ref: any) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
@@ -49,8 +49,13 @@ const RecipeDialog = ({ ingredientSelect, afterClosed }: RecipeDialogProps, ref:
           </Col>
 
           <Col span={12}>
-            <Form.Item label="Unit" name={'unit'} rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Unit" />
+            <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
+              <Select placeholder="Select a unit">
+                <Option value="gr">g</Option>
+                <Option value="ml">mL</Option>
+                <Option value="ml">tbsp</Option>
+                <Option value="ml">tsp</Option>
+              </Select>
             </Form.Item>
           </Col>
 
