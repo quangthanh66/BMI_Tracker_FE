@@ -93,10 +93,8 @@ const ViewDetailRecipeDialog = (
       }
       width={1000}
       bodyStyle={{
-        padding: '0px',
-        margin: 0,
+        margin: 30,
         height: '525px',
-        marginTop: '0px', 
       }}
     >
       {contextHolder}

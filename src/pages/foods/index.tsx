@@ -203,12 +203,6 @@ const FoodManagement = () => {
                         </span>
                       </Typography.Text>
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Date :</span>{" "}
-                        <span style={{ textTransform: "lowercase" }}>
-                          {item.creationDate}
-                        </span>
-                      </Typography.Text>
-                      <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                         <span>
                           {item.isActive ? (

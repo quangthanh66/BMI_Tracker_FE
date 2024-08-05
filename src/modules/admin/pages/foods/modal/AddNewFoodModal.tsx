@@ -163,6 +163,10 @@ const AddNewFoodModal = (
         foodTimeProcess: Number(values.foodTimeProcess),
         foodID: foodUpdateProps.foodID,
         foodPhoto: imageResult,
+        serving: Number(values.serving),
+        fat: Number(values.fat),
+        protein: Number(values.protein),
+        carbs: Number(values.carbs),
       });
     } else {
       handleFoodMutate({
@@ -170,7 +174,11 @@ const AddNewFoodModal = (
         foodCalories: Number(values.foodCalories),
         foodTimeProcess: Number(values.foodTimeProcess),
         recipeRequests: recipes,
+        serving: Number(values.serving),
         foodPhoto: imageResult,
+        fat: Number(values.fat),
+        protein: Number(values.protein),
+        carbs: Number(values.carbs),
       });
     }
   };
@@ -265,13 +273,34 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
+            
             <Col span={8}>
               <Form.Item
-                label="Nutrition"
-                name="foodNutrition"
+                label="Carbs (g)"
+                name="carbs"
                 rules={[fieldValidate.required]}
               >
-                <Input />
+                <Input type="number" min={0} step="0.1" />
+              </Form.Item>
+            </Col>
+            
+            <Col span={8}>
+              <Form.Item
+                label="Protein (g)"
+                name="protein"
+                rules={[fieldValidate.required]}
+              >
+                <Input type="number" min={0} step="0.1" />
+              </Form.Item>
+            </Col>
+           
+            <Col span={8}>
+              <Form.Item
+                label="Fat (g)"
+                name="fat"
+                rules={[fieldValidate.required]}
+              >
+                <Input type="number" min={0} step="0.1" />
               </Form.Item>
             </Col>
 
@@ -325,11 +354,7 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
-            <Col span={15}>
-              <Form.Item label="Description" name="description">
-                <BaseInput.TextArea rows={3} />
-              </Form.Item>
-            </Col>
+     
             <Col span={5}>
               <Form.Item label="Photo" name="foodPhoto">
                 <div className="flex items-center justify-between gap-x-2 h-10">
@@ -350,7 +375,13 @@ const AddNewFoodModal = (
             </Col>
 
             <Col span={12}>
-              {imageUpload && <img className=" w-full " src={imageUpload} />}
+              <Form.Item label="Description" name="description">
+                <BaseInput.TextArea rows={5} />
+              </Form.Item>
+            </Col>
+
+            <Col span={12}>
+              {imageUpload && <img className=" w-full " style={{ maxWidth: '300px', height: '300px' }} src={imageUpload} />}
             </Col>
 
             {!foodUpdateProps && (

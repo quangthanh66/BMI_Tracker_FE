@@ -94,6 +94,8 @@ const DetailMenuDialog = ({ }, ref: any) => {
                   <Typography> <span className="font-semibold">Nutrition</span>: {food.food.foodNutrition}</Typography>
                 </div>
 
+                
+
                 <div className="flex items-center gap-x-2 flex-wrap">
                   <Typography> <span className="font-semibold">Time process</span>: {food.food.foodTimeProcess} (minutes) </Typography>
                 </div>

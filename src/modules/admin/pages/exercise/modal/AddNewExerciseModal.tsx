@@ -139,7 +139,7 @@ const AddNewExerciseModal = (
               name="met"
               rules={[fieldValidate.required]}
             >
-              <BaseInput type="number" min={0} />
+              <BaseInput type="number" min={0} max={16} step="0.1" />
             </Form.Item>
           </Col>
           <Col span={12}>

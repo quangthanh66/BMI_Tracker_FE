@@ -7,10 +7,12 @@ export type TFoodItem = {
   foodVideo: string;
   foodNutrition: string;
   foodTimeProcess: number;
-  creationDate: string;
+  carbs: number,
+  protein: number,
+  fat: number,
   foodTags: FoodTags[];
   isActive: boolean;
-  serving: string;
+  serving: number;
   recipes: RecipeItem[];
 };
 export type FoodTags = {
@@ -33,15 +35,18 @@ export type TAddNewFood = {
   description: string;
   foodPhoto: string;
   foodVideo: string;
-  foodNutrition: string;
-  serving: string;
+  serving: number;
   foodTimeProcess: number;
+  carbs: number;
+  protein: number;
+  fat: number;
   tagIDs: string;
   recipeRequests?: RecipeItem[];
 };
 
 export type RecipeRequest = {
   ingredientID: number;
+  unit: number;
   quantity: number;
 };
 
