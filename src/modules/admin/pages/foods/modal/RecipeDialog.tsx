@@ -65,23 +65,6 @@ const RecipeDialog = ({ ingredientSelect, afterClosed }: RecipeDialogProps, ref:
             </Form.Item>
           </Col>
 
-          {/* <Col span={24}>
-            <Form.Item label="Is Active" name="isActive" rules={[fieldValidate.required]}>
-              <BaseSelect
-                options={[
-                  {
-                    label: 'Active',
-                    value: true,
-                  },
-                  {
-                    label: 'DeActive',
-                    value: false,
-                  },
-                ]}
-              />
-            </Form.Item>
-          </Col> */}
-
           <Col span={24}>
             <BaseButton icon={<PlusOutlined />} type="primary" block htmlType="submit">
               Confirm

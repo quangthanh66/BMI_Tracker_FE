@@ -46,7 +46,7 @@ export type TAddNewFood = {
 
 export type RecipeRequest = {
   ingredientID: number;
-  unit: number;
+  unit: string;
   quantity: number;
 };
 

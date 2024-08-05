@@ -273,7 +273,7 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
-            
+
             <Col span={8}>
               <Form.Item
                 label="Carbs (g)"
@@ -283,7 +283,7 @@ const AddNewFoodModal = (
                 <Input type="number" min={0} step="0.1" />
               </Form.Item>
             </Col>
-            
+
             <Col span={8}>
               <Form.Item
                 label="Protein (g)"
@@ -293,7 +293,7 @@ const AddNewFoodModal = (
                 <Input type="number" min={0} step="0.1" />
               </Form.Item>
             </Col>
-           
+
             <Col span={8}>
               <Form.Item
                 label="Fat (g)"
@@ -344,7 +344,7 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
-            <Col span={8}>
+            {/* <Col span={8}>
               <Form.Item
                 label="Tags"
                 name="tagIDs"
@@ -352,9 +352,20 @@ const AddNewFoodModal = (
               >
                 <Select options={tagsOptions} />
               </Form.Item>
+            </Col> */}
+
+            <Col span={8}>
+              <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
+                <Select
+                  options={tagsOptions}
+                  mode="multiple"
+                  allowClear
+                  value={foodUpdateProps && foodUpdateProps.foodTags.map((tag) => tag.tagID)}
+                />
+              </Form.Item>
             </Col>
 
-     
+
             <Col span={5}>
               <Form.Item label="Photo" name="foodPhoto">
                 <div className="flex items-center justify-between gap-x-2 h-10">
