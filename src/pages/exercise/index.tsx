@@ -155,7 +155,7 @@ const ExerciseManagement = () => {
                         </Typography.Title>
                       </div>
                       <div className="flex flex-col justify-between w-full">
-                        <Typography.Text className="!text-black">
+                        <Typography.Text className="!text-black line-clamp-3">
                           <span style={{ fontWeight: 'bold' }}>Description :</span>{' '}
                           <span style={{ textTransform: 'lowercase' }}>{item.exerciseDescription}</span>
                         </Typography.Text>

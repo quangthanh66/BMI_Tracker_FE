@@ -7,6 +7,7 @@ export type TFoodItem = {
   foodVideo: string;
   foodNutrition: string;
   foodTimeProcess: number;
+  creationDate: string;
   carbs: number,
   protein: number,
   fat: number,

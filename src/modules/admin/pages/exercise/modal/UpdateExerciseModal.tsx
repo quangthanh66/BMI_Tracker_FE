@@ -21,6 +21,7 @@ import { imageDb } from "@app/services/firebase/config";
 import { v4 } from "uuid";
 import { FaTrash } from "react-icons/fa6";
 import _ from "lodash";
+import { Description } from "@app/components/common/BaseNotification/BaseNotification.styles";
 
 type TUpdateExerciseModal = {
   refetchFoodPage: () => void;
@@ -77,6 +78,7 @@ const UpdateExerciseModal = (
         exerciseID: Number(exerciseProps.exerciseID),
         exercisePhoto: _.last(imageUrls),
       });
+     
     }
   };
 

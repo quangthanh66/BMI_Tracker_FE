@@ -125,6 +125,7 @@ const WorkoutManagement = () => {
                     <Typography.Paragraph className="!text-black text-lg">
                       {item.workoutDescription.slice(0, 100)} ...
                     </Typography.Paragraph>
+                    
                     <div className="w-full flex flex-col gap-2 flex-grow">
                     <Typography.Text className="!text-black">
                         <span style={{ fontWeight: 'bold' }}>Created by :</span>{' '}

@@ -110,6 +110,14 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
                     label: 'Advisor',
                     value: USER_ROLES_ENUM.ROLE_ADVISOR,
                   },
+                  {
+                    label: 'Manager',
+                    value: USER_ROLES_ENUM.ROLE_MANAGER,
+                  },
+                  {
+                    label: 'Admin',
+                    value: USER_ROLES_ENUM.ROLE_ADMIN,
+                  },
                 ]}
               ></Select>
             </Form.Item>

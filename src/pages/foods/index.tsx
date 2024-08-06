@@ -186,7 +186,7 @@ const FoodManagement = () => {
                     <Typography.Title level={5}>
                       {item.foodName}
                     </Typography.Title>
-                    <Typography.Paragraph className="line-clamp-2">
+                    <Typography.Paragraph className="line-clamp-3">
                       {item.description}
                     </Typography.Paragraph>
                     <div className="w-full flex flex-col gap-2">
@@ -227,6 +227,13 @@ const FoodManagement = () => {
                         <span style={{ fontWeight: "bold" }}>Calories :</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.foodCalories} (kcal)
+                        </span>
+                      </Typography.Text>
+                      
+                      <Typography.Text className="!text-black">
+                        <span style={{ fontWeight: "bold" }}>Creation Date :</span>{" "}
+                        <span style={{ textTransform: "lowercase" }}>
+                          {item.creationDate} (day)
                         </span>
                       </Typography.Text>
                       <Typography.Text className="!text-black">
