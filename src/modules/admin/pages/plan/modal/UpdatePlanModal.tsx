@@ -1,4 +1,4 @@
-import { TAddNewPlan, TPlanItem } from '@app/api/plan/type';
+import { TAddNewPlan, TPlanItem, TUpdatePlan } from '@app/api/plan/type';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
@@ -16,7 +16,7 @@ import { PLAN_STATUS_LABEL } from '@app/utils/constant';
 
 type TUpdatePlanProps = {
   refetchPage: () => void;
-  planUpdate: TPlanItem;
+  planUpdate: TUpdatePlan;
 };
 
 const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any) => {
@@ -52,7 +52,6 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
       const planWithoutId = _.omit(planUpdate, 'planID');
       form.setFieldsValue({
         ...planWithoutId,
-        popular: planWithoutId.isActive,
       });
     }
   }, [planUpdate]);
@@ -61,11 +60,11 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
     setIsOpenModal(false);
   };
 
-  const submitForm = (values: TAddNewPlan) => {
+  const submitForm = (values: TUpdatePlan) => {
     updatePlanMutate({
       ...values,
-      planID: planUpdate.planID || -1,
-      planStatus: planUpdate.planStatus,
+      // planID: planUpdate.planID || -1,
+      // planStatus: planUpdate.planStatus,
     });
   };
 

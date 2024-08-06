@@ -16,7 +16,7 @@ export type TAddNewPlan = TPlanItem & {
 
 };
 
-export type TUpdatePlan = TPlanItem & {
+export type TUpdatePlan = {
   planID: number;
   planStatus: string;
 };
