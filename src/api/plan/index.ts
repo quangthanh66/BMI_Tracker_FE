@@ -7,7 +7,6 @@ const PLAN_API = {
   //GET_MENU_ADVISOR: () => axiosClient.get(END_POINTS.MENU_ADVISOR),
   ADD_NEW_PLAN: (params: TAddNewPlan) => axiosClient.post(END_POINTS.ADD_NEW_PLAN, params),
   DELETE_PLAN: (planID: number) => axiosClient.delete(`${END_POINTS.DELETE_PLAN}/${planID}`),
-  APPROVE_PLAN: (planID: number) => axiosClient.put(`${END_POINTS.APPROVE_PLAN}/${planID}`),
   UPDATE_PLAN: (params: TUpdatePlan) => {
     return axiosClient.put(`${END_POINTS.UPDATE_PLAN}`, params);
   },

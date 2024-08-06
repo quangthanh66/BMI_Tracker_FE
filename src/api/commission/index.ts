@@ -8,6 +8,7 @@ const COMMISSION_API = {
     axiosClient.put(`${END_POINTS.COMMISSION.UPDATE_COMMISSION}`, params),
   APPROVE_COMMISSION: (commissionID: number) =>
     axiosClient.put(`${END_POINTS.COMMISSION.UPDATE_COMMISSION}/${commissionID}`),
+  GET_DETAILS: () => axiosClient.get(END_POINTS.COMMISSION.DETAILS),
 };
 
 export default COMMISSION_API;

@@ -178,12 +178,15 @@ const IngredientManagement = () => {
                       </div>
 
                       <div className="grid grid-cols-2 gap-2 w-full">
+
+                      <BaseButton icon={<FileAddOutlined />} type="primary" onClick={() => updateIngredient(item)}>
+                          Update
+                        </BaseButton>   
+
                         <BaseButton danger icon={<DeleteOutlined />} onClick={() => confirmModal(item.ingredientID)}>
                           Delete
                         </BaseButton>
-                        <BaseButton icon={<FileAddOutlined />} type="primary" onClick={() => updateIngredient(item)}>
-                          Update
-                        </BaseButton>
+                       
                       </div>
                     </div>
                   </Card>

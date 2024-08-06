@@ -12,6 +12,7 @@ import { useMutation } from '@tanstack/react-query';
 import PLAN_API from '@app/api/plan';
 import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
 import _ from 'lodash';
+import { PLAN_STATUS_LABEL } from '@app/utils/constant';
 
 type TUpdatePlanProps = {
   refetchPage: () => void;
@@ -64,7 +65,7 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
     updatePlanMutate({
       ...values,
       planID: planUpdate.planID || -1,
-      price: Number(values.price),
+      planStatus: planUpdate.planStatus,
     });
   };
 
@@ -82,44 +83,13 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
       <Form layout="vertical" form={form} requiredMark={false} onFinish={submitForm}>
         <Row gutter={[14, 14]}>
           <Col span={24}>
-            <Form.Item label="Name" name="planName" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item label="Price" name="price" rules={[fieldValidate.required]}>
-              <BaseInput type="number" defaultValue={0} step={0.1} />
-            </Form.Item>
-          </Col>
-
-          <Col span={24}>
-            <Form.Item label="Description" name="description">
-              <BaseInput.TextArea rows={3} />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item label="Duration" name="planDuration" rules={[fieldValidate.required]}>
-              <BaseInput type="number" defaultValue={0} />
-            </Form.Item>
-          </Col>
-
-          {/* <Col span={24}>
-            <Form.Item label="Popular" name="popular">
+            <Form.Item label="Status" name="planStatus">
               <BaseSelect
                 defaultValue={true}
-                options={[
-                  {
-                    label: 'True',
-                    value: true,
-                  },
-                  {
-                    label: 'False',
-                    value: false,
-                  },
-                ]}
+                options={PLAN_STATUS_LABEL}
               />
             </Form.Item>
-          </Col> */}
+          </Col>
 
           <Col span={24} className="flex justify-end">
             <Space>
@@ -137,7 +107,7 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
           </Col>
         </Row>
       </Form>
-    </BaseModal>
+    </BaseModal >
   );
 };
 

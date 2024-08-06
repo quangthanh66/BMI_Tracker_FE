@@ -344,16 +344,6 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
-            {/* <Col span={8}>
-              <Form.Item
-                label="Tags"
-                name="tagIDs"
-                rules={[fieldValidate.required]}
-              >
-                <Select options={tagsOptions} />
-              </Form.Item>
-            </Col> */}
-
             <Col span={8}>
               <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
                 <Select
@@ -366,7 +356,7 @@ const AddNewFoodModal = (
             </Col>
 
 
-            <Col span={5}>
+            <Col span={8}>
               <Form.Item label="Photo" name="foodPhoto">
                 <div className="flex items-center justify-between gap-x-2 h-10">
                   <label
@@ -385,14 +375,14 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            <Col span={16}>
               <Form.Item label="Description" name="description">
                 <BaseInput.TextArea rows={5} />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              {imageUpload && <img className=" w-full " style={{ maxWidth: '300px', height: '300px' }} src={imageUpload} />}
+              {imageUpload && <img className=" w-full " style={{ maxWidth: '150px', height: '150px' }} src={imageUpload} />}
             </Col>
 
             {!foodUpdateProps && (

@@ -1,5 +1,5 @@
 import PLAN_API from '@app/api/plan';
-import { TPlanItem } from '@app/api/plan/type';
+import { TPlanItem, TUpdatePlan } from '@app/api/plan/type';
 import FilterPlan from '@app/modules/admin/pages/plan/FilterPlan';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Card, Col, Empty, Row, Spin, Tag, Typography, message } from 'antd';
@@ -20,7 +20,7 @@ const PlanManagement = () => {
   const detailPlanRef = useRef<any>();
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
-  const [planUpdate, setPlanUpdate] = useState<TPlanItem>();
+  const [planUpdate, setPlanUpdate] = useState<TUpdatePlan>();
   const [plan, setPlan] = useState<TPlanItem[]>([]);
   const [foodSelect, setFoodSelect] = useState<SelectTypes[]>([]);
 
@@ -41,27 +41,8 @@ const PlanManagement = () => {
     },
   });
 
-  const { isLoading: isLoadingFoods, refetch: refetchFoods } = useQuery(['get-foods'], FOOD_API.GET_FOODS, {
-    enabled: false,
-    onSuccess: (response: TFoodItem[]) => {
-      const result = response.map((item) => {
-        return {
-          label: item.foodName,
-          value: item.foodID,
-        };
-      });
 
-      setFoodSelect(result);
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Cant get food list. Please try again !',
-      });
-    },
-  });
-
-  const { isLoading: isLoadingDeleteFood, mutate: mutateDeletePlan } = useMutation(PLAN_API.APPROVE_PLAN, {
+  const { isLoading: isLoadingDeleteFood, mutate: mutateDeletePlan } = useMutation(PLAN_API.UPDATE_PLAN, {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
@@ -80,7 +61,6 @@ const PlanManagement = () => {
 
   useEffect(() => {
     refetch();
-    refetchFoods();
   }, []);
 
   const addNewPlan = () => {
@@ -95,19 +75,19 @@ const PlanManagement = () => {
     setPlan(result as TPlanItem[]);
   };
 
-  const confirmModal = (planID: number) => {
-    modal.confirm({
-      title: 'Are you sure to confirm plan ?',
-      okText: 'Confirm',
-      cancelText: 'Close',
-      icon: <ExclamationCircleOutlined />,
-      onOk: () => {
-        mutateDeletePlan(planID);
-      },
-    });
-  };
+  // const confirmModal = (planID: number) => {
+  //   modal.confirm({
+  //     title: 'Are you sure to confirm plan ?',
+  //     okText: 'Confirm',
+  //     cancelText: 'Close',
+  //     icon: <ExclamationCircleOutlined />,
+  //     onOk: () => {
+  //       mutateDeletePlan(planID);
+  //     },
+  //   });
+  // };
 
-  const updatePlan = (plan: TPlanItem) => {
+  const updatePlan = (plan: TUpdatePlan) => {
     setPlanUpdate(plan);
     updatePlanRef.current.openModal();
   };
@@ -115,13 +95,13 @@ const PlanManagement = () => {
   console.log(plan);
 
   return (
-    <Spin spinning={isLoading || isLoadingFoods || isLoadingDeleteFood}>
+    <Spin spinning={isLoading || isLoadingDeleteFood}>
       {contextHolder}
       {modalContextHolder}
 
       <DetailPlanDialog ref={detailPlanRef} />
 
-      <UpdatePlanModal refetchPage={() => refetch()} planUpdate={planUpdate as TPlanItem} ref={updatePlanRef} />
+      <UpdatePlanModal refetchPage={() => refetch()} planUpdate={planUpdate as TUpdatePlan} ref={updatePlanRef} />
 
       <AddNewPlanModal foodsOptions={foodSelect} refetchPage={() => refetch()} ref={addNewPlanRef} />
 
@@ -151,37 +131,40 @@ const PlanManagement = () => {
                     </Typography.Paragraph>
 
                     <Typography.Text className="!text-black">
-                    <span style={{ fontWeight: 'bold' }}>Created by :</span>{" "}
-                    <span style={{ textTransform: 'lowercase' }}>{item.fullName}</span>
-                    </Typography.Text>
-
-
-                    <Typography.Text className="!text-black">
-                    <span style={{ fontWeight: 'bold' }}>Registered member :</span>{" "}
-                    <span style={{ textTransform: 'lowercase' }}>{item.numberOfUses} (member)</span>
+                      <span style={{ fontWeight: 'bold' }}>Created by :</span>{" "}
+                      <span style={{ textTransform: 'lowercase' }}>{item.fullName}</span>
                     </Typography.Text>
 
                     <Typography.Text className="!text-black">
-                    <span style={{ fontWeight: 'bold' }}>Price :</span>{" "}
-                    <span style={{ textTransform: 'lowercase' }}>{item.price} (VND)</span>
+                      <span style={{ fontWeight: 'bold' }}>Code :</span>{" "}
+                      <span style={{ textTransform: 'lowercase' }}>{item.planCode}</span>
                     </Typography.Text>
 
                     <Typography.Text className="!text-black">
-                    <span style={{ fontWeight: 'bold' }}>Duration :</span>{" "}
-                    <span style={{ textTransform: 'lowercase' }}>{item.planDuration} (Days)</span>
+                      <span style={{ fontWeight: 'bold' }}>Registered member :</span>{" "}
+                      <span style={{ textTransform: 'lowercase' }}>{item.numberOfUses} (member)</span>
                     </Typography.Text>
 
                     <Typography.Text className="!text-black">
-                    <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
+                      <span style={{ fontWeight: 'bold' }}>Price :</span>{" "}
+                      <span style={{ textTransform: 'lowercase' }}>{item.price} (VND)</span>
+                    </Typography.Text>
+
+                    <Typography.Text className="!text-black">
+                      <span style={{ fontWeight: 'bold' }}>Duration :</span>{" "}
+                      <span style={{ textTransform: 'lowercase' }}>{item.planDuration} (Days)</span>
+                    </Typography.Text>
+
+                    <Typography.Text className="!text-black">
+                      <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
                       <span className="font-semibold !text-black">
-                        {item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">DeActivate</Tag>}
-                      </span>
-                    </Typography.Text>
-
-                    <Typography.Text className="!text-black">
-                    <span style={{ fontWeight: 'bold' }}>Verify :</span>{" "}
-                      <span className="font-semibold !text-black">
-                        {item.isApproved ? <Tag color="green">Approve</Tag> : <Tag color="red">Waitting</Tag>}
+                        {item.planStatus === 'APPROVED' ? (
+                          <Tag color="green">Approved</Tag>
+                        ) : item.planStatus === 'PENDING' ? (
+                          <Tag color="blue">Pending</Tag>
+                        ) : (
+                          <Tag color="red">Rejected</Tag>
+                        )}
                       </span>
                     </Typography.Text>
 
@@ -189,12 +172,12 @@ const PlanManagement = () => {
 
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-2 w-full">
-                      <BaseButton danger className="flex-1" onClick={() => confirmModal(item.planID)}>
-                      Confirm
-                      </BaseButton>
-                      {/* <BaseButton className="flex-1" type="primary" onClick={() => updatePlan(item)}>
-                        Update
+                      {/* <BaseButton danger className="flex-1" onClick={() => confirmModal(item.planID)}>
+                      Delete
                       </BaseButton> */}
+                      <BaseButton className="flex-1" type="primary" onClick={() => updatePlan(item)}>
+                        Confirm
+                      </BaseButton>
                     </div>
 
                     {/* <BaseButton type="primary" onClick={() => onOpenDetailPlanDialog(item.planID)}>

@@ -96,7 +96,7 @@ export const lightColorsTheme: ITheme = {
   layoutBodyBg: '#f8fbff',
   layoutHeaderBg: 'transparent',
   // layoutSiderBg: '#67BAA0',
-  layoutSiderBg: 'linear-gradient(135deg, #38864C, #52A53F)',
+  layoutSiderBg: 'linear-gradient(135deg, #2EAF7D, #3FD0C9, #C1F6ED)',
 inputPlaceholder: '#404040',
   itemHoverBg: '#f5f5f5',
     backgroundColorBase: '#F5F5F5',

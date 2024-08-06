@@ -25,6 +25,7 @@ import { BaseCol } from "@app/components/common/BaseCol/BaseCol";
 import { UserProfileResponse } from "@app/api/users/type";
 import { useSelector } from "react-redux";
 import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import { Select, Tag } from "antd";
 
 interface PersonalInfoFormValues {
   birthday?: string;
@@ -47,7 +48,7 @@ interface PersonalInfoFormValues {
   role: string;
   isActive: boolean;
 }
-
+const { Option } = Select;
 const initialPersonalInfoValues: PersonalInfoFormValues = {
   fullName: "",
   nickName: "",
@@ -140,6 +141,18 @@ export const PersonalInfo: React.FC = () => {
           </BaseCol>
 
           <BaseCol xs={24} md={12}>
+            <BaseButtonsForm.Item name="role" label={"Role"}>
+              {form.getFieldValue('role') === 'ROLE_ADMIN' ? (
+                <Tag color="green" style={{ fontSize: '17px', padding: '14px 18px' }}>Admin</Tag>
+              ) : form.getFieldValue('role') === 'ROLE_MANAGER' ? (
+                <Tag color="blue" style={{ fontSize: '17px', padding: '14px 18px' }}>Manager</Tag>
+              ) : (
+                <Tag color="default" style={{ fontSize: '16px', padding: '8px 16px' }}>No role selected</Tag>
+              )}
+            </BaseButtonsForm.Item>
+          </BaseCol>
+
+          <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="gender" label={"Gender"}>
               <BaseInput />
             </BaseButtonsForm.Item>
@@ -150,14 +163,6 @@ export const PersonalInfo: React.FC = () => {
               <BaseInput />
             </BaseButtonsForm.Item>
           </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <BaseButtonsForm.Item name="role" label={"Role"}>
-              <BaseInput />
-            </BaseButtonsForm.Item>
-          </BaseCol>
-
-
 
           <BaseCol span={24}>
             <BaseButtonsForm.Item>

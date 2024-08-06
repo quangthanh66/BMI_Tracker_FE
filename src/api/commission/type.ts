@@ -12,6 +12,15 @@ export type CommissionItemTypes = {
   advisorName: string;
 };
 
+export type CommissionDetailsTypes = {
+  commission(commission: any): unknown;
+  commissionAllocationID: number;
+  amount: number;
+  description: string;
+  milestone: string;
+  milestoneDate: string;
+  subscriptionNumber: string;
+};
 
 export type UpdateCommissionTypes = {
   commissionID: string;

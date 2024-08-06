@@ -8,18 +8,17 @@ export type TPlanItem = {
   isActive: boolean;
   description: string;
   numberOfUses: number;
-  isApproved: boolean;
+  planStatus: string;
+  planCode: string;
 };
 
-export type TAddNewPlan = {
-  planName: string;
-  price: number;
-  description: string;
-  planDuration: number;
+export type TAddNewPlan = TPlanItem & {
+
 };
 
-export type TUpdatePlan = TAddNewPlan & {
+export type TUpdatePlan = TPlanItem & {
   planID: number;
+  planStatus: string;
 };
 
 type PlanExerciseItem = {

@@ -2,6 +2,7 @@ import {
   DeleteOutlined,
   ExclamationCircleOutlined,
   FileAddOutlined,
+  ProjectOutlined,
 } from "@ant-design/icons";
 import { RecipeItem, TFoodItem } from "@app/api/foods";
 import FOOD_API from "@app/api/foods/type";
@@ -26,6 +27,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import errorImage from "assets/error-image-alt.png";
 import useModal from "antd/lib/modal/useModal";
 import ViewDetailRecipeDialog from "./ViewDetailRecipeDialog";
+import { redirect } from "react-router-dom";
 
 const FoodManagement = () => {
   const addNewFoodRef = useRef<any>();
@@ -188,6 +190,31 @@ const FoodManagement = () => {
                       {item.description}
                     </Typography.Paragraph>
                     <div className="w-full flex flex-col gap-2">
+
+                      <Typography.Text className="!text-black">
+                        <span style={{ fontWeight: 'bold' }}>Tags :</span>{' '}
+                        {item.foodTags.length > 0 ? (
+                          item.foodTags.map((tag, index) => (
+                            <span
+                              key={index}
+                              style={{
+                                textTransform: 'lowercase',
+                                padding: '2px 4px',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                backgroundColor: '#00AA00',
+                                marginRight: '5px',
+                                color: "#FFFAF0",
+                              }}
+                            >
+                              {tag.tagName}
+                            </span>
+                          ))
+                        ) : (
+                          <span>No tags available</span> // Optional: Message if there are no tags
+                        )}
+                      </Typography.Text>
+
                       <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>
                           Time process :
@@ -204,11 +231,11 @@ const FoodManagement = () => {
                       </Typography.Text>
                       <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
-                        <span>
+                        <span> 
                           {item.isActive ? (
-                            <Tag color="green">Active</Tag>
+                            <Tag color="green" style={{ fontWeight: "bold", fontSize: "16px" }}>Active</Tag>
                           ) : (
-                            <Tag color="red">InActive</Tag>
+                            <Tag color="red" style={{ fontWeight: "bold",  fontSize: "16px" }}>DeActivate</Tag>
                           )}
                         </span>
                       </Typography.Text>
@@ -216,15 +243,17 @@ const FoodManagement = () => {
                   </div>
 
                   <div className="flex items-center mt-4  gap-2 w-full">
+
                     <BaseButton
-                      danger
-                      icon={<DeleteOutlined />}
+                      icon={<ProjectOutlined />}
                       className="flex-1"
-                      onClick={() => confirmModal(item.foodID)}
                       size="small"
+                      type="primary"
+                      onClick={() => onViewDetailRecipeDialog(item)}
                     >
-                      Delete
+                      Recipe
                     </BaseButton>
+
                     <BaseButton
                       icon={<FileAddOutlined />}
                       className="flex-1"
@@ -234,15 +263,21 @@ const FoodManagement = () => {
                     >
                       Update
                     </BaseButton>
+
+
+                    <BaseButton
+                      danger
+                      icon={<DeleteOutlined />}
+                      className="flex-1"
+                      onClick={() => confirmModal(item.foodID)}
+                      size="small"
+                    >
+                      Delete
+                    </BaseButton>
+
                   </div>
 
-                  <BaseButton
-                    size="small"
-                    type="primary"
-                    onClick={() => onViewDetailRecipeDialog(item)}
-                  >
-                    View detail recipe
-                  </BaseButton>
+
                 </div>
               );
             })}

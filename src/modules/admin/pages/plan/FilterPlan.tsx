@@ -28,4 +28,7 @@ const FilterPlan = ({ addNewPlan, searchPlan }: TFilterPlan) => {
   );
 };
 
+
+
+
 export default FilterPlan;

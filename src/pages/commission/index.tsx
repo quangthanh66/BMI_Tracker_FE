@@ -7,6 +7,8 @@ import { Card, Col, Empty, Row, Spin, Typography, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import COMMISSION_API from '@app/api/commission';
+import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
+import { ProjectOutlined } from '@ant-design/icons';
 
 const CommissionManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -80,6 +82,10 @@ const CommissionManagement = () => {
     approveCommissionMutate(commissionID);
   };
 
+  function onViewDetailRecipeDialog(item: any): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <Spin spinning={isLoadingLoadCommission || isLoadingApproveCommission} tip="Loading commission ...">
       {contextHolder}
@@ -104,6 +110,8 @@ const CommissionManagement = () => {
           </Card>
         </Col> */}
 
+     
+
         {commission.length > 0 ? (
           <Col span={24}>
             <BaseTable
@@ -119,6 +127,7 @@ const CommissionManagement = () => {
               }}
             />
           </Col>
+
         ) : (
           <Col span={24} className="flex justify-center">
             <Empty />

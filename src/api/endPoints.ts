@@ -45,6 +45,7 @@ export const END_POINTS = {
   COMMISSION: {
     MAIN: "/api/commissions/getAll",
     UPDATE_COMMISSION: "/api/commissions/update-paid",
+    DETAILS: "/api/commissions/get-details",
   },
 
   SUBSCRIPTION: {
@@ -77,9 +78,8 @@ export const END_POINTS = {
 
   PLAN: "/api/plans/getAll",
   ADD_NEW_PLAN: "/api/plans/createNew",
-  UPDATE_PLAN: "/api/plans/update",
+  UPDATE_PLAN: "/api/plans/change-plan-status",
   DELETE_PLAN: "/api/plans/deactivate",
-  APPROVE_PLAN: "/api/plans/approve-plan",
   PLAN_MANAGEMENT: {
     DEACTIVE: "/api/plans/delete",
     VIEW_DETAIL: "/api/plans/getMenuByID",

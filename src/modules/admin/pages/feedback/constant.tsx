@@ -43,7 +43,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: F
     dataIndex: 'status',
     render: (status: boolean) => (
       <Tag color={status === true ? 'green' : status === false ? 'volcano' : 'geekblue'}>
-        {status ? 'Available' : 'Waitting'}
+        {status ? 'Completed' : 'Waitting'}
       </Tag>
     ),
     sortDirections: ['descend'],

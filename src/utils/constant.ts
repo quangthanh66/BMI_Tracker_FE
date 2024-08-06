@@ -1,3 +1,5 @@
+import { Label } from "recharts";
+
 export enum AUTH_TOKEN {
   TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkR1Y0hOSEBnbWFpbC5jb20iLCJpYXQiOjE2OTY5NDUxODQsImV4cCI6MTY5OTUzNzE4NH0.h78GE2JeCInk2a9_dchHQiLFK42zSMQ7SP05nlpPpTU",
 }
@@ -37,6 +39,27 @@ export const USER_ROLES_VALUES = [
     label: "Manager",
   },
 ];
+export enum PLAN_STATUS {
+  PENDING = "PENDING",
+  APPROVED = "APPROVED",
+  REJECTED = "REJECTED",
+}
+
+export const PLAN_STATUS_LABEL = [
+  {
+    value: PLAN_STATUS.PENDING,
+    label: "Pending",
+  },
+  {
+    value: PLAN_STATUS.APPROVED,
+    label: "Approved",
+  },
+  {
+    value: PLAN_STATUS.REJECTED,
+    label: "Rejected",
+  },
+];
+
 export const ADD_USER_ROLES = [
   {
     value: USER_ROLES_ENUM.ROLE_MEMBER,
@@ -47,7 +70,6 @@ export const ADD_USER_ROLES = [
     label: "Advisor",
   },
 ];
-
 export const USER_SEX_VALUES = [
   {
     label: USER_SEX_ENUM.MALE,
