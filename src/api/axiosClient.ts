@@ -1,17 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: 'http://35.247.135.183:8080',
+  baseURL: "http://35.247.135.183:8080",
   timeout: 10000,
   headers: {
-    'content-type': 'application/json',
+    "content-type": "application/json",
   },
 });
 axiosClient.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem("accessToken");
 
   if (config.headers) {
-    config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : '';
+    config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : "";
   }
 
   // Handle token here ...
@@ -28,9 +28,9 @@ axiosClient.interceptors.response.use(
   (error) => {
     // Handle errors
     throw error;
-  },
+  }
 );
 export default axiosClient;
 function jwt_decode(accessToken: string): any {
-  throw new Error('Function not implemented.');
+  throw new Error("Function not implemented.");
 }

@@ -1,13 +1,8 @@
-import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
-import { Button, Image, Tooltip } from "antd";
-import { BiTrash } from "react-icons/bi";
-
 interface ICommissionEvents {
   // onDeleteFoodRecipe: (id: number) => void;
 }
 
-export const CommissionColumns: any = ({
-}: ICommissionEvents) => [
+export const CommissionColumns: any = ({}: ICommissionEvents) => [
   {
     title: "ID",
     dataIndex: "commissionAllocationID",
