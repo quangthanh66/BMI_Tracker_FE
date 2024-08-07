@@ -144,16 +144,20 @@ const AddNewFoodModal = (
         ...foodUpdateProps,
         tagIDs: convertFoodTags,
       });
+
+      setImageUpload(foodUpdateProps.foodPhoto);
     }
   }, [foodUpdateProps]);
 
   const onCloseModal = () => {
+    setImageUrls([]);
+    setImageUpload("");
     setIsOpenModal(false);
     form.resetFields();
   };
 
   const submitForm = (values: TAddNewFood) => {
-    const imageResult = _.last(imageUrls);
+    const imageResult = _.last(imageUrls) || foodUpdateProps.foodPhoto;
     const convertValues = _.omit(values, ["recipeRequests"]);
 
     if (foodUpdateProps) {
@@ -181,7 +185,7 @@ const AddNewFoodModal = (
         carbs: Number(values.carbs),
       });
     }
-  }; 
+  };
 
   const onOpenRecipeDialog = () => {
     recipeRefDialog.current.openModal();

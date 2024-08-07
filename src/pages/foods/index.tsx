@@ -35,7 +35,7 @@ const FoodManagement = () => {
   const [modal, modalContextHolder] = useModal();
   const [messageApi, contextHolder] = message.useMessage();
   const [foods, setFoods] = useState<TFoodItem[]>([]);
-  const [foodUpdate, setFoodUpdate] = useState<TFoodItem>();
+  const [foodUpdate, setFoodUpdate] = useState<any>();
   const [ingredients, setIngredients] = useState<TIngredientItem[]>([]);
 
   const {
