@@ -1,7 +1,20 @@
+import {
+  CloseCircleOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
+import { RecipeItem, TAddNewFood, TFoodItem } from "@app/api/foods";
+import FOOD_API from "@app/api/foods/type";
+import { TIngredientItem } from "@app/api/ingredients/type";
+import { TagsRequest } from "@app/api/tags/type";
 import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
 import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
+import { BaseTag } from "@app/components/common/BaseTag/BaseTag";
 import { BaseTypography } from "@app/components/common/BaseTypography/BaseTypography";
+import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import { imageDb } from "@app/services/firebase/config";
 import { SelectTypes, fieldValidate } from "@app/utils/helper";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   Col,
   Form,
@@ -13,6 +26,8 @@ import {
   Typography,
   message,
 } from "antd";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import _ from "lodash";
 import {
   ChangeEvent,
   forwardRef,
@@ -21,23 +36,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { RecipeItem, TAddNewFood, TFoodItem } from "@app/api/foods";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import FOOD_API from "@app/api/foods/type";
-import { TagsRequest } from "@app/api/tags/type";
-import { TIngredientItem } from "@app/api/ingredients/type";
-import {
-  CloseCircleOutlined,
-  PlusOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
-import RecipeDialog from "./RecipeDialog";
-import { BaseTag } from "@app/components/common/BaseTag/BaseTag";
-import _ from "lodash";
-import { imageDb } from "@app/services/firebase/config";
 import { v4 } from "uuid";
-import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
-import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import RecipeDialog from "./RecipeDialog";
 
 const { Option } = Select;
 
@@ -184,13 +184,13 @@ const AddNewFoodModal = (
   };
 
   const onOpenRecipeDialog = () => {
-    setRecipes([]);
     recipeRefDialog.current.openModal();
   };
 
   const afterClosedRecipeDialog = (value: RecipeItem) => {
     if (value) {
-      const result = recipes?.length > 0 ? [...recipes, value] : [value];
+      console.log(value);
+      const result = [...recipes, value];
       setRecipes(result);
     }
   };
@@ -273,7 +273,6 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
-
             <Col span={8}>
               <Form.Item
                 label="Carbs (g)"
@@ -345,16 +344,22 @@ const AddNewFoodModal = (
             </Col>
 
             <Col span={8}>
-              <Form.Item label="Tags" name="tagIDs" rules={[fieldValidate.required]}>
+              <Form.Item
+                label="Tags"
+                name="tagIDs"
+                rules={[fieldValidate.required]}
+              >
                 <Select
                   options={tagsOptions}
                   mode="multiple"
                   allowClear
-                  value={foodUpdateProps && foodUpdateProps.foodTags.map((tag) => tag.tagID)}
+                  value={
+                    foodUpdateProps &&
+                    foodUpdateProps.foodTags.map((tag) => tag.tagID)
+                  }
                 />
               </Form.Item>
             </Col>
-
 
             <Col span={8}>
               <Form.Item label="Photo" name="foodPhoto">
@@ -382,7 +387,13 @@ const AddNewFoodModal = (
             </Col>
 
             <Col span={12}>
-              {imageUpload && <img className=" w-full " style={{ maxWidth: '150px', height: '150px' }} src={imageUpload} />}
+              {imageUpload && (
+                <img
+                  className=" w-full "
+                  style={{ maxWidth: "150px", height: "150px" }}
+                  src={imageUpload}
+                />
+              )}
             </Col>
 
             {!foodUpdateProps && (
