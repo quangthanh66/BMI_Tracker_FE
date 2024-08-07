@@ -81,31 +81,46 @@ const DetailMenuDialog = ({ }, ref: any) => {
                   }}
                 />
               </Col>
-              <Col span={12} className="flex flex-col gap-y-2">              
+              <Col span={12} className="flex flex-col gap-y-2">
+
+                <div className="flex items-center justify-between">
+                  <Tag style={{ fontSize: '20px' }} color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'Deactivate'}</Tag>
+                </div>
+
                 <div className="flex items-center gap-x-2 flex-wrap line-clamp-4">
                   <Typography> <span className="font-semibold">Description</span>: {food.food.description}</Typography>
-                </div>
-
-                <div className="flex items-center gap-x-2 flex-wrap">
-                <Typography> <span className="font-semibold">Calories</span>: {food.food.foodCalories} (kcal)</Typography>
-                </div>
-
-                <div className="flex items-center gap-x-2 flex-wrap">
-                  <Typography> <span className="font-semibold">Nutrition</span>: {food.food.foodNutrition}</Typography>
-                </div>
-
-                
-
-                <div className="flex items-center gap-x-2 flex-wrap">
-                  <Typography> <span className="font-semibold">Time process</span>: {food.food.foodTimeProcess} (minutes) </Typography>
                 </div>
 
                 <div className="$ flex-wrap">
                   <span className="font-semibold">Video</span>: {food.food.foodVideo}
                 </div>
+                
+                <div className="flex items-center gap-x-2 flex-wrap">
+                  <Typography> <span className="font-semibold">Time process</span>: {food.food.foodTimeProcess} (minutes) </Typography>
+                </div>
 
-                <div className="flex items-center justify-between">
-                  <Tag style={{ fontSize: '20px' }} color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'Deactivate'}</Tag>
+                <div className="$ flex-wrap">
+                  <span className="font-semibold">Meal Type</span>: {food.mealType}
+                </div>
+
+                <div className="$ flex-wrap">
+                  <span className="font-semibold">Serving</span>: {food.food.serving} (person)
+                </div>
+
+                <div className="flex items-center gap-x-2 flex-wrap">
+                  <Typography> <span className="font-semibold">Calories</span>: {food.food.foodCalories} (kcal)</Typography>
+                </div>
+
+                <div className="$ flex-wrap">
+                  <span className="font-semibold">Carbs</span>: {food.food.carbs} (g)
+                </div>
+
+                <div className="$ flex-wrap">
+                  <span className="font-semibold">Protein</span>: {food.food.protein} (g)
+                </div>
+
+                <div className="$ flex-wrap">
+                  <span className="font-semibold">Fat</span>: {food.food.fat} (g)
                 </div>
 
                 {/* <BaseButton

@@ -51,10 +51,10 @@ const RecipeDialog = ({ ingredientSelect, afterClosed }: RecipeDialogProps, ref:
           <Col span={12}>
             <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
               <Select placeholder="Select a unit">
-                <Option value="gr">g</Option>
-                <Option value="ml">mL</Option>
-                <Option value="ml">tbsp</Option>
-                <Option value="ml">tsp</Option>
+                <Option value="g">g</Option>
+                <Option value="mL">mL</Option>
+                <Option value="tbsp">tbsp</Option>
+                <Option value="tsp">tsp</Option>
               </Select>
             </Form.Item>
           </Col>

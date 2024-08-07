@@ -193,7 +193,7 @@ const ExerciseManagement = () => {
                               {item.exerciseDescription}
                             </span>
                           </Typography.Text>
-                          <Typography.Text className="!text-black">
+                          <Typography.Text className="!text-black line-clamp-3">
                             <span style={{ fontWeight: "bold" }}>Video :</span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.exerciseVideo}

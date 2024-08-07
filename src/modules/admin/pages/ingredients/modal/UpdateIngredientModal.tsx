@@ -195,6 +195,7 @@ const UpdateIngredientModal = (
               />
             </Form.Item>
           </Col>
+          
           <Col span={12}>
             {imageUpload && <img className=" w-full " src={imageUpload} />}
           </Col>

@@ -181,7 +181,7 @@ const AddNewFoodModal = (
         carbs: Number(values.carbs),
       });
     }
-  };
+  }; 
 
   const onOpenRecipeDialog = () => {
     recipeRefDialog.current.openModal();

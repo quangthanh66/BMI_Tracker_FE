@@ -32,6 +32,10 @@ type MenuFoodItem = {
     foodTimeProcess: number;
     creationDate: string;
     isActive: boolean;
+    serving: number;
+    carbs: number
+    protein: number;
+    fat: number;
   };
   mealType: string;
 };
