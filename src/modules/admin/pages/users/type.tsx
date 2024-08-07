@@ -63,7 +63,7 @@ export const UserColumns: any = ({
             : "volcano"
         }
       >
-        {isActive ? "Active" : "Inactive"}
+        {isActive ? "Active" : "Deactivate"}
       </Tag>
     ),
     sortDirections: ["descend"],

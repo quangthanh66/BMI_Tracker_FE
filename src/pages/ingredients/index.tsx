@@ -171,7 +171,7 @@ const IngredientManagement = () => {
 
                         <Typography.Text className="!text-black">
                         <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
-                        <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}</span>
+                        <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">Deactivate</Tag>}</span>
                         </Typography.Text>
                         <div className="flex items-center gap-x-2 text-black">
                         </div>

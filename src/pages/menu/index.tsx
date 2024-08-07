@@ -170,7 +170,7 @@ const MenuManagement = () => {
                     </Typography.Paragraph>
                     <Typography.Paragraph className="!text-black">
                         <span style={{ fontWeight: 'bold' }}>Status :</span>{" "}
-                        <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">InActive</Tag>}</span>
+                        <span>{item.isActive ? <Tag color="green">Active</Tag> : <Tag color="red">Deactivate</Tag>}</span>
                         </Typography.Paragraph>
                    
                   </div>
