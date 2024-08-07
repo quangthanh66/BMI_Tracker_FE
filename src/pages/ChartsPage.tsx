@@ -1,10 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { VisitorsPieChart } from "@app/components/charts/VisitorsPieChart";
-import { PageTitle } from "@app/components/common/PageTitle/PageTitle";
-import { useQuery } from "@tanstack/react-query";
 import { StatisticAPI } from "@app/api/statistic";
-import { Card, Spin } from "antd";
 import {
   TotalAdvisor,
   TotalCommissionSummary,
@@ -12,22 +6,26 @@ import {
   TotalSubscriptionItem,
   TotalWorkoutItem,
 } from "@app/api/statistic/types";
+import { VisitorsPieChart } from "@app/components/charts/VisitorsPieChart";
+import { BaseCard } from "@app/components/common/BaseCard/BaseCard";
+import { PageTitle } from "@app/components/common/PageTitle/PageTitle";
+import { useQuery } from "@tanstack/react-query";
+import { Card, Spin, Tooltip } from "antd";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-  BarChart,
+  Area,
+  AreaChart,
   Bar,
+  BarChart,
+  CartesianGrid,
+  Line,
+  LineChart,
   Rectangle,
+  ResponsiveContainer,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  LineChart,
-  Line,
 } from "recharts";
-import { BaseCard } from "@app/components/common/BaseCard/BaseCard";
 
 const ChartsPage: React.FC = () => {
   const { t } = useTranslation();
@@ -133,91 +131,98 @@ const ChartsPage: React.FC = () => {
 
         <div />
 
-        <VisitorsPieChart totalWorkout={totalWorkout} />
-
-        <BaseCard title="Total Commission" className="!p-0">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart
-              width={500}
-              height={400}
-              data={[...totalCommission].reverse()}
-              margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="yearMonth" />
-              <YAxis />
-              <Tooltip />
-              <Area
-                type="monotone"
-                dataKey="totalCommission"
-                stroke="#8884d8"
-                fill="#8884d8"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </BaseCard>
-
-        <BaseCard title="Total Menu" className="p-0">
-          <div className="h-[300px] w-full">
+        {totalWorkout.length > 0 && (
+          <VisitorsPieChart totalWorkout={totalWorkout} />
+        )}
+        {totalCommission.length > 0 && (
+          <BaseCard title="Total Commission" className="!p-0">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart
+              <AreaChart
                 width={500}
-                height={300}
-                data={[...totalMenu].reverse()}
+                height={400}
+                data={[...totalCommission].reverse()}
                 margin={{
-                  top: 5,
+                  top: 10,
                   right: 30,
-                  left: 20,
-                  bottom: 5,
+                  left: 0,
+                  bottom: 0,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="yearMonth" />
                 <YAxis />
                 <Tooltip />
-                <Line
+                <Area
                   type="monotone"
-                  dataKey="totalMenu"
+                  dataKey="totalCommission"
                   stroke="#8884d8"
-                  activeDot={{ r: 8 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </BaseCard>
-
-        <BaseCard title="Total Subscription" className="p-0">
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                width={500}
-                height={300}
-                data={[...totalSubscription].reverse()}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="yearMonth" />
-                <YAxis />
-                <Tooltip />
-                <Bar
-                  dataKey="totalSubscription"
                   fill="#8884d8"
-                  activeBar={<Rectangle fill="pink" stroke="blue" />}
                 />
-              </BarChart>
+              </AreaChart>
             </ResponsiveContainer>
-          </div>
-        </BaseCard>
+          </BaseCard>
+        )}
+
+        {totalMenu.length > 0 && (
+          <BaseCard title="Total Menu" className="p-0">
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                  width={500}
+                  height={300}
+                  data={[...totalMenu].reverse()}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="yearMonth" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line
+                    type="monotone"
+                    dataKey="totalMenu"
+                    stroke="#8884d8"
+                    activeDot={{ r: 8 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </BaseCard>
+        )}
+
+        {totalSubscription.length > 0 && (
+          <BaseCard title="Total Subscription" className="p-0">
+            <div className="h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={[...totalSubscription].reverse()}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="yearMonth" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar
+                    dataKey="totalSubscription"
+                    fill="#8884d8"
+                    activeBar={<Rectangle fill="pink" stroke="blue" />}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </BaseCard>
+        )}
       </div>
     </Spin>
   );

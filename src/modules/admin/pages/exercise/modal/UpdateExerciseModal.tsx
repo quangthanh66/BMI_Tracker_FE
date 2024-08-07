@@ -6,9 +6,12 @@ import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
 import { BaseTypography } from "@app/components/common/BaseTypography/BaseTypography";
 import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
 import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import { imageDb } from "@app/services/firebase/config";
 import { SelectTypes, fieldValidate } from "@app/utils/helper";
 import { useMutation } from "@tanstack/react-query";
 import { Col, Form, Row, Select, Space, message } from "antd";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import _ from "lodash";
 import {
   ChangeEvent,
   forwardRef,
@@ -16,12 +19,8 @@ import {
   useImperativeHandle,
   useState,
 } from "react";
-import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
-import { imageDb } from "@app/services/firebase/config";
-import { v4 } from "uuid";
 import { FaTrash } from "react-icons/fa6";
-import _ from "lodash";
-import { Description } from "@app/components/common/BaseNotification/BaseNotification.styles";
+import { v4 } from "uuid";
 
 type TUpdateExerciseModal = {
   refetchFoodPage: () => void;
@@ -76,9 +75,8 @@ const UpdateExerciseModal = (
       updateExerciseMutate({
         ...values,
         exerciseID: Number(exerciseProps.exerciseID),
-        exercisePhoto: _.last(imageUrls),
+        exercisePhoto: _.last(imageUrls) || exerciseProps.exercisePhoto,
       });
-     
     }
   };
 
@@ -100,6 +98,15 @@ const UpdateExerciseModal = (
       });
     });
   };
+
+  console.log(exerciseProps);
+
+  useEffect(() => {
+    if (exerciseProps) {
+      form.setFieldsValue(exerciseProps);
+      setImageUpload(exerciseProps.exercisePhoto);
+    }
+  }, [exerciseProps]);
 
   return (
     <BaseModal
@@ -135,7 +142,7 @@ const UpdateExerciseModal = (
               name="met"
               rules={[fieldValidate.required]}
             >
-              <BaseInput type="number" min={0} />
+              <BaseInput type="number" min={0} max={16} />
             </Form.Item>
           </Col>
           <Col span={12}>

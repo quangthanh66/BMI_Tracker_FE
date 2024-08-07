@@ -6,15 +6,15 @@ import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
 import { BaseTypography } from "@app/components/common/BaseTypography/BaseTypography";
 import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
 import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import { imageDb } from "@app/services/firebase/config";
 import { SelectTypes, fieldValidate } from "@app/utils/helper";
 import { useMutation } from "@tanstack/react-query";
-import { Button, Col, Form, Input, Row, Select, Space, message } from "antd";
-import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
-import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
-import { imageDb } from "@app/services/firebase/config";
-import { v4 } from "uuid";
+import { Col, Form, Row, Select, Space, message } from "antd";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import _ from "lodash";
+import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
 import { FaTrash } from "react-icons/fa6";
+import { v4 } from "uuid";
 
 type TAddNewExerciseModal = {
   refetchPage: () => void;
@@ -43,7 +43,7 @@ const AddNewExerciseModal = (
         refetchPage();
         onCloseModal();
       },
-      onError: () => {
+      onError: (error) => {
         messageApi.open({
           type: "error",
           content: "Cannot create new exercise . Please try again !",
@@ -121,8 +121,6 @@ const AddNewExerciseModal = (
             </Form.Item>
           </Col>
 
-      
-
           <Col span={12}>
             <Form.Item
               label={<span style={{ fontWeight: "bold" }}>Video</span>}
@@ -132,7 +130,7 @@ const AddNewExerciseModal = (
               <BaseInput />
             </Form.Item>
           </Col>
-         
+
           <Col span={12}>
             <Form.Item
               label={<span style={{ fontWeight: "bold" }}>Met</span>}

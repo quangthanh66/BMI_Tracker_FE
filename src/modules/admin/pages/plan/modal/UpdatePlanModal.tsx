@@ -1,45 +1,49 @@
-import { TAddNewPlan, TPlanItem, TUpdatePlan } from '@app/api/plan/type';
-import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
-import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
-import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { Col, Form, Row, Space, message } from 'antd';
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { fieldValidate } from '@app/utils/helper';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { PlusOutlined } from '@ant-design/icons';
-import { useMutation } from '@tanstack/react-query';
-import PLAN_API from '@app/api/plan';
-import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
-import _ from 'lodash';
-import { PLAN_STATUS_LABEL } from '@app/utils/constant';
+import { PlusOutlined } from "@ant-design/icons";
+import PLAN_API from "@app/api/plan";
+import { TUpdatePlan } from "@app/api/plan/type";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
+import { BaseTypography } from "@app/components/common/BaseTypography/BaseTypography";
+import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
+import { BaseSelect } from "@app/components/common/selects/BaseSelect/BaseSelect";
+import { PLAN_STATUS_LABEL } from "@app/utils/constant";
+import { useMutation } from "@tanstack/react-query";
+import { Col, Form, Row, Space, message } from "antd";
+import _ from "lodash";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
 type TUpdatePlanProps = {
   refetchPage: () => void;
   planUpdate: TUpdatePlan;
 };
 
-const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any) => {
+const UpdatePlanModal = (
+  { planUpdate, refetchPage }: TUpdatePlanProps,
+  ref: any
+) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
-  const { isLoading, mutate: updatePlanMutate } = useMutation(PLAN_API.UPDATE_PLAN, {
-    onSuccess: () => {
-      messageApi.open({
-        type: 'success',
-        content: 'Update plan is successfully',
-      });
+  const { isLoading, mutate: updatePlanMutate } = useMutation(
+    PLAN_API.UPDATE_PLAN,
+    {
+      onSuccess: () => {
+        messageApi.open({
+          type: "success",
+          content: "Update plan is successfully",
+        });
 
-      refetchPage();
-      onCloseModal();
-    },
-    onError: () => {
-      messageApi.open({
-        type: 'error',
-        content: 'Cant update plan . Please try again !',
-      });
-    },
-  });
+        refetchPage();
+        onCloseModal();
+      },
+      onError: () => {
+        messageApi.open({
+          type: "error",
+          content: "Cant update plan . Please try again !",
+        });
+      },
+    }
+  );
 
   useImperativeHandle(ref, () => {
     return {
@@ -49,7 +53,7 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
 
   useEffect(() => {
     if (planUpdate) {
-      const planWithoutId = _.omit(planUpdate, 'planID');
+      const planWithoutId = _.omit(planUpdate, "planID");
       form.setFieldsValue({
         ...planWithoutId,
       });
@@ -63,8 +67,7 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
   const submitForm = (values: TUpdatePlan) => {
     updatePlanMutate({
       ...values,
-      // planID: planUpdate.planID || -1,
-      // planStatus: planUpdate.planStatus,
+      planID: planUpdate.planID || -1,
     });
   };
 
@@ -79,14 +82,16 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
       closeIcon
     >
       {contextHolder}
-      <Form layout="vertical" form={form} requiredMark={false} onFinish={submitForm}>
+      <Form
+        layout="vertical"
+        form={form}
+        requiredMark={false}
+        onFinish={submitForm}
+      >
         <Row gutter={[14, 14]}>
           <Col span={24}>
             <Form.Item label="Status" name="planStatus">
-              <BaseSelect
-                defaultValue={true}
-                options={PLAN_STATUS_LABEL}
-              />
+              <BaseSelect options={PLAN_STATUS_LABEL} />
             </Form.Item>
           </Col>
 
@@ -106,7 +111,7 @@ const UpdatePlanModal = ({ planUpdate, refetchPage }: TUpdatePlanProps, ref: any
           </Col>
         </Row>
       </Form>
-    </BaseModal >
+    </BaseModal>
   );
 };
 
