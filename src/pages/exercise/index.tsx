@@ -179,8 +179,8 @@ const ExerciseManagement = () => {
                             currentTarget.src = errorImage;
                           }}
                         />
-                        <div className="w-full flex flex-col gap-2 flex-grow">
-                          <Typography.Title className="!text-black" level={3}>
+                        <div className="w-full flex flex-col gap-2 flex-grow ">
+                          <Typography.Title className="!text-black line-clamp-1" level={3}>
                             {item.exerciseName}
                           </Typography.Title>
                         </div>
@@ -193,7 +193,7 @@ const ExerciseManagement = () => {
                               {item.exerciseDescription}
                             </span>
                           </Typography.Text>
-                          <Typography.Text className="!text-black line-clamp-3">
+                          <Typography.Text className="!text-black line-clamp-1">
                             <span style={{ fontWeight: "bold" }}>Video :</span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.exerciseVideo}
