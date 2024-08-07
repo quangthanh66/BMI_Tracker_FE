@@ -105,7 +105,7 @@ const DetailMenuDialog = ({ }, ref: any) => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Tag style={{ fontSize: '20px' }} color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'DeActivate'}</Tag>
+                  <Tag style={{ fontSize: '20px' }} color={food.food.isActive ? 'green' : 'red'}>{food.food.isActive ? 'Active' : 'Deactivate'}</Tag>
                 </div>
 
                 {/* <BaseButton

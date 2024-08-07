@@ -66,7 +66,7 @@ const MenuManagement = () => {
     onSuccess: () => {
       messageApi.open({
         type: 'success',
-        content: 'DeActivate menu is successfully',
+        content: 'Deactivate menu is successfully',
       });
 
       refetch();
@@ -74,7 +74,7 @@ const MenuManagement = () => {
     onError: () => {
       messageApi.open({
         type: 'error',
-        content: 'Cant DeActivate menu. Please try again !',
+        content: 'Cant Deactivate menu. Please try again !',
       });
     },
   });
@@ -98,8 +98,8 @@ const MenuManagement = () => {
 
   const confirmModal = (menuID: number) => {
     modal.confirm({
-      title: 'Are you sure to deActivate menu ?',
-      okText: 'DeActivate',
+      title: 'Are you sure to deactivate menu ?',
+      okText: 'Deactivate',
       cancelText: 'Close',
       icon: <ExclamationCircleOutlined />,
       onOk: () => {
@@ -178,7 +178,7 @@ const MenuManagement = () => {
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-2 w-full">
                       <BaseButton danger className="flex-1" size="small" onClick={() => confirmModal(item.menuID)}>
-                        DeActivate
+                        Deactivate
                       </BaseButton>
                     </div>
 

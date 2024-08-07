@@ -69,6 +69,14 @@ export const ADD_USER_ROLES = [
     value: USER_ROLES_ENUM.ROLE_ADVISOR,
     label: "Advisor",
   },
+  {
+    value: USER_ROLES_ENUM.ROLE_MANAGER,
+    label: "Manager",
+  },
+  {
+    value: USER_ROLES_ENUM.ROLE_ADMIN,
+    label: "Admin",
+  },
 ];
 export const USER_SEX_VALUES = [
   {

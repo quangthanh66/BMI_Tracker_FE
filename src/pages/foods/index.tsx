@@ -242,7 +242,7 @@ const FoodManagement = () => {
                           {item.isActive ? (
                             <Tag color="green" style={{ fontWeight: "bold", fontSize: "16px" }}>Active</Tag>
                           ) : (
-                            <Tag color="red" style={{ fontWeight: "bold",  fontSize: "16px" }}>DeActivate</Tag>
+                            <Tag color="red" style={{ fontWeight: "bold",  fontSize: "16px" }}>Deactivate</Tag>
                           )}
                         </span>
                       </Typography.Text>

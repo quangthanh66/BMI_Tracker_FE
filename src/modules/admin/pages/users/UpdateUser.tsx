@@ -119,7 +119,7 @@ const UpdateUser = ({ userUpdate, onRefreshAfterUpdate }: UpdateUserTypes, ref: 
                     value: 'true',
                   },
                   {
-                    label: 'DeActivate',
+                    label: 'Deactivate',
                     value: 'False',
                   },
                 ]}
