@@ -89,13 +89,13 @@ export const BlogColumns: any = ({
             type="text"
           ></BaseButton>
         </BaseTooltip>
-        <BaseTooltip title="Edit blog content">
+        {/* <BaseTooltip title="Edit blog content">
           <BaseButton
             onClick={() => updateBlogModal(blog)}
             icon={<EditOutlined className="text-[24px]" />}
             type="text"
           ></BaseButton>
-        </BaseTooltip>
+        </BaseTooltip> */}
 
         <BaseTooltip title="Delete blog">
           <BasePopconfirm

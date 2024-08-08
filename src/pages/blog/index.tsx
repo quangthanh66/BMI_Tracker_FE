@@ -141,7 +141,7 @@ const BlogManagement = () => {
           <Col span={24}>
             <BaseTable
               columns={BlogColumns({
-                updateBlogModal: openUpdateBlogModal,
+                // updateBlogModal: openUpdateBlogModal,
                 descriptionModal: onOpenDescriptionModal,
                 viewDetailModal: onViewDetailBlog,
                 deleteBlog: onDeleteBlog,

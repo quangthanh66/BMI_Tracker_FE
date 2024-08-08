@@ -152,6 +152,7 @@ export const PersonalInfo: React.FC = () => {
             </BaseButtonsForm.Item>
           </BaseCol>
 
+
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="gender" label={"Gender"}>
               <BaseInput />
