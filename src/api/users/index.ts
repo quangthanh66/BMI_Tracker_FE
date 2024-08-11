@@ -1,3 +1,4 @@
+import { UpdateUserProfileRequest } from "@app/models";
 import { USER_ROLES_ENUM } from "@app/utils/constant";
 import { SignUpAccountTypes } from "../auth/type";
 import axiosClient from "../axiosClient";
@@ -23,6 +24,8 @@ const USERS_API = {
   APPROVE_TRAINER: (userId: string) =>
     axiosClient.put(`${END_POINTS.USERS.MAIN}/TrainerApprove?userId=${userId}`),
 
+  UPDATE_PROFILE: (values: UpdateUserProfileRequest) =>
+    axiosClient.put(END_POINTS.USERS.UPDATE_PROFILE, values),
   GET_PROFILE: () => axiosClient.get(END_POINTS.GET_PROFILE),
   ADD_MORE_ACCOUNT: (params: {
     accountID: number;

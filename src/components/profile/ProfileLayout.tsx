@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react';
-import { LeftOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { Outlet, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { ProfileInfo } from '@app/components/profile/profileCard/ProfileInfo/ProfileInfo';
-import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
-import { ProfileNav } from '@app/components/profile/profileCard/ProfileNav/ProfileNav';
-import { useResponsive } from '@app/hooks/useResponsive';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { BaseRow } from '../common/BaseRow/BaseRow';
-import { BaseCol } from '../common/BaseCol/BaseCol';
+import { LeftOutlined } from "@ant-design/icons";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { BaseCard } from "@app/components/common/BaseCard/BaseCard";
+import { PageTitle } from "@app/components/common/PageTitle/PageTitle";
+import { ProfileInfo } from "@app/components/profile/profileCard/ProfileInfo/ProfileInfo";
+import { ProfileNav } from "@app/components/profile/profileCard/ProfileNav/ProfileNav";
+import { useAppSelector } from "@app/hooks/reduxHooks";
+import { useResponsive } from "@app/hooks/useResponsive";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { BaseCol } from "../common/BaseCol/BaseCol";
+import { BaseRow } from "../common/BaseRow/BaseRow";
 
 const ProfileLayout: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
@@ -24,19 +23,25 @@ const ProfileLayout: React.FC = () => {
 
   const { isTablet } = useResponsive();
 
-  const isTitleShown = isTabletOrHigher || (mobileOnly && location.pathname === '/profile');
-  const isMenuShown = isTabletOrHigher || (mobileOnly && location.pathname !== '/profile');
+  const isTitleShown =
+    isTabletOrHigher || (mobileOnly && location.pathname === "/profile");
+  const isMenuShown =
+    isTabletOrHigher || (mobileOnly && location.pathname !== "/profile");
 
   useEffect(() => {
-    isTablet && location.pathname === '/profile' && navigate('personal-info');
+    isTablet && location.pathname === "/profile" && navigate("personal-info");
   }, [isTablet, location.pathname, navigate]);
 
   return (
     <>
-      <PageTitle>{t('profile.title')}</PageTitle>
+      <PageTitle>{t("profile.title")}</PageTitle>
       {!isTitleShown && (
-        <Btn icon={<LeftOutlined />} type="text" onClick={() => navigate('/profile')}>
-          {t('common.back')}
+        <Btn
+          icon={<LeftOutlined />}
+          type="text"
+          onClick={() => navigate("/profile")}
+        >
+          {t("common.back")}
         </Btn>
       )}
 
