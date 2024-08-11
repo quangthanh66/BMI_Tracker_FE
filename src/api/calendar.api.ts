@@ -1,4 +1,4 @@
-import { Dates } from 'constants/Dates';
+import { Dates } from "constants/Dates";
 
 export interface CalendarEvent {
   date: number;
@@ -7,7 +7,6 @@ export interface CalendarEvent {
 
 const now = Dates.getToday().valueOf();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getUserCalendar = (id: number): Promise<CalendarEvent[]> => {
   return new Promise((res) => {
     setTimeout(() => {

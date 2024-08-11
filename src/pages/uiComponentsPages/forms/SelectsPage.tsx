@@ -1,24 +1,26 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { BaseSelect, Option } from '@app/components/common/selects/BaseSelect/BaseSelect';
-import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
-import * as S from '@app/pages/uiComponentsPages//UIComponentsPage.styles';
-import { BaseRadio } from '@app/components/common/BaseRadio/BaseRadio';
-import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
-import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { BaseSpace } from '@app/components/common/BaseSpace/BaseSpace';
+import { BaseCol } from "@app/components/common/BaseCol/BaseCol";
+import { BaseRadio } from "@app/components/common/BaseRadio/BaseRadio";
+import { BaseSpace } from "@app/components/common/BaseSpace/BaseSpace";
+import { BaseTag } from "@app/components/common/BaseTag/BaseTag";
+import { PageTitle } from "@app/components/common/PageTitle/PageTitle";
+import {
+  BaseSelect,
+  Option,
+} from "@app/components/common/selects/BaseSelect/BaseSelect";
+import * as S from "@app/pages/uiComponentsPages//UIComponentsPage.styles";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-type Size = 'small' | 'middle' | 'large';
+type Size = "small" | "middle" | "large";
 
 const SelectsPage: React.FC = () => {
   const { t } = useTranslation();
-  const [size, setSize] = useState<Size>('middle');
+  const [size, setSize] = useState<Size>("middle");
   const options = [
-    { value: t('selects.gold') },
-    { value: t('selects.lime') },
-    { value: t('selects.green') },
-    { value: t('selects.cyan') },
+    { value: t("selects.gold") },
+    { value: t("selects.lime") },
+    { value: t("selects.green") },
+    { value: t("selects.cyan") },
   ];
   const children: React.ReactNode[] = [];
 
@@ -26,7 +28,7 @@ const SelectsPage: React.FC = () => {
     children.push(
       <Option key={i.toString(36) + i} value={i.toString(36) + i}>
         {i.toString(36) + i}
-      </Option>,
+      </Option>
     );
   }
 
@@ -56,14 +58,14 @@ const SelectsPage: React.FC = () => {
 
   return (
     <>
-      <PageTitle>{t('common.select')}</PageTitle>
+      <PageTitle>{t("common.select")}</PageTitle>
       <BaseCol>
-        <S.Card title={t('selects.basic')}>
+        <S.Card title={t("selects.basic")}>
           <BaseSelect defaultValue="lucy" width={120}>
             <Option value="jack">Jack</Option>
             <Option value="lucy">Lucy</Option>
             <Option value="disabled" disabled>
-              {t('selects.disabled')}
+              {t("selects.disabled")}
             </Option>
             <Option value="Yiminghe">Yiminghe</Option>
           </BaseSelect>
@@ -77,28 +79,42 @@ const SelectsPage: React.FC = () => {
             <Option value="lucy">Lucy</Option>
           </BaseSelect>
         </S.Card>
-        <S.Card title={t('selects.multipleSelect')}>
+        <S.Card title={t("selects.multipleSelect")}>
           <BaseSpace direction="vertical" size={10}>
             <BaseSelect
               mode="multiple"
               allowClear
-              width={'100%'}
-              placeholder={t('selects.pleaseSelect')}
-              defaultValue={['a10', 'c12']}
+              width={"100%"}
+              placeholder={t("selects.pleaseSelect")}
+              defaultValue={["a10", "c12"]}
             >
               {children}
             </BaseSelect>
-            <BaseSelect mode="multiple" disabled placeholder={t('selects.pleaseSelect')} defaultValue={['a10', 'c12']}>
+            <BaseSelect
+              mode="multiple"
+              disabled
+              placeholder={t("selects.pleaseSelect")}
+              defaultValue={["a10", "c12"]}
+            >
               {children}
             </BaseSelect>
           </BaseSpace>
         </S.Card>
-        <S.Card title={t('selects.selectSizes')}>
+        <S.Card title={t("selects.selectSizes")}>
           <BaseSpace direction="vertical" size={10}>
-            <BaseRadio.Group value={size} onChange={(event) => setSize(event.target.value)}>
-              <BaseRadio.Button value="small">{t('selects.small')}</BaseRadio.Button>
-              <BaseRadio.Button value="middle">{t('selects.middle')}</BaseRadio.Button>
-              <BaseRadio.Button value="large">{t('selects.large')}</BaseRadio.Button>
+            <BaseRadio.Group
+              value={size}
+              onChange={(event) => setSize(event.target.value)}
+            >
+              <BaseRadio.Button value="small">
+                {t("selects.small")}
+              </BaseRadio.Button>
+              <BaseRadio.Button value="middle">
+                {t("selects.middle")}
+              </BaseRadio.Button>
+              <BaseRadio.Button value="large">
+                {t("selects.large")}
+              </BaseRadio.Button>
             </BaseRadio.Group>
             <BaseSelect size={size} defaultValue="a1" width={200}>
               {children}
@@ -106,30 +122,30 @@ const SelectsPage: React.FC = () => {
             <BaseSelect
               mode="multiple"
               size={size}
-              placeholder={t('selects.pleaseSelect')}
-              defaultValue={['a10', 'c12']}
-              width={'100%'}
+              placeholder={t("selects.pleaseSelect")}
+              defaultValue={["a10", "c12"]}
+              width={"100%"}
             >
               {children}
             </BaseSelect>
             <BaseSelect
               mode="tags"
               size={size}
-              placeholder={t('selects.pleaseSelect')}
-              defaultValue={['a10', 'c12']}
-              width={'100%'}
+              placeholder={t("selects.pleaseSelect")}
+              defaultValue={["a10", "c12"]}
+              width={"100%"}
             >
               {children}
             </BaseSelect>
           </BaseSpace>
         </S.Card>
-        <S.Card title={t('selects.customTags')}>
+        <S.Card title={t("selects.customTags")}>
           <BaseSelect
             mode="multiple"
             showArrow
             tagRender={tagRender}
-            defaultValue={['gold', 'cyan']}
-            width={'100%'}
+            defaultValue={["gold", "cyan"]}
+            width={"100%"}
             options={options}
           />
         </S.Card>

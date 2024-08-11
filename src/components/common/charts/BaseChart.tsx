@@ -1,15 +1,13 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
-import { EChartsOption } from 'echarts-for-react';
-import ReactECharts from 'echarts-for-react';
-import { Loading } from '../Loading/Loading';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { themeObject } from '@app/styles/themes/themeVariables';
-import { ITheme } from '@app/styles/themes/types';
-import { BORDER_RADIUS } from '@app/styles/themes/constants';
+import { useAppSelector } from "@app/hooks/reduxHooks";
+import { BORDER_RADIUS } from "@app/styles/themes/constants";
+import { themeObject } from "@app/styles/themes/themeVariables";
+import { ITheme } from "@app/styles/themes/types";
+import ReactECharts, { EChartsOption } from "echarts-for-react";
+import React, { CSSProperties, useEffect, useState } from "react";
+import { Loading } from "../Loading/Loading";
 
 export interface BaseChartProps {
   option?: EChartsOption;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onEvents?: Record<string, (e: any) => void>;
   width?: string | number;
   height?: string | number;
@@ -36,7 +34,9 @@ export const getChartColors = (theme: ITheme): string[] => [
   theme.chartColor5,
 ];
 
-export const getDefaultTooltipStyles = (theme: ITheme): DefaultTooltipStyles => ({
+export const getDefaultTooltipStyles = (
+  theme: ITheme
+): DefaultTooltipStyles => ({
   borderColor: theme.chartColor1,
   borderWidth: 2,
   borderRadius: Number.parseInt(BORDER_RADIUS),
@@ -47,11 +47,18 @@ export const getDefaultTooltipStyles = (theme: ITheme): DefaultTooltipStyles => 
   },
 });
 
-export const BaseChart: React.FC<BaseChartProps> = ({ option, width, height, onEvents, style, ...props }) => {
+export const BaseChart: React.FC<BaseChartProps> = ({
+  option,
+  width,
+  height,
+  onEvents,
+  style,
+  ...props
+}) => {
   const theme = useAppSelector((state) => state.theme.theme);
   const [loading, setLoading] = useState(true);
 
-  const chartHeight = height || '400px';
+  const chartHeight = height || "400px";
 
   const defaultOption = {
     color: getChartColors(themeObject[theme]),
@@ -70,7 +77,13 @@ export const BaseChart: React.FC<BaseChartProps> = ({ option, width, height, onE
     <ReactECharts
       {...props}
       option={{ ...defaultOption, ...option }}
-      style={{ ...style, height: chartHeight, minHeight: height === '100%' ? 400 : 'unset', width, zIndex: 0 }}
+      style={{
+        ...style,
+        height: chartHeight,
+        minHeight: height === "100%" ? 400 : "unset",
+        width,
+        zIndex: 0,
+      }}
       onEvents={onEvents}
     />
   );

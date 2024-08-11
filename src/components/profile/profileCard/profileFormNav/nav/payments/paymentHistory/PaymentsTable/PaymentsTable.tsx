@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ColumnType } from 'antd/lib/table';
-import { Dates } from 'constants/Dates';
-import { Status } from '../Status/Status';
-import { paymentStatuses, PaymentStatus } from 'constants/paymentStatuses';
-import { defineColorByPriority, getCurrencyPrice } from '@app/utils/utils';
-import { Payment } from 'api/paymentHistory.api';
-import * as S from './PaymentsTable.styles';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { BaseAvatar } from '@app/components/common/BaseAvatar/BaseAvatar';
+import { BaseAvatar } from "@app/components/common/BaseAvatar/BaseAvatar";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { defineColorByPriority, getCurrencyPrice } from "@app/utils/utils";
+import { ColumnType } from "antd/lib/table";
+import { Payment } from "api/paymentHistory.api";
+import { Dates } from "constants/Dates";
+import { PaymentStatus, paymentStatuses } from "constants/paymentStatuses";
+import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { Status } from "../Status/Status";
+import * as S from "./PaymentsTable.styles";
 
 interface Recipient {
   name: string;
@@ -30,50 +30,56 @@ interface PaymentsTableProps {
 export const PaymentsTable: React.FC<PaymentsTableProps> = ({ payments }) => {
   const { t } = useTranslation();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const columns: ColumnType<any>[] = useMemo(() => {
     return [
       {
-        title: t('profile.nav.payments.recipient'),
-        dataIndex: 'recipient',
-        key: 'recipient',
+        title: t("profile.nav.payments.recipient"),
+        dataIndex: "recipient",
+        key: "recipient",
         render: (recipient: Recipient) => (
           <S.RecipientWrapper>
             <BaseAvatar src={recipient.img} alt={recipient.name} />
             {recipient.name}
           </S.RecipientWrapper>
         ),
-        align: 'center',
+        align: "center",
       },
       {
-        title: t('profile.nav.payments.date'),
-        dataIndex: 'date',
-        key: 'date',
-        render: (text: string) => Dates.format(text, 'LL'),
+        title: t("profile.nav.payments.date"),
+        dataIndex: "date",
+        key: "date",
+        render: (text: string) => Dates.format(text, "LL"),
         sorter: (a, b) => a.date - b.date,
-        align: 'center',
+        align: "center",
       },
       {
-        title: t('profile.nav.payments.status.title'),
-        dataIndex: 'status',
-        key: 'status',
+        title: t("profile.nav.payments.status.title"),
+        dataIndex: "status",
+        key: "status",
         render: (status: PaymentStatus) => (
-          <Status color={defineColorByPriority(status.priority)} text={t(status.name).toUpperCase()} />
+          <Status
+            color={defineColorByPriority(status.priority)}
+            text={t(status.name).toUpperCase()}
+          />
         ),
-        align: 'center',
+        align: "center",
       },
       {
-        title: t('profile.nav.payments.totalAmount'),
-        dataIndex: 'totalAmount',
-        key: 'totalAmount',
-        align: 'center',
+        title: t("profile.nav.payments.totalAmount"),
+        dataIndex: "totalAmount",
+        key: "totalAmount",
+        align: "center",
       },
       {
-        title: '',
-        dataIndex: 'details',
-        key: 'details',
-        align: 'center',
-        render: () => <BaseButton type="link">{t('profile.nav.payments.details')}</BaseButton>,
+        title: "",
+        dataIndex: "details",
+        key: "details",
+        align: "center",
+        render: () => (
+          <BaseButton type="link">
+            {t("profile.nav.payments.details")}
+          </BaseButton>
+        ),
       },
     ];
   }, [t]);
@@ -88,13 +94,22 @@ export const PaymentsTable: React.FC<PaymentsTableProps> = ({ payments }) => {
             img: payment.imgUrl,
           },
           date: payment.date,
-          status: paymentStatuses.find((status) => status.id === payment.status),
+          status: paymentStatuses.find(
+            (status) => status.id === payment.status
+          ),
           totalAmount: getCurrencyPrice(payment.amount, payment.currency),
           details: payment,
         };
       }),
-    [payments],
+    [payments]
   );
 
-  return <S.PaymentHistoryTable size="middle" columns={columns} dataSource={dataSource} pagination={false} />;
+  return (
+    <S.PaymentHistoryTable
+      size="middle"
+      columns={columns}
+      dataSource={dataSource}
+      pagination={false}
+    />
+  );
 };

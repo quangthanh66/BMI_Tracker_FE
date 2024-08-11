@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { TableProps } from 'antd';
-import * as S from './BaseTable.styles';
+import { TableProps } from "antd";
+import React from "react";
+import * as S from "./BaseTable.styles";
 
 export type BaseTableProps<T> = TableProps<T>;
 

@@ -1,12 +1,22 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import React, { useCallback, useEffect, useRef } from 'react';
-import Slider, { Settings } from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useCallback, useEffect, useRef } from "react";
+import Slider, { Settings } from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 export const BaseCarousel = React.forwardRef<Slider, Settings>(
-  ({ slidesToShow = 1, arrows = false, dots = false, infinite = true, centerMode = true, children, ...props }, ref) => {
+  (
+    {
+      slidesToShow = 1,
+      arrows = false,
+      dots = false,
+      infinite = true,
+      centerMode = true,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const carouselRef = useRef();
 
     const totalRef = ref || carouselRef;
@@ -24,33 +34,33 @@ export const BaseCarousel = React.forwardRef<Slider, Settings>(
           return totalRef?.current?.slickPrev();
         }
       },
-      [totalRef],
+      [totalRef]
     );
 
     const handleMouseOn = useCallback(() => {
-      document.body.style.overscrollBehaviorX = 'none';
+      document.body.style.overscrollBehaviorX = "none";
     }, []);
 
     const handleMouseOff = useCallback(() => {
-      document.body.style.overscrollBehaviorX = 'unset';
+      document.body.style.overscrollBehaviorX = "unset";
     }, []);
 
     useEffect(() => {
       if (totalRef.current) {
         const slickList = totalRef.current?.innerSlider?.list;
 
-        slickList.addEventListener('wheel', handleScroll);
+        slickList.addEventListener("wheel", handleScroll);
 
-        slickList.addEventListener('mouseover', handleMouseOn);
+        slickList.addEventListener("mouseover", handleMouseOn);
 
-        slickList.addEventListener('mouseout', handleMouseOff);
+        slickList.addEventListener("mouseout", handleMouseOff);
 
         return () => {
-          slickList.removeEventListener('wheel', handleScroll);
+          slickList.removeEventListener("wheel", handleScroll);
 
-          slickList.removeEventListener('mouseover', handleMouseOn);
+          slickList.removeEventListener("mouseover", handleMouseOn);
 
-          slickList.removeEventListener('mouseout', handleMouseOff);
+          slickList.removeEventListener("mouseout", handleMouseOff);
         };
       }
     }, [totalRef, handleScroll, handleMouseOn, handleMouseOff]);
@@ -68,5 +78,5 @@ export const BaseCarousel = React.forwardRef<Slider, Settings>(
         {children}
       </Slider>
     );
-  },
+  }
 );

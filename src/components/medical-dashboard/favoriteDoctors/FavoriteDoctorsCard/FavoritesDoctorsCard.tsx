@@ -1,24 +1,35 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { DashboardCard } from '@app/components/medical-dashboard/DashboardCard/DashboardCard';
-import { BaseCarousel } from '@app/components/common/BaseCarousel/Carousel';
-import { DoctorCard } from '../DoctorCard/DoctorCard';
-import { Dates } from '@app/constants/Dates';
-import { CalendarEvent, getUserCalendar } from '@app/api/calendar.api';
-import { Doctor, getDoctorsData } from '@app/api/doctors.api';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import * as S from './FavoritesDoctorsCard.styles';
-import { BREAKPOINTS } from '@app/styles/themes/constants';
+import { CalendarEvent, getUserCalendar } from "@app/api/calendar.api";
+import { Doctor, getDoctorsData } from "@app/api/doctors.api";
+import { BaseCarousel } from "@app/components/common/BaseCarousel/Carousel";
+import { DashboardCard } from "@app/components/medical-dashboard/DashboardCard/DashboardCard";
+import { Dates } from "@app/constants/Dates";
+import { useAppSelector } from "@app/hooks/reduxHooks";
+import { BREAKPOINTS } from "@app/styles/themes/constants";
+import React, { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { DoctorCard } from "../DoctorCard/DoctorCard";
+import * as S from "./FavoritesDoctorsCard.styles";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const NextArrow = (props: any) => {
   const { className, style, onClick } = props;
-  return <S.SliderArrow className={className} style={{ ...style, display: 'block' }} onClick={onClick} />;
+  return (
+    <S.SliderArrow
+      className={className}
+      style={{ ...style, display: "block" }}
+      onClick={onClick}
+    />
+  );
 };
 
 const PrevArrow = (props: any) => {
   const { className, style, onClick } = props;
-  return <S.SliderArrow className={className} style={{ ...style, display: 'block' }} onClick={onClick} />;
+  return (
+    <S.SliderArrow
+      className={className}
+      style={{ ...style, display: "block" }}
+      onClick={onClick}
+    />
+  );
 };
 
 export const FavoritesDoctorsCard: React.FC = () => {
@@ -40,11 +51,14 @@ export const FavoritesDoctorsCard: React.FC = () => {
 
   const pastEvents = useMemo(
     () => calendar.filter((event) => Dates.getDate(event.date).isBefore(today)),
-    [calendar, today],
+    [calendar, today]
   );
 
   return (
-    <DashboardCard title={t('medical-dashboard.favoriteDoctors.title')} padding="0 20px">
+    <DashboardCard
+      title={t("medical-dashboard.favoriteDoctors.title")}
+      padding="0 20px"
+    >
       {doctors.length > 0 && calendar.length > 0 && (
         <S.CarouselWrapper>
           <BaseCarousel
@@ -104,7 +118,9 @@ export const FavoritesDoctorsCard: React.FC = () => {
             ]}
           >
             {pastEvents.map((event) => {
-              const currentDoctor = doctors.find((doctor) => doctor.id === event.doctor);
+              const currentDoctor = doctors.find(
+                (doctor) => doctor.id === event.doctor
+              );
 
               return (
                 <div key={currentDoctor?.id}>
