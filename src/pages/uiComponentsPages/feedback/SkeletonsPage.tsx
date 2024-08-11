@@ -7,22 +7,13 @@ import { BaseSwitch } from "@app/components/common/BaseSwitch/BaseSwitch";
 import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
 import { PageTitle } from "@app/components/common/PageTitle/PageTitle";
 import * as S from "@app/pages/uiComponentsPages//UIComponentsPage.styles";
-import { media } from "@app/styles/themes/constants";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 type Size = "default" | "large" | "small";
 
-const FormItem = styled(BaseForm.Item)`
-  @media only screen and ${media.xs} {
-    max-width: fit-content;
-  }
-
-  @media only screen and ${media.md} {
-    max-width: 100%;
-  }
-`;
+const FormItem = styled(BaseForm.Item)``;
 
 const SkeletonsPage: React.FC = () => {
   const { t } = useTranslation();
