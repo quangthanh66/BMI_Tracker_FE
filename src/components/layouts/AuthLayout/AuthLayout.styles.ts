@@ -1,12 +1,17 @@
-import styled from 'styled-components';
-import { LeftOutlined } from '@ant-design/icons';
-import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { BaseInput as CommonInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { InputPassword as CommonInputPassword } from '@app/components/common/inputs/InputPassword/InputPassword';
-import loginBackground from '@app/assets/images/login-bg.webp';
-import { BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, media } from '@app/styles/themes/constants';
-import { BaseCheckbox } from '@app/components/common/BaseCheckbox/BaseCheckbox';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
+import { LeftOutlined } from "@ant-design/icons";
+import loginBackground from "@app/assets/images/login-bg.webp";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { BaseCheckbox } from "@app/components/common/BaseCheckbox/BaseCheckbox";
+import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
+import { BaseInput as CommonInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import { InputPassword as CommonInputPassword } from "@app/components/common/inputs/InputPassword/InputPassword";
+import {
+  BORDER_RADIUS,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  media,
+} from "@app/styles/themes/constants";
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -132,7 +137,8 @@ export const FormInputPassword = styled(CommonInputPassword)`
 
 export const ActionsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
   margin-bottom: 2rem;
 `;
 

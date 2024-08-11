@@ -1,21 +1,17 @@
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { UserItemTypes } from "@app/api/users/type";
-import { Button, Tag, Tooltip } from "antd";
-import {
-  CheckCircleOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  EyeOutlined,
-  FileTextOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
-import { BasePopconfirm } from "@app/components/common/BasePopconfirm/BasePopconfirm";
-import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
 import { USER_ROLES_ENUM } from "@app/utils/constant";
+import { Button, Tag, Tooltip } from "antd";
 // import { USER_STATUS } from '@app/utils/constant';
 
 type UserColumnsTypes = {
   updateUserModal: (user: UserItemTypes) => void;
   addMoreAccount: (accountId: number) => void;
+  deleteUserRole: (
+    event: any,
+    accountId: number,
+    roleName: USER_ROLES_ENUM
+  ) => void;
 };
 
 const getRoleName = (role: USER_ROLES_ENUM) => {
@@ -35,6 +31,7 @@ const getRoleName = (role: USER_ROLES_ENUM) => {
 export const UserColumns: any = ({
   updateUserModal,
   addMoreAccount,
+  deleteUserRole,
 }: UserColumnsTypes) => [
   {
     title: "Full Name",
@@ -71,12 +68,14 @@ export const UserColumns: any = ({
   {
     title: "Role",
     dataIndex: "roleNames",
-    render: (roleNames: any) => {
+    render: (roleNames: any, userProfile: UserItemTypes) => {
       return (
         <div className="flex-wrap items-center gap-x-2">
           {roleNames.map((role: any) => {
             return (
               <Tag
+                closable
+                onClose={(e) => deleteUserRole(e, +userProfile.accountID, role)}
                 color={
                   role === "ROLE_ADMIN"
                     ? "red"
@@ -97,8 +96,6 @@ export const UserColumns: any = ({
       );
     },
   },
-
- 
 
   {
     title: "Actions",

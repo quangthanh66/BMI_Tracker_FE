@@ -6,3 +6,26 @@ export type DetailCommissionItemResponse = {
   milestoneDate: string;
   subscriptionNumber: string;
 };
+
+export const CommissionColumns = () => [
+  {
+    title: "Amount",
+    dataIndex: "amount",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+  },
+  {
+    title: "Milestone",
+    dataIndex: "milestone",
+  },
+  {
+    title: "Milestone Date",
+    dataIndex: "milestoneDate",
+  },
+  {
+    title: "Subscription number",
+    dataIndex: "subscriptionNumber",
+  },
+];

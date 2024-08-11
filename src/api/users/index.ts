@@ -2,7 +2,11 @@ import { USER_ROLES_ENUM } from "@app/utils/constant";
 import { SignUpAccountTypes } from "../auth/type";
 import axiosClient from "../axiosClient";
 import { END_POINTS } from "../endPoints";
-import { ProveCertiTrainerTypes, UpdateUserTypesAPI } from "./type";
+import {
+  DeleteUserRoleRequest,
+  ProveCertiTrainerTypes,
+  UpdateUserTypesAPI,
+} from "./type";
 
 const USERS_API = {
   GET_LIST: () => axiosClient.get(END_POINTS.USERS.MAIN),
@@ -24,6 +28,8 @@ const USERS_API = {
     accountID: number;
     roleName: USER_ROLES_ENUM;
   }) => axiosClient.post(END_POINTS.ADD_MORE_ACCOUNT, null, { params }),
+  DELETE_ROLE: (params: DeleteUserRoleRequest) =>
+    axiosClient.delete(END_POINTS.USERS.DELETE_ROLE, { params }),
 };
 
 export default USERS_API;

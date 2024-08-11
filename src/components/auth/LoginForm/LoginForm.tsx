@@ -1,19 +1,17 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
-import * as S from "./LoginForm.styles";
-import * as Auth from "@app/components/layouts/AuthLayout/AuthLayout.styles";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import AUTH_API from "@app/api/auth";
-import { message } from "antd";
-import { PAGE_ROUTES } from "@app/utils/router";
-import { USER_ROLES_ENUM } from "@app/utils/constant";
-import { useDispatch } from "react-redux";
-import { setUserProfile } from "@app/store/slices/appSlice";
-import { BaseSelect } from "@app/components/common/selects/BaseSelect/BaseSelect";
-import { UserProfileResponse } from "@app/api/users/type";
 import USERS_API from "@app/api/users";
+import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
+import { BaseSelect } from "@app/components/common/selects/BaseSelect/BaseSelect";
+import * as Auth from "@app/components/layouts/AuthLayout/AuthLayout.styles";
+import { setUserProfile } from "@app/store/slices/appSlice";
+import { USER_ROLES_ENUM } from "@app/utils/constant";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { message } from "antd";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import * as S from "./LoginForm.styles";
 
 interface LoginFormData {
   email: string;
@@ -96,21 +94,6 @@ export const LoginForm: React.FC = () => {
         >
           <Auth.FormInputPassword placeholder={t("common.password")} />
         </Auth.FormItem>
-        {/* <Auth.ActionsWrapper>
-          <BaseForm.Item name="loginAdmin" valuePropName="checked" noStyle>
-            <Auth.FormCheckbox>
-              <S.LoginRoleText>{t('login.loginAdmin')}</S.LoginRoleText>
-            </Auth.FormCheckbox>
-          </BaseForm.Item>
-          <BaseForm.Item name="loginAdvisor" valuePropName="checked" noStyle>
-            <Auth.FormCheckbox>
-              <S.LoginRoleText>{t('login.loginAdvisor')}</S.LoginRoleText>
-            </Auth.FormCheckbox>
-          </BaseForm.Item>
-          <Link to="/auth/forgot-password">
-            <S.ForgotPasswordText>{t('common.forgotPass')}</S.ForgotPasswordText>
-          </Link>
-        </Auth.ActionsWrapper> */}
 
         <Auth.FormItem
           name="role"
@@ -141,6 +124,14 @@ export const LoginForm: React.FC = () => {
               <Auth.LinkText>{t("common.here")}</Auth.LinkText>
             </Link>
           </Auth.Text>
+
+          <Auth.ActionsWrapper>
+            <Link to="/auth/forgot-password">
+              <S.ForgotPasswordText>
+                {t("common.forgotPass")}
+              </S.ForgotPasswordText>
+            </Link>
+          </Auth.ActionsWrapper>
         </Auth.FooterWrapper>
       </BaseForm>
     </Auth.FormWrapper>

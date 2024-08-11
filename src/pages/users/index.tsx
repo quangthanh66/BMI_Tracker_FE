@@ -5,9 +5,10 @@ import FilterUser from "@app/modules/admin/pages/users/Filter";
 import ProveCertificate from "@app/modules/admin/pages/users/ProveCertificate";
 import UpdateUser from "@app/modules/admin/pages/users/UpdateUser";
 import { UserColumns } from "@app/modules/admin/pages/users/type";
-import { useQuery } from "@tanstack/react-query";
+import { USER_ROLES_ENUM } from "@app/utils/constant";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, Col, Row, Spin, Table, Typography, message } from "antd";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import AddMoreAccountModal from "./AddMoreAccountModal";
 
 const UsersManagement = () => {
@@ -19,6 +20,23 @@ const UsersManagement = () => {
   const provideUserRef = useRef<any>();
   const addMoreAccountRef = useRef<any>();
 
+  const { isLoading: isLoadingDeleteRole, mutate: deleteRole } = useMutation(
+    USERS_API.DELETE_ROLE,
+    {
+      onError: () =>
+        messageApi.open({
+          type: "error",
+          content: "Delete role is failed",
+        }),
+      onSuccess: () => {
+        messageApi.open({
+          type: "success",
+          content: "Delete role is success",
+        }),
+          refetch();
+      },
+    }
+  );
   const {
     isLoading,
     refetch,
@@ -73,6 +91,15 @@ const UsersManagement = () => {
     addMoreAccountRef.current.openModal(accountId);
   };
 
+  const onDeleteUserRole = (
+    event: any,
+    accountID: number,
+    roleName: USER_ROLES_ENUM
+  ) => {
+    event.preventDefault();
+    deleteRole({ accountID, roleName });
+  };
+
   return (
     <Row gutter={[14, 14]}>
       {contextHolder}
@@ -113,13 +140,14 @@ const UsersManagement = () => {
         </Card>
       </Col>
 
-      <Spin spinning={isLoading} tip="Loading data...">
+      <Spin spinning={isLoading || isLoadingDeleteRole} tip="Loading data...">
         <Col span={24}>
           <Table
             className="max-w-[82vw]"
             columns={UserColumns({
               updateUserModal: openUpdateUserModal,
               addMoreAccount: onAddMoreAccount,
+              deleteUserRole: onDeleteUserRole,
             })}
             dataSource={users}
             scroll={{

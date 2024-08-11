@@ -1,3 +1,5 @@
+import { USER_ROLES_ENUM } from "@app/utils/constant";
+
 export type UserItemTypes = {
   accountID: string;
   email: string;
@@ -46,4 +48,9 @@ export type CertificateDetailResponse = {
     weight: number;
     isActive: boolean;
   };
+};
+
+export type DeleteUserRoleRequest = {
+  accountID: number;
+  roleName: USER_ROLES_ENUM;
 };

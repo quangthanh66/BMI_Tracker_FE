@@ -7,7 +7,7 @@ import UpdateUser from "@app/modules/admin/pages/users/UpdateUser";
 import { UserColumns } from "@app/modules/admin/pages/users/type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, Col, Row, Spin, Table, Typography, message } from "antd";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const UserTrainer = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -114,6 +114,10 @@ const UserTrainer = () => {
     provideUserRef.current.openModal();
   };
 
+  const onDeleteUserRole = (userId: string) => {
+    console.log(userId);
+  };
+
   const onDeleteUser = (userId: string) => {
     mutateDeleteUser(userId);
   };
@@ -128,7 +132,7 @@ const UserTrainer = () => {
       <Col span={24}>
         <Card>
           <Typography.Text className="text-xl font-bold">
-            User management
+            User management 333
           </Typography.Text>
         </Card>
       </Col>
@@ -166,6 +170,7 @@ const UserTrainer = () => {
               deleteUser: onDeleteUser,
               provideCertificate: onProvideCertificate,
               approveTrainer: onApproveTrainer,
+              deleteUserRole: onDeleteUserRole,
             })}
             dataSource={users}
             scroll={{

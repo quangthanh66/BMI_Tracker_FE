@@ -19,3 +19,12 @@ export type UserTypes = {
   refreshToken: string;
   accessToken: string;
 };
+
+export type ChangePasswordRequest = {
+  oldPassword: string;
+  newPassword: string;
+};
+
+export type ChangePasswordForm = ChangePasswordRequest & {
+  confirmPassword: string;
+};

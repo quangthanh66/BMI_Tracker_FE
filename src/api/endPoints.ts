@@ -26,10 +26,14 @@ export const END_POINTS = {
   AUTH: {
     LOGIN: "/api/auth/login",
     SIGN_UP: "/api/user/SignUp",
+    CHANGE_PASSWORD: "/api/accounts/change-password",
+    FORGOT_PASSWORD: "/api/auth/forgot-password",
   },
 
   USERS: {
     MAIN: "/api/accounts/getAll",
+    DELETE_ROLE: "/api/accounts/role/delete",
+    UPDATE_PROFILE: "/api/accounts/update-profile",
   },
 
   BLOGS: {

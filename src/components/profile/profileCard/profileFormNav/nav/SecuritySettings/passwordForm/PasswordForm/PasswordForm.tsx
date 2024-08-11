@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/BaseButtonsForm';
-import { ConfirmItemPassword } from '@app/components/profile/profileCard/profileFormNav/nav/SecuritySettings/passwordForm/ConfirmPasswordItem/ConfirmPasswordItem';
-import { CurrentPasswordItem } from '@app/components/profile/profileCard/profileFormNav/nav/SecuritySettings/passwordForm/CurrentPasswordItem/CurrentPasswordItem';
-import { NewPasswordItem } from '@app/components/profile/profileCard/profileFormNav/nav/SecuritySettings/passwordForm/NewPasswordItem/NewPasswordItem';
-import { notificationController } from '@app/controllers/notificationController';
-import * as S from './PasswordForm.styles';
-import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
-import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import AUTH_API from "@app/api/auth";
+import { ChangePasswordForm } from "@app/api/auth/type";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { BaseCol } from "@app/components/common/BaseCol/BaseCol";
+import { BaseRow } from "@app/components/common/BaseRow/BaseRow";
+import { BaseButtonsForm } from "@app/components/common/forms/BaseButtonsForm/BaseButtonsForm";
+import { ConfirmItemPassword } from "@app/components/profile/profileCard/profileFormNav/nav/SecuritySettings/passwordForm/ConfirmPasswordItem/ConfirmPasswordItem";
+import { CurrentPasswordItem } from "@app/components/profile/profileCard/profileFormNav/nav/SecuritySettings/passwordForm/CurrentPasswordItem/CurrentPasswordItem";
+import { NewPasswordItem } from "@app/components/profile/profileCard/profileFormNav/nav/SecuritySettings/passwordForm/NewPasswordItem/NewPasswordItem";
+import { useMutation } from "@tanstack/react-query";
+import { Form, message } from "antd";
+import _ from "lodash";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const PasswordForm: React.FC = () => {
   const [isFieldsChanged, setFieldsChanged] = useState(false);
-  const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation();
+  const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const onFinish = (values: []) => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setFieldsChanged(false);
-      notificationController.success({ message: t('common.success') });
-      console.log(values);
-    }, 1000);
+  const { isLoading: isLoadingChangePassword, mutate: changePassword } =
+    useMutation(AUTH_API.CHANGE_PASSWORD, {
+      onError: () =>
+        messageApi.open({
+          type: "error",
+          content: "Change password is failed",
+        }),
+
+      onSuccess: () => {
+        messageApi.open({
+          type: "success",
+          content: "Change password is successful",
+        }),
+          form.resetFields();
+      },
+    });
+
+  const onFinish = (values: ChangePasswordForm) => {
+    const result = _.omit(values, ["confirmPassword"]);
+    changePassword(result);
   };
 
   return (
@@ -30,30 +47,41 @@ export const PasswordForm: React.FC = () => {
       requiredMark="optional"
       isFieldsChanged={isFieldsChanged}
       onFieldsChange={() => setFieldsChanged(true)}
-      footer={
-        <S.Btn loading={isLoading} type="primary" htmlType="submit">
-          {t('common.confirm')}
-        </S.Btn>
-      }
       onFinish={onFinish}
+      form={form}
+      footer={<></>}
     >
-      <BaseRow gutter={{ md: 15, xl: 30 }}>
+      {contextHolder}
+      <BaseRow gutter={[24, 24]}>
         <BaseCol span={24}>
           <BaseButtonsForm.Item>
-            <BaseButtonsForm.Title>{t('profile.nav.securitySettings.changePassword')}</BaseButtonsForm.Title>
+            <BaseButtonsForm.Title>
+              {t("profile.nav.securitySettings.changePassword")}
+            </BaseButtonsForm.Title>
           </BaseButtonsForm.Item>
         </BaseCol>
 
-        <BaseCol xs={24} md={12} xl={24}>
+        <BaseCol span={24}>
           <CurrentPasswordItem />
         </BaseCol>
 
-        <BaseCol xs={24} md={12} xl={24}>
+        <BaseCol span={24}>
           <NewPasswordItem />
         </BaseCol>
 
-        <BaseCol xs={24} md={12} xl={24}>
+        <BaseCol span={24}>
           <ConfirmItemPassword />
+        </BaseCol>
+
+        <BaseCol span={24}>
+          <BaseButton
+            htmlType="submit"
+            type="primary"
+            className="w-full"
+            loading={isLoadingChangePassword}
+          >
+            Confirm change password
+          </BaseButton>
         </BaseCol>
       </BaseRow>
     </BaseButtonsForm>
