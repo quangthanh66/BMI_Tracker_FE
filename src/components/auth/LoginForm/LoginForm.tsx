@@ -21,7 +21,7 @@ interface LoginFormData {
 
 export const initValues: LoginFormData = {
   email: "admin@gmail.com",
-  password: "1",
+  password: "As123456",
   role: USER_ROLES_ENUM.ROLE_ADMIN,
 };
 
@@ -118,12 +118,12 @@ export const LoginForm: React.FC = () => {
           </Auth.SubmitButton>
         </BaseForm.Item>
         <Auth.FooterWrapper>
-          <Auth.Text>
+          {/* <Auth.Text>
             {t("login.noAccount")}{" "}
             <Link to="/auth/sign-up">
               <Auth.LinkText>{t("common.here")}</Auth.LinkText>
             </Link>
-          </Auth.Text>
+          </Auth.Text> */}
 
           <Auth.ActionsWrapper>
             <Link to="/auth/forgot-password">

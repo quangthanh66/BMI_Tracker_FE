@@ -24,7 +24,7 @@ export const PasswordForm: React.FC = () => {
       onError: () =>
         messageApi.open({
           type: "error",
-          content: "Change password is failed",
+          content: "Current password is failed, please check again",
         }),
 
       onSuccess: () => {

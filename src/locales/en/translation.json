@@ -515,7 +515,7 @@
   "login": {
     "facebookLink": "Continue with Facebook",
     "googleLink": "Continue with Google",
-    "loginInfo": "Enter your email address and password to access admin panel",
+    "loginInfo": "Enter your email address so that a new password is sent to your email",
     "noAccount": "Don’t have an account? Create one",
     "loginAdmin": "Admin",
     "loginAdvisor": "Advisor",

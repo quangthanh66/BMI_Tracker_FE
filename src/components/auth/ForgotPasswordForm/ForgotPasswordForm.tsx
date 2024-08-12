@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./ForgotPasswordForm.styles";
 
 const initValues = {
-  email: "chris.johnson@altence.com",
+  email: "bmitracker@gmail.com",
 };
 
 export const ForgotPasswordForm: React.FC = () => {
