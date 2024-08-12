@@ -46,17 +46,32 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: F
     title: 'Processing Date',
     dataIndex: 'processingDate',
   },
+
   {
     title: 'Status',
     dataIndex: 'status',
-    render: (status: boolean) => (
-      <Tag color={status === true ? 'green' : status === false ? 'volcano' : 'geekblue'}>
-        {status ? 'APPROVED' : 'REJECT'}
-      </Tag>
-    ),
-    sortDirections: ['descend'],
-  },
+    render: (status: string) => {
+      let color;
 
+      switch (status) {
+        case 'APPROVED':
+          color = 'green';
+          break;
+        case 'REJECTED':
+          color = 'red';
+          break;
+        case 'PENDING':
+          color = 'blue';
+          break;
+      }
+
+      return (
+        <span style={{ color }}>
+          {status}
+        </span>
+      );
+    },
+  },
   {
     title: 'Actions',
     dataIndex: 'feedbackID',
