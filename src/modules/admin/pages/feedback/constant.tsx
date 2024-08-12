@@ -25,6 +25,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: F
   {
     title: 'Type',
     dataIndex: 'type',
+    render: (type: string) => <BaseTag color="geekblue">{type}</BaseTag>,
   },
   {
     title: 'Purpose',
@@ -36,7 +37,6 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: F
   {
     title: 'Process Note',
     dataIndex: 'processNote',
-    render: (type: string) => <BaseTag color="geekblue">{type}</BaseTag>,
   },
   {
     title: 'Creation Date',

@@ -53,13 +53,23 @@ const AddNewFoodRecipe = (
 
   const { isLoading: isLoadingAddNewRecipe, mutate: mutateAddNewRecipe } =
     useMutation(FOOD_API.ADD_FOOD_RECIPE, {
-      onError: () => {
+      onError: (error: unknown) => {
+        // Ép kiểu error thành một đối tượng biết loại
+        const errorMessage = (error as { message?: string }).message;
+
         messageApi.open({
           type: "error",
-          content: "Add new ingredient is failed",
+          content: errorMessage === "Recipe already exists"
+            ? "Recipe already exists"
+            : "Recipe already exists",
         });
       },
     });
+
+
+
+ 
+
 
   useImperativeHandle(ref, () => {
     return {
