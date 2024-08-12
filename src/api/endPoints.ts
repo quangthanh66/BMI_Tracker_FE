@@ -108,6 +108,7 @@ export const END_POINTS = {
   TAGS: {
     ADD_NEW: "/api/tags/createNew",
     GET_ALL: "/api/tags/getAll",
+    TAG_TYPE: "/api/tags/getByTagType",
   },
   GET_PROFILE: "/api/accounts/get-profile",
   ADD_MORE_ACCOUNT: "/api/accounts/role/add-more-role",
