@@ -71,10 +71,13 @@ const AddNewFoodModal = (
         refetchFoodPage();
         onCloseModal();
       },
-      onError: () => {
+      onError: (error: { response?: { data?: { message?: string } } }) => {
+        const message = error.response?.data?.message || "Unknown error occurred";
         messageApi.open({
           type: "error",
-          content: "Cant create new food . Please try again !",
+          content: message === "Food name already exists" ? "Food name already exists"
+           : "Recipe already exists" ? "Recipe already exists"
+           : "Can't create new food. Please try again!",
         });
       },
     });
