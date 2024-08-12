@@ -122,16 +122,17 @@ const AddNewFoodModal = (
     };
   });
 
+
   useEffect(() => {
     if (ingredients.length > 0) {
       const availableIngredients = ingredients.filter((item) => item.isActive);
-      const convertIngredients = availableIngredients.map((item) => {
-        return {
+      const convertIngredients = availableIngredients
+        .map((item) => ({
           label: item.ingredientName,
           value: item.ingredientID,
-        };
-      });
-
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)); // Sort alphabetically by ingredientName
+  
       setIngredientOptions(convertIngredients);
     }
   }, [ingredients]);

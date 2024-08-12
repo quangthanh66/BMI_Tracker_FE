@@ -34,12 +34,13 @@ const AddNewFoodRecipe = (
   } = useQuery(["get-ingredients"], INGREDIENT_API.GET_INGREDIENTS, {
     enabled: false,
     onSuccess: (response: IngredientTypes[]) => {
-      const convertResult: SelectTypes[] = response.map((item) => {
-        return {
+      const convertResult: SelectTypes[] = response
+        .map((item) => ({
           label: item.ingredientName,
           value: item.ingredientID,
-        };
-      });
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)); // Sort alphabetically by ingredientName
+  
       setIngredientOptions(convertResult);
     },
     onError: () => {
