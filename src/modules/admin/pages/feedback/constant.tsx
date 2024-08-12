@@ -77,13 +77,13 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: F
     dataIndex: 'feedbackID',
     render: (feedbackID: string, feedback: FeedbackItemTypes) => (
       <div className="flex items-center gap-x-4">
-        {/* <BaseTooltip title="Edit feedback information">
+        <BaseTooltip title="Edit feedback information">
           <BaseButton
             onClick={() => updateFeedbackModal(feedback)}
             icon={<EditOutlined className="text-[24px]" />}
             type="text"
           ></BaseButton>
-        </BaseTooltip> */}
+        </BaseTooltip>
 
         {!feedback.status && (
           <BaseTooltip title="Active">

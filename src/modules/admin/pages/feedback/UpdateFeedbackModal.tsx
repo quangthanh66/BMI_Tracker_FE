@@ -1,6 +1,6 @@
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { Typography, message } from 'antd';
+import { Col, Form, Select, Typography, message } from 'antd';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { FeedbackItemTypes } from './type';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
@@ -11,6 +11,8 @@ import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { PlusOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';
 import FEEDBACK_API from '@app/api/feedbacks';
+import { PLAN_STATUS_LABEL } from '@app/utils/constant';
+import { BaseSelect } from '@app/components/common/selects/BaseSelect/BaseSelect';
 
 type UpdateFeedbackTypes = {
   feedbackUpdate: FeedbackItemTypes;
@@ -71,34 +73,23 @@ const UpdateFeedbackModal = ({ feedbackUpdate, onRefreshPage }: UpdateFeedbackTy
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<Typography className="text-xl">Update feedback information</Typography>}
+      title={<Typography className="text-xl">Confirm user request</Typography>}
     >
       {contextHolder}
       <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
         <BaseRow gutter={[20, 20]}>
           <BaseCol span={24}>
-            <BaseForm.Item name="title" label="Title" rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Enter your title" required maxLength={50} />
+            <BaseForm.Item name="processNote" label="Process Note" rules={[fieldValidate.required]}>
+              <BaseInput placeholder="Enter your note" />
             </BaseForm.Item>
           </BaseCol>
 
-          <BaseCol span={24}>
-            <BaseForm.Item name="description" label="Description" rules={[fieldValidate.required]}>
-              <BaseInput placeholder="Enter your description" required maxLength={50} />
-            </BaseForm.Item>
-          </BaseCol>
+          <Col span={24}>
+            <Form.Item label="Status" name="status">
+              <BaseSelect options={PLAN_STATUS_LABEL} />
+            </Form.Item>
+          </Col>
 
-          {/* <BaseCol span={24}>
-              <BaseForm.Item name="type" label="Type" rules={[fieldValidate.required]}>
-                <BaseInput placeholder="Enter your type" required maxLength={50} />
-              </BaseForm.Item>
-            </BaseCol>
-
-            <BaseCol span={24}>
-              <BaseForm.Item name="userId" label="User" rules={[fieldValidate.required]}>
-                <Select placeholder="Choose the user that make the feedback" options={userSelect} />
-              </BaseForm.Item>
-            </BaseCol> */}
 
           <BaseCol span={24} className="flex items-center justify-end gap-2">
             <BaseButton danger onClick={() => form.resetFields()}>
