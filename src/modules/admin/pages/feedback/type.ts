@@ -1,11 +1,12 @@
 
 
 export type FeedbackItemTypes = {
-  feedbackID: string;
-  title: string;
+  userRequestID: string;
+  purpose: string;
   type: string;
-  description: string;
-  status: boolean;
-  memberID: number;
-  memberName: string;
+  processNote: string;
+  status: string;
+  fullName: string;
+  creationDate: string;
+  processingDate: string;
 };

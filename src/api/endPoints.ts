@@ -42,8 +42,8 @@ export const END_POINTS = {
   },
 
   FEEDBACKS: {
-    MAIN: "/api/feedbacks/getAll",
-    UPDATE_FEEDBACK: "/api/feedbacks/approve",
+    MAIN: "/api/user-requests/get-all",
+    UPDATE_FEEDBACK: "/api/user-requests/update-processing",
   },
 
   COMMISSION: {
@@ -80,9 +80,9 @@ export const END_POINTS = {
   DELETE_MENU: "/api/menus/deactivate",
   MENU_ADVISOR: "/api/menus/getMenuByAdvisor",
 
-  PLAN: "/api/plans/getAll",
+  PLAN: "/api/packages/getAll",
   ADD_NEW_PLAN: "/api/plans/createNew",
-  UPDATE_PLAN: "/api/plans/change-plan-status",
+  UPDATE_PLAN: "/api/packages/change-package-status",
   DELETE_PLAN: "/api/plans/deactivate",
   PLAN_MANAGEMENT: {
     DEACTIVE: "/api/plans/delete",

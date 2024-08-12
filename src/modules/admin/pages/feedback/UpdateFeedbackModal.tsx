@@ -45,10 +45,9 @@ const UpdateFeedbackModal = ({ feedbackUpdate, onRefreshPage }: UpdateFeedbackTy
   useEffect(() => {
     if (feedbackUpdate) {
       form.setFieldsValue({
-        title: feedbackUpdate.title,
-        description: feedbackUpdate.description,
+        title: feedbackUpdate.purpose,
+        description: feedbackUpdate.processNote,
         type: feedbackUpdate.type,
-     //   userId: feedbackUpdate.users.accountID,
       });
     }
   }, [feedbackUpdate]);

@@ -70,7 +70,7 @@ const PlanManagement = () => {
   const searchPlan = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value.toLowerCase();
     const result = planList?.filter((plan) =>
-      plan.planName.toLowerCase().includes(keySearch)
+      plan.packageName.toLowerCase().includes(keySearch)
     );
     setPlan(result as TPlanItem[]);
   };
@@ -134,7 +134,7 @@ const PlanManagement = () => {
                   >
                     <div className="w-full flex flex-col gap-2 flex-grow">
                       <Typography.Title className="!text-black" level={3}>
-                        {item.planName}
+                        {item.packageName}
                       </Typography.Title>
 
                       <Typography.Paragraph className="!text-black text-lg">
@@ -154,7 +154,7 @@ const PlanManagement = () => {
                       <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Code :</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
-                          {item.planCode}
+                          {item.packageCode}
                         </span>
                       </Typography.Text>
 
@@ -177,16 +177,16 @@ const PlanManagement = () => {
                       <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Duration :</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
-                          {item.planDuration} (Days)
+                          {item.packageDuration} (Days)
                         </span>
                       </Typography.Text>
 
                       <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                         <span className="font-semibold !text-black">
-                          {item.planStatus === "APPROVED" ? (
+                          {item.packageStatus === "APPROVED" ? (
                             <Tag color="green">Approved</Tag>
-                          ) : item.planStatus === "PENDING" ? (
+                          ) : item.packageStatus === "PENDING" ? (
                             <Tag color="blue">Pending</Tag>
                           ) : (
                             <Tag color="red">Rejected</Tag>

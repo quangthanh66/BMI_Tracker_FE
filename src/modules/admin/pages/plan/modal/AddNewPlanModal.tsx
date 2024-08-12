@@ -50,7 +50,7 @@ const AddNewPlanModal = ({ foodsOptions, refetchPage }: TAddNewPlanModal, ref: a
   };
 
   const submitForm = (values: TAddNewPlan) => {
-    mutateAddNewPlan({ ...values, price: Number(values.price), planDuration: Number(values.planDuration) });
+    mutateAddNewPlan({ ...values, price: Number(values.price), packageDuration: Number(values.packageDuration) });
   };
 
   return (

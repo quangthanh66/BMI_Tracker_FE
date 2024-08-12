@@ -34,7 +34,7 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     icon: <img src="https://cdn-icons-png.flaticon.com/128/7439/7439231.png" alt="Users Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
-    title: 'Feedback',
+    title: 'User request',
     key: 'feedback',
     url: '/feedback',
     icon: <img src="https://cdn-icons-png.flaticon.com/128/1541/1541419.png" alt="Feedback Icon" style={{ width: '35px', height: '35px' }} />,
@@ -81,10 +81,16 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     icon: <img src="https://cdn-icons-png.flaticon.com/128/2299/2299464.png" alt="Subscription" style={{ width: '35px', height: '35px' }} />,
   },
   {
-    title: 'Plan',
+    title: 'Package',
     key: 'plan',
     url: '/plan',
     icon: <img src="https://cdn-icons-png.flaticon.com/128/3198/3198968.png" alt="Plan Icon" style={{ width: '35px', height: '35px' }} />,
+  },
+  {
+    title: 'User request',
+    key: 'feedback',
+    url: '/feedback',
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/1541/1541419.png" alt="Feedback Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Ingredients',

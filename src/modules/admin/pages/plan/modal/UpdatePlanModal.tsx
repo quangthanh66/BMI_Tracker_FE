@@ -67,7 +67,7 @@ const UpdatePlanModal = (
   const submitForm = (values: TUpdatePlan) => {
     updatePlanMutate({
       ...values,
-      planID: planUpdate.planID || -1,
+      packageID: planUpdate.packageID || -1,
     });
   };
 

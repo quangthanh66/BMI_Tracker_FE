@@ -59,7 +59,7 @@ const FeedbackManagement = () => {
   const onSearchFeedback = async (keyValue: string) => {
     if (feedbackServer) {
       const result = await feedbackServer.filter((feedback: FeedbackItemTypes) =>
-        feedback.title.toLowerCase().includes(keyValue.toLowerCase()),
+        feedback.purpose.toLowerCase().includes(keyValue.toLowerCase()),
       );
       setFeedback(result);
     }
@@ -70,7 +70,7 @@ const FeedbackManagement = () => {
       if (status) {
         setFeedback(feedbackServer);
       } else {
-        const result = feedbackServer.filter((feedBackItem: FeedbackItemTypes) => feedBackItem.status === status);
+        const result = feedbackServer.filter((feedBackItem: FeedbackItemTypes) => feedBackItem.status === "status");
         setFeedback(result);
       }
     }

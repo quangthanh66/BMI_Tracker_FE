@@ -19,31 +19,39 @@ export enum FeedbackStatus {
 
 export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: FeedbackColumnsTypes) => [
   {
-    title: 'Member',
-    dataIndex: 'memberName',
+    title: 'Name',
+    dataIndex: 'fullName',
   },
   {
-    title: 'Title',
-    dataIndex: 'title',
-    sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) => a.title.length - b.title.length,
+    title: 'Type',
+    dataIndex: 'type',
+  },
+  {
+    title: 'Purpose',
+    dataIndex: 'purpose',
+    sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) => a.purpose.length - b.purpose.length,
     sortDirections: ['descend'],
   },
 
   {
-    title: 'Type',
-    dataIndex: 'type',
+    title: 'Process Note',
+    dataIndex: 'processNote',
     render: (type: string) => <BaseTag color="geekblue">{type}</BaseTag>,
   },
   {
-    title: 'Description',
-    dataIndex: 'description',
+    title: 'Creation Date',
+    dataIndex: 'creationDate',
+  },
+  {
+    title: 'Processing Date',
+    dataIndex: 'processingDate',
   },
   {
     title: 'Status',
     dataIndex: 'status',
     render: (status: boolean) => (
       <Tag color={status === true ? 'green' : status === false ? 'volcano' : 'geekblue'}>
-        {status ? 'Completed' : 'Waitting'}
+        {status ? 'APPROVED' : 'REJECT'}
       </Tag>
     ),
     sortDirections: ['descend'],
