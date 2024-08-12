@@ -6,7 +6,7 @@ import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
 import { BaseTypography } from "@app/components/common/BaseTypography/BaseTypography";
 import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
 import { BaseSelect } from "@app/components/common/selects/BaseSelect/BaseSelect";
-import { PLAN_STATUS_LABEL } from "@app/utils/constant";
+import { PLAN_STATUS, PLAN_STATUS_LABEL } from "@app/utils/constant";
 import { useMutation } from "@tanstack/react-query";
 import { Col, Form, Row, Space, message } from "antd";
 import _ from "lodash";
@@ -67,7 +67,7 @@ const UpdatePlanModal = (
   const submitForm = (values: TUpdatePlan) => {
     updatePlanMutate({
       ...values,
-      packageID: planUpdate.packageID || -1,
+      packageID: Number(planUpdate.packageID) || -1,
     });
   };
 
@@ -90,8 +90,12 @@ const UpdatePlanModal = (
       >
         <Row gutter={[14, 14]}>
           <Col span={24}>
-            <Form.Item label="Status" name="planStatus">
-              <BaseSelect options={PLAN_STATUS_LABEL} />
+            <Form.Item label="Status" name="packageStatus">
+              <BaseSelect
+                options={PLAN_STATUS_LABEL.filter(
+                  (item) => item.value !== PLAN_STATUS.PENDING
+                )}
+              />
             </Form.Item>
           </Col>
 

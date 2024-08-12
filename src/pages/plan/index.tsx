@@ -4,6 +4,7 @@ import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
 import FilterPlan from "@app/modules/admin/pages/plan/FilterPlan";
 import AddNewPlanModal from "@app/modules/admin/pages/plan/modal/AddNewPlanModal";
 import UpdatePlanModal from "@app/modules/admin/pages/plan/modal/UpdatePlanModal";
+import { PLAN_STATUS } from "@app/utils/constant";
 import { SelectTypes } from "@app/utils/helper";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, Col, Empty, Row, Spin, Tag, Typography, message } from "antd";
@@ -200,13 +201,15 @@ const PlanManagement = () => {
                         {/* <BaseButton danger className="flex-1" onClick={() => confirmModal(item.planID)}>
                       Delete
                       </BaseButton> */}
-                        <BaseButton
-                          className="flex-1"
-                          type="primary"
-                          onClick={() => updatePlan(item)}
-                        >
-                          Confirm
-                        </BaseButton>
+                        {item.packageStatus === PLAN_STATUS.PENDING && (
+                          <BaseButton
+                            className="flex-1"
+                            type="primary"
+                            onClick={() => updatePlan(item)}
+                          >
+                            Confirm
+                          </BaseButton>
+                        )}
                       </div>
 
                       {/* <BaseButton type="primary" onClick={() => onOpenDetailPlanDialog(item.planID)}>

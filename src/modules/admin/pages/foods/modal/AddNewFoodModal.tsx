@@ -72,12 +72,16 @@ const AddNewFoodModal = (
         onCloseModal();
       },
       onError: (error: { response?: { data?: { message?: string } } }) => {
-        const message = error.response?.data?.message || "Unknown error occurred";
+        const message =
+          error.response?.data?.message || "Unknown error occurred";
         messageApi.open({
           type: "error",
-          content: message === "Food name already exists" ? "Food name already exists"
-           : "Recipe already exists" ? "Recipe already exists"
-           : "Can't create new food. Please try again!",
+          content:
+            message === "Food name already exists"
+              ? "Food name already exists"
+              : "Recipe already exists"
+              ? "Recipe already exists"
+              : "Can't create new food. Please try again!",
         });
       },
     });
@@ -122,7 +126,6 @@ const AddNewFoodModal = (
     };
   });
 
-
   useEffect(() => {
     if (ingredients.length > 0) {
       const availableIngredients = ingredients.filter((item) => item.isActive);
@@ -132,7 +135,7 @@ const AddNewFoodModal = (
           value: item.ingredientID,
         }))
         .sort((a, b) => a.label.localeCompare(b.label)); // Sort alphabetically by ingredientName
-  
+
       setIngredientOptions(convertIngredients);
     }
   }, [ingredients]);
@@ -197,7 +200,6 @@ const AddNewFoodModal = (
 
   const afterClosedRecipeDialog = (value: RecipeItem) => {
     if (value) {
-      console.log(value);
       const result = [...recipes, value];
       setRecipes(result);
     }
@@ -252,6 +254,7 @@ const AddNewFoodModal = (
         ingredientSelect={ingredientOptions}
         ref={recipeRefDialog}
         afterClosed={afterClosedRecipeDialog}
+        ingredients={ingredients}
       />
       <Spin spinning={isLoadingTags}>
         <Form
@@ -334,8 +337,6 @@ const AddNewFoodModal = (
                 <Input type="number" min={0} step="0.1" />
               </Form.Item>
             </Col>
-
-           
 
             <Col span={8}>
               <Form.Item label="Video Link" name="foodVideo">
@@ -428,7 +429,8 @@ const AddNewFoodModal = (
                               onClose={() => onRemoveRecipe(value)}
                               key={index}
                             >
-                              {getRecipeInfo(value.ingredientID)}
+                              {getRecipeInfo(value.ingredientID)} :{" "}
+                              {value.quantity} {value.unit}
                             </BaseTag>
                           );
                         })}

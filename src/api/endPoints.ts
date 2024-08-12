@@ -21,6 +21,7 @@ export const END_POINTS = {
 
   ADVISOR: {
     MAIN: "/api/advisors/getAll",
+    UPDATE_STATUS: "/api/advisors/activate",
   },
 
   AUTH: {

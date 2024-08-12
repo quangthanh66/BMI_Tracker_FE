@@ -7,4 +7,5 @@ export type AdvisorItemTypes = {
   gender: string;
   birthday: string;
   totalBooking: string;
+  isActive: boolean;
 };

@@ -1,11 +1,10 @@
-import { AdvisorColumns } from '@app/modules/trainer/pages/advisor/constant';
-import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
-import AdvisorFilter from '@app/modules/trainer/pages/advisor/AdvisorFilter';
-import { AdvisorItemTypes } from '@app/modules/trainer/pages/advisor/type';
-import { Card, Col, Empty, Row, Spin, Typography, message } from 'antd';
-import { useEffect, useRef, useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import ADVISOR_API from '@app/api/advisor';
+import ADVISOR_API from "@app/api/advisor";
+import { BaseTable } from "@app/components/common/BaseTable/BaseTable";
+import { AdvisorColumns } from "@app/modules/trainer/pages/advisor/constant";
+import { AdvisorItemTypes } from "@app/modules/trainer/pages/advisor/type";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Card, Col, Empty, Row, Spin, Typography, message } from "antd";
+import { useEffect, useRef, useState } from "react";
 
 const AdvisorManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -16,28 +15,46 @@ const AdvisorManagement = () => {
     isLoading: isLoadingLoadAdvisor,
     refetch,
     data: advisorServer,
-  } = useQuery(['advisor-list'], ADVISOR_API.GET_LIST, {
+  } = useQuery(["advisor-list"], ADVISOR_API.GET_LIST, {
     onSuccess: (response: any) => {
       setAdvisor(response);
     },
     onError: () => {
       messageApi.open({
-        type: 'error',
-        content: 'Load Advisor data is failed',
+        type: "error",
+        content: "Load Advisor data is failed",
       });
     },
     enabled: false,
   });
 
-  const { isLoading: isLoadingApproveAdvisor, mutate: approveAdvisorMutate } = useMutation({
-    mutationFn: ADVISOR_API.GET_LIST,
-    onSuccess: () => refetch(),
-    onError: () =>
-      messageApi.open({
-        type: 'error',
-        content: 'Approve advisor is failed',
-      }),
-  });
+  const { isLoading: isLoadingApproveAdvisor, mutate: approveAdvisorMutate } =
+    useMutation({
+      mutationFn: ADVISOR_API.GET_LIST,
+      onSuccess: () => refetch(),
+      onError: () =>
+        messageApi.open({
+          type: "error",
+          content: "Approve advisor is failed",
+        }),
+    });
+
+  const { isLoading: isLoadingActiveAdvisor, mutate: activeAdvisorMutate } =
+    useMutation({
+      mutationFn: ADVISOR_API.UPDATE_STATUS,
+      onSuccess: () => {
+        messageApi.open({
+          type: "error",
+          content: "Active advisor is success",
+        });
+        refetch();
+      },
+      onError: () =>
+        messageApi.open({
+          type: "error",
+          content: "Active advisor is failed",
+        }),
+    });
 
   const createAdvisorRef = useRef<any>();
   const updateAdvisorRef = useRef<any>();
@@ -79,13 +96,24 @@ const AdvisorManagement = () => {
     approveAdvisorMutate(advisorID);
   };
 
+  const onActiveAdvisor = (advisorID: number) => activeAdvisorMutate(advisorID);
+
   return (
-    <Spin spinning={isLoadingLoadAdvisor|| isLoadingApproveAdvisor} tip="Loading advisor ...">
+    <Spin
+      spinning={
+        isLoadingLoadAdvisor ||
+        isLoadingApproveAdvisor ||
+        isLoadingActiveAdvisor
+      }
+      tip="Loading advisor ..."
+    >
       {contextHolder}
       <Row gutter={[14, 14]}>
         <Col span={24}>
           <Card>
-            <Typography.Text className="text-xl font-bold">Advisor management</Typography.Text>
+            <Typography.Text className="text-xl font-bold">
+              Advisor management
+            </Typography.Text>
           </Card>
         </Col>
         {/* <UpdateSubscriptionModel
@@ -110,6 +138,7 @@ const AdvisorManagement = () => {
               columns={AdvisorColumns({
                 updateAdvisorModal: openUpdateAdvisorModal,
                 approveAdvisor: onApproveAdvisor,
+                activeAdvisor: onActiveAdvisor,
               })}
               dataSource={advisor}
               scroll={{

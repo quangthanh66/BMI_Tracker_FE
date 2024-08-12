@@ -1,11 +1,9 @@
-import { BaseTag } from '@app/components/common/BaseTag/BaseTag';
-import { FeedbackItemTypes } from './type';
-import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { CheckCircleOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { BasePopconfirm } from '@app/components/common/BasePopconfirm/BasePopconfirm';
-import { UserItemTypes } from '@app/api/users/type';
-import { Tag, Typography } from 'antd';
+import { EditOutlined } from "@ant-design/icons";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { BaseTag } from "@app/components/common/BaseTag/BaseTag";
+import { BaseTooltip } from "@app/components/common/BaseTooltip/BaseTooltip";
+import { PLAN_STATUS } from "@app/utils/constant";
+import { FeedbackItemTypes } from "./type";
 
 type FeedbackColumnsTypes = {
   updateFeedbackModal: (feedback: FeedbackItemTypes) => void;
@@ -13,79 +11,81 @@ type FeedbackColumnsTypes = {
 };
 
 export enum FeedbackStatus {
-  active = 'true',
-  deactive = 'false',
+  active = "true",
+  deactive = "false",
 }
 
-export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: FeedbackColumnsTypes) => [
+export const FeedbackColumns: any = ({
+  updateFeedbackModal,
+  approveFeedback,
+}: FeedbackColumnsTypes) => [
   {
-    title: 'Name',
-    dataIndex: 'fullName',
+    title: "Name",
+    dataIndex: "fullName",
   },
   {
-    title: 'Type',
-    dataIndex: 'type',
+    title: "Type",
+    dataIndex: "type",
     render: (type: string) => <BaseTag color="geekblue">{type}</BaseTag>,
   },
   {
-    title: 'Purpose',
-    dataIndex: 'purpose',
-    sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) => a.purpose.length - b.purpose.length,
-    sortDirections: ['descend'],
+    title: "Purpose",
+    dataIndex: "purpose",
+    sorter: (a: FeedbackItemTypes, b: FeedbackItemTypes) =>
+      a.purpose.length - b.purpose.length,
+    sortDirections: ["descend"],
   },
 
   {
-    title: 'Process Note',
-    dataIndex: 'processNote',
+    title: "Process Note",
+    dataIndex: "processNote",
   },
   {
-    title: 'Creation Date',
-    dataIndex: 'creationDate',
+    title: "Creation Date",
+    dataIndex: "creationDate",
   },
   {
-    title: 'Processing Date',
-    dataIndex: 'processingDate',
+    title: "Processing Date",
+    dataIndex: "processingDate",
   },
 
   {
-    title: 'Status',
-    dataIndex: 'status',
+    title: "Status",
+    dataIndex: "status",
     render: (status: string) => {
       let color;
 
       switch (status) {
-        case 'APPROVED':
-          color = 'green';
+        case "APPROVED":
+          color = "green";
           break;
-        case 'REJECTED':
-          color = 'red';
+        case "REJECTED":
+          color = "red";
           break;
-        case 'PENDING':
-          color = 'blue';
+        case "PENDING":
+          color = "blue";
           break;
       }
 
-      return (
-        <span style={{ color }}>
-          {status}
-        </span>
-      );
+      return <span style={{ color }}>{status}</span>;
     },
   },
   {
-    title: 'Actions',
-    dataIndex: 'feedbackID',
-    render: (feedbackID: string, feedback: FeedbackItemTypes) => (
+    title: "Actions",
+    dataIndex: "status",
+    render: (status: PLAN_STATUS, feedback: FeedbackItemTypes) => (
       <div className="flex items-center gap-x-4">
-        <BaseTooltip title="Edit feedback information">
-          <BaseButton
-            onClick={() => updateFeedbackModal(feedback)}
-            icon={<EditOutlined className="text-[24px]" />}
-            type="text"
-          ></BaseButton>
-        </BaseTooltip>
+        {![PLAN_STATUS.APPROVED, PLAN_STATUS.REJECTED].includes(status) && (
+          <BaseTooltip title="Edit feedback information">
+            <BaseButton
+              onClick={() => updateFeedbackModal(feedback)}
+              icon={<EditOutlined className="text-[24px]" />}
+              type="text"
+            ></BaseButton>
+          </BaseTooltip>
+        )}
 
-        {!feedback.status && (
+        {/* {!feedback.status && (
           <BaseTooltip title="Active">
             <BaseButton
               onClick={() => approveFeedback(feedbackID)}
@@ -93,7 +93,7 @@ export const FeedbackColumns: any = ({ updateFeedbackModal, approveFeedback }: F
               type="text"
             ></BaseButton>
           </BaseTooltip>
-        )}
+        )} */}
       </div>
     ),
   },
