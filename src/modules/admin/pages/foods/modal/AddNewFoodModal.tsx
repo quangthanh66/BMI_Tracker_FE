@@ -272,6 +272,30 @@ const AddNewFoodModal = (
 
             <Col span={8}>
               <Form.Item
+                label="Serving (person)"
+                name="serving"
+                rules={[fieldValidate.required]}
+              >
+                <Select
+                  placeholder="Select number person"
+                  dropdownStyle={{ maxHeight: 200, overflow: "auto" }}
+                >
+                  <Option value="1">1</Option>
+                  <Option value="2">2</Option>
+                  <Option value="3">3</Option>
+                  <Option value="4">4</Option>
+                  <Option value="5">4</Option>
+                  <Option value="6">5</Option>
+                  <Option value="7">7</Option>
+                  <Option value="8">8</Option>
+                  <Option value="9">9</Option>
+                  <Option value="10">10</Option>
+                </Select>
+              </Form.Item>
+            </Col>
+
+            <Col span={8}>
+              <Form.Item
                 label="Calories (kcal)"
                 name="foodCalories"
                 rules={[fieldValidate.required]}
@@ -310,29 +334,7 @@ const AddNewFoodModal = (
               </Form.Item>
             </Col>
 
-            <Col span={8}>
-              <Form.Item
-                label="Serving (person)"
-                name="serving"
-                rules={[fieldValidate.required]}
-              >
-                <Select
-                  placeholder="Select number person"
-                  dropdownStyle={{ maxHeight: 200, overflow: "auto" }}
-                >
-                  <Option value="1">1</Option>
-                  <Option value="2">2</Option>
-                  <Option value="3">3</Option>
-                  <Option value="4">4</Option>
-                  <Option value="5">4</Option>
-                  <Option value="6">5</Option>
-                  <Option value="7">7</Option>
-                  <Option value="8">8</Option>
-                  <Option value="9">9</Option>
-                  <Option value="10">10</Option>
-                </Select>
-              </Form.Item>
-            </Col>
+           
 
             <Col span={8}>
               <Form.Item label="Video Link" name="foodVideo">
