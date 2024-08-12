@@ -180,28 +180,14 @@ const IngredientManagement = () => {
                           <Typography.Title level={5}>
                             {item.ingredientName}
                           </Typography.Title>
-                          <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>
-                              Quantity :
-                            </span>{" "}
-                            <span style={{ textTransform: "lowercase" }}>
-                              {item.quantity}
-                            </span>
-                          </Typography.Text>
+                          
                           <Typography.Text className="!text-black">
                             <span style={{ fontWeight: "bold" }}>Unit :</span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.unit}
                             </span>
                           </Typography.Text>
-                          <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>
-                              Calories :
-                            </span>{" "}
-                            <span style={{ textTransform: "lowercase" }}>
-                              {item.ingredientCalories} (kcal)
-                            </span>
-                          </Typography.Text>
+                      
                           <Typography.Text className="!text-black">
                             <span style={{ fontWeight: "bold" }}>Tags :</span>{" "}
                             <span
