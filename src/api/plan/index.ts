@@ -11,7 +11,7 @@ const PLAN_API = {
     axiosClient.delete(`${END_POINTS.DELETE_PLAN}/${planID}`),
   UPDATE_PLAN: (params: TUpdatePlan) => {
     return axiosClient.put(
-      `${END_POINTS.UPDATE_PLAN}?packageID =${params.packageID}&packageStatus=${params.packageStatus}`
+      `${END_POINTS.UPDATE_PLAN}?packageID=${params.packageID}&packageStatus=${params.packageStatus}`
     );
   },
 
