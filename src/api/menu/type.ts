@@ -7,8 +7,8 @@ export type TMenuItem = {
   isActive: boolean;
   advisorID: number;
   advisorName: string; 
+  membersUsing: string;
 };
-
 export type TAddNewMenu = {
   menuName: string;
   menuDescription: string;

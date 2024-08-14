@@ -162,15 +162,6 @@ const MenuManagement = () => {
                     key={index}
                   >
                     <div className="w-full flex flex-col gap-1 flex-grow">
-                      {/* <Image
-                      alt="food-alt"
-                      src={item.menuPhoto}
-                      className="w-full h-[200px] object-cover rounded-md"
-                      onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src = errorImage;
-                      }}
-                    /> */}
                       <Typography.Title level={5}>
                         {item.menuName}
                       </Typography.Title>
@@ -183,11 +174,34 @@ const MenuManagement = () => {
                         </span>
                       </Typography.Paragraph>
                       <Typography.Paragraph className="!text-black">
+                        <span style={{ fontWeight: "bold" }}>Total Calories :</span>{" "}
+                        <span style={{ textTransform: "lowercase" }}>
+                          {item.totalCalories}
+                        </span>
+                      </Typography.Paragraph>
+                      <Typography.Paragraph className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Created by :</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.advisorName}
                         </span>
                       </Typography.Paragraph>
+                     
+
+                      <Typography.Paragraph className="!text-black">
+                        <span style={{ fontWeight: "bold" }}>Using by :</span>
+                        {Array.isArray(item.membersUsing) ? (
+                          <div style={{ textTransform: "uppercase" }}>
+                            {item.membersUsing.map((member, index) => (
+                              <div key={index}>{member}</div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div style={{ textTransform: "lowercase" }}>
+                            {item.membersUsing}
+                          </div>
+                        )}
+                      </Typography.Paragraph>
+
                       <Typography.Paragraph className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                         <span>
