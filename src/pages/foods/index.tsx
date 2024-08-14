@@ -237,6 +237,7 @@ const FoodManagement = () => {
                             {item.creationDate} (day)
                           </span>
                         </Typography.Text>
+
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                           <span>
@@ -245,7 +246,7 @@ const FoodManagement = () => {
                                 color="green"
                                 style={{ fontWeight: "bold", fontSize: "16px" }}
                               >
-                                Active
+                                Activate
                               </Tag>
                             ) : (
                               <Tag
@@ -257,6 +258,7 @@ const FoodManagement = () => {
                             )}
                           </span>
                         </Typography.Text>
+
                       </div>
                     </div>
 
@@ -270,26 +272,29 @@ const FoodManagement = () => {
                       >
                         Recipe
                       </BaseButton>
+                      {item.isActive === true && (
+                        <BaseButton
+                          icon={<FileAddOutlined />}
+                          className="flex-1"
+                          type="primary"
+                          onClick={() => updateFood(item.foodID)}
+                          size="small"
+                        >
+                          Update
+                        </BaseButton>
+                      )}
+                      {item.isActive === true && (
+                        <BaseButton
+                          danger
+                          icon={<DeleteOutlined />}
+                          className="flex-1"
+                          onClick={() => confirmModal(item.foodID)}
+                          size="small"
+                        >
+                          Deactivate
+                        </BaseButton>
+                      )}
 
-                      <BaseButton
-                        icon={<FileAddOutlined />}
-                        className="flex-1"
-                        type="primary"
-                        onClick={() => updateFood(item.foodID)}
-                        size="small"
-                      >
-                        Update
-                      </BaseButton>
-
-                      <BaseButton
-                        danger
-                        icon={<DeleteOutlined />}
-                        className="flex-1"
-                        onClick={() => confirmModal(item.foodID)}
-                        size="small"
-                      >
-                        Delete
-                      </BaseButton>
                     </div>
                   </div>
                 );

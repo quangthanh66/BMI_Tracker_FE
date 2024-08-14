@@ -174,9 +174,9 @@ const WorkoutManagement = () => {
                           <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                           <span className="font-semibold !text-black">
                             {item.isActive ? (
-                              <Tag color="green">Approve</Tag>
+                              <Tag color="green">Activate</Tag>
                             ) : (
-                              <Tag color="red">Cancel</Tag>
+                              <Tag color="red">Deactivate</Tag>
                             )}
                           </span>
                         </Typography.Text>
@@ -184,7 +184,7 @@ const WorkoutManagement = () => {
                     </div>
 
                     <div className="flex items-center mt-4  gap-2 w-full">
-                      <BaseButton
+                      {/* <BaseButton
                         danger
                         icon={<DeleteOutlined />}
                         className="flex-1"
@@ -192,7 +192,7 @@ const WorkoutManagement = () => {
                         size="small"
                       >
                         Delete
-                      </BaseButton>
+                      </BaseButton> */}
                       {/* <BaseButton
                       icon={<FileAddOutlined />}
                       className="flex-1"

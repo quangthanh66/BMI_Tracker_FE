@@ -225,21 +225,24 @@ const ExerciseManagement = () => {
                             <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                             <span className="font-semibold !text-black">
                               {item.isActive ? (
-                                <Tag color="green">Approve</Tag>
+                                <Tag color="green">Activate</Tag>
                               ) : (
-                                <Tag color="red">Cancel</Tag>
+                                <Tag color="red">Deactivate</Tag>
                               )}
                             </span>
                           </Typography.Text>
-
+                         
                           <div className="grid grid-cols-2 gap-2 w-full">
+                          {item.isActive === true && (
                             <BaseButton
                               danger
                               icon={<DeleteOutlined />}
                               onClick={() => confirmModal(item.exerciseID)}
                             >
-                              Delete
+                              Deactivate
                             </BaseButton>
+                          )}
+                           {item.isActive === true && (
                             <BaseButton
                               icon={<FileAddOutlined />}
                               type="primary"
@@ -247,6 +250,7 @@ const ExerciseManagement = () => {
                             >
                               Update
                             </BaseButton>
+                            )}
                           </div>
                         </div>
                       </div>
