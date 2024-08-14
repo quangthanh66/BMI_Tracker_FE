@@ -180,14 +180,14 @@ const IngredientManagement = () => {
                           <Typography.Title level={5}>
                             {item.ingredientName}
                           </Typography.Title>
-                          
+
                           <Typography.Text className="!text-black">
                             <span style={{ fontWeight: "bold" }}>Unit :</span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.unit}
                             </span>
                           </Typography.Text>
-                      
+
                           <Typography.Text className="!text-black">
                             <span style={{ fontWeight: "bold" }}>Tags :</span>{" "}
                             <span
@@ -203,35 +203,39 @@ const IngredientManagement = () => {
                             </span>
                           </Typography.Text>
 
-                          <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
-                            <span>
-                              {item.isActive ? (
-                                <Tag color="green">Active</Tag>
-                              ) : (
-                                <Tag color="red">Deactivate</Tag>
-                              )}
-                            </span>
-                          </Typography.Text>
+                        
+                            <Typography.Text className="!text-black">
+                              <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
+                              <span>
+                                {item.isActive ? (
+                                  <Tag color="green">Activate</Tag>
+                                ) : (
+                                  <Tag color="red">Deactivate</Tag>
+                                )}
+                              </span>
+                            </Typography.Text>
+                        
                           <div className="flex items-center gap-x-2 text-black"></div>
                         </div>
-
                         <div className="grid grid-cols-2 gap-2 w-full">
-                          <BaseButton
-                            icon={<FileAddOutlined />}
-                            type="primary"
-                            onClick={() => updateIngredient(item)}
-                          >
-                            Update
-                          </BaseButton>
-
-                          <BaseButton
-                            danger
-                            icon={<DeleteOutlined />}
-                            onClick={() => confirmModal(item.ingredientID)}
-                          >
-                            Delete
-                          </BaseButton>
+                          {item.isActive === true && (
+                            <BaseButton
+                              icon={<FileAddOutlined />}
+                              type="primary"
+                              onClick={() => updateIngredient(item)}
+                            >
+                              Update
+                            </BaseButton>
+                          )}
+                          {item.isActive === true && (
+                            <BaseButton
+                              danger
+                              icon={<DeleteOutlined />}
+                              onClick={() => confirmModal(item.ingredientID)}
+                            >
+                              Delete
+                            </BaseButton>
+                          )}
                         </div>
                       </div>
                     </Card>

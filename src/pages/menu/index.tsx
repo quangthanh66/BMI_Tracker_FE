@@ -206,7 +206,7 @@ const MenuManagement = () => {
                         <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                         <span>
                           {item.isActive ? (
-                            <Tag color="green">Active</Tag>
+                            <Tag color="green">Activate</Tag>
                           ) : (
                             <Tag color="red">Deactivate</Tag>
                           )}
@@ -216,14 +216,14 @@ const MenuManagement = () => {
 
                     <div className="flex flex-col gap-y-2">
                       <div className="flex items-center gap-2 w-full">
-                        <BaseButton
+                        {/* <BaseButton
                           danger
                           className="flex-1"
                           size="small"
                           onClick={() => confirmModal(item.menuID)}
                         >
                           Deactivate
-                        </BaseButton>
+                        </BaseButton> */}
                       </div>
 
                       <BaseButton

@@ -21,7 +21,7 @@ interface LoginFormData {
 
 export const initValues: LoginFormData = {
   email: "admin@gmail.com",
-  password: "As123456",
+  password: "As123456@",
   role: USER_ROLES_ENUM.ROLE_ADMIN,
 };
 
