@@ -156,13 +156,13 @@ const CertificateManagement = () => {
           refreshPage={onRefetchList}
         />
 
-        <Col span={24}>
+        {/* <Col span={24}>
           <Card size="small">
             <CertificateFilter
               onCreateNewCertificate={openCreateCertificateModal}
             />
           </Card>
-        </Col>
+        </Col> */}
 
         <Col span={24}>
           {certificates && certificates.length > 0 && (
@@ -175,7 +175,7 @@ const CertificateManagement = () => {
               })}
               dataSource={certificates}
               scroll={{
-                y: (1 - 425 / window.innerHeight) * window.innerHeight,
+                y: (1 - 310 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />

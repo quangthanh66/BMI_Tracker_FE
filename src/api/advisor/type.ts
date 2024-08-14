@@ -7,4 +7,6 @@ export type AdvisorItemTypes = {
   gender: string;
   birthday: string;
   totalSubscription: string;
+  bankNumber: string;
+  bankName: string;
 };

@@ -86,7 +86,7 @@ const FeedbackManagement = () => {
       <Row gutter={[14, 14]}>
         <Col span={24}>
           <Card>
-            <Typography.Text className="text-xl font-bold">Feedback management</Typography.Text>
+            <Typography.Text className="text-xl font-bold">User request management</Typography.Text>
           </Card>
         </Col>
         <UpdateFeedbackModel
@@ -94,7 +94,7 @@ const FeedbackManagement = () => {
           feedbackUpdate={feedbackUpdate as FeedbackItemTypes}
           onRefreshPage={() => refetch()}
         />
-        <Col span={24}>
+        {/* <Col span={24}>
           <Card size="small">
             <FeedbackFilter
               onCreateFeedback={openCreateFeedbackModal}
@@ -102,7 +102,7 @@ const FeedbackManagement = () => {
               onFilterFeedbackStatus={onFilterFeedbackStatus}
             />
           </Card>
-        </Col>
+        </Col> */}
 
         {feedback.length > 0 ? (
           <Col span={24}>
@@ -114,7 +114,7 @@ const FeedbackManagement = () => {
               })}
               dataSource={feedback}
               scroll={{
-                y: (1 - 450 / window.innerHeight) * window.innerHeight,
+                y: (1 - 310 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />

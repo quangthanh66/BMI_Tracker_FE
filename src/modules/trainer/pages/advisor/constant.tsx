@@ -60,6 +60,21 @@ export const AdvisorColumns: any = ({
     sortDirections: ["descend"],
   },
   {
+    title: "Bank name",
+    dataIndex: "bankName",
+    sortDirections: ["descend"],
+  },
+  {
+    title: "Bank number",
+    dataIndex: "bankNumber",
+    sortDirections: ["descend"],
+  },
+  {
+    title: "Total subscription",
+    dataIndex: "totalSubscription",
+    sortDirections: ["descend"],
+  },
+  {
     title: "Active",
     dataIndex: "isActive",
     render: (isACtive: boolean) => (
@@ -69,12 +84,7 @@ export const AdvisorColumns: any = ({
     ),
   },
   {
-    title: "Total subscription",
-    dataIndex: "totalSubscription",
-    sortDirections: ["descend"],
-  },
-  {
-    title: "Active advisor",
+    title: "Status",
     dataIndex: "advisorID",
     render: (id: number, info: AdvisorItemTypes) => (
       <>
@@ -84,7 +94,7 @@ export const AdvisorColumns: any = ({
           onClick={() => activeAdvisor(id)}
           disabled={info.isActive}
         >
-          Active
+          Confirm
         </BaseButton>
       </>
     ),
