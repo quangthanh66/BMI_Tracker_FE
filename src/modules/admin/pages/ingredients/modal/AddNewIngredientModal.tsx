@@ -89,7 +89,7 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
       footer={null}
       open={isOpenModal}
       onCancel={onCloseModal}
-      title={<BaseTypography className="text-xl !text-black">Add new ingredient</BaseTypography>}
+      title={<BaseTypography className="text-xl !text-black">Add ingredient</BaseTypography>}
       width={800}
     >
       {contextHolder}
@@ -100,11 +100,7 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
               <BaseInput />
             </Form.Item>
           </Col>
-          {/* <Col span={12}>
-            <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
-              <BaseInput />
-            </Form.Item>
-          </Col> */}
+
           <Col span={12}>
             <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
               <Select placeholder="Select a unit">
@@ -115,19 +111,10 @@ const AddNewIngredientModal = ({ refetchPage, tagsSelect }: TAddNewIngredientMod
               </Select>
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item label="Quantity" name="quantity" rules={[fieldValidate.required]}>
-              <BaseInput type="number" min={0} />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="Calories (kcal)" name="ingredientCalories"  rules={[fieldValidate.required]}>
-              <BaseInput type="number" min={0} />
-            </Form.Item>
-          </Col>
+
           <Col span={12}>
             <Form.Item label="Tags" name="tagID" rules={[fieldValidate.required]}>
-              <Select options={tagsSelect} />
+              <Select placeholder="Select a tags" options={tagsSelect} />
             </Form.Item>
           </Col>
           <Col span={12}>

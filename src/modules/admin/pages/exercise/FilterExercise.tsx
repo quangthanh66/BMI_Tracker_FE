@@ -21,7 +21,7 @@ const FilterExercise = ({ searchExercise,  addNewExercise }: TFilterExercise) =>
         </Row>
 
         <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewExercise}>
-          Create
+          Add
         </BaseButton>
       </div>
     </Card>

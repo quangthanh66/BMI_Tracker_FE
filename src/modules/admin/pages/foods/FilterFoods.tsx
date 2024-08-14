@@ -41,7 +41,7 @@ const FilterFoods = ({ addNewFood, searchFood }: TFilterFoods) => {
             icon={<PlusOutlined />}
             onClick={addNewFood}
           >
-            Create Food
+            Add
           </BaseButton>
         </div>
       </div>

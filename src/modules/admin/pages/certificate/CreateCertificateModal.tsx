@@ -35,7 +35,7 @@ const CreateCertificateModal = (
       onSuccess: () => {
         messageApi.open({
           type: "success",
-          content: "Create a new Certificate is success",
+          content: "Add Certificate is success",
         });
 
         onCloseModal();
@@ -44,7 +44,7 @@ const CreateCertificateModal = (
       onError: () => {
         messageApi.open({
           type: "error",
-          content: "Create a new Certificate is failed",
+          content: "Add Certificate is failed",
         });
       },
     }
@@ -102,7 +102,7 @@ const CreateCertificateModal = (
       closeIcon
       title={
         <BaseTypography className="text-xl">
-          Create a new certificate
+          Add certificate
         </BaseTypography>
       }
     >

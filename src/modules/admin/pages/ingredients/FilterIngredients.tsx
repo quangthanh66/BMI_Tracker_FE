@@ -21,7 +21,7 @@ const FilterIngredients = ({ searchIngredients, addNewIngredient }: TFilterIngre
         </Row>
 
         <BaseButton type="primary" icon={<PlusOutlined />} onClick={addNewIngredient}>
-          Create
+          Add
         </BaseButton>
       </div>
     </Card>

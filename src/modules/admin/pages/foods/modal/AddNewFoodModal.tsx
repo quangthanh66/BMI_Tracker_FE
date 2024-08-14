@@ -65,7 +65,7 @@ const AddNewFoodModal = (
       onSuccess: () => {
         messageApi.open({
           type: "success",
-          content: "Create a new food is successfully",
+          content: "Add a new food is successfully",
         });
         setRecipes([]);
         refetchFoodPage();
@@ -81,7 +81,7 @@ const AddNewFoodModal = (
               ? "Food name already exists"
               : "Recipe already exists"
               ? "Recipe already exists"
-              : "Can't create new food. Please try again!",
+              : "Can't add new food. Please try again!",
         });
       },
     });
@@ -288,8 +288,8 @@ const AddNewFoodModal = (
                   <Option value="2">2</Option>
                   <Option value="3">3</Option>
                   <Option value="4">4</Option>
-                  <Option value="5">4</Option>
-                  <Option value="6">5</Option>
+                  <Option value="5">5</Option>
+                  <Option value="6">6</Option>
                   <Option value="7">7</Option>
                   <Option value="8">8</Option>
                   <Option value="9">9</Option>
@@ -361,6 +361,7 @@ const AddNewFoodModal = (
                 rules={[fieldValidate.required]}
               >
                 <Select
+                  placeholder="Select a tags"
                   options={tagsOptions}
                   mode="multiple"
                   allowClear

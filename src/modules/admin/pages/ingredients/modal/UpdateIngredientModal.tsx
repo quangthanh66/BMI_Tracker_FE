@@ -149,24 +149,7 @@ const UpdateIngredientModal = (
               </Select>
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item
-              label="Quantity"
-              name="quantity"
-              rules={[fieldValidate.required]}
-            >
-              <BaseInput />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="Calories (kcal)"
-              name="ingredientCalories"
-              rules={[fieldValidate.required]}
-            >
-              <BaseInput />
-            </Form.Item>
-          </Col>
+  
           <Col span={12}>
             <Form.Item
               label="Tags"

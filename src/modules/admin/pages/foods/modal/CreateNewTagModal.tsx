@@ -52,7 +52,7 @@ const CreateNewTagModal = ({}, ref: any) => {
       onError: () =>
         messageApi.open({
           type: "error",
-          content: "Cant create new tag . Please try again !",
+          content: "Can't create new tag . Please try again !",
         }),
       onSuccess: (response) => {
         messageApi.open({

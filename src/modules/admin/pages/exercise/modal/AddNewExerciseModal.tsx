@@ -37,7 +37,7 @@ const AddNewExerciseModal = (
       onSuccess: () => {
         messageApi.open({
           type: "success",
-          content: "Create a new exercise is successfully",
+          content: "Add a new exercise is successfully",
         });
 
         refetchPage();
@@ -46,7 +46,7 @@ const AddNewExerciseModal = (
       onError: (error) => {
         messageApi.open({
           type: "error",
-          content: "Cannot create new exercise . Please try again !",
+          content: "Cannot add new exercise . Please try again !",
         });
       },
     }
@@ -98,7 +98,7 @@ const AddNewExerciseModal = (
       onCancel={onCloseModal}
       title={
         <BaseTypography className="text-xl !text-black">
-          Create new exercise
+          Add exercise
         </BaseTypography>
       }
       width={800}

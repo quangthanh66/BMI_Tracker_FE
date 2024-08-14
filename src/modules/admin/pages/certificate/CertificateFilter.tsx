@@ -16,7 +16,7 @@ const CertificateFilter = ({
         icon={<PlusOutlined />}
         onClick={onCreateNewCertificate}
       >
-        Create a new Certificate
+        Add certificate
       </BaseButton>
     </div>
   );
