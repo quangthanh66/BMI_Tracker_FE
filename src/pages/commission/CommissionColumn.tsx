@@ -9,7 +9,7 @@ export const CommissionColumns: any = ({}: ICommissionEvents) => [
     key: "commissionAllocationID",
   },
   {
-    title: "Amount",
+    title: "Amount (VND)",
     dataIndex: "amount",
     key: "amount",
   },

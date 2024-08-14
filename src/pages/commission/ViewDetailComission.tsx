@@ -37,7 +37,7 @@ const ViewDetailCommission = ({}, ref: any) => {
 
   return (
     <BaseModal
-      title="Detail Commission "
+      title="Detail Commissions"
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon

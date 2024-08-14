@@ -176,7 +176,7 @@ const MenuManagement = () => {
                       <Typography.Paragraph className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Total Calories :</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
-                          {item.totalCalories}
+                          {item.totalCalories} (kcal)
                         </span>
                       </Typography.Paragraph>
                       <Typography.Paragraph className="!text-black">

@@ -44,7 +44,7 @@ const AdvisorManagement = () => {
       mutationFn: ADVISOR_API.UPDATE_STATUS,
       onSuccess: () => {
         messageApi.open({
-          type: "error",
+          type: "success",
           content: "Active advisor is success",
         });
         refetch();

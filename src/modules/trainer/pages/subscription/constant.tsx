@@ -17,7 +17,9 @@ export enum SubscriptionStatus {
   active = 'true',
   deactive = 'false',
 }
-
+function formatNumber(num: number): string {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 function convertDateFormat(inputDate: string): string {
   // Split the input date into year, month, and day
   const parts = inputDate.split('-');
@@ -43,6 +45,7 @@ export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubsc
     title: 'Amount (VND)',
     dataIndex: 'amount',
     sortDirections: ['descend'],
+    render: (text: number) => formatNumber(text),
   },
   {
     title: 'Subscription Date',
