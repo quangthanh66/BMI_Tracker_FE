@@ -98,5 +98,5 @@ export enum BLOG_STATUS {
 }
 
 export enum DATE_TIME_FORMAT {
-  FULL_DATE_TIME = "MM/DD/YYYY - HH:mm A",
+  FULL_DATE_TIME = "DD/MM/YYYY - HH:mm A",
 }
