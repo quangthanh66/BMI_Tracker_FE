@@ -101,8 +101,7 @@ const ViewDetailRecipeDialog = (
 
       <AddNewFoodRecipe
         ref={addNewRecipeRef}
-        afterClosedDialog={afterClosedAddNewRecipeDialog}
-      />
+        afterClosedDialog={afterClosedAddNewRecipeDialog}/>
       <Spin spinning={isLoadingRemoveRecipe} tip="Loading...">
         <BaseTable
           columns={FoodRecipeColumns({ onDeleteFoodRecipe })}

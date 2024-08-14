@@ -14,6 +14,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Col, Form, message, Select, Spin } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
+
 type AddNewFoodRecipeProps = {
   afterClosedDialog: (value: RecipeItem) => void;
 };
@@ -40,7 +41,7 @@ const AddNewFoodRecipe = (
           value: item.ingredientID,
         }))
         .sort((a, b) => a.label.localeCompare(b.label)); // Sort alphabetically by ingredientName
-  
+
       setIngredientOptions(convertResult);
     },
     onError: () => {
@@ -51,25 +52,16 @@ const AddNewFoodRecipe = (
     },
   });
 
+
   const { isLoading: isLoadingAddNewRecipe, mutate: mutateAddNewRecipe } =
     useMutation(FOOD_API.ADD_FOOD_RECIPE, {
-      onError: (error: unknown) => {
-        // Ép kiểu error thành một đối tượng biết loại
-        const errorMessage = (error as { message?: string }).message;
-
+      onError: () => {
         messageApi.open({
           type: "error",
-          content: errorMessage === "Recipe already exists"
-            ? "Recipe already exists"
-            : "Recipe already exists",
+          content: "Add new ingredient is failed",
         });
       },
     });
-
-
-
- 
-
 
   useImperativeHandle(ref, () => {
     return {
@@ -131,27 +123,29 @@ const AddNewFoodRecipe = (
           onFinish={onSubmitForm}
         >
           <BaseRow gutter={[20, 20]}>
+
             <BaseCol span={24}>
               <BaseForm.Item
                 name="ingredientID"
                 label="Ingredient"
                 rules={[fieldValidate.required]}
               >
-                <BaseSelect options={ingredientOptions} />
+                <BaseSelect
+                  options={ingredientOptions}
+                />
               </BaseForm.Item>
             </BaseCol>
 
-        
             <Col span={12}>
-            <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
-              <Select placeholder="Select a unit">
-                <Option value="g">g</Option>
-                <Option value="mL">mL</Option>
-                <Option value="tbsp">tbsp</Option>
-                <Option value="tsp">tsp</Option>
-              </Select>
-            </Form.Item>
-          </Col>
+              <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
+                <Select placeholder="Select a unit">
+                  <Option value="g">g</Option>
+                  <Option value="mL">mL</Option>
+                  <Option value="tbsp">tbsp</Option>
+                  <Option value="tsp">tsp</Option>
+                </Select>
+              </Form.Item>
+            </Col>
 
             <BaseCol span={12}>
               <BaseForm.Item
