@@ -40,7 +40,6 @@ const RecipeDialog = (
 
   const onChangeIngredient = (id: any) => {
     const result = ingredients.find((item) => +item.ingredientID === id);
-    console.log(result);
     if (result) {
       form.setFieldValue("unit", result.unit);
     }

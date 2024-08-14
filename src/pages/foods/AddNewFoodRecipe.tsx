@@ -14,7 +14,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Col, Form, message, Select, Spin } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
-
 type AddNewFoodRecipeProps = {
   afterClosedDialog: (value: RecipeItem) => void;
 };
@@ -51,7 +50,6 @@ const AddNewFoodRecipe = (
       });
     },
   });
-
 
   const { isLoading: isLoadingAddNewRecipe, mutate: mutateAddNewRecipe } =
     useMutation(FOOD_API.ADD_FOOD_RECIPE, {
@@ -107,9 +105,16 @@ const AddNewFoodRecipe = (
     getIngredients();
   }, []);
 
+  const onChangeIngredient = (id: any) => {
+    const result = ingredientsList?.find((item) => +item.ingredientID === id);
+    if (result) {
+      form.setFieldValue("unit", result.unit);
+    }
+  };
+
   return (
     <BaseModal
-      title="Add ingredient"
+      title="Add ingredient testing"
       open={isOpenModal}
       onCancel={onCloseModal}
       footer={null}
@@ -123,7 +128,6 @@ const AddNewFoodRecipe = (
           onFinish={onSubmitForm}
         >
           <BaseRow gutter={[20, 20]}>
-
             <BaseCol span={24}>
               <BaseForm.Item
                 name="ingredientID"
@@ -132,13 +136,18 @@ const AddNewFoodRecipe = (
               >
                 <BaseSelect
                   options={ingredientOptions}
+                  onChange={onChangeIngredient}
                 />
               </BaseForm.Item>
             </BaseCol>
 
             <Col span={12}>
-              <Form.Item label="Unit" name="unit" rules={[fieldValidate.required]}>
-                <Select placeholder="Select a unit">
+              <Form.Item
+                label="Unit"
+                name="unit"
+                rules={[fieldValidate.required]}
+              >
+                <Select placeholder="Select a unit" open={false}>
                   <Option value="g">g</Option>
                   <Option value="mL">mL</Option>
                   <Option value="tbsp">tbsp</Option>

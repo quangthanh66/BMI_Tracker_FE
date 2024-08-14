@@ -3,7 +3,6 @@ import { EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { BaseButton } from "components/common/BaseButton/BaseButton";
 import { BaseTag } from "components/common/BaseTag/BaseTag";
 import { BaseTooltip } from "components/common/BaseTooltip/BaseTooltip";
-import dayjs from "dayjs";
 import { CommissionItemTypes } from "./type";
 
 type CommissionColumnsTypes = {
@@ -37,15 +36,19 @@ export const CommissionColumns: any = ({
   {
     title: "Paid Date",
     dataIndex: "paidDate",
-    //render: (text: string) => convertDateFormat(text),
-    sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
+    sorter: (a: string, b: string) =>
+      new Date(a).getTime() - new Date(b).getTime(),
     sortDirections: ["ascend", "descend"],
   },
   {
     title: "Deadline",
     dataIndex: "expectedPaymentDate",
-    // render: (text: string) => convertDateFormat(text),
-    sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
+    key: "deadline",
+    sorter: (a: string, b: string) => {
+      const dateA = new Date(a).getTime();
+      const dateB = new Date(b).getTime();
+      return dateA - dateB;
+    },
     sortDirections: ["ascend", "descend"],
   },
   {
