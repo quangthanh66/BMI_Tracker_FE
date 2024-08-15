@@ -85,7 +85,7 @@ const UpdateCertificateAdmin = (
       title={
         <Typography className="text-xl">Update Advisor Certificate</Typography>
       }
-      width={800}
+      width={1250}
     >
       {contextHolder}
 
@@ -103,22 +103,10 @@ const UpdateCertificateAdmin = (
               </Typography.Text>
             </Descriptions.Item>
 
-            <Descriptions.Item label="Height" className="!text-black">
-              <Typography.Text className="!text-black">
-                {certficiateDetailResult.advisor?.height}
-              </Typography.Text>
-            </Descriptions.Item>
-
-            <Descriptions.Item label="Weight" className="!text-black">
-              <Typography.Text className="!text-black">
-                {certficiateDetailResult.advisor?.weight}
-              </Typography.Text>
-            </Descriptions.Item>
-
             <Descriptions.Item label="Status" className="!text-black">
               <Badge
                 status="processing"
-                text={certficiateDetailResult.isActive ? "Active" : "DeActive"}
+                text={certficiateDetailResult.isActive ? "Activate" : "DeActivate"}
               />
             </Descriptions.Item>
 
@@ -129,7 +117,7 @@ const UpdateCertificateAdmin = (
                   onChangeCertificateStatus(!certficiateDetailResult.isActive)
                 }
               >
-                {certficiateDetailResult.isActive ? "Deactive" : "Active"}
+                {certficiateDetailResult.isActive ? "Deactivate" : "Activate"}
               </BaseButton>
             </Descriptions.Item>
           </Descriptions>

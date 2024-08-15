@@ -33,20 +33,24 @@ export const CertificateColumns: any = ({
       a.fullName.length - b.fullName.length,
     sortDirections: ["descend"],
   },
+  // {
+  //   title: "Photo",
+  //   dataIndex: "certificateLink",
+  //   render: (certificatePhoto: string) => (
+  //     <Image
+  //       alt="certificate-photo-alt"
+  //       src={certificatePhoto}
+  //       className="h-[80px] w-full object-cover"
+  //       onError={({ currentTarget }) => {
+  //         currentTarget.onerror = null; // prevents looping
+  //         currentTarget.src = errorImage;
+  //       }}
+  //     />
+  //   ),
+  // },
   {
-    title: "Photo",
+    title: "Link",
     dataIndex: "certificateLink",
-    render: (certificatePhoto: string) => (
-      <Image
-        alt="certificate-photo-alt"
-        src={certificatePhoto}
-        className="h-[80px] w-full object-cover"
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null; // prevents looping
-          currentTarget.src = errorImage;
-        }}
-      />
-    ),
   },
   {
     title: "Status",
