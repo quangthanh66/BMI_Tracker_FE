@@ -23,8 +23,8 @@ const VerifyAccount = () => {
           height={100}
         />
 
-        <h1 className="text-2xl">Account has been verified</h1>
-        <h1 className="text-2x1">Please login to continue</h1>
+        <h1 className="text-2xl" style={{ textAlign: 'center' }} >Account has been verified</h1>
+        <h1 className="text-2x1" style={{ textAlign: 'center' }} >Please login to continue</h1>
         <BaseButton type="primary" block onClick={onCloseModalButton}>
           Login
         </BaseButton>
