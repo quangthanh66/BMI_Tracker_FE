@@ -234,7 +234,7 @@ const FoodManagement = () => {
                             Creation Date :
                           </span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
-                            {item.creationDate} (day)
+                            {item.creationDate}
                           </span>
                         </Typography.Text>
 

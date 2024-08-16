@@ -68,16 +68,22 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     icon: <img src="https://cdn-icons-png.flaticon.com/128/2299/2299464.png" alt="Subscription" style={{ width: '35px', height: '35px' }} />,
   },
   {
-    title: 'User request',
-    key: 'feedback',
-    url: '/feedback',
-    icon: <img src="https://cdn-icons-png.flaticon.com/128/1541/1541419.png" alt="Feedback Icon" style={{ width: '35px', height: '35px' }} />,
+    title: 'Commission',
+    key: 'commission-management',
+    url: PAGE_ROUTES.TRAINER.COMMISSION,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/10044/10044628.png" alt="Commission Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Blog',
     key: 'blog',
     url: '/blog',
     icon: <img src="https://cdn-icons-png.flaticon.com/128/9079/9079294.png" alt="Blog Icon" style={{ width: '35px', height: '35px' }} />,
+  },
+  {
+    title: 'User request',
+    key: 'feedback',
+    url: '/feedback',
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/1541/1541419.png" alt="Feedback Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Ingredients',
