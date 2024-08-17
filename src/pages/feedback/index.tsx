@@ -65,13 +65,16 @@ const FeedbackManagement = () => {
     }
   };
 
-  const onFilterFeedbackStatus = (status: boolean) => {
+
+  const onFilterFeedbackStatus = (status: string) => {
     if (feedbackServer) {
-      if (status) {
-        setFeedback(feedbackServer);
-      } else {
-        const result = feedbackServer.filter((feedBackItem: FeedbackItemTypes) => feedBackItem.status === "status");
+      if (status === "All") {
+        setFeedback(feedbackServer); // Hiển thị tất cả dữ liệu nếu chọn "All"
+      } else if (status) {
+        const result = feedbackServer.filter((feedBackItem: FeedbackItemTypes) => feedBackItem.status === status);
         setFeedback(result);
+      } else {
+        setFeedback(feedbackServer); // Reset to original list if no status is provided
       }
     }
   };
@@ -84,25 +87,21 @@ const FeedbackManagement = () => {
     <Spin spinning={isLoadingLoadFeedback || isLoadingApproveFeedback} tip="Loading feedbacks ...">
       {contextHolder}
       <Row gutter={[14, 14]}>
-        <Col span={24}>
-          <Card>
+
+        <Col span={12}>
+          <Card style={{ width: '100%' }}>
             <Typography.Text className="text-xl font-bold">User request management</Typography.Text>
           </Card>
         </Col>
-        <UpdateFeedbackModel
-          ref={updateFeedbackRef}
-          feedbackUpdate={feedbackUpdate as FeedbackItemTypes}
-          onRefreshPage={() => refetch()}
-        />
-        {/* <Col span={24}>
-          <Card size="small">
+
+        <Col span={12}>
             <FeedbackFilter
               onCreateFeedback={openCreateFeedbackModal}
               onSearchFeedback={onSearchFeedback}
               onFilterFeedbackStatus={onFilterFeedbackStatus}
             />
-          </Card>
-        </Col> */}
+        </Col>
+
 
         {feedback.length > 0 ? (
           <Col span={24}>

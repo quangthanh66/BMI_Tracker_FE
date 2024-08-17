@@ -11,8 +11,9 @@ type FeedbackColumnsTypes = {
 };
 
 export enum FeedbackStatus {
-  active = "true",
-  deactive = "false",
+  APPROVED = "APPROVED",
+  REJECTED = "REJECTED",
+  PENDING = "PENDING",
 }
 
 export const FeedbackColumns: any = ({
@@ -85,15 +86,6 @@ export const FeedbackColumns: any = ({
           </BaseTooltip>
         )}
 
-        {/* {!feedback.status && (
-          <BaseTooltip title="Active">
-            <BaseButton
-              onClick={() => approveFeedback(feedbackID)}
-              icon={<CheckCircleOutlined className="text-[24px]" />}
-              type="text"
-            ></BaseButton>
-          </BaseTooltip>
-        )} */}
       </div>
     ),
   },

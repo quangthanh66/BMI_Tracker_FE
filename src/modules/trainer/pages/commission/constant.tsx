@@ -9,7 +9,22 @@ type CommissionColumnsTypes = {
   updateCommissionModal: (commission: CommissionItemTypes) => void;
   viewDetailFn: (id: number) => void;
 };
+function convertDateFormat(inputDate: string): string {
+  // Check if inputDate is valid
+  if (!inputDate) {
+    return 'Invalid date';
+  }
 
+  // Split the input date into year, month, and day
+  const parts = inputDate.split('-');
+  if (parts.length === 3) {
+    // Reorder the parts and join them with "-"
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+  } else {
+    // If the input date is not in the expected format, return an error message
+    return 'Invalid date format';
+  }
+}
 function formatNumber(num: number): string {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -36,17 +51,14 @@ export const CommissionColumns: any = ({
   {
     title: "Paid Date",
     dataIndex: "paidDate",
-    sorter: (a: string, b: string) =>
-      new Date(a).getTime() - new Date(b).getTime(),
-    sortDirections: ["ascend", "descend"],
+    render: (text: string) => convertDateFormat(text),
   },
   {
     title: "Deadline",
     dataIndex: "expectedPaymentDate",
-    key: "deadline",
-    sorter: (a: string, b: string) => {
-      const dateA = new Date(a).getTime();
-      const dateB = new Date(b).getTime();
+    sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => {
+      const dateA = new Date(a.expectedPaymentDate).getTime();
+      const dateB = new Date(b.expectedPaymentDate).getTime();
       return dateA - dateB;
     },
     sortDirections: ["ascend", "descend"],

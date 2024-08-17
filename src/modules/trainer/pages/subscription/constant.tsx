@@ -51,20 +51,21 @@ export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubsc
     title: 'Subscription Date',
     dataIndex: 'subscriptionDate',
     render: (text: string) => convertDateFormat(text),
-    sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
-    sortDirections: ['ascend', 'descend'],
+    sorter: (a: SubscriptionItemTypes, b: SubscriptionItemTypes) => {
+      const dateA = new Date(a.subscriptionDate).getTime();
+      const dateB = new Date(b.subscriptionDate).getTime();
+      return dateA - dateB;
+    },
+    sortDirections: ["ascend", "descend"],
   },
   {
     title: 'Start Date',
     dataIndex: 'startDate',
     render: (text: string) => convertDateFormat(text),
-    sorter: (a: string, b: string) => dayjs(a).unix() - dayjs(b).unix(),
-    sortDirections: ['ascend', 'descend'],
   },
   {
     title: 'End Date',
     dataIndex: 'endDate',
-    sortDirections: ['descend'],
     render: (text: string) => convertDateFormat(text),
   },
   {
