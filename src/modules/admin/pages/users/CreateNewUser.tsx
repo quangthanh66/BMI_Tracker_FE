@@ -76,9 +76,28 @@ const CreateNewUser = ({ onUpdateAfterCreateNew }: CreateNewUserModalTypes, ref:
               <Input placeholder="Enter your full name" required maxLength={50} />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          {/* <Col span={12}>
             <Form.Item name="phoneNumber" label="Phone number" rules={[fieldValidate.required]}>
               <Input placeholder="Enter your phone number" required maxLength={20} />
+            </Form.Item>
+          </Col> */}
+          <Col span={12}>
+            <Form.Item
+              name="phoneNumber"
+              label="Phone number"
+              rules={[
+                fieldValidate.required,
+                {
+                  validator: (_, value) => {
+                    if (!value || (value.length >= 10 && value.length <= 13)) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('Phone number must be between 10 and 13 characters'));
+                  }
+                }
+              ]}
+            >
+              <Input placeholder="Enter your phone number" required maxLength={13} />
             </Form.Item>
           </Col>
 

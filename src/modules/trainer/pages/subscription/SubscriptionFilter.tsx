@@ -28,7 +28,7 @@ const SubscriptionFilter = ({ onCreateSubscription, onSearchSubscription, onFilt
         <Col span={6}>
           <Select
             className="w-full"
-            placeholder="Choose your Subscription type"
+            placeholder="Filter status"
             options={[
               { value: 'All', label: 'All' },
               { value: SubscriptionStatus.NOT_START, label: 'Not start' },

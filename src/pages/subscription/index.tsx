@@ -116,7 +116,7 @@ const SubscriptionManagement = () => {
               })}
               dataSource={subscription}
               scroll={{
-                y: (1 - 325 / window.innerHeight) * window.innerHeight,
+                y: (1 - 350 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />
