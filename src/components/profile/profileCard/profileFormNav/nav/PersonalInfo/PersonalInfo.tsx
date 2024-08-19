@@ -157,7 +157,7 @@ export const PersonalInfo: React.FC = () => {
             <FirstNameItem />
           </BaseCol>
 
-          <BaseCol xs={24} md={12}>
+          {/* <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="role" label={"Role"}>
               {form.getFieldValue("role") === "ROLE_ADMIN" ? (
                 <Tag
@@ -188,11 +188,11 @@ export const PersonalInfo: React.FC = () => {
             <BaseButtonsForm.Item name="gender" label={"Gender"}>
               <BaseInput />
             </BaseButtonsForm.Item>
-          </BaseCol>
+          </BaseCol> */}
 
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="role" label={"Role"}>
-              <BaseInput />
+              <BaseInput disabled />
             </BaseButtonsForm.Item>
           </BaseCol>
 
