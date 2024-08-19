@@ -110,7 +110,7 @@ export const PersonalInfo: React.FC = () => {
             birthday: userProfileState.birthday,
             gender: userProfileState.gender,
             // role: userProfileState.roleNames[0],
-            role: userProfileState.roleNames || "",
+            role: userProfileState.roleNames.length > 0 ? userProfileState.roleNames[0] : "",
             isActive: userProfileState.isActive,
           }
         : initialPersonalInfoValues,
