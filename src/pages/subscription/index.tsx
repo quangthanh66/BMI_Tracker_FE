@@ -99,13 +99,11 @@ const SubscriptionManagement = () => {
           onRefreshPage={() => refetch()}
         /> */}
         <Col span={12}>
-          <Card>
             <SubscriptionFilter
               onCreateSubscription={openCreateSubscriptionModal}
               onSearchSubscription={onSearchSubscription}
               onFilterSubscriptionStatus={onFilterSubscriptionStatus}
             />
-          </Card>
         </Col>
 
         {subscription.length > 0 ? (

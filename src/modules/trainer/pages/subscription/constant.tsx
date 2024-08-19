@@ -82,9 +82,10 @@ export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubsc
     title: 'Status',
     dataIndex: 'subscriptionStatus',
     render: (type: string) => 
-    <BaseTag color={type === 'Finished' ? 'green':
-    type === 'Canceled' ? 'red': 
-    type === 'Pending' ? 'blue': 
+    <BaseTag color={type === 'FINISHED' ? 'green':
+    type === 'CANCELED' ? 'red': 
+    type === 'PENDING' ? 'blue': 
+    type === 'NOT_START' ? 'silver':
     ''}>  
         {type}</BaseTag>,
   },

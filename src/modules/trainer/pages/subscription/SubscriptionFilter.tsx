@@ -24,9 +24,6 @@ const SubscriptionFilter = ({ onCreateSubscription, onSearchSubscription, onFilt
   return (
     <div className="flex justify-between items-center w-full py-2">
       <Row gutter={[20, 20]} className="w-[90%]">
-        <Col span={6}>
-          <BaseInput placeholder={'Enter your Subscription name'} onChange={debounce(onSearchDataValue, 1000)} />
-        </Col>
 
         <Col span={6}>
           <Select
