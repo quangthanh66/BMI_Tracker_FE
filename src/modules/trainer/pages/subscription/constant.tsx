@@ -14,8 +14,10 @@ type SubscriptionColumnsTypes = {
 };
 
 export enum SubscriptionStatus {
-  active = 'true',
-  deactive = 'false',
+  NOT_START = "NOT_START",
+  PENDING = "PENDING",
+  CANCELED = "CANCELED",
+  FINISHED = "FINISHED",
 }
 function formatNumber(num: number): string {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");

@@ -65,16 +65,20 @@ const SubscriptionManagement = () => {
     }
   };
 
-  const onFilterSubscriptionStatus = (status: boolean) => {
+
+  const onFilterSubscriptionStatus = (status: string) => {
     if (subscriptionServer) {
-      if (status) {
-        setSubscription(subscriptionServer);
+      if (status === "All") {
+        setSubscription(subscriptionServer); // Hiển thị tất cả dữ liệu nếu chọn "All"
+      } else if (status) {
+        const result = subscriptionServer.filter((subscriptionItem: SubscriptionItemTypes) => subscriptionItem.subscriptionStatus === status);
+        setSubscription(result);
       } else {
-        // const result = commissionServer.filter((commissionItem: CommissionItemTypes) => commissionItem.status === status);
-        // setCommission(result);
+        setSubscription(subscriptionServer); // Reset to original list if no status is provided
       }
     }
   };
+
 
   const onApproveSubscription = (subscriptionID: any) => {
     approveSubscriptionMutate(subscriptionID);
@@ -84,7 +88,7 @@ const SubscriptionManagement = () => {
     <Spin spinning={isLoadingLoadSubscription || isLoadingApproveSubscription} tip="Loading subscription ...">
       {contextHolder}
       <Row gutter={[14, 14]}>
-        <Col span={24}>
+        <Col span={12}>
           <Card>
             <Typography.Text className="text-xl font-bold">Subscription management</Typography.Text>
           </Card>
@@ -94,15 +98,15 @@ const SubscriptionManagement = () => {
           subscriptionUpdate={subscriptionUpdate as SubscriptionItemTypes}
           onRefreshPage={() => refetch()}
         /> */}
-        {/* <Col span={24}>
-          <Card size="small">
+        <Col span={12}>
+          <Card>
             <SubscriptionFilter
               onCreateSubscription={openCreateSubscriptionModal}
               onSearchSubscription={onSearchSubscription}
               onFilterSubscriptionStatus={onFilterSubscriptionStatus}
             />
           </Card>
-        </Col> */}
+        </Col>
 
         {subscription.length > 0 ? (
           <Col span={24}>

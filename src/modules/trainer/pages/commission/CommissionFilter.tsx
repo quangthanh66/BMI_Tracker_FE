@@ -9,7 +9,7 @@ import { CommissionStatus } from './constant';
 type FilterCommissionTypes = {
   onCreateCommission: () => void;
   onSearchCommission: (keyValue: string) => void;
-  onFilterCommissionStatus: (status: boolean) => void;
+  onFilterCommissionStatus: (status: string) => void;
 };
 
 const CommissionFilter = ({ onCreateCommission, onSearchCommission, onFilterCommissionStatus }: FilterCommissionTypes) => {
@@ -17,30 +17,29 @@ const CommissionFilter = ({ onCreateCommission, onSearchCommission, onFilterComm
     const keySearch = event.target.value;
     onSearchCommission(keySearch);
   };
+
+  const handleFilterChange = (value: string) => {
+    onFilterCommissionStatus(value);
+  };
+
+  
   return (
     <div className="flex justify-between items-center w-full py-2">
       <Row gutter={[20, 20]} className="w-[90%]">
-        <Col span={6}>
-          <BaseInput placeholder={'Enter your Commission name'} onChange={debounce(onSearchDataValue, 1000)} />
-        </Col>
-
-        <Col span={6}>
+     <Col span={6}>
           <Select
             className="w-full"
-            onChange={onFilterCommissionStatus}
-            placeholder="Choose your Commission type"
+            placeholder="Filter status"
             options={[
-              { value: 'all', label: 'All' },
-              { value: CommissionStatus.active, label: 'Active' },
-              { value: CommissionStatus.deactive, label: 'DeActive' },
+              { value: 'All', label: 'All' },
+              { value: CommissionStatus.PAID, label: 'Paid' },
+              { value: CommissionStatus.UNPAID, label: 'Unpaid' },
             ]}
+            onChange={handleFilterChange}
           ></Select>
         </Col>
       </Row>
 
-      {/* <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateFeedback}>
-        Create a new feedback
-      </BaseButton> */}
     </div>
   );
 };

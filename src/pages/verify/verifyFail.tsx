@@ -25,9 +25,9 @@ const VerifyFailAccount = () => {
 
         <h1 className="text-2xl" style={{ textAlign: 'center' }} >Verify account is failed</h1>
         <h1 className="text-2x1" style={{ textAlign: 'center' }} >Please check your email</h1>
-        <BaseButton type="primary" block onClick={onCloseModalButton}>
+        {/* <BaseButton type="primary" block onClick={onCloseModalButton}>
           Login
-        </BaseButton>
+        </BaseButton> */}
       </div>
     </BaseModal>
   );

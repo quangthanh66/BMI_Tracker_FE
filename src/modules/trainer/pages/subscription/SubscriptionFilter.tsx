@@ -9,13 +9,17 @@ import { SubscriptionStatus } from './constant';
 type FilterSubscriptionTypes = {
   onCreateSubscription: () => void;
   onSearchSubscription: (keyValue: string) => void;
-  onFilterSubscriptionStatus: (status: boolean) => void;
+  onFilterSubscriptionStatus: (status: string) => void;
 };
+
 
 const SubscriptionFilter = ({ onCreateSubscription, onSearchSubscription, onFilterSubscriptionStatus }: FilterSubscriptionTypes) => {
   const onSearchDataValue = (event: ChangeEvent<HTMLInputElement>) => {
     const keySearch = event.target.value;
     onSearchSubscription(keySearch);
+  };
+  const handleFilterChange = (value: string) => {
+    onFilterSubscriptionStatus(value);
   };
   return (
     <div className="flex justify-between items-center w-full py-2">
@@ -27,20 +31,19 @@ const SubscriptionFilter = ({ onCreateSubscription, onSearchSubscription, onFilt
         <Col span={6}>
           <Select
             className="w-full"
-            onChange={onFilterSubscriptionStatus}
             placeholder="Choose your Subscription type"
             options={[
-              { value: 'all', label: 'All' },
-              { value: SubscriptionStatus.active, label: 'Active' },
-              { value: SubscriptionStatus.deactive, label: 'DeActive' },
+              { value: 'All', label: 'All' },
+              { value: SubscriptionStatus.NOT_START, label: 'Not start' },
+              { value: SubscriptionStatus.PENDING, label: 'Pending' },
+              { value: SubscriptionStatus.FINISHED, label: 'Finished' },
+              { value: SubscriptionStatus.CANCELED, label: 'Canceled' },
             ]}
+            onChange={handleFilterChange}
           ></Select>
         </Col>
       </Row>
 
-      {/* <BaseButton type="primary" className="flex items-center " icon={<PlusOutlined />} onClick={onCreateFeedback}>
-        Create a new feedback
-      </BaseButton> */}
     </div>
   );
 };

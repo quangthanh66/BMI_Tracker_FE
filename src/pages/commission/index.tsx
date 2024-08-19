@@ -7,10 +7,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, Col, Empty, Row, Spin, Typography, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import ViewDetailComission from "./ViewDetailComission";
+import CommissionFilter from "@app/modules/trainer/pages/commission/CommissionFilter";
+import { create } from "lodash";
 
 const CommissionManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [commission, setCommission] = useState<CommissionItemTypes[]>([]);
+  const [originalCommissions, setOriginalCommissions] = useState<CommissionItemTypes[]>([]);
   const [commissionUpdate, setCommissionUpdate] =
     useState<CommissionItemTypes>();
 
@@ -20,6 +23,7 @@ const CommissionManagement = () => {
     {
       onSuccess: (response: any) => {
         setCommission(response);
+        setOriginalCommissions(response);
       },
       onError: () => {
         messageApi.open({
@@ -31,6 +35,13 @@ const CommissionManagement = () => {
     }
   );
 
+  const createCommissionRef = useRef<any>();
+
+  
+  const openCreateCommissionModal = () => {
+    createCommissionRef.current.openModal();
+  };
+
   const { isLoading: isLoadingApproveCommission } = useMutation({
     mutationFn: COMMISSION_API.APPROVE_COMMISSION,
     onSuccess: () => refetch(),
@@ -40,7 +51,24 @@ const CommissionManagement = () => {
         content: "Approve commission is failed",
       }),
   });
+  const onSearchCommission = async (keyValue: string) => {
 
+  };
+
+
+
+  const onFilterCommissionStatus = (status: string) => {
+    console.log("Filtering by status:", status);
+    if (status === "All") {
+      setCommission(originalCommissions); // Show all commissions
+    } else if (status) {
+      const result = originalCommissions.filter((commissionItem: CommissionItemTypes) => 
+        commissionItem.paymentStatus === status
+      );
+      setCommission(result); // Filtered commissions
+    }
+  };
+  
   const updateCommissionRef = useRef<any>();
   const viewDetailRef = useRef<any>();
 
@@ -64,12 +92,19 @@ const CommissionManagement = () => {
     >
       {contextHolder}
       <Row gutter={[14, 14]}>
-        <Col span={24}>
+        <Col span={12}>
           <Card>
             <Typography.Text className="text-xl font-bold">
               Commission management
             </Typography.Text>
           </Card>
+        </Col>
+        <Col span={12}>     
+            <CommissionFilter
+              onCreateCommission={openCreateCommissionModal}
+              onSearchCommission={onSearchCommission}
+              onFilterCommissionStatus={onFilterCommissionStatus}
+            />
         </Col>
         <UpdateCommissionModel
           ref={updateCommissionRef}
@@ -79,17 +114,7 @@ const CommissionManagement = () => {
 
         <ViewDetailComission ref={viewDetailRef} />
 
-        {/* <Col span={24}>
-          <Card size="small">
-            <CommissionFilter
-              onCreateCommission={openCreateCommissionModal}
-              onSearchCommission={onSearchCommission}
-              onFilterCommissionStatus={onFilterCommissionStatus}
-            />
-          </Card>
-        </Col> */}
-
-        {commission.length > 0 ? (
+    {commission.length > 0 ? (
           <Col span={24}>
             <BaseTable
               className="max-w-[82vw]"
