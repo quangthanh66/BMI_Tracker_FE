@@ -182,13 +182,13 @@ export const PersonalInfo: React.FC = () => {
                 </Tag>
               )}
             </BaseButtonsForm.Item>
-          </BaseCol>
+          </BaseCol> */}
 
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="gender" label={"Gender"}>
               <BaseInput />
             </BaseButtonsForm.Item>
-          </BaseCol> */}
+          </BaseCol>
 
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="role" label={"Role"}>
