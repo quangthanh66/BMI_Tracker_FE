@@ -45,7 +45,9 @@ export const LoginForm: React.FC = () => {
           })
         );
 
-        navigate("/profile/personal-info");
+        response.roleNames.includes(USER_ROLES_ENUM.ROLE_MANAGER)
+          ? navigate("/feedback")
+          : navigate("/charts");
       },
     }
   );
