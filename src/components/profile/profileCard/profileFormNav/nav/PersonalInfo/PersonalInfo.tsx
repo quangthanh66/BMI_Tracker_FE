@@ -71,6 +71,8 @@ export const PersonalInfo: React.FC = () => {
     (state: any) => state.app.userProfile.payload
   );
 
+  console.log(userProfileState);
+
   const { refetch: getUserProfile } = useQuery(
     ["get-user-profile"],
     USERS_API.GET_PROFILE,
@@ -105,9 +107,9 @@ export const PersonalInfo: React.FC = () => {
             fullName: userProfileState.fullName,
             email: userProfileState.email,
             phoneNumber: userProfileState.phoneNumber,
-            role: userProfileState.roleNames[0],
             birthday: userProfileState.birthday,
             gender: userProfileState.gender,
+            role: userProfileState.roleNames[0],
             isActive: userProfileState.isActive,
           }
         : initialPersonalInfoValues,

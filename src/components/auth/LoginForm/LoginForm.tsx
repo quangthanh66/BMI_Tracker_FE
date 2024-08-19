@@ -7,7 +7,7 @@ import { setUserProfile } from "@app/store/slices/appSlice";
 import { USER_ROLES_ENUM } from "@app/utils/constant";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { message } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,6 +30,7 @@ export const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [messageApi, contextHolder] = message.useMessage();
+  const [currentRole, setCurrentRole] = useState("");
 
   const { refetch: getUserProfile } = useQuery(
     ["get-user-profile"],
@@ -37,11 +38,14 @@ export const LoginForm: React.FC = () => {
     {
       enabled: false,
       onSuccess: (response: any) => {
-        dispatch(setUserProfile(response));
+        dispatch(
+          setUserProfile({
+            ...response,
+            roleNames: [currentRole],
+          })
+        );
 
-        response.roleNames.includes(USER_ROLES_ENUM.ROLE_MANAGER)
-          ? navigate("/profile/personal-info")
-          : navigate("/profile/personal-info");
+        navigate("/profile/personal-info");
       },
     }
   );
@@ -60,6 +64,7 @@ export const LoginForm: React.FC = () => {
   });
 
   const handleSubmit = (values: LoginFormData) => {
+    setCurrentRole(values.role);
     mutate(values);
   };
 
