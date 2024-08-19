@@ -104,15 +104,15 @@ export const PersonalInfo: React.FC = () => {
     () =>
       userProfileState
         ? {
-            fullName: userProfileState.fullName,
-            email: userProfileState.email,
-            phoneNumber: userProfileState.phoneNumber,
-            birthday: userProfileState.birthday,
-            gender: userProfileState.gender,
-            // role: userProfileState.roleNames[0],
-            role: userProfileState.roleNames.length > 0 ? userProfileState.roleNames[0] : "",
-            isActive: userProfileState.isActive,
-          }
+          fullName: userProfileState.fullName,
+          email: userProfileState.email,
+          phoneNumber: userProfileState.phoneNumber,
+          birthday: userProfileState.birthday,
+          gender: userProfileState.gender,
+          // role: userProfileState.roleNames[0],
+          role: userProfileState.roleNames.length > 0 ? userProfileState.roleNames[0] : "",
+          isActive: userProfileState.isActive,
+        }
         : initialPersonalInfoValues,
     [user]
   );
@@ -159,30 +159,22 @@ export const PersonalInfo: React.FC = () => {
 
           {/* <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="role" label={"Role"}>
-              {form.getFieldValue("role") === "ROLE_ADMIN" ? (
-                <Tag
-                  color="green"
-                  style={{ fontSize: "17px", padding: "14px 18px" }}
-                >
-                  Admin
-                </Tag>
-              ) : form.getFieldValue("role") === "ROLE_MANAGER" ? (
-                <Tag
-                  color="blue"
-                  style={{ fontSize: "17px", padding: "14px 18px" }}
-                >
-                  Manager
-                </Tag>
-              ) : (
-                <Tag
-                  color="default"
-                  style={{ fontSize: "16px", padding: "8px 16px" }}
-                >
-                  No role selected
-                </Tag>
-              )}
+              <BaseInput disabled />
             </BaseButtonsForm.Item>
           </BaseCol> */}
+
+          <BaseCol xs={24} md={12}>
+            <BaseButtonsForm.Item name="role" label={"Role"}>
+              {userFormValues.role === "ROLE_ADMIN" ? (
+                <Tag color="red">Admin</Tag>
+              ) : userFormValues.role === "ROLE_MANAGER" ? (
+                <Tag color="blue">Manager</Tag>
+              ) : (
+                <Tag color="default">{userFormValues.role || 'No Role'}</Tag>
+              )}
+            </BaseButtonsForm.Item>
+          </BaseCol>
+
 
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="gender" label={"Gender"}>
@@ -190,11 +182,7 @@ export const PersonalInfo: React.FC = () => {
             </BaseButtonsForm.Item>
           </BaseCol>
 
-          <BaseCol xs={24} md={12}>
-            <BaseButtonsForm.Item name="role" label={"Role"}>
-              <BaseInput disabled />
-            </BaseButtonsForm.Item>
-          </BaseCol>
+
 
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="birthday" label={"Birthday"}>
