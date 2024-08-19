@@ -15,7 +15,7 @@ export const NotificationsDropdown: React.FC = () => {
         <BaseButton
           type={isOpened ? 'ghost' : 'text'}
           icon={
-            <BaseBadge dot>
+            <BaseBadge>
               <BellOutlined />
             </BaseBadge>
           }
