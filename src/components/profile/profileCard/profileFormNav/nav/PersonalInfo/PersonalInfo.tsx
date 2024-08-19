@@ -109,7 +109,8 @@ export const PersonalInfo: React.FC = () => {
             phoneNumber: userProfileState.phoneNumber,
             birthday: userProfileState.birthday,
             gender: userProfileState.gender,
-            role: userProfileState.roleNames[0],
+            // role: userProfileState.roleNames[0],
+            role: userProfileState.roleNames,
             isActive: userProfileState.isActive,
           }
         : initialPersonalInfoValues,
