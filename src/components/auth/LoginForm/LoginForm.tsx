@@ -40,8 +40,8 @@ export const LoginForm: React.FC = () => {
         dispatch(setUserProfile(response));
 
         response.roleNames.includes(USER_ROLES_ENUM.ROLE_MANAGER)
-          ? navigate("/profile/personal-info")
-          : navigate("/profile/personal-info");
+          ? navigate("/feedback")
+          : navigate("/charts");
       },
     }
   );
