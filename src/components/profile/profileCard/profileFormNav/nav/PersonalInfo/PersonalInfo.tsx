@@ -13,7 +13,7 @@ import { useAppSelector } from "@app/hooks/reduxHooks";
 import { UpdateUserProfileRequest } from "@app/models";
 import { setUserProfile } from "@app/store/slices/appSlice";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Form, message, Tag } from "antd";
+import { Form, message, Select, Tag } from "antd";
 import _ from "lodash";
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -160,18 +160,27 @@ export const PersonalInfo: React.FC = () => {
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="role" label={"Role"}>
               {userFormValues.role === "ROLE_ADMIN" ? (
-                <Tag color="red"  style={{ fontSize: "17px", padding: "14px 18px" }} >Admin</Tag>
+                <Tag color="red" style={{ fontSize: "17px", padding: "14px 18px" }} >Admin</Tag>
               ) : userFormValues.role === "ROLE_MANAGER" ? (
-                <Tag color="blue"  style={{ fontSize: "17px", padding: "14px 18px" }} >Manager</Tag>
+                <Tag color="blue" style={{ fontSize: "17px", padding: "14px 18px" }} >Manager</Tag>
               ) : (
-                <Tag color="default"  style={{ fontSize: "17px", padding: "14px 18px" }} >{userFormValues.role || 'No Role'}</Tag>
+                <Tag color="default" style={{ fontSize: "17px", padding: "14px 18px" }} >{userFormValues.role || 'No Role'}</Tag>
               )}
             </BaseButtonsForm.Item>
           </BaseCol>
 
-          <BaseCol xs={24} md={12}>
+          {/* <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="gender" label={"Gender"}>
               <BaseInput />
+            </BaseButtonsForm.Item>
+          </BaseCol> */}
+
+          <BaseCol xs={24} md={12}>
+            <BaseButtonsForm.Item name="gender" label={"Gender"}>
+              <Select placeholder="Select Gender">
+                <Select.Option value="Male">Male</Select.Option>
+                <Select.Option value="Female">Female</Select.Option>
+              </Select>
             </BaseButtonsForm.Item>
           </BaseCol>
 
