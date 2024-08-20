@@ -166,11 +166,11 @@ export const PersonalInfo: React.FC = () => {
           <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="role" label={"Role"}>
               {userFormValues.role === "ROLE_ADMIN" ? (
-                <Tag color="red">Admin</Tag>
+                <Tag color="red"  style={{ fontSize: "18px", padding: "14px 18px" }} >Admin</Tag>
               ) : userFormValues.role === "ROLE_MANAGER" ? (
-                <Tag color="blue">Manager</Tag>
+                <Tag color="blue"  style={{ fontSize: "18px", padding: "14px 18px" }} >Manager</Tag>
               ) : (
-                <Tag color="default">{userFormValues.role || 'No Role'}</Tag>
+                <Tag color="default"  style={{ fontSize: "17px", padding: "14px 18px" }} >{userFormValues.role || 'No Role'}</Tag>
               )}
             </BaseButtonsForm.Item>
           </BaseCol>
