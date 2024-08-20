@@ -154,6 +154,10 @@ export const PersonalInfo: React.FC = () => {
           </BaseCol>
 
           <BaseCol xs={24} md={12}>
+            <FirstNameItem />
+          </BaseCol>
+
+          <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="role" label={"Role"}>
               {userFormValues.role === "ROLE_ADMIN" ? (
                 <Tag color="red"  style={{ fontSize: "17px", padding: "14px 18px" }} >Admin</Tag>
@@ -163,10 +167,6 @@ export const PersonalInfo: React.FC = () => {
                 <Tag color="default"  style={{ fontSize: "17px", padding: "14px 18px" }} >{userFormValues.role || 'No Role'}</Tag>
               )}
             </BaseButtonsForm.Item>
-          </BaseCol>
-
-          <BaseCol xs={24} md={12}>
-            <FirstNameItem />
           </BaseCol>
 
           <BaseCol xs={24} md={12}>
