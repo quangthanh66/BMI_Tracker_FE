@@ -56,7 +56,7 @@ const AddNewFoodRecipe = (
       onError: () => {
         messageApi.open({
           type: "error",
-          content: "Add new ingredient is failed",
+          content: "Recipe already exists, please replace with another ingredient",
         });
       },
     });
