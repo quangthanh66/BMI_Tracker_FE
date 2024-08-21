@@ -5,6 +5,7 @@ import { BaseCard } from "@app/components/common/BaseCard/BaseCard";
 import { BaseCol } from "@app/components/common/BaseCol/BaseCol";
 import { BaseRow } from "@app/components/common/BaseRow/BaseRow";
 import { BaseButtonsForm } from "@app/components/common/forms/BaseButtonsForm/BaseButtonsForm";
+import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
 import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
 import { EmailItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/EmailItem/EmailItem";
 import { FirstNameItem } from "@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/FirstNameItem/FirstNameItem";
@@ -12,8 +13,9 @@ import { PhoneItem } from "@app/components/profile/profileCard/profileFormNav/na
 import { useAppSelector } from "@app/hooks/reduxHooks";
 import { UpdateUserProfileRequest } from "@app/models";
 import { setUserProfile } from "@app/store/slices/appSlice";
+import { fieldValidate } from "@app/utils/helper";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Form, message, Select, Tag } from "antd";
+import { DatePicker, Form, message, Select, Tag } from "antd";
 import _ from "lodash";
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -184,10 +186,20 @@ export const PersonalInfo: React.FC = () => {
             </BaseButtonsForm.Item>
           </BaseCol>
 
-          <BaseCol xs={24} md={12}>
+          {/* <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="birthday" label={"Birthday"}>
               <BaseInput />
             </BaseButtonsForm.Item>
+          </BaseCol> */}
+
+          <BaseCol span={12}>
+            <BaseForm.Item
+              name="birthday"
+              label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
+              rules={[fieldValidate.required]}
+            >
+              <DatePicker style={{ width: '100%' }} />
+            </BaseForm.Item>
           </BaseCol>
 
           <BaseCol span={24}>
