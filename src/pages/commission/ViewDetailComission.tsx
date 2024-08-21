@@ -42,7 +42,7 @@ const ViewDetailCommission = ({}, ref: any) => {
       onCancel={onCloseModal}
       closeIcon
       footer={null}
-      width={1000}
+      width={1250}
     >
       <Spin spinning={isLoadingViewDetail}>
         <Table columns={CommissionColumns()} dataSource={commissionDetail} />

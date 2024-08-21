@@ -15,6 +15,15 @@ export enum FeedbackStatus {
   REJECTED = "REJECTED",
   PENDING = "PENDING",
 }
+function convertDateFormat(inputDate: string): string {
+  if (!inputDate) {
+    return '';
+  }
+  const datePart = inputDate.split('T')[0]; // Lấy phần YYYY-MM-DD
+  const parts = datePart.split('-'); // Tách thành mảng [YYYY, MM, DD]
+  // Trả về định dạng DD-MM-YYYY
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
+}
 
 export const FeedbackColumns: any = ({
   updateFeedbackModal,
@@ -44,10 +53,12 @@ export const FeedbackColumns: any = ({
   {
     title: "Creation Date",
     dataIndex: "creationDate",
+    render: (text: string) => convertDateFormat(text),
   },
   {
     title: "Processing Date",
     dataIndex: "processingDate",
+    render: (text: string) => convertDateFormat(text),
   },
 
   {

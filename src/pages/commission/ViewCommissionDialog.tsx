@@ -53,7 +53,7 @@ const ViewCommissionDialog = (
       width={1000}
       bodyStyle={{
         margin: 30,
-        height: '525px',
+        height: '300px',
       }}
     >
       {contextHolder}

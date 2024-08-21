@@ -126,6 +126,15 @@ const FoodManagement = () => {
   const onViewDetailRecipeDialog = (food: TFoodItem) => {
     viewDetailRecipeRef.current.openModal(food);
   };
+  function convertDateFormat(inputDate: string): string {
+    if (!inputDate) {
+      return '';
+    }
+    const datePart = inputDate.split('T')[0]; // Lấy phần YYYY-MM-DD
+    const parts = datePart.split('-'); // Tách thành mảng [YYYY, MM, DD]
+    // Trả về định dạng DD-MM-YYYY
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+  }
 
   return (
     <Spin
@@ -238,30 +247,9 @@ const FoodManagement = () => {
                             Creation date:
                           </span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
-                            {item.creationDate}
+                          {convertDateFormat(item.creationDate)}
                           </span>
                         </Typography.Text>
-
-                        {/* <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
-                          <span>
-                            {item.isActive ? (
-                              <Tag
-                                color="green"
-                                style={{ fontWeight: "bold", fontSize: "16px" }}
-                              >
-                                Activate
-                              </Tag>
-                            ) : (
-                              <Tag
-                                color="red"
-                                style={{ fontWeight: "bold", fontSize: "16px" }}
-                              >
-                                Deactivate
-                              </Tag>
-                            )}
-                          </span>
-                        </Typography.Text> */}
 
                       </div>
                     </div>

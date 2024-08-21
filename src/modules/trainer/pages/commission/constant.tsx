@@ -9,14 +9,17 @@ type CommissionColumnsTypes = {
   updateCommissionModal: (commission: CommissionItemTypes) => void;
   viewDetailFn: (id: number) => void;
 };
+
 function convertDateFormat(inputDate: string): string {
-  // Check if inputDate is valid
   if (!inputDate) {
     return '';
   }
-  // Split the input date to keep only YYYY-MM-DD
-  return inputDate.split('T')[0];
+  const datePart = inputDate.split('T')[0]; // Lấy phần YYYY-MM-DD
+  const parts = datePart.split('-'); // Tách thành mảng [YYYY, MM, DD]
+  // Trả về định dạng DD-MM-YYYY
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
 }
+
 function formatNumber(num: number): string {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -49,6 +52,7 @@ export const CommissionColumns: any = ({
     {
       title: "Deadline",
       dataIndex: "expectedPaymentDate",
+      render: (text: string) => convertDateFormat(text),
       sorter: (a: CommissionItemTypes, b: CommissionItemTypes) => {
         const dateA = new Date(a.expectedPaymentDate).getTime();
         const dateB = new Date(b.expectedPaymentDate).getTime();
@@ -59,7 +63,7 @@ export const CommissionColumns: any = ({
     {
       title: "Paid Date",
       dataIndex: "paidDate",
-      render: (text: string) => convertDateFormat(text), 
+      render: (text: string) => convertDateFormat(text),
     },
     {
       title: "Description",
