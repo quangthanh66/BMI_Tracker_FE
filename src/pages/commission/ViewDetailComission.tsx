@@ -45,7 +45,11 @@ const ViewDetailCommission = ({}, ref: any) => {
       width={1250}
     >
       <Spin spinning={isLoadingViewDetail}>
-        <Table columns={CommissionColumns()} dataSource={commissionDetail} />
+        <Table columns={CommissionColumns()} dataSource={commissionDetail} 
+          pagination={{
+            pageSize: 5,
+          }}
+        />
       </Spin>
     </BaseModal>
   );
