@@ -62,6 +62,11 @@ export const CommissionColumns: any = ({
       render: (text: string) => convertDateFormat(text), 
     },
     {
+      title: "Description",
+      dataIndex: "commissionDescription",
+      sortDirections: ["descend"],
+    },
+    {
       title: "Payment Status",
       dataIndex: "paymentStatus",
       //render: (type: string) => <BaseTag color={type === 'PAID' ? 'green' : 'red'}>{type}</BaseTag>,
@@ -80,12 +85,6 @@ export const CommissionColumns: any = ({
         return <BaseTag color={color}>{type}</BaseTag>;
       },
     },
-    {
-      title: "Description",
-      dataIndex: "commissionDescription",
-      sortDirections: ["descend"],
-    },
-
     {
       title: "Actions",
       dataIndex: "commissionID",
