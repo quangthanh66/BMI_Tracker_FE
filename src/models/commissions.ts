@@ -7,7 +7,7 @@ export type DetailCommissionItemResponse = {
   subscriptionNumber: string;
 };
 function formatNumber(num: number): string {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 export const CommissionColumns = () => [
   {

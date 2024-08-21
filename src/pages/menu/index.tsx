@@ -167,20 +167,20 @@ const MenuManagement = () => {
                       </Typography.Title>
                       <Typography.Paragraph className="!text-black">
                         <span style={{ fontWeight: "bold" }}>
-                          Description :
+                          Description:
                         </span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.menuDescription}
                         </span>
                       </Typography.Paragraph>
                       <Typography.Paragraph className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Total Calories :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Total Calories:</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.totalCalories} (kcal)
                         </span>
                       </Typography.Paragraph>
                       <Typography.Paragraph className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Created by :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Created by:</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.advisorName}
                         </span>
@@ -188,7 +188,7 @@ const MenuManagement = () => {
                      
 
                       <Typography.Paragraph className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Using by :</span>
+                        <span style={{ fontWeight: "bold" }}>Using by:</span>
                         {Array.isArray(item.membersUsing) ? (
                           <div style={{ textTransform: "uppercase" }}>
                             {item.membersUsing.map((member, index) => (
@@ -203,7 +203,7 @@ const MenuManagement = () => {
                       </Typography.Paragraph>
 
                       <Typography.Paragraph className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
                         <span>
                           {item.isActive ? (
                             <Tag color="green">Activate</Tag>

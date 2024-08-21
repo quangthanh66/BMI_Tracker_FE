@@ -147,7 +147,7 @@ const WorkoutManagement = () => {
                       <div className="w-full flex flex-col gap-2 flex-grow">
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: "bold" }}>
-                            Created by :
+                            Created by:
                           </span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
                             {item.fullName}
@@ -155,7 +155,7 @@ const WorkoutManagement = () => {
                         </Typography.Text>
 
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: "bold" }}>Calories :</span>{" "}
+                          <span style={{ fontWeight: "bold" }}>Calories:</span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
                             {item.totalCaloriesBurned} (Kcal)
                           </span>
@@ -163,7 +163,7 @@ const WorkoutManagement = () => {
 
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: "bold" }}>
-                            Standard Weight :
+                            Standard Weight:
                           </span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
                             {item.standardWeight} (Kg)
@@ -171,7 +171,7 @@ const WorkoutManagement = () => {
                         </Typography.Text>
 
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
+                          <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
                           <span className="font-semibold !text-black">
                             {item.isActive ? (
                               <Tag color="green">Activate</Tag>

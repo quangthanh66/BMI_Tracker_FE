@@ -195,7 +195,7 @@ const FoodManagement = () => {
                       </Typography.Paragraph>
                       <div className="w-full flex flex-col gap-2">
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: "bold" }}>Tags :</span>{" "}
+                          <span style={{ fontWeight: "bold" }}>Tags:</span>{" "}
                           {item.foodTags.length > 0 ? (
                             item.foodTags.map((tag, index) => (
                               <span
@@ -214,20 +214,20 @@ const FoodManagement = () => {
                               </span>
                             ))
                           ) : (
-                            <span>No tags available</span> // Optional: Message if there are no tags
+                            <span>No tags</span> // Optional: Message if there are no tags
                           )}
                         </Typography.Text>
 
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: "bold" }}>
-                            Time process :
+                            Time process:
                           </span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
                             {item.foodTimeProcess} (minutes)
                           </span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
-                          <span style={{ fontWeight: "bold" }}>Calories :</span>{" "}
+                          <span style={{ fontWeight: "bold" }}>Calories:</span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
                             {item.foodCalories} (kcal)
                           </span>
@@ -235,7 +235,7 @@ const FoodManagement = () => {
 
                         <Typography.Text className="!text-black">
                           <span style={{ fontWeight: "bold" }}>
-                            Creation Date :
+                            Creation date:
                           </span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
                             {item.creationDate}

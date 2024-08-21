@@ -77,7 +77,7 @@ const PlanManagement = () => {
   };
 
   function formatNumber(num: number): string {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   
   const updatePlan = (plan: TUpdatePlan) => {
@@ -138,14 +138,14 @@ const PlanManagement = () => {
                       </Typography.Paragraph>
 
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Created by :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Created by:</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.fullName}
                         </span>
                       </Typography.Text>
 
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Code :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Code:</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.packageCode}
                         </span>
@@ -153,7 +153,7 @@ const PlanManagement = () => {
 
                       <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>
-                          Registered member :
+                          Registered member:
                         </span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.numberOfUses} (member)
@@ -161,21 +161,21 @@ const PlanManagement = () => {
                       </Typography.Text>
 
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Price :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Price:</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                         {formatNumber(item.price)} </span>
                         <span style={{ fontWeight: "semi-bold" }}>(VND)</span>{" "}
                       </Typography.Text>
 
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Duration :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Duration:</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
                           {item.packageDuration} (Days)
                         </span>
                       </Typography.Text>
 
                       <Typography.Text className="!text-black">
-                        <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
                         <span className="font-semibold !text-black">
                           {item.packageStatus === "APPROVED" ? (
                             <Tag color="green">Approved</Tag>

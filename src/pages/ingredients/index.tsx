@@ -182,14 +182,14 @@ const IngredientManagement = () => {
                           </Typography.Title>
 
                           <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>Unit :</span>{" "}
+                            <span style={{ fontWeight: "bold" }}>Unit:</span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.unit}
                             </span>
                           </Typography.Text>
 
                           <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>Tags :</span>{" "}
+                            <span style={{ fontWeight: "bold" }}>Tag:</span>{" "}
                             <span
                               style={{
                                 textTransform: "lowercase",

@@ -65,7 +65,7 @@ export const Step2: React.FC = () => {
         label={t('forms.stepFormLabels.birthday')}
         rules={[{ required: true, message: t('forms.stepFormLabels.birthdayError') }]}
       >
-        <Picker format="YYYY-MM-DD" />
+        <Picker format="DD-MM-YYYY" />
       </BaseForm.Item>
       <S.PhoneItem
         name="phone"

@@ -51,7 +51,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
     if (commissionUpdate) {
       console.log(commissionUpdate);
       const currentPaidDate = commissionUpdate.paidDate
-      ? dayjs(commissionUpdate.paidDate, 'YYYY-MM-DD')
+      ? dayjs(commissionUpdate.paidDate, 'DD-MM-YYYY')
       : dayjs(); // Use current date if paidDate is empty
 
       form.setFieldsValue({
