@@ -93,6 +93,11 @@ const FeedbackManagement = () => {
             <Typography.Text className="text-xl font-bold">User request management</Typography.Text>
           </Card>
         </Col>
+        <UpdateFeedbackModel
+          ref={updateFeedbackRef}
+          feedbackUpdate={feedbackUpdate as FeedbackItemTypes}
+          onRefreshPage={() => refetch()}
+        />
 
         <Col span={12}>
             <FeedbackFilter

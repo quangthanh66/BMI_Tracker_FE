@@ -13,6 +13,7 @@ import { useMutation } from '@tanstack/react-query';
 import COMMISSION_API from '@app/api/commission';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import moment from 'moment';
 
 dayjs.extend(utc);
 
@@ -84,7 +85,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
       {contextHolder}
       <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
         <BaseRow gutter={[20, 20]}>
-          <BaseCol span={12}>
+          {/* <BaseCol span={12}>
             <BaseForm.Item
               name="paidDate"
               label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
@@ -92,7 +93,16 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
             >
               <DatePicker style={{ width: '100%' }} />
             </BaseForm.Item>
-          </BaseCol>
+          </BaseCol> */}
+
+          <BaseForm.Item
+            name="paidDate"
+            label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
+            rules={[fieldValidate.required]}
+            initialValue={moment()} // Set the current date
+          >
+            <DatePicker style={{ width: '100%' }} />
+          </BaseForm.Item>
 
           <BaseCol span={12}>
             <BaseForm.Item

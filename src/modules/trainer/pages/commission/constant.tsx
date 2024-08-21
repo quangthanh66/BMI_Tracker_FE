@@ -14,15 +14,8 @@ function convertDateFormat(inputDate: string): string {
   if (!inputDate) {
     return 'Invalid date';
   }
-  // Split the input date into year, month, and day
-  const parts = inputDate.split('-');
-  if (parts.length === 3) {
-    // Reorder the parts and join them with "-"
-    return `${parts[2]}-${parts[1]}-${parts[0]}`;
-  } else {
-    // If the input date is not in the expected format, return an error message
-    return 'Invalid date format';
-  }
+  // Split the input date to keep only YYYY-MM-DD
+  return inputDate.split('T')[0];
 }
 function formatNumber(num: number): string {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -50,7 +43,7 @@ export const CommissionColumns: any = ({
     {
       title: "Paid Date",
       dataIndex: "paidDate",
-      render: (text: string) => convertDateFormat(text),
+      render: (text: string) => convertDateFormat(text), 
     },
     {
       title: "Deadline",
