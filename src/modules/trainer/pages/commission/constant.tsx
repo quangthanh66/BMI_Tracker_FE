@@ -12,7 +12,7 @@ type CommissionColumnsTypes = {
 function convertDateFormat(inputDate: string): string {
   // Check if inputDate is valid
   if (!inputDate) {
-    return 'Not updated';
+    return '';
   }
   // Split the input date to keep only YYYY-MM-DD
   return inputDate.split('T')[0];
