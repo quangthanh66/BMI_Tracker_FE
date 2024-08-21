@@ -187,27 +187,27 @@ const ExerciseManagement = () => {
                         <div className="flex flex-col justify-between w-full">
                           <Typography.Text className="!text-black line-clamp-3">
                             <span style={{ fontWeight: "bold" }}>
-                              Description :
+                              Description:
                             </span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.exerciseDescription}
                             </span>
                           </Typography.Text>
                           <Typography.Text className="!text-black line-clamp-1">
-                            <span style={{ fontWeight: "bold" }}>Video :</span>{" "}
+                            <span style={{ fontWeight: "bold" }}>Video:</span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.exerciseVideo}
                             </span>
                           </Typography.Text>
 
                           <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>Met :</span>{" "}
+                            <span style={{ fontWeight: "bold" }}>Met:</span>{" "}
                             <span style={{ textTransform: "lowercase" }}>
                               {item.met}
                             </span>
                           </Typography.Text>
                           <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>Tags :</span>{" "}
+                            <span style={{ fontWeight: "bold" }}>Tag:</span>{" "}
                             <span
                               style={{
                                 textTransform: "lowercase",
