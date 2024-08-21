@@ -21,17 +21,8 @@ function convertDateFormat(inputDate: string): string {
 
 export const CommissionColumns = () => [
   {
-    title: "Amount (VND)",
-    dataIndex: "amount",
-    render: (text: number) => formatNumber(text),
-  },
-  {
-    title: "Description",
-    dataIndex: "description",
-  },
-  {
-    title: "Milestone",
-    dataIndex: "milestone",
+    title: "Subscription number",
+    dataIndex: "subscriptionNumber",
   },
   {
     title: "Milestone Date",
@@ -39,7 +30,16 @@ export const CommissionColumns = () => [
     render: (text: string) => convertDateFormat(text),
   },
   {
-    title: "Subscription number",
-    dataIndex: "subscriptionNumber",
+    title: "Milestone",
+    dataIndex: "milestone",
+  },
+  {
+    title: "Amount (VND)",
+    dataIndex: "amount",
+    render: (text: number) => formatNumber(text),
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
   },
 ];
