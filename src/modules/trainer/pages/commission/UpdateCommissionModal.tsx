@@ -50,10 +50,14 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
   useEffect(() => {
     if (commissionUpdate) {
       console.log(commissionUpdate);
+      const currentPaidDate = commissionUpdate.paidDate
+      ? dayjs(commissionUpdate.paidDate, 'YYYY-MM-DD')
+      : dayjs(); // Use current date if paidDate is empty
 
       form.setFieldsValue({
         ...commissionUpdate,
-        paidDate: dayjs(commissionUpdate.paidDate, 'YYYY-MM-DD'),
+        // paidDate: dayjs(commissionUpdate.paidDate, 'YYYY-MM-DD'),
+        paidDate: currentPaidDate,
       });
     }
   }, [commissionUpdate]);
@@ -85,7 +89,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
       {contextHolder}
       <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
         <BaseRow gutter={[20, 20]}>
-          {/* <BaseCol span={12}>
+          <BaseCol span={12}>
             <BaseForm.Item
               name="paidDate"
               label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
@@ -93,18 +97,9 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
             >
               <DatePicker style={{ width: '100%' }} />
             </BaseForm.Item>
-          </BaseCol> */}
+          </BaseCol>
 
-          <BaseForm.Item
-            name="paidDate"
-            label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
-            rules={[fieldValidate.required]}
-            initialValue={moment()} // Set the current date
-          >
-            <DatePicker style={{ width: '100%' }} />
-          </BaseForm.Item>
-
-          <BaseCol span={12}>
+        <BaseCol span={12}>
             <BaseForm.Item
               name="paidAmount"
               label={<span style={{ fontWeight: 'bold' }}>Paid amount (VND)</span>}
