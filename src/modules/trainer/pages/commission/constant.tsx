@@ -39,12 +39,13 @@ export const CommissionColumns: any = ({
       sortDirections: ["descend"],
       render: (text: number) => formatNumber(text),
     },
-
     {
-      title: "Paid Date",
-      dataIndex: "paidDate",
-      render: (text: string) => convertDateFormat(text), 
+      title: "Paid Amount (VND)",
+      dataIndex: "paidAmount",
+      sortDirections: ["descend"],
+      render: (text: number) => formatNumber(text),
     },
+
     {
       title: "Deadline",
       dataIndex: "expectedPaymentDate",
@@ -56,10 +57,9 @@ export const CommissionColumns: any = ({
       sortDirections: ["ascend", "descend"],
     },
     {
-      title: "Paid Amount (VND)",
-      dataIndex: "paidAmount",
-      sortDirections: ["descend"],
-      render: (text: number) => formatNumber(text),
+      title: "Paid Date",
+      dataIndex: "paidDate",
+      render: (text: string) => convertDateFormat(text), 
     },
     {
       title: "Payment Status",
