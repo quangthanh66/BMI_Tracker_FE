@@ -76,18 +76,10 @@ const PlanManagement = () => {
     setPlan(result as TPlanItem[]);
   };
 
-  // const confirmModal = (planID: number) => {
-  //   modal.confirm({
-  //     title: 'Are you sure to confirm plan ?',
-  //     okText: 'Confirm',
-  //     cancelText: 'Close',
-  //     icon: <ExclamationCircleOutlined />,
-  //     onOk: () => {
-  //       mutateDeletePlan(planID);
-  //     },
-  //   });
-  // };
-
+  function formatNumber(num: number): string {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+  
   const updatePlan = (plan: TUpdatePlan) => {
     setPlanUpdate(plan);
     updatePlanRef.current.openModal();
@@ -171,8 +163,8 @@ const PlanManagement = () => {
                       <Typography.Text className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Price :</span>{" "}
                         <span style={{ textTransform: "lowercase" }}>
-                          {item.price} (VND)
-                        </span>
+                        {formatNumber(item.price)} </span>
+                        <span style={{ fontWeight: "semi-bold" }}>(VND)</span>{" "}
                       </Typography.Text>
 
                       <Typography.Text className="!text-black">
