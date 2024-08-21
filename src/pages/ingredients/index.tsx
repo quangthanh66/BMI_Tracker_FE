@@ -218,7 +218,7 @@ const IngredientManagement = () => {
                           <div className="flex items-center gap-x-2 text-black"></div>
                         </div>
                         <div className="grid grid-cols-2 gap-2 w-full">
-                          {item.isActive === true && (
+                          
                             <BaseButton
                               icon={<FileAddOutlined />}
                               type="primary"
@@ -226,8 +226,8 @@ const IngredientManagement = () => {
                             >
                               Update
                             </BaseButton>
-                          )}
-                          {item.isActive === true && (
+                        
+                         
                             <BaseButton
                               danger
                               icon={<DeleteOutlined />}
@@ -235,7 +235,7 @@ const IngredientManagement = () => {
                             >
                               Delete
                             </BaseButton>
-                          )}
+                         
                         </div>
                       </div>
                     </Card>

@@ -272,7 +272,7 @@ const FoodManagement = () => {
                       >
                         Recipe
                       </BaseButton>
-                      {item.isActive === true && (
+                     
                         <BaseButton
                           icon={<FileAddOutlined />}
                           className="flex-1"
@@ -282,8 +282,8 @@ const FoodManagement = () => {
                         >
                           Update
                         </BaseButton>
-                      )}
-                      {item.isActive === true && (
+                     
+                  
                         <BaseButton
                           danger
                           icon={<DeleteOutlined />}
@@ -293,7 +293,7 @@ const FoodManagement = () => {
                         >
                           Deactivate
                         </BaseButton>
-                      )}
+                    
 
                     </div>
                   </div>

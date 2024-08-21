@@ -233,7 +233,7 @@ const ExerciseManagement = () => {
                           </Typography.Text>
                          
                           <div className="grid grid-cols-2 gap-2 w-full">
-                          {item.isActive === true && (
+                       
                             <BaseButton
                               danger
                               icon={<DeleteOutlined />}
@@ -241,8 +241,8 @@ const ExerciseManagement = () => {
                             >
                               Deactivate
                             </BaseButton>
-                          )}
-                           {item.isActive === true && (
+                       
+                     
                             <BaseButton
                               icon={<FileAddOutlined />}
                               type="primary"
@@ -250,7 +250,7 @@ const ExerciseManagement = () => {
                             >
                               Update
                             </BaseButton>
-                            )}
+                          
                           </div>
                         </div>
                       </div>
