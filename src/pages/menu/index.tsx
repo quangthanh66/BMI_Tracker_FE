@@ -214,18 +214,9 @@ const MenuManagement = () => {
                       </Typography.Paragraph>
                     </div>
 
-                    <div className="flex flex-col gap-y-2">
+                    <div className="flex flex-col gap-y-2" >
                       <div className="flex items-center gap-2 w-full">
-                        {/* <BaseButton
-                          danger
-                          className="flex-1"
-                          size="small"
-                          onClick={() => confirmModal(item.menuID)}
-                        >
-                          Deactivate
-                        </BaseButton> */}
                       </div>
-
                       <BaseButton
                         type="primary"
                         size="small"

@@ -186,20 +186,10 @@ export const PersonalInfo: React.FC = () => {
             </BaseButtonsForm.Item>
           </BaseCol>
 
-          {/* <BaseCol xs={24} md={12}>
+          <BaseCol xs={24} md={12}>
             <BaseButtonsForm.Item name="birthday" label={"Birthday"}>
               <BaseInput />
             </BaseButtonsForm.Item>
-          </BaseCol> */}
-
-          <BaseCol span={12}>
-            <BaseForm.Item
-              name="birthday"
-              label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
-              rules={[fieldValidate.required]}
-            >
-              <DatePicker style={{ width: '100%' }} />
-            </BaseForm.Item>
           </BaseCol>
 
           <BaseCol span={24}>

@@ -42,13 +42,13 @@ const IngredientManagement = () => {
     data: ingredientsList,
   } = useQuery(["get-ingredients"], INGREDIENT_API.GET_INGREDIENTS, {
     enabled: false,
-    // onSuccess: (response: IngredientTypes[]) => {
-    //   const availableIngredients = response.filter((item) => item.isActive !== false);
-    //   setIngredients(availableIngredients);
-    // },
     onSuccess: (response: IngredientTypes[]) => {
-      setIngredients(response);
+      const availableIngredients = response.filter((item) => item.isActive !== false);
+      setIngredients(availableIngredients);
     },
+    // onSuccess: (response: IngredientTypes[]) => {
+    //   setIngredients(response);
+    // },
     onError: () => {
       messageApi.open({
         type: "error",
@@ -204,7 +204,7 @@ const IngredientManagement = () => {
                           </Typography.Text>
 
                         
-                            <Typography.Text className="!text-black">
+                            {/* <Typography.Text className="!text-black">
                               <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                               <span>
                                 {item.isActive ? (
@@ -213,7 +213,7 @@ const IngredientManagement = () => {
                                   <Tag color="red">Deactivate</Tag>
                                 )}
                               </span>
-                            </Typography.Text>
+                            </Typography.Text> */}
                         
                           <div className="flex items-center gap-x-2 text-black"></div>
                         </div>

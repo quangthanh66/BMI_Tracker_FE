@@ -43,15 +43,15 @@ const ExerciseManagement = () => {
     data: exerciseList,
   } = useQuery(["get-exericse"], EXERCISE_API.GET_EXERCISE, {
     enabled: false,
-    // onSuccess: (response: ExerciseTypes[]) => {
-    //   const availableExercise = response.filter(
-    //     (item) => item.isActive !== false
-    //   );
-    //   setExercise(availableExercise);
-    // },
     onSuccess: (response: ExerciseTypes[]) => {
-      setExercise(response);
+      const availableExercise = response.filter(
+        (item) => item.isActive !== false
+      );
+      setExercise(availableExercise);
     },
+    // onSuccess: (response: ExerciseTypes[]) => {
+    //   setExercise(response);
+    // },
     onError: () => {
       messageApi.open({
         type: "error",
@@ -221,28 +221,8 @@ const ExerciseManagement = () => {
                             </span>
                           </Typography.Text>
 
-                          <Typography.Text className="!text-black">
-                            <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
-                            <span className="font-semibold !text-black">
-                              {item.isActive ? (
-                                <Tag color="green">Activate</Tag>
-                              ) : (
-                                <Tag color="red">Deactivate</Tag>
-                              )}
-                            </span>
-                          </Typography.Text>
-                         
-                          <div className="grid grid-cols-2 gap-2 w-full">
-                       
-                            <BaseButton
-                              danger
-                              icon={<DeleteOutlined />}
-                              onClick={() => confirmModal(item.exerciseID)}
-                            >
-                              Deactivate
-                            </BaseButton>
-                       
-                     
+                          <div className="grid grid-cols-2 gap-2 w-full" style={{ marginTop: '15px' }}>
+
                             <BaseButton
                               icon={<FileAddOutlined />}
                               type="primary"
@@ -250,7 +230,15 @@ const ExerciseManagement = () => {
                             >
                               Update
                             </BaseButton>
-                          
+
+                            <BaseButton
+                              danger
+                              icon={<DeleteOutlined />}
+                              onClick={() => confirmModal(item.exerciseID)}
+                            >
+                              Delete
+                            </BaseButton>
+
                           </div>
                         </div>
                       </div>

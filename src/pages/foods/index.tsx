@@ -44,8 +44,12 @@ const FoodManagement = () => {
     data: foodsList,
   } = useQuery(["get-foods"], FOOD_API.GET_FOODS, {
     enabled: false,
+    // onSuccess: (response: TFoodItem[]) => {
+    //   setFoods(response);
+    // },
     onSuccess: (response: TFoodItem[]) => {
-      setFoods(response);
+      const availableFoods = response.filter((item) => item.isActive !== false);
+      setFoods(availableFoods);
     },
     onError: () => {
       messageApi.open({
@@ -238,7 +242,7 @@ const FoodManagement = () => {
                           </span>
                         </Typography.Text>
 
-                        <Typography.Text className="!text-black">
+                        {/* <Typography.Text className="!text-black">
                           <span style={{ fontWeight: "bold" }}>Status :</span>{" "}
                           <span>
                             {item.isActive ? (
@@ -257,7 +261,7 @@ const FoodManagement = () => {
                               </Tag>
                             )}
                           </span>
-                        </Typography.Text>
+                        </Typography.Text> */}
 
                       </div>
                     </div>
@@ -291,7 +295,7 @@ const FoodManagement = () => {
                           onClick={() => confirmModal(item.foodID)}
                           size="small"
                         >
-                          Deactivate
+                          Delete
                         </BaseButton>
                     
 
