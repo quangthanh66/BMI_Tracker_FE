@@ -1,6 +1,7 @@
 import COMMISSION_API from "@app/api/commission";
 import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
-import { CommissionColumns, DetailCommissionItemResponse } from "@app/models";
+// import { CommissionColumns, DetailCommissionItemResponse } from "@app/models";
+import { CommissionColumns, DetailCommissionItemResponse } from "@app/pages/commission/CommissionColumn";
 import { useMutation } from "@tanstack/react-query";
 import { message, Spin, Table } from "antd";
 import { forwardRef, useImperativeHandle, useState } from "react";

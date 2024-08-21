@@ -61,7 +61,7 @@ const ViewCommissionDialog = (
  
       <Spin spinning tip="Loading...">
         <BaseTable
-          dataSource={CommissionColumns}
+          dataSource={CommissionColumns()}
           pagination={{
             pageSize: 3,
           }}

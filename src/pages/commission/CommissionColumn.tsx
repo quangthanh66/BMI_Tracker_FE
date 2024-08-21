@@ -1,36 +1,45 @@
-interface ICommissionEvents {
-  // onDeleteFoodRecipe: (id: number) => void;
+export type DetailCommissionItemResponse = {
+  commissionAllocationID: number;
+  amount: number;
+  description: string;
+  milestone: string;
+  milestoneDate: string;
+  subscriptionNumber: string;
+};
+function formatNumber(num: number): string {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function convertDateFormat(inputDate: string): string {
+  if (!inputDate) {
+    return '';
+  }
+  const datePart = inputDate.split('T')[0]; // Lấy phần YYYY-MM-DD
+  const parts = datePart.split('-'); // Tách thành mảng [YYYY, MM, DD]
+  // Trả về định dạng DD-MM-YYYY
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
 }
 
-export const CommissionColumns: any = ({}: ICommissionEvents) => [
-  {
-    title: "ID",
-    dataIndex: "commissionAllocationID",
-    key: "commissionAllocationID",
-  },
+export const CommissionColumns = () => [
   {
     title: "Amount (VND)",
     dataIndex: "amount",
-    key: "amount",
+    render: (text: number) => formatNumber(text),
   },
   {
     title: "Description",
     dataIndex: "description",
-    key: "description",
   },
   {
     title: "Milestone",
     dataIndex: "milestone",
-    key: "milestone",
   },
   {
-    title: "MilestoneDate",
+    title: "Milestone Date",
     dataIndex: "milestoneDate",
-    key: "milestoneDate",
+    render: (text: string) => convertDateFormat(text),
   },
   {
-    title: "Subscription Number",
+    title: "Subscription number",
     dataIndex: "subscriptionNumber",
-    key: "subscriptionNumber",
   },
 ];
