@@ -44,10 +44,14 @@ export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubsc
     dataIndex: 'memberName',
   },
   {
-    title: 'Amount (VND)',
-    dataIndex: 'amount',
-    sortDirections: ['descend'],
-    render: (text: number) => formatNumber(text),
+    title: 'Start Date',
+    dataIndex: 'startDate',
+    render: (text: string) => convertDateFormat(text),
+  },
+  {
+    title: 'End Date',
+    dataIndex: 'endDate',
+    render: (text: string) => convertDateFormat(text),
   },
   {
     title: 'Subscription Date',
@@ -61,14 +65,10 @@ export const SubscriptionColumns: any = ({ updateSubscriptionModal, approveSubsc
     sortDirections: ["ascend", "descend"],
   },
   {
-    title: 'Start Date',
-    dataIndex: 'startDate',
-    render: (text: string) => convertDateFormat(text),
-  },
-  {
-    title: 'End Date',
-    dataIndex: 'endDate',
-    render: (text: string) => convertDateFormat(text),
+    title: 'Amount (VND)',
+    dataIndex: 'amount',
+    sortDirections: ['descend'],
+    render: (text: number) => formatNumber(text),
   },
   {
     title: 'Description',
