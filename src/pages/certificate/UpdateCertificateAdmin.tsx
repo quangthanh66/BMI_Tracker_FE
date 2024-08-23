@@ -83,44 +83,31 @@ const UpdateCertificateAdmin = (
       onCancel={onCloseModal}
       closeIcon
       title={
-        <Typography className="text-xl">Update Advisor Certificate</Typography>
+        <Typography className="text-xl">Confirm certificate</Typography>
       }
-      width={1250}
+      width={450}
     >
       {contextHolder}
 
       <Spin spinning={isLoadingCertificateDetail || isLoadingUpdateCertificate}>
         {certficiateDetailResult ? (
-          <Descriptions title="Advisor Info" bordered layout="vertical">
-            <Descriptions.Item label="Certificate Name" className="!text-black">
-              <Typography.Text className="!text-black">
-                {certficiateDetailResult.certificateName}
-              </Typography.Text>
-            </Descriptions.Item>
-            <Descriptions.Item label="Certificate Link" className="!text-black">
-              <Typography.Text className="!text-black">
-                {certficiateDetailResult.certificateLink}
-              </Typography.Text>
-            </Descriptions.Item>
-
-            <Descriptions.Item label="Status" className="!text-black">
-              <Badge
-                status="processing"
-                text={certficiateDetailResult.isActive ? "Activate" : "DeActivate"}
-              />
-            </Descriptions.Item>
-
-            <Descriptions.Item label="Update Status" className="!text-black">
-              <BaseButton
-                type="primary"
-                onClick={() =>
-                  onChangeCertificateStatus(!certficiateDetailResult.isActive)
-                }
-              >
-                {certficiateDetailResult.isActive ? "Deactivate" : "Activate"}
-              </BaseButton>
-            </Descriptions.Item>
-          </Descriptions>
+         <Descriptions className="!text-black" >
+         <Descriptions.Item label="Status" style={{ marginRight: '50px' }} className="!text-black">
+           <div style={{ display: 'flex', alignItems: 'center' }}>
+             <Badge
+               status="processing"
+               text={certficiateDetailResult.isActive ? "Active" : "Deactivated"}
+             />
+             <BaseButton
+               type="primary"
+               onClick={() => onChangeCertificateStatus(!certficiateDetailResult.isActive)}
+               style={{ marginLeft: '40px' }}
+             >
+               {certficiateDetailResult.isActive ? "Deactivate" : "Activate"}
+             </BaseButton>
+           </div>
+         </Descriptions.Item>
+       </Descriptions>
         ) : (
           <Empty />
         )}
