@@ -28,13 +28,13 @@ interface ICommission {
 
 export const CommissionColumns = ({ viewDetailFn }: ICommission) => [
   {
-    title: "Subscription number",
-    dataIndex: "subscriptionNumber",
-  },
-  {
     title: "Milestone Date",
     dataIndex: "milestoneDate",
     render: (text: string) => convertDateFormat(text),
+  },
+  {
+    title: "Subscription number",
+    dataIndex: "subscriptionNumber",
   },
   {
     title: "Milestone",
