@@ -1,5 +1,6 @@
 import COMMISSION_API from "@app/api/commission";
 import { BaseTable } from "@app/components/common/BaseTable/BaseTable";
+import CommissionFilter from "@app/modules/trainer/pages/commission/CommissionFilter";
 import UpdateCommissionModel from "@app/modules/trainer/pages/commission/UpdateCommissionModal";
 import { CommissionColumns } from "@app/modules/trainer/pages/commission/constant";
 import { CommissionItemTypes } from "@app/modules/trainer/pages/commission/type";
@@ -7,13 +8,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, Col, Empty, Row, Spin, Typography, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import ViewDetailComission from "./ViewDetailComission";
-import CommissionFilter from "@app/modules/trainer/pages/commission/CommissionFilter";
-import { create } from "lodash";
 
 const CommissionManagement = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [commission, setCommission] = useState<CommissionItemTypes[]>([]);
-  const [originalCommissions, setOriginalCommissions] = useState<CommissionItemTypes[]>([]);
+  const [originalCommissions, setOriginalCommissions] = useState<
+    CommissionItemTypes[]
+  >([]);
   const [commissionUpdate, setCommissionUpdate] =
     useState<CommissionItemTypes>();
 
@@ -37,7 +38,6 @@ const CommissionManagement = () => {
 
   const createCommissionRef = useRef<any>();
 
-  
   const openCreateCommissionModal = () => {
     createCommissionRef.current.openModal();
   };
@@ -51,24 +51,21 @@ const CommissionManagement = () => {
         content: "Approve commission is failed",
       }),
   });
-  const onSearchCommission = async (keyValue: string) => {
-
-  };
-
-
+  const onSearchCommission = async (keyValue: string) => {};
 
   const onFilterCommissionStatus = (status: string) => {
     console.log("Filtering by status:", status);
     if (status === "All") {
       setCommission(originalCommissions); // Show all commissions
     } else if (status) {
-      const result = originalCommissions.filter((commissionItem: CommissionItemTypes) => 
-        commissionItem.paymentStatus === status
+      const result = originalCommissions.filter(
+        (commissionItem: CommissionItemTypes) =>
+          commissionItem.paymentStatus === status
       );
       setCommission(result); // Filtered commissions
     }
   };
-  
+
   const updateCommissionRef = useRef<any>();
   const viewDetailRef = useRef<any>();
 
@@ -81,7 +78,6 @@ const CommissionManagement = () => {
     updateCommissionRef.current.openModal();
   };
 
-  const onApproveCommission = () => {};
   const viewDetailCommission = (id: number) =>
     viewDetailRef.current.openModal(id);
 
@@ -99,12 +95,12 @@ const CommissionManagement = () => {
             </Typography.Text>
           </Card>
         </Col>
-        <Col span={12}>     
-            <CommissionFilter
-              onCreateCommission={openCreateCommissionModal}
-              onSearchCommission={onSearchCommission}
-              onFilterCommissionStatus={onFilterCommissionStatus}
-            />
+        <Col span={12}>
+          <CommissionFilter
+            onCreateCommission={openCreateCommissionModal}
+            onSearchCommission={onSearchCommission}
+            onFilterCommissionStatus={onFilterCommissionStatus}
+          />
         </Col>
         <UpdateCommissionModel
           ref={updateCommissionRef}
@@ -114,7 +110,7 @@ const CommissionManagement = () => {
 
         <ViewDetailComission ref={viewDetailRef} />
 
-    {commission.length > 0 ? (
+        {commission.length > 0 ? (
           <Col span={24}>
             <BaseTable
               className="max-w-[82vw]"

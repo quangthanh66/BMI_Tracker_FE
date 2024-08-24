@@ -1,3 +1,6 @@
+import { EyeOutlined } from "@ant-design/icons";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+
 export type DetailCommissionItemResponse = {
   commissionAllocationID: number;
   amount: number;
@@ -11,15 +14,19 @@ function formatNumber(num: number): string {
 }
 function convertDateFormat(inputDate: string): string {
   if (!inputDate) {
-    return '';
+    return "";
   }
-  const datePart = inputDate.split('T')[0]; // Lấy phần YYYY-MM-DD
-  const parts = datePart.split('-'); // Tách thành mảng [YYYY, MM, DD]
+  const datePart = inputDate.split("T")[0]; // Lấy phần YYYY-MM-DD
+  const parts = datePart.split("-"); // Tách thành mảng [YYYY, MM, DD]
   // Trả về định dạng DD-MM-YYYY
   return `${parts[2]}-${parts[1]}-${parts[0]}`;
 }
 
-export const CommissionColumns = () => [
+interface ICommission {
+  viewDetailFn: (value: number) => void;
+}
+
+export const CommissionColumns = ({ viewDetailFn }: ICommission) => [
   {
     title: "Subscription number",
     dataIndex: "subscriptionNumber",
@@ -41,5 +48,18 @@ export const CommissionColumns = () => [
   {
     title: "Description",
     dataIndex: "description",
+  },
+  {
+    title: "Action",
+    dataIndex: "subscriptionNumber",
+    render: (value: number) => (
+      <div className="flex items-center gap-x-2">
+        <BaseButton
+          icon={<EyeOutlined />}
+          type="primary"
+          onClick={() => viewDetailFn(value)}
+        />
+      </div>
+    ),
   },
 ];

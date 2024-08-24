@@ -10,5 +10,13 @@ export type SubcriptionItemTypes = {
   memberID: string;
   memberName: string;
   advisorName: string;
-  subscriptionStatus: string,
+  subscriptionStatus: string;
+};
+
+export type MilestonesItemResponse = {
+  commissionAllocationID: number;
+  amount: number;
+  description: string;
+  milestone: string;
+  milestoneDate: string;
 };

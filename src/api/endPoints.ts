@@ -55,6 +55,7 @@ export const END_POINTS = {
 
   SUBSCRIPTION: {
     MAIN: "/api/subscriptions/getAll",
+    GET_PAYMENT_MILESTONES: "/api/subscriptions/payment-milestones",
   },
 
   FOOD: "/api/foods/getAll",
