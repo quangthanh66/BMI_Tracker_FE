@@ -36,7 +36,7 @@ const SubscriptionNumberDialog = ({}, ref: any) => {
 
   return (
     <BaseModal
-      title="Detail commission"
+      title="Payment milestones"
       open={isOpenModal}
       onCancel={onCloseModal}
       footer={null}
