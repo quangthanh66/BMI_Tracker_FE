@@ -40,7 +40,7 @@ const SubscriptionNumberDialog = ({}, ref: any) => {
       open={isOpenModal}
       onCancel={onCloseModal}
       footer={null}
-      width={800}
+      width={600}
     >
       {contextHolder}
       <Spin tip="Loading..." spinning={isLoadingGetData}>
