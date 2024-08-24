@@ -13,7 +13,7 @@ function formatNumber(num: number): string {
 }
 export const milestonesColumn = () => [
    {
-    title: "Date",
+    title: "Milestone date",
     dataIndex: "milestoneDate",
     render: (text: string) => convertDateFormat(text),
     width: 150,
