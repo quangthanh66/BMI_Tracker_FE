@@ -23,7 +23,7 @@ export const milestonesColumn = () => [
     dataIndex: "milestone",
   },
   {
-    title: "Amount",
+    title: "Amount (VND)",
     dataIndex: "amount",
     render: (text: number) => formatNumber(text),
   },
