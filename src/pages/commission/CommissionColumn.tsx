@@ -50,7 +50,7 @@ export const CommissionColumns = ({ viewDetailFn }: ICommission) => [
     dataIndex: "description",
   },
   {
-    title: "Action",
+    title: "Details",
     dataIndex: "subscriptionNumber",
     render: (value: number) => (
       <div className="flex items-center gap-x-2">
