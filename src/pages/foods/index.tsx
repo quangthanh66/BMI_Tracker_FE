@@ -232,7 +232,7 @@ const FoodManagement = () => {
                             Time process:
                           </span>{" "}
                           <span style={{ textTransform: "lowercase" }}>
-                            {item.foodTimeProcess} (minutes)
+                            {item.foodTimeProcess} (min)
                           </span>
                         </Typography.Text>
                         <Typography.Text className="!text-black">
