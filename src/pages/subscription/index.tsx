@@ -115,8 +115,9 @@ const SubscriptionManagement = () => {
                 approveSubscription: onApproveSubscription,
               })}
               dataSource={subscription}
+              pagination={false}
               scroll={{
-                y: (1 - 350 / window.innerHeight) * window.innerHeight,
+                y: (1 - 300 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />

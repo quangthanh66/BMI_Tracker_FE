@@ -63,6 +63,7 @@ const ViewDetailCommission = ({}, ref: any) => {
           pagination={{
             pageSize: 5,
           }}
+      
         />
       </Spin>
     </BaseModal>

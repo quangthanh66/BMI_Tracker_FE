@@ -40,7 +40,8 @@ const SubscriptionNumberDialog = ({}, ref: any) => {
       open={isOpenModal}
       onCancel={onCloseModal}
       footer={null}
-      width={600}
+       width={800}
+       bodyStyle={{ maxHeight: '650px', overflowY: 'hidden' }}
     >
       {contextHolder}
       <Spin tip="Loading..." spinning={isLoadingGetData}>
@@ -48,7 +49,7 @@ const SubscriptionNumberDialog = ({}, ref: any) => {
           dataSource={milestones}
           columns={milestonesColumn()}
           pagination={{
-            pageSize: 5,
+            pageSize: 4,
           }}
         />
       </Spin>

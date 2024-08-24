@@ -119,8 +119,9 @@ const CommissionManagement = () => {
                 viewDetailFn: viewDetailCommission,
               })}
               dataSource={commission}
+              pagination={false}
               scroll={{
-                y: (1 - 350 / window.innerHeight) * window.innerHeight,
+                y: (1 - 320 / window.innerHeight) * window.innerHeight,
                 x: 1200,
               }}
             />
