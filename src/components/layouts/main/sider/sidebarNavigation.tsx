@@ -62,6 +62,12 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     icon: <img src="https://cdn-icons-png.flaticon.com/128/7748/7748280.png" alt="Certificate" style={{ width: '35px', height: '35px' }} />,
   },
   {
+    title: 'Package',
+    key: 'plan',
+    url: '/plan',
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/3198/3198968.png" alt="Package Icon" style={{ width: '35px', height: '35px' }} />,
+  },
+  {
     title: 'Subscription',
     key: 'subscription',
     url: '/subscription',
@@ -72,12 +78,6 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     key: 'commission-management',
     url: PAGE_ROUTES.TRAINER.COMMISSION,
     icon: <img src="https://cdn-icons-png.flaticon.com/128/10044/10044628.png" alt="Commission Icon" style={{ width: '35px', height: '35px' }} />,
-  },
-  {
-    title: 'Package',
-    key: 'plan',
-    url: '/plan',
-    icon: <img src="https://cdn-icons-png.flaticon.com/128/3198/3198968.png" alt="Package Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
     title: 'Blog',
