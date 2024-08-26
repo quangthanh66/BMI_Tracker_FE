@@ -63,7 +63,15 @@ const initialPersonalInfoValues: PersonalInfoFormValues = {
   role: "",
   isActive: false,
 };
-
+function convertDateFormat(inputDate: string): string {
+  if (!inputDate) {
+    return "";
+  }
+  const datePart = inputDate.split("T")[0]; // Lấy phần YYYY-MM-DD
+  const parts = datePart.split("-"); // Tách thành mảng [YYYY, MM, DD]
+  // Trả về định dạng DD-MM-YYYY
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
+}
 export const PersonalInfo: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
   const [messageApi, contextHolder] = message.useMessage();
@@ -109,7 +117,7 @@ export const PersonalInfo: React.FC = () => {
           fullName: userProfileState.fullName,
           email: userProfileState.email,
           phoneNumber: userProfileState.phoneNumber,
-          birthday: userProfileState.birthday,
+          birthday: convertDateFormat(userProfileState.birthday),
           gender: userProfileState.gender,
           // role: userProfileState.roleNames[0],
           role: userProfileState.roleNames.length > 0 ? userProfileState.roleNames[0] : "",
@@ -128,6 +136,9 @@ export const PersonalInfo: React.FC = () => {
       "email",
       "role",
     ]) as UpdateUserProfileRequest;
+    if (result.birthday) {
+      result.birthday = convertDateFormat(result.birthday); // Convert to YYYY-MM-DD
+    }
     updateProfile({
       ...result,
       accountPhoto: userProfileState.accountPhoto,
