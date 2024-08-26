@@ -51,7 +51,7 @@ const AddMoreAccountModal = (
 
   return (
     <BaseModal
-      title="Add more account"
+      title="Add more role"
       onCancel={onCloseModal}
       open={isOpenModal}
       footer={null}

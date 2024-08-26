@@ -110,7 +110,7 @@ export const UserColumns: any = ({
           ></Button>
         </Tooltip>
 
-        <Tooltip title="Add more account">
+        <Tooltip title="Add more role">
           <Button
             icon={<PlusOutlined />}
             type="text"
