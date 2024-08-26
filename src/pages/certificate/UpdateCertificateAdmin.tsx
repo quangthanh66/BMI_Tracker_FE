@@ -83,31 +83,33 @@ const UpdateCertificateAdmin = (
       onCancel={onCloseModal}
       closeIcon
       title={
-        <Typography className="text-xl">Confirm certificate</Typography>
+        <Typography className="text-xl">Confirm status</Typography>
       }
-      width={450}
+      width={300}
     >
       {contextHolder}
 
       <Spin spinning={isLoadingCertificateDetail || isLoadingUpdateCertificate}>
         {certficiateDetailResult ? (
-         <Descriptions className="!text-black" >
-         <Descriptions.Item label="Status" style={{ marginRight: '50px' }} className="!text-black">
-           <div style={{ display: 'flex', alignItems: 'center' }}>
-             <Badge
-               status="processing"
-               text={certficiateDetailResult.isActive ? "Active" : "Deactivated"}
-             />
-             <BaseButton
-               type="primary"
-               onClick={() => onChangeCertificateStatus(!certficiateDetailResult.isActive)}
-               style={{ marginLeft: '40px' }}
-             >
-               {certficiateDetailResult.isActive ? "Deactivate" : "Activate"}
-             </BaseButton>
-           </div>
-         </Descriptions.Item>
-       </Descriptions>
+          <Descriptions className="!text-black" >
+            {/* <Descriptions.Item label="Status" style={{ marginRight: '50px' }} className="!text-black"> */}
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Badge
+                status="processing"
+                text={certficiateDetailResult.isActive ? "Active" : "Deactivated"}
+              />
+              <BaseButton
+                type="primary"
+                onClick={() => onChangeCertificateStatus(!certficiateDetailResult.isActive)}
+                style={{ marginLeft: '40px' }}
+              >
+                {certficiateDetailResult.isActive ? "Deactivate" : "Activate"}
+              </BaseButton>
+
+
+            </div>
+            {/* </Descriptions.Item> */}
+          </Descriptions>
         ) : (
           <Empty />
         )}
