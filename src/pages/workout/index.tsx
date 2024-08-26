@@ -149,7 +149,7 @@ const WorkoutManagement = () => {
                           <span style={{ fontWeight: "bold" }}>
                             Created by:
                           </span>{" "}
-                          <span style={{ textTransform: "lowercase" }}>
+                          <span style={{ textTransform: "inherit" }}>
                             {item.fullName}
                           </span>
                         </Typography.Text>

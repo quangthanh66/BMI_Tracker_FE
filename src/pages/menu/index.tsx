@@ -181,7 +181,7 @@ const MenuManagement = () => {
                       </Typography.Paragraph>
                       <Typography.Paragraph className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Created by:</span>{" "}
-                        <span style={{ textTransform: "lowercase" }}>
+                        <span style={{ textTransform: "inherit" }}>
                           {item.advisorName}
                         </span>
                       </Typography.Paragraph>
@@ -190,7 +190,7 @@ const MenuManagement = () => {
                       <Typography.Paragraph className="!text-black">
                         <span style={{ fontWeight: "bold" }}>Using by:</span>
                         {Array.isArray(item.membersUsing) ? (
-                          <div style={{ textTransform: "uppercase" }}>
+                          <div style={{ textTransform: "inherit" }}>
                             {item.membersUsing.map((member, index) => (
                               <div key={index}>{member}</div>
                             ))}
