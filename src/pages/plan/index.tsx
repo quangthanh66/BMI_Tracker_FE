@@ -108,7 +108,7 @@ const PlanManagement = () => {
         <Col span={24}>
           <Card size="small">
             <Typography.Text className="text-xl font-bold !text-black">
-              Plan management
+              Package management
             </Typography.Text>
           </Card>
         </Col>
