@@ -93,11 +93,7 @@ const SubscriptionManagement = () => {
             <Typography.Text className="text-xl font-bold">Subscription management</Typography.Text>
           </Card>
         </Col>
-        {/* <UpdateSubscriptionModel
-          ref={updateSubscriptionRef}
-          subscriptionUpdate={subscriptionUpdate as SubscriptionItemTypes}
-          onRefreshPage={() => refetch()}
-        /> */}
+ 
         <Col span={12}>
             <SubscriptionFilter
               onCreateSubscription={openCreateSubscriptionModal}
