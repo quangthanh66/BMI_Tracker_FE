@@ -42,7 +42,8 @@ export const AdvisorColumns: any = ({
       <Image
         alt="advisor-photo-alt"
         src={accountPhoto}
-        className="h-[100px] w-full object-cover"
+       // className="h-[100px] w-full object-cover"
+        className="h-[100px] w-[100px] rounded-full object-cover"
         onError={({ currentTarget }) => {
           currentTarget.onerror = null; // prevents looping
           currentTarget.src = errorImage;
