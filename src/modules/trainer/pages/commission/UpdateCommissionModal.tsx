@@ -13,7 +13,6 @@ import { useMutation } from '@tanstack/react-query';
 import COMMISSION_API from '@app/api/commission';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import moment from 'moment';
 
 dayjs.extend(utc);
 
@@ -50,14 +49,10 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
   useEffect(() => {
     if (commissionUpdate) {
       console.log(commissionUpdate);
-      const currentPaidDate = commissionUpdate.paidDate
-      ? dayjs(commissionUpdate.paidDate, 'DD-MM-YYYY')
-      : dayjs(); // Use current date if paidDate is empty
 
       form.setFieldsValue({
         ...commissionUpdate,
-        // paidDate: dayjs(commissionUpdate.paidDate, 'YYYY-MM-DD'),
-        paidDate: currentPaidDate,
+        paidDate: dayjs(commissionUpdate.paidDate, "YYYY-MM-DD"),
       });
     }
   }, [commissionUpdate]);
@@ -69,6 +64,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
   });
 
   const onCloseModal = () => setIsOpenModal(false);
+
   const onSubmit = (values: CommissionItemTypes) => {
     mutateUpdateCommission({
       ...values,
@@ -76,7 +72,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
       commissionID: String(commissionUpdate.commissionID),
     });
   };
-
+  
   return (
     <BaseModal
       centered
@@ -99,7 +95,7 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
             </BaseForm.Item>
           </BaseCol>
 
-        <BaseCol span={12}>
+          <BaseCol span={12}>
             <BaseForm.Item
               name="paidAmount"
               label={<span style={{ fontWeight: 'bold' }}>Paid amount (VND)</span>}
@@ -130,10 +126,6 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
                   {
                     label: 'UNPAID',
                     value: 'UNPAID',
-                  },
-                  {
-                    label: 'PARTIALLY_PAID',
-                    value: 'PARTIALLY_PAID',
                   },
                 ]}
               />
