@@ -1,18 +1,18 @@
-import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
-import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { Col, DatePicker, Form, Select, Typography, message } from 'antd';
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { CommissionItemTypes } from './type';
-import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
-import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { fieldValidate } from '@app/utils/helper';
-import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
-import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { PlusOutlined } from '@ant-design/icons';
-import { useMutation } from '@tanstack/react-query';
-import COMMISSION_API from '@app/api/commission';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
+import { PlusOutlined } from "@ant-design/icons";
+import COMMISSION_API from "@app/api/commission";
+import { BaseButton } from "@app/components/common/BaseButton/BaseButton";
+import { BaseCol } from "@app/components/common/BaseCol/BaseCol";
+import { BaseModal } from "@app/components/common/BaseModal/BaseModal";
+import { BaseRow } from "@app/components/common/BaseRow/BaseRow";
+import { BaseForm } from "@app/components/common/forms/BaseForm/BaseForm";
+import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import { fieldValidate } from "@app/utils/helper";
+import { useMutation } from "@tanstack/react-query";
+import { Col, DatePicker, Select, Typography, message } from "antd";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import { CommissionItemTypes } from "./type";
 
 dayjs.extend(utc);
 
@@ -21,30 +21,33 @@ type UpdateCommissionTypes = {
   onRefreshPage: () => void;
 };
 
-const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommissionTypes, ref: any) => {
+const UpdateCommissionModal = (
+  { commissionUpdate, onRefreshPage }: UpdateCommissionTypes,
+  ref: any
+) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [form] = BaseForm.useForm();
-  const { isLoading: isLoadingUpdateCommission, mutate: mutateUpdateCommission } = useMutation(
-    COMMISSION_API.UPDATE_COMMISSION,
-    {
-      onSuccess: () => {
-        messageApi.open({
-          type: 'success',
-          content: 'Update commission is successful',
-        });
+  const {
+    isLoading: isLoadingUpdateCommission,
+    mutate: mutateUpdateCommission,
+  } = useMutation(COMMISSION_API.UPDATE_COMMISSION, {
+    onSuccess: () => {
+      messageApi.open({
+        type: "success",
+        content: "Update commission is successful",
+      });
 
-        onCloseModal();
-        onRefreshPage();
-      },
-      onError: () => {
-        messageApi.open({
-          type: 'error',
-          content: 'Update commission is failed',
-        });
-      },
+      onCloseModal();
+      onRefreshPage();
     },
-  );
+    onError: () => {
+      messageApi.open({
+        type: "error",
+        content: "Update commission is failed",
+      });
+    },
+  });
 
   useEffect(() => {
     if (commissionUpdate) {
@@ -68,11 +71,11 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
   const onSubmit = (values: CommissionItemTypes) => {
     mutateUpdateCommission({
       ...values,
-      paidDate: dayjs.utc(values.paidDate).format(),
+      paidDate: dayjs(values.paidDate).format("YYYY-MM-DD"),
       commissionID: String(commissionUpdate.commissionID),
     });
   };
-  
+
   return (
     <BaseModal
       centered
@@ -80,52 +83,74 @@ const UpdateCommissionModal = ({ commissionUpdate, onRefreshPage }: UpdateCommis
       open={isOpenModal}
       onCancel={onCloseModal}
       closeIcon
-      title={<Typography className="text-xl">Update commission information</Typography>}
+      title={
+        <Typography className="text-xl">
+          Update commission information
+        </Typography>
+      }
     >
       {contextHolder}
-      <BaseForm form={form} layout="vertical" requiredMark={false} onFinish={onSubmit}>
+      <BaseForm
+        form={form}
+        layout="vertical"
+        requiredMark={false}
+        onFinish={onSubmit}
+      >
         <BaseRow gutter={[20, 20]}>
           <BaseCol span={12}>
             <BaseForm.Item
               name="paidDate"
-              label={<span style={{ fontWeight: 'bold' }}>Paid Date</span>}
+              label={<span style={{ fontWeight: "bold" }}>Paid Date</span>}
               rules={[fieldValidate.required]}
             >
-              <DatePicker style={{ width: '100%' }} />
+              <DatePicker style={{ width: "100%" }} />
             </BaseForm.Item>
           </BaseCol>
 
           <BaseCol span={12}>
             <BaseForm.Item
               name="paidAmount"
-              label={<span style={{ fontWeight: 'bold' }}>Paid amount (VND)</span>}
+              label={
+                <span style={{ fontWeight: "bold" }}>Paid amount (VND)</span>
+              }
               rules={[fieldValidate.required]}
             >
-              <BaseInput placeholder="Enter your paid amount" required maxLength={50} />
+              <BaseInput
+                placeholder="Enter your paid amount"
+                required
+                maxLength={50}
+              />
             </BaseForm.Item>
           </BaseCol>
 
           <BaseCol span={24}>
             <BaseForm.Item
               name="commissionDescription"
-              label={<span style={{ fontWeight: 'bold' }}>Description</span>}
+              label={<span style={{ fontWeight: "bold" }}>Description</span>}
               rules={[fieldValidate.required]}
             >
-              <BaseInput placeholder="Enter description" required maxLength={1000} />
+              <BaseInput
+                placeholder="Enter description"
+                required
+                maxLength={1000}
+              />
             </BaseForm.Item>
           </BaseCol>
 
           <Col span={24}>
-            <BaseForm.Item label={<span style={{ fontWeight: 'bold' }}>Status</span>} name="paymentStatus">
+            <BaseForm.Item
+              label={<span style={{ fontWeight: "bold" }}>Status</span>}
+              name="paymentStatus"
+            >
               <Select
                 options={[
                   {
-                    label: 'PAID',
-                    value: 'PAID',
+                    label: "PAID",
+                    value: "PAID",
                   },
                   {
-                    label: 'UNPAID',
-                    value: 'UNPAID',
+                    label: "UNPAID",
+                    value: "UNPAID",
                   },
                 ]}
               />
