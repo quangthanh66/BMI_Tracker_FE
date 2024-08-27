@@ -103,7 +103,7 @@ const UpdateCommissionModal = (
               label={<span style={{ fontWeight: "bold" }}>Paid Date</span>}
               rules={[fieldValidate.required]}
             >
-              <DatePicker style={{ width: "100%" }} />
+              <DatePicker style={{ width: "100%" }} format={"DD-MM-YYYY"} />
             </BaseForm.Item>
           </BaseCol>
 
