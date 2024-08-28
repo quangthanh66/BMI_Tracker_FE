@@ -45,7 +45,7 @@ export const LoginForm: React.FC = () => {
           })
         );
         response.roleNames.includes(USER_ROLES_ENUM.ROLE_MANAGER)
-          ? navigate("/feedback")
+          ? navigate("/charts")
           : navigate("/charts");
       },
     }
