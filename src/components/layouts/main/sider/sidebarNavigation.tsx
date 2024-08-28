@@ -92,7 +92,7 @@ export const trainerSidebar: SidebarNavigationItem[] = [
     icon: <img src="https://cdn-icons-png.flaticon.com/128/1541/1541419.png" alt="Feedback Icon" style={{ width: '35px', height: '35px' }} />,
   },
   {
-    title: 'Ingredients',
+    title: 'Ingredient',
     key: 'ingredients',
     url: PAGE_ROUTES.INGREDIENTS,
     icon: <img src="https://cdn-icons-png.flaticon.com/128/3521/3521770.png" alt="Ingredients" style={{ width: '35px', height: '35px' }} />,

@@ -162,7 +162,7 @@ const FoodManagement = () => {
         <Col span={24}>
           <Card size="small">
             <Typography.Text className="text-xl font-bold">
-              Foods management
+              Food management
             </Typography.Text>
           </Card>
         </Col>

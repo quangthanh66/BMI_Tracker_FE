@@ -114,7 +114,7 @@ const WorkoutManagement = () => {
         <Col span={24}>
           <Card size="small">
             <Typography.Text className="text-xl font-bold">
-              Workouts management
+              Workout management
             </Typography.Text>
           </Card>
         </Col>
