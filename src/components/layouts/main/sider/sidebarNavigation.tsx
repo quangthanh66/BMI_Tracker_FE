@@ -50,6 +50,12 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
 
 export const trainerSidebar: SidebarNavigationItem[] = [
   {
+    title: 'Dashboard',
+    key: 'dashboard',
+    url: PAGE_ROUTES.HOME,
+    icon: <img src="https://cdn-icons-png.flaticon.com/128/12522/12522439.png" alt="Dashboard Icon" style={{ width: '35px', height: '35px' }} />,
+  },
+  {
     title: 'Advisor',
     key: 'advisor',
     url: '/advisor',
